@@ -1,0 +1,8 @@
+10-18 22:04:54 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 674:Plugin executed on: 'win32'
+10-18 22:04:54 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 675:Plugin executed with python version: '3.11.5 (main, Sep 17 2025, 01:04:48) [MSC v.1944 64 bit (AMD64)]'
+10-18 22:04:54 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 676:KiCad build version: 9.0.5
+10-18 22:04:54 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 677:Plugin version: 4.0.1
+10-18 22:04:54 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 678:Frame repr: <wx._core.Frame object at 0x0000017B4D857B50>
+10-18 22:05:02 kicad_partsplacer-pcm 98:MyPanel.__init__
+10-18 22:05:45 kicad_partsplacer-pcm 98:MyPanel.__init__
+10-18 22:22:29 kicad_partsplacer-pcm 98:MyPanel.__init__
