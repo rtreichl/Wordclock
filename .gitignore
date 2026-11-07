@@ -1,0 +1,16 @@
+# KiCad: Sperrdateien, Autosave, Caches, Backups
+*.lck
+~*.lck
+_autosave-*
+*-backups/
+fp-info-cache
+*.kicad_prl
+*.log
+\#auto_saved_files\#
+
+# FreeCAD Sicherungskopien
+*.FCStd1
+*.FCBak
+
+# Lokale Claude-Einstellungen
+.claude/
