@@ -303,3 +303,12 @@ pcbnew.ZONE_FILLER(board).Fill(board.Zones())
 out = os.path.join(PRJ, "WortUhr.kicad_pcb")
 pcbnew.SaveBoard(out, board)
 print("saved", out, "footprints", len(placed), "tracks", len(board.GetTracks()))
+
+# Entwurfsregeln auch in der Projektdatei setzen (KiCad liest die Regeln aus der .kicad_pro)
+import json
+_pro = os.path.join(PRJ, "WortUhr.kicad_pro")
+_d = json.load(open(_pro, encoding="utf-8"))
+_r = _d["board"]["design_settings"]["rules"]
+_r["min_copper_edge_clearance"] = 0.3
+_r["min_track_width"] = 0.1
+json.dump(_d, open(_pro, "w", encoding="utf-8"), indent=2)
