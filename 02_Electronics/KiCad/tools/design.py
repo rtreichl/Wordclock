@@ -43,6 +43,8 @@ assert len(PATH) == 36 and len({c for c, _ in PATH}) == 36
 
 CONN_POS = wall(4)       # 192.29: J_IN bei y=CONN_POS am linken Rand, J_OUT bei x=CONN_POS oben
 SENSOR_POS = (6.0, 231.0)  # Lichtsensor unter dem Lichtleiter (Rahmen unten, nahe Mitte)
+FIDUCIALS = [(4.0, 4.0, "F"), (230.0, 4.0, "F"), (4.0, 170.0, "F"),
+             (4.0, 4.0, "B"), (230.0, 4.0, "B"), (230.0, 170.0, "B")]
 MOUNT_HOLES = [(wall(0), wall(0)), (wall(4), wall(0)), (wall(0), wall(4)), (wall(4), wall(4)),
                (wall(2), wall(4)), (wall(4), wall(2))]   # H5/H6 fuer die Rueckrahmen-Leisten
 
@@ -101,6 +103,8 @@ def build_parts():
                   {"1": "+5V", "2": "GND"}))
     for i in range(6):
         P.append(Part(f"H{i+1}", "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_3.2mm_M3", {}))
+    for i in range(6):   # Passermarken fuer die Bestueckung (JLCPCB Standard-PCBA), je 3 oben/unten
+        P.append(Part(f"FID{i+1}", "Mechanical:Fiducial", "Fiducial", "Fiducial:Fiducial_1mm_Mask2mm", {}))
     # --- Master ---------------------------------------------------------------
     M = "Master"
     P.append(Part("J1", "Connector:USB_C_Receptacle_USB2.0_14P", "USB-C", "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",

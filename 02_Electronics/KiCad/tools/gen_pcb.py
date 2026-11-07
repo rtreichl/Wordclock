@@ -15,7 +15,7 @@ PRJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KIFP = r"P:/Program Files/KiCad/10.0/share/kicad/footprints/"
 O = 40.0                      # KiCad-Koordinate des Uhrmittelpunkts (x und y)
 W_SIG, W_GND = 0.3, 0.4
-VIA_D, VIA_DRILL = 0.6, 0.3
+VIA_D, VIA_DRILL = 0.7, 0.3          # Restring 0.2 mm (JLCPCB 2 Lagen: min. 0.18 mm)
 
 mm = pcbnew.FromMM
 
@@ -69,6 +69,13 @@ def place(part, x, y, rot, side="F"):
             p.SetNet(rawnet(n))
         elif p.GetNumber() not in ("", "MP"):
             pass  # z.B. USB-C SBU-Pads ohne Symbolpin
+    for f in (fp.Reference(), fp.Value()):   # Bestueckungsdruck: JLCPCB min. 1,0 mm Hoehe / 0,15 mm Strich
+        if f.GetLayer() in (pcbnew.F_SilkS, pcbnew.B_SilkS):
+            h = max(pcbnew.ToMM(f.GetTextHeight()), 1.0)
+            f.SetTextSize(pcbnew.VECTOR2I(mm(h), mm(h))); f.SetTextThickness(mm(max(0.15, h * 0.15)))
+    if part.ref in D.MASTER_PLACE:       # Master-Teile voll an die Flaechen (keine Waermefallen)
+        for p in fp.Pads():
+            p.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
     placed[part.ref] = fp
     return fp
 
@@ -234,6 +241,10 @@ track([(vx, vy), (xr, vy), (xr, 14.6), (x3, 14.6), (x3, y3)], "DOUT", pcbnew.B_C
 # Puffer-Elko (jede Platine) unter der Wand nahe J_IN
 place(parts["C1"], 26.0, D.CONN_POS, 0, "B")
 x, y = pad_xy("C1", "1"); via(x, y - 2.2, "+5V", 0.8, 0.4); track([(x, y), (x, y - 2.2)], "+5V", pcbnew.B_Cu, w=0.8)
+
+# Passermarken (Fiducials) fuer die Bestueckung
+for i, (x, y, side) in enumerate(D.FIDUCIALS):
+    place(parts[f"FID{i+1}"], x, y, 0, side)
 
 # Montageloecher
 for i, (x, y) in enumerate(D.MOUNT_HOLES):

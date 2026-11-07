@@ -141,7 +141,7 @@ for fp in board.GetFootprints():
             if not s:
                 print("kein Via-Platz fuer", ref, p.GetNumber()); break
             add_track(board, (x, y), s, n, layer, 0.6 if count > 1 else 0.3)
-            add_via(board, s[0], s[1], n, 0.8 if count > 1 else 0.6, 0.4 if count > 1 else 0.3)
+            add_via(board, s[0], s[1], n, 0.8 if count > 1 else 0.7, 0.4 if count > 1 else 0.3)
             VIAS.append(s)
             added += 1
 # Sensor U5 (Oberseite): GND-Pins 2/3 gemeinsam nach aussen auf ein Via
@@ -152,7 +152,7 @@ xo = x2 + 1.1
 add_track(board, (x2, y2), (xo, y2), "/GND", pcbnew.F_Cu, 0.2)
 add_track(board, (x3, y3), (xo, y3), "/GND", pcbnew.F_Cu, 0.2)
 add_track(board, (xo, y2), (xo, y3 - 1.6), "/GND", pcbnew.F_Cu, 0.25)
-add_via(board, xo, y3 - 1.6, "/GND", 0.6, 0.3); added += 1
+add_via(board, xo, y3 - 1.6, "/GND", 0.7, 0.3); added += 1
 print("power vias", added)
 pcbnew.SaveBoard(PCB, board)
 
@@ -210,6 +210,8 @@ for name, w in POWER_W.items():
     nc.SetTrackWidth(mm(w)); nc.SetClearance(mm(0.2)); nc.SetViaDiameter(mm(0.8)); nc.SetViaDrill(mm(0.4))
     ns.SetNetclass(nc.GetName(), nc)
     ns.SetNetclassPatternAssignment(name, nc.GetName())
+_dflt = ns.GetDefaultNetclass()          # Standard-Via fuer Freerouting: 0.7/0.3 mm (Restring 0.2 mm, JLCPCB)
+_dflt.SetViaDiameter(mm(0.7)); _dflt.SetViaDrill(mm(0.3))
 ns.RecomputeEffectiveNetclasses()
 pcbnew.SaveBoard(tmp_pcb, tb)
 tb = pcbnew.LoadBoard(tmp_pcb)
@@ -237,7 +239,7 @@ for t in tb.GetTracks():
     if key in old:
         continue
     if t.GetClass() == "PCB_VIA":
-        COPIED_VIAS.append(add_via(board, toMM(t.GetPosition().x), toMM(t.GetPosition().y), n, toMM(t.GetWidth(pcbnew.F_Cu)), toMM(t.GetDrillValue())))
+        COPIED_VIAS.append(add_via(board, toMM(t.GetPosition().x), toMM(t.GetPosition().y), n, max(toMM(t.GetWidth(pcbnew.F_Cu)), toMM(t.GetDrillValue()) + 0.4), toMM(t.GetDrillValue())))   # Restring >= 0.2 mm (JLCPCB)
     else:
         add_track(board, pos(t.GetStart()), pos(t.GetEnd()), n, t.GetLayer(), toMM(t.GetWidth()))
     copied += 1
@@ -262,6 +264,31 @@ for v in COPIED_VIAS:
     if len(lay) < 2:
         board.Remove(v); removed += 1
 print("dangling vias removed", removed)
+# kurze Stummel ohne Anschluss (Reste entfernter Vias) entfernen
+q = lambda p: (round(p.x / 20000), round(p.y / 20000))
+stubs = 0
+for _ in range(5):
+    pts = {}
+    for t in board.GetTracks():
+        if t.GetClass() == "PCB_TRACK":
+            for p in (t.GetStart(), t.GetEnd()):
+                pts.setdefault((q(p), t.GetNetname(), t.GetLayer()), 0)
+                pts[(q(p), t.GetNetname(), t.GetLayer())] += 1
+    anchors = {(q(v.GetPosition()), v.GetNetname()) for v in board.GetTracks() if v.GetClass() == "PCB_VIA"}
+    padpts = {q(p.GetPosition()) for fp in board.GetFootprints() for p in fp.Pads()}
+    gone = 0
+    for t in list(board.GetTracks()):
+        if t.GetClass() != "PCB_TRACK" or toMM(t.GetLength()) > 1.0 or t.m_Uuid.AsString() in CREATED:
+            continue
+        for p in (t.GetStart(), t.GetEnd()):
+            k = q(p)
+            if pts[(k, t.GetNetname(), t.GetLayer())] == 1 and (k, t.GetNetname()) not in anchors and k not in padpts:
+                board.Remove(t); gone += 1
+                break
+    stubs += gone
+    if not gone:
+        break
+print("dangling stubs removed", stubs)
 pcbnew.ZONE_FILLER(board).Fill(board.Zones())
 pcbnew.SaveBoard(PCB, board)
 print("saved")

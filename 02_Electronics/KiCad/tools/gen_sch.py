@@ -146,7 +146,7 @@ class Sch:
         for k, v in (fields or {}).items():
             props.append((k, v, (x, y), True))
         s = ['(symbol (lib_id %s) (at %s %s 0) (unit 1) (exclude_from_sim no) (in_bom %s) (on_board yes) (dnp no) (uuid "%s")'
-             % (q(lib_id), fmt(x), fmt(y), "no" if ref.startswith("#") or ref.startswith("H") or ref.startswith("JP") or ref in ("J3", "J4") else "yes", uuid_)]
+             % (q(lib_id), fmt(x), fmt(y), "no" if ref.startswith("#") or ref.startswith("H") or ref.startswith("FID") or ref.startswith("JP") or ref in ("J3", "J4") else "yes", uuid_)]
         for k, v, (px, py), hide in props:
             s.append('(property %s %s (at %s %s 0) (effects (font (size 1.27 1.27))%s))'
                      % (q(k), q(v), fmt(px), fmt(py), " (hide yes)" if hide else ""))
@@ -214,6 +214,7 @@ def main():
     S.text("Hinweise: SK6812RGBW-Pinbelegung vor Bestellung mit Datenblatt pruefen. JPx schliessen, wenn LED B einer Kammer nicht bestueckt wird.", 25.4, 375.92, 2.0)
     pos = {"J3": (457.2, 50.8), "J4": (500.38, 50.8), "C1": (543.56, 50.8),
            "H1": (457.2, 96.52), "H2": (482.6, 96.52), "H3": (508.0, 96.52), "H4": (533.4, 96.52), "H5": (558.8, 96.52), "H6": (584.2, 96.52),
+           "FID1": (609.6, 96.52), "FID2": (622.3, 96.52), "FID3": (635.0, 96.52), "FID4": (647.7, 96.52), "FID5": (660.4, 96.52), "FID6": (673.1, 96.52),
            "J1": (467.36, 172.72), "R1": (510.54, 165.1), "R2": (523.24, 165.1), "U3": (558.8, 167.64),
            "D73": (558.8, 200.66), "J2": (464.82, 223.52), "D74": (505.46, 220.98),
            "U2": (558.8, 238.76), "C2": (530.86, 241.3), "C3": (586.74, 241.3), "C4": (599.44, 241.3),

@@ -1128,6 +1128,102 @@
 		)
 		(embedded_fonts no)
 	)
+(symbol "Mechanical:Fiducial"
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "FID"
+			(at 0 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Fiducial"
+			(at 0 3.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Fiducial Marker"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "fiducial marker"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "Fiducial*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "Fiducial_0_1"
+			(circle
+				(center 0 0)
+				(radius 1.27)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 (symbol "Connector:USB_C_Receptacle_USB2.0_14P"
 		(pin_names
 			(offset 1.016)
@@ -5508,6 +5604,12 @@
 (symbol (lib_id "Mechanical:MountingHole") (at 533.4 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "2b4c0f12-1b0c-5413-9d2e-c38f36a3ca72") (property "Reference" "H4" (at 533.4 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "M3" (at 533.4 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 533.4 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 533.4 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 533.4 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "H4") (unit 1)))) )
 (symbol (lib_id "Mechanical:MountingHole") (at 558.8 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "a0a64ffa-3034-5a47-b8ae-11c0fdd632ca") (property "Reference" "H5" (at 558.8 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "M3" (at 558.8 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 558.8 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 558.8 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 558.8 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "H5") (unit 1)))) )
 (symbol (lib_id "Mechanical:MountingHole") (at 584.2 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "b2ad6293-1eb5-5227-8e62-11c47cea286f") (property "Reference" "H6" (at 584.2 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "M3" (at 584.2 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 584.2 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 584.2 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 584.2 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "H6") (unit 1)))) )
+(symbol (lib_id "Mechanical:Fiducial") (at 609.6 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "b04d25e3-5e29-5c4a-aac0-317f21d99672") (property "Reference" "FID1" (at 609.6 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "Fiducial" (at 609.6 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Fiducial:Fiducial_1mm_Mask2mm" (at 609.6 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 609.6 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 609.6 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "FID1") (unit 1)))) )
+(symbol (lib_id "Mechanical:Fiducial") (at 622.3 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "c4fa7312-9b8e-51bd-8068-3d19f71513e4") (property "Reference" "FID2" (at 622.3 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "Fiducial" (at 622.3 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Fiducial:Fiducial_1mm_Mask2mm" (at 622.3 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 622.3 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 622.3 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "FID2") (unit 1)))) )
+(symbol (lib_id "Mechanical:Fiducial") (at 635 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "59a6467f-58cf-53d0-86ab-dd06bff64fab") (property "Reference" "FID3" (at 635 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "Fiducial" (at 635 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Fiducial:Fiducial_1mm_Mask2mm" (at 635 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 635 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 635 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "FID3") (unit 1)))) )
+(symbol (lib_id "Mechanical:Fiducial") (at 647.7 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "c331b38a-57b1-5c1a-81e2-3c5ade538e4e") (property "Reference" "FID4" (at 647.7 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "Fiducial" (at 647.7 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Fiducial:Fiducial_1mm_Mask2mm" (at 647.7 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 647.7 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 647.7 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "FID4") (unit 1)))) )
+(symbol (lib_id "Mechanical:Fiducial") (at 660.4 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "5a401cb3-4719-58e2-8acd-288e8d863715") (property "Reference" "FID5" (at 660.4 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "Fiducial" (at 660.4 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Fiducial:Fiducial_1mm_Mask2mm" (at 660.4 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 660.4 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 660.4 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "FID5") (unit 1)))) )
+(symbol (lib_id "Mechanical:Fiducial") (at 673.1 96.52 0) (unit 1) (exclude_from_sim no) (in_bom no) (on_board yes) (dnp no) (uuid "58e79d4e-347d-5e83-8b7b-c22f06487b40") (property "Reference" "FID6" (at 673.1 86.36 0) (effects (font (size 1.27 1.27)))) (property "Value" "Fiducial" (at 673.1 106.68 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Fiducial:Fiducial_1mm_Mask2mm" (at 673.1 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 673.1 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "alle" (at 673.1 96.52 0) (effects (font (size 1.27 1.27)) (hide yes))) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "FID6") (unit 1)))) )
 (symbol (lib_id "Connector:USB_C_Receptacle_USB2.0_14P") (at 467.36 172.72 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "1f70a557-9f3a-555a-9de9-566dd23f932e") (property "Reference" "J1" (at 467.36 162.56 0) (effects (font (size 1.27 1.27)))) (property "Value" "USB-C" (at 467.36 182.88 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12" (at 467.36 172.72 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 467.36 172.72 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Variante" "Master" (at 467.36 172.72 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "A1" (uuid "edd4e78c-38cf-522a-8a20-c56c672fffe5")) (pin "A4" (uuid "fb7b5814-e690-565f-97e5-6b08ec9cf00f")) (pin "A5" (uuid "d310097c-dd16-50c4-8f41-6dd038ea41c7")) (pin "A6" (uuid "b8654f92-706e-5483-9467-73bfdf63dd7e")) (pin "A7" (uuid "489c6064-9584-563d-9c51-4ad575af7cde")) (pin "A9" (uuid "4d9da5b5-7460-586a-a9e3-6ac35c3c287e")) (pin "A12" (uuid "5e2ad70d-f69f-5090-b859-5d035466849e")) (pin "B1" (uuid "0375f216-ce64-5d48-875f-40f5517b4ffe")) (pin "B4" (uuid "2f93e9ec-bf58-595f-b69b-ffd23c696a5a")) (pin "B5" (uuid "ee686e4b-c81a-53f4-b9f7-cf174d004270")) (pin "B6" (uuid "4546ccf0-2898-5f80-8e82-8d1c7e06c78d")) (pin "B7" (uuid "57a690d6-b5f9-5aea-aa1c-8411306cb014")) (pin "B9" (uuid "a2ea3856-cc18-52ba-97c0-a55dddbd9e40")) (pin "B12" (uuid "3e6c5ea2-ad72-5797-9b35-1d66f5902a30")) (pin "SH" (uuid "b360d5e3-b063-5636-9174-01deabddda86")) (instances (project "WortUhr" (path "/71044415-29e6-47b3-b7ec-feffb4cadb55" (reference "J1") (unit 1)))) )
 (label "GND" (at 467.36 195.58 270) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "0af4e422-1f00-576e-8b26-cf35c80545cc"))
 (label "VBUS" (at 482.6 157.48 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "70f1e415-803a-5f76-a968-f0e29ec6a989"))
