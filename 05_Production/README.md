@@ -1,0 +1,15 @@
+# WortUhr – Produktionsdaten
+
+Stand Git `8a65c57`, geprueft am 2026-11-08. In diesem Ordner liegen nur Daten, die alle Qualifikationspruefungen fuer den jeweiligen Fertiger bestanden haben. Gesperrte Bauteile haben einen Bericht, aber keine Dateien.
+
+| Bauteil | Ordner | Freigabe | Pruefungen | Dateien |
+|---|---|---|---|---|
+| LED-Platine (4x identisch, Master/Slave) | [`05_Platine_JLCPCB`](05_Platine_JLCPCB/QUALIFIKATION.md) | JLCPCB: ✅ | 28 ✅ / 0 ❌ | 8 |
+| Frontplatte Cortenstahl 1 mm | [`01_Frontplatte_Laser`](01_Frontplatte_Laser/QUALIFIKATION.md) | laserteile-online.eu: ❌ | 17 ✅ / 1 ❌ | 0 |
+| Diffusor Opal-Acrylglas 30 x 30 x 2 mm (144 Stk.) | [`02_Diffusor_Laser`](02_Diffusor_Laser/QUALIFIKATION.md) | laserteile-online.eu: ❌ | 4 ✅ / 1 ❌ | 0 |
+| Lichtgitter Q1–Q4 | [`03_Gitter_3D-Druck`](03_Gitter_3D-Druck/QUALIFIKATION.md) | Bambu Lab P1S: ✅, JLC3DP: ❌ | 71 ✅ / 9 ❌ | 8 |
+| Rückrahmen (8 Leisten, 2 Druckplatten) | [`04_Rueckrahmen_3D-Druck`](04_Rueckrahmen_3D-Druck/QUALIFIKATION.md) | Bambu Lab P1S: ✅, JLC3DP: ✅ | 114 ✅ / 0 ❌ | 10 |
+| Firmware ESPHome (ESP32-S3) | [`06_Firmware`](06_Firmware/QUALIFIKATION.md) | Build: ✅ | 11 ✅ / 0 ❌ | 0 |
+| WLED-LED-Maps | [`07_WLED`](07_WLED/QUALIFIKATION.md) | WLED: ✅ | 3 ✅ / 0 ❌ | 2 |
+
+Neu erzeugen: siehe `tools/README.md`.

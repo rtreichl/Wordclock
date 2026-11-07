@@ -1,0 +1,93 @@
+# Erzeugt und qualifiziert bei jedem Push alle Produktionsdaten.
+# Ergebnis: Artefakt "WortUhr-Produktion" (05_Production mit Berichten + freigegebenen Dateien)
+#           und Artefakt "WortUhr-Firmware" (nur Build-Pruefung mit Test-Schluesseln).
+name: Produktionsdaten
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pcb:
+    name: Platine (KiCad 10, JLCPCB)
+    runs-on: ubuntu-latest
+    container: kicad/kicad:10.0-full   # inkl. 3D-Modelle fuer den STEP-Export
+    steps:
+      - uses: actions/checkout@v4
+      - name: Qualifikation und Fertigungsdaten
+        env:
+          KICAD_CLI: kicad-cli
+        run: |
+          mkdir -p stage
+          python3 05_Production/tools/qualify_pcb.py stage
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage-pcb
+          path: stage
+
+  mechanik:
+    name: Laser- und 3D-Druckteile (FreeCAD)
+    runs-on: ubuntu-latest
+    env:
+      FREECAD_URL: https://github.com/FreeCAD/FreeCAD/releases/download/1.1.2/FreeCAD_1.1.2-Linux-x86_64-py311.AppImage
+    steps:
+      - uses: actions/checkout@v4
+      - name: FreeCAD bereitstellen
+        run: |
+          curl -sSL -o freecad.AppImage "$FREECAD_URL"
+          chmod +x freecad.AppImage
+          ./freecad.AppImage --appimage-extract > /dev/null
+      - name: Qualifikation
+        run: |
+          mkdir -p stage
+          for s in qualify_laser.py qualify_print.py; do
+            ./squashfs-root/usr/bin/freecadcmd -c "STAGE='$PWD/stage'; ROOT='$PWD'; exec(open('05_Production/tools/$s', encoding='utf-8').read())"
+          done
+          test -f stage/laser_result.json && test -f stage/print_result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage-mechanik
+          path: stage
+
+  firmware:
+    name: Firmware (ESPHome) und WLED
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: ESPHome installieren
+        run: pip install "esphome==2026.10.2"
+      - name: Qualifikation (inkl. Build)
+        run: |
+          mkdir -p stage
+          python 05_Production/tools/qualify_firmware.py stage
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage-firmware
+          path: stage
+
+  bericht:
+    name: Berichte und Freigabe
+    runs-on: ubuntu-latest
+    needs: [pcb, mechanik, firmware]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: stage
+          pattern: stage-*
+          merge-multiple: true
+      - name: Berichte schreiben, freigegebene Daten kopieren
+        run: python3 05_Production/tools/make_reports.py stage
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WortUhr-Produktion
+          path: 05_Production
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WortUhr-Firmware
+          path: stage/Firmware
