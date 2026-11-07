@@ -14,3 +14,12 @@ fp-info-cache
 
 # Lokale Claude-Einstellungen
 .claude/
+
+# ESPHome
+03_Software/ESPHome/secrets.yaml
+03_Software/ESPHome/.esphome/
+03_Software/ESPHome/.venv/
+
+# Blender-Sicherungen, Pruef-Staging
+*.blend1
+stage/

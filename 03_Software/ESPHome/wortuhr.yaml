@@ -1,0 +1,255 @@
+# WortUhr – ESPHome-Firmware fuer den ESP32-S3 auf der Master-Platine
+#
+# - Uhrzeit per NTP direkt aus dem Internet: laeuft auch ohne Home Assistant
+# - Home Assistant: Licht (Farbe/Helligkeit), Schalter, Umgebungslicht, angezeigter Text
+# - ohne HA bedienbar ueber die Weboberflaeche http://wortuhr.local
+# - automatische Helligkeit ueber den BH1750 unter dem Lichtleiter (lokal, ohne HA)
+#
+# Pins laut Schaltplan: LED-Daten IO16 (ueber 74AHCT1G125), I2C SDA IO17 / SCL IO18, BOOT IO0
+
+substitutions:
+  name: wortuhr
+  friendly_name: WortUhr
+  leds_per_cell: "2"        # 1 = nur LED A je Kammer bestueckt (JPx geschlossen), 2 = LED A + B
+  num_leds: "288"           # 144 * leds_per_cell
+  timezone: "Europe/Berlin"
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  includes:
+    - wortuhr_layout.h
+    - wortuhr.h
+  on_boot:
+    priority: -100
+    then:
+      - light.turn_on:
+          id: uhr
+          effect: "Uhrzeit"
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  flash_size: 8MB           # ESP32-S3-MINI-1-N8
+  framework:
+    type: esp-idf
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+
+api:
+  encryption:
+    key: !secret api_key
+  reboot_timeout: 0s        # nicht neu starten, wenn Home Assistant fehlt
+
+ota:
+  - platform: esphome        # verschluesselt mit dem api-Schluessel
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:                       # Ersatz-Hotspot zum Einrichten, falls das WLAN fehlt
+    ssid: "WortUhr-Setup"
+    password: !secret ap_password
+
+captive_portal:
+
+web_server:                 # lokale Bedienung ohne Home Assistant
+  port: 80
+  version: 3
+
+# ------------------------------------------------------------------ Zeit (NTP, unabhaengig von HA)
+time:
+  - platform: sntp
+    id: ntp
+    timezone: ${timezone}
+    servers:
+      - 0.de.pool.ntp.org
+      - 1.de.pool.ntp.org
+      - time.cloudflare.com
+    on_time_sync:
+      - logger.log: "Uhrzeit per NTP synchronisiert"
+
+# ------------------------------------------------------------------ Sensorik
+i2c:
+  sda: GPIO17
+  scl: GPIO18
+  frequency: 400kHz
+
+sensor:
+  - platform: bh1750
+    id: lux
+    name: "Umgebungslicht"
+    address: 0x23
+    update_interval: 5s
+  - platform: wifi_signal
+    name: "WLAN-Signal"
+    update_interval: 60s
+  - platform: uptime
+    name: "Laufzeit"
+
+binary_sensor:
+  - platform: gpio            # BOOT-Taster: kurz = Licht an/aus
+    id: taster
+    pin:
+      number: GPIO0
+      inverted: true
+      mode: INPUT_PULLUP
+    name: "Taster"
+    on_click:
+      - min_length: 50ms
+        max_length: 800ms
+        then:
+          - light.toggle: uhr
+
+# ------------------------------------------------------------------ Einstellungen (auch ohne HA im Webinterface)
+globals:
+  - id: auto_factor
+    type: float
+    initial_value: "1.0"
+
+switch:
+  - platform: template
+    id: auto_hell
+    name: "Automatische Helligkeit"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+  - platform: template
+    id: gruesse
+    name: "Begrüßungen"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+  - platform: template
+    id: zeige_ist
+    name: "IST anzeigen"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+  - platform: template
+    id: zeige_punkt
+    name: "PUNKT zur vollen Stunde"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+
+select:
+  - platform: template
+    id: dialekt
+    name: "Viertel-Schreibweise"
+    optimistic: true
+    restore_value: true
+    options:
+      - "Viertel nach / vor"
+      - "Viertel / Dreiviertel"
+    initial_option: "Viertel nach / vor"
+    entity_category: config
+
+number:
+  - platform: template
+    id: min_hell
+    name: "Mindesthelligkeit"
+    optimistic: true
+    restore_value: true
+    min_value: 2
+    max_value: 100
+    step: 1
+    initial_value: 8
+    unit_of_measurement: "%"
+    entity_category: config
+  - platform: template
+    id: lux_voll
+    name: "Volle Helligkeit ab"
+    optimistic: true
+    restore_value: true
+    min_value: 50
+    max_value: 5000
+    step: 50
+    initial_value: 800
+    unit_of_measurement: "lx"
+    entity_category: config
+
+text_sensor:
+  - platform: template
+    id: anzeige
+    name: "Angezeigter Text"
+    update_interval: never
+  - platform: wifi_info
+    ip_address:
+      name: "IP-Adresse"
+
+# Helligkeit aus dem Umgebungslicht (logarithmisch, geglaettet) – laeuft komplett lokal
+interval:
+  - interval: 2s
+    then:
+      - lambda: |-
+          float target = 1.0f;
+          if (id(auto_hell).state && id(lux).has_state() && !std::isnan(id(lux).state)) {
+            float mn = id(min_hell).state / 100.0f;
+            float full = std::max(10.0f, id(lux_voll).state);
+            float x = std::log10(std::max(0.0f, id(lux).state) + 1.0f) / std::log10(full + 1.0f);
+            target = mn + (1.0f - mn) * std::min(1.0f, std::max(0.0f, x));
+          }
+          id(auto_factor) += (target - id(auto_factor)) * 0.25f;
+
+# ------------------------------------------------------------------ LEDs
+light:
+  - platform: esp32_rmt_led_strip
+    id: uhr
+    name: "Wortuhr"
+    pin: GPIO16
+    num_leds: ${num_leds}
+    chipset: SK6812
+    channel_colors: GRBW     # SK6812 RGBW
+    restore_mode: RESTORE_DEFAULT_ON
+    default_transition_length: 1s
+    effects:
+      - addressable_lambda:
+          name: "Uhrzeit"
+          update_interval: 40ms
+          lambda: |-
+            static wortuhr::Renderer renderer;
+            static std::string last_text;
+            auto now = id(ntp).now();
+            wortuhr::Mask m;
+            if (!now.is_valid()) {
+              m = wortuhr::status_wlan();
+            } else {
+              wortuhr::Options o;
+              o.greetings = id(gruesse).state;
+              o.viertel_ost = id(dialekt).current_option() == std::string("Viertel / Dreiviertel");
+              o.show_ist = id(zeige_ist).state;
+              o.show_punkt = id(zeige_punkt).state;
+              m = wortuhr::compose(now.hour, now.minute, now.day_of_month, now.month, o);
+              if (!wifi::global_wifi_component->is_connected()) {
+                m.add(wortuhr::W_WLAN);   // Uhr laeuft weiter, WLAN-Hinweis leuchtet
+              }
+            }
+            renderer.draw(it, m, current_color, id(auto_factor), ${leds_per_cell}, 0.8f, false, millis());
+            if (m.text != last_text) {
+              last_text = m.text;
+              id(anzeige).publish_state(m.text);
+            }
+      - addressable_lambda:
+          name: "Uhrzeit Regenbogen"
+          update_interval: 40ms
+          lambda: |-
+            static wortuhr::Renderer renderer;
+            auto now = id(ntp).now();
+            wortuhr::Mask m;
+            if (!now.is_valid()) {
+              m = wortuhr::status_wlan();
+            } else {
+              wortuhr::Options o;
+              o.greetings = id(gruesse).state;
+              o.viertel_ost = id(dialekt).current_option() == std::string("Viertel / Dreiviertel");
+              o.show_ist = id(zeige_ist).state;
+              o.show_punkt = id(zeige_punkt).state;
+              m = wortuhr::compose(now.hour, now.minute, now.day_of_month, now.month, o);
+            }
+            renderer.draw(it, m, current_color, id(auto_factor), ${leds_per_cell}, 0.8f, true, millis());
+      - addressable_rainbow:
+          name: "Regenbogen (Test)"
+      - addressable_scan:
+          name: "Lauflicht (Test)"
