@@ -29,7 +29,7 @@ board.SetCopperLayerCount(2)
 ds = board.GetDesignSettings()
 ds.SetBoardThickness(mm(1.6))
 ds.m_TrackMinWidth = mm(0.1)          # JLCPCB 2 Lagen: min. 0.1 mm
-ds.m_CopperEdgeClearance = mm(0.45)
+ds.m_CopperEdgeClearance = mm(0.3)    # JLCPCB min. 0.3 mm
 nets = {}
 
 
@@ -242,6 +242,9 @@ for i, (x, y) in enumerate(D.MOUNT_HOLES):
 # ---------------------------------------------------------------- Master
 for ref, (x, y, rot, side) in D.MASTER_PLACE.items():
     place(parts[ref], x, y, rot, side)
+# R5 (Pegelwandler-Ausgang) direkt an die DIN-Leitung
+x5, y5 = pad_xy("R5", "2")
+track([(x5, y5), (x5, via_in[0][1])], "DIN", pcbnew.B_Cu)
 for ref in ("J1", "J2"):
     fp = placed[ref]; bb = fp.GetBoundingBox(False)
     print(ref, "bbox y", round(pcbnew.ToMM(bb.GetTop()) - O, 2), round(pcbnew.ToMM(bb.GetBottom()) - O, 2))

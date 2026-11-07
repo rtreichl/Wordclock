@@ -164,6 +164,24 @@ for z in list(tb.Zones()):
     tb.Remove(z)
 for t in tb.GetTracks():
     t.SetLocked(True)
+# Oberseite (= +5V-Flaeche) im LED-Bereich fuer neue Leiterbahnen sperren,
+# damit die Flaeche nicht in Inseln zerfaellt; oben nur im Rahmenstreifen (y > 227.5) routen.
+def top_keepout(x0, y0, x1, y1):
+    ko = pcbnew.ZONE(tb)
+    ko.SetIsRuleArea(True); ko.SetDoNotAllowTracks(True); ko.SetDoNotAllowVias(False)
+    ko.SetDoNotAllowZoneFills(False); ko.SetDoNotAllowPads(False); ko.SetDoNotAllowFootprints(False)
+    ko.SetLayer(pcbnew.F_Cu)
+    o = ko.Outline(); o.NewOutline()
+    for _x, _y in [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]:
+        o.Append(mm(40 + _x), mm(40 + _y))
+    tb.Add(ko)
+
+
+top_keepout(0, 0, 240, 205.0)            # LED-Feld oberhalb des Masterstreifens
+top_keepout(140, 205.0, 240, 240)        # rechter Teil der untersten Reihe
+for _k in range(4):                      # LED-Gruppen der untersten Reihe im Masterstreifen
+    _cx = D.cell_center(_k, 5)[0]
+    top_keepout(_cx - 13.0, 204.0, _cx + 13.0, 219.0)
 nonet = tb.FindNet("")
 # nur Signalnetze der Master-Teile routen; alles andere wird netzloses Hindernis
 ROUTE = set()
@@ -210,6 +228,7 @@ for t in board.GetTracks():
     key = (t.GetClass(), t.GetNetname(), t.GetStart().x, t.GetStart().y, t.GetEnd().x if t.GetClass() != "PCB_VIA" else 0)
     old.add(key)
 copied = 0
+COPIED_VIAS = []
 for t in tb.GetTracks():
     n = t.GetNetname()
     if n not in ROUTE:
@@ -218,11 +237,31 @@ for t in tb.GetTracks():
     if key in old:
         continue
     if t.GetClass() == "PCB_VIA":
-        add_via(board, toMM(t.GetPosition().x), toMM(t.GetPosition().y), n, toMM(t.GetWidth(pcbnew.F_Cu)), toMM(t.GetDrillValue()))
+        COPIED_VIAS.append(add_via(board, toMM(t.GetPosition().x), toMM(t.GetPosition().y), n, toMM(t.GetWidth(pcbnew.F_Cu)), toMM(t.GetDrillValue())))
     else:
         add_track(board, pos(t.GetStart()), pos(t.GetEnd()), n, t.GetLayer(), toMM(t.GetWidth()))
     copied += 1
 print("copied", copied)
+# ueberfluessige Vias (nur auf einer Lage angeschlossen) entfernen
+ends = {}
+for t in board.GetTracks():
+    if t.GetClass() == "PCB_TRACK":
+        for p in (t.GetStart(), t.GetEnd()):
+            ends.setdefault((round(p.x / 20000), round(p.y / 20000), t.GetNetname()), set()).add(t.GetLayer())
+pads = {(round(p.GetPosition().x / 20000), round(p.GetPosition().y / 20000)) for fp in board.GetFootprints() for p in fp.Pads()}
+removed = 0
+POUR = {"/GND": pcbnew.B_Cu, "/+5V": pcbnew.F_Cu}
+for v in COPIED_VIAS:
+    n = v.GetNetname()
+    key = (round(v.GetPosition().x / 20000), round(v.GetPosition().y / 20000), n)
+    if (key[0], key[1]) in pads:
+        continue
+    lay = set(ends.get(key, set()))
+    if n in POUR:
+        lay.add(POUR[n])          # Flaeche verbindet die andere Lage
+    if len(lay) < 2:
+        board.Remove(v); removed += 1
+print("dangling vias removed", removed)
 pcbnew.ZONE_FILLER(board).Fill(board.Zones())
 pcbnew.SaveBoard(PCB, board)
 print("saved")
