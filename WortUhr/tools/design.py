@@ -43,7 +43,8 @@ assert len(PATH) == 36 and len({c for c, _ in PATH}) == 36
 
 CONN_POS = wall(4)       # 192.29: J_IN bei y=CONN_POS am linken Rand, J_OUT bei x=CONN_POS oben
 SENSOR_POS = (6.0, 231.0)  # Lichtsensor unter dem Lichtleiter (Rahmen unten, nahe Mitte)
-MOUNT_HOLES = [(wall(0), wall(0)), (wall(4), wall(0)), (wall(0), wall(4)), (wall(4), wall(4))]
+MOUNT_HOLES = [(wall(0), wall(0)), (wall(4), wall(0)), (wall(0), wall(4)), (wall(4), wall(4)),
+               (wall(2), wall(4)), (wall(4), wall(2))]   # H5/H6 fuer die Rueckrahmen-Leisten
 
 
 def uid(name):
@@ -98,8 +99,8 @@ def build_parts():
                   extra={"Hinweis": "Gegenstueck zu Bruecke_IN der naechsten Platine"}))
     P.append(Part("C1", "Device:C_Polarized", "470u/6.3V", "Capacitor_SMD:CP_Elec_6.3x7.7",
                   {"1": "+5V", "2": "GND"}))
-    for i in range(4):
-        P.append(Part(f"H{i+1}", "Mechanical:MountingHole", "M2", "MountingHole:MountingHole_2.2mm_M2", {}))
+    for i in range(6):
+        P.append(Part(f"H{i+1}", "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_3.2mm_M3", {}))
     # --- Master ---------------------------------------------------------------
     M = "Master"
     P.append(Part("J1", "Connector:USB_C_Receptacle_USB2.0_14P", "USB-C", "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
