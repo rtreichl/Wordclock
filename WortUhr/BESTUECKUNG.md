@@ -9,7 +9,14 @@ Eine Platine (234 × 234 mm, 2 Lagen) wird **4× bestellt**. Jede Platine wird u
 | Q1 | oben links | 180° | Slave |
 | Q3 | unten links | 270° | Slave |
 
-Datenkette: Master (Q4) → J_OUT → J_IN von Q2 → Q1 → Q3. Die Kabel sind 6-polig, JST XH, Pin 1 bis 1. Ausgang und Eingang benachbarter Platinen liegen sich an der Schnittkante direkt gegenüber.
+Datenkette: Master (Q4) → Q2 → Q1 → Q3. An jeder Schnittkante liegen sich 5 Pads gegenüber: Bruecke_OUT (J4) der einen und Bruecke_IN (J3) der nächsten Platine, belegt mit GND, +5V, Daten, +5V, GND. Über den Spalt von ca. 1 mm wird je Pad-Paar ein **0-Ω-Widerstand 2512** gelötet. Das geschieht erst, wenn die Gitterteile zusammengesteckt sind.
+
+| Kante | Brücken |
+|---|---|
+| Q4 → Q2, Q2 → Q1, Q1 → Q3 | alle 5 (GND, +5V, Daten, +5V, GND) |
+| Q3 → Q4 | **nur GND und +5V**, die Daten-Brücke (Mitte) **nicht** bestücken, sonst wird die Kette zum Ring |
+
+Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgelegt; +5V und GND sind je zweifach vorhanden.
 
 ## Bestückung
 
@@ -18,12 +25,21 @@ Datenkette: Master (Q4) → J_OUT → J_IN von Q2 → Q1 → Q3. Die Kabel sind 
 | D1, D3, … (LED A je Kammer), C101, C103, … | ✓ | |
 | D2, D4, … (LED B je Kammer), C102, C104, … | optional | |
 | JP1–JP36 (Lötbrücke) | **schließen, wenn LED B nicht bestückt** | |
-| J3 (J_IN), J4 (J_OUT), C1 (470 µF) | ✓ | |
+| J3/J4 (Kantenbrücken, nur Pads), C1 (470 µF) | ✓ | |
 | U1 ESP32-S3-MINI-1, U2 AP2112K-3.3, U3 USBLC6, U4 74AHCT1G125, U5 BH1750FVI | | ✓ |
 | J1 USB-C, J2 Hohlbuchse 5 V, D73 SS34, D74 SS54, SW1/SW2, R1–R8, C2–C8 | | ✓ |
 
 - **LED:** SK6812 RGBW, 5050. Im Footprint ist die Pinbelegung des WS2812B hinterlegt: 1 VDD, 2 DOUT, 3 VSS, 4 DIN. Vor der Bestellung mit dem Datenblatt des konkreten Herstellers vergleichen.
-- **Montage:** 4× M2-Kunststoffschraube (z. B. M2×8) von hinten durch H1–H4 in die Kernlöcher der Gitterkreuzungen.
+- **Montage Platine:** Die Platine wird von hinten mit **M3**-Kunststoffschrauben in die Kernlöcher der Gitterkreuzungen geschraubt. Die Kernlöcher haben Ø 2,6 mm und sind 9 mm tief. Je Platine gibt es 6 Löcher:
+  - H4, nahe der Uhrmitte: M3×8.
+  - H1–H3, H5, H6: je **M3×20** durch den Rückrahmen. Der Kopf wird versenkt: bis Ø 6 mm und 3 mm hoch.
+- **Rückrahmen:** 8 gerade Leisten, 10 mm dick. Die Dicke ist nötig, weil die Hohlbuchse ca. 11,4 mm hoch ist.
+  - Je Viertel eine lange Leiste mit 240 × 56 mm und 3 Schrauben und eine kurze mit 184 × 56 mm und 2 Schrauben.
+  - Druck: `Rueckrahmen_Druckplatte1_lange_Leisten.3mf` (4 lange Leisten, 244 × 243 mm) und `Rueckrahmen_Druckplatte2_kurze_Leisten.3mf` (4 kurze Leisten, 188 × 243 mm). Die Wandseite liegt auf dem Bett, die Dome zeigen nach oben.
+  - In den langen Leisten oben (Q1, Q2) ist je ein Schlüsselloch für die Wandschraube: Kopf bis Ø 8 mm und 3 mm Höhe, Schaft bis 4,5 mm, Abstand 260 mm.
+  - Ausschnitte für C1 sowie für USB-C und Hohlbuchse (Q4 unten). Die Bauteile bleiben mindestens 2 mm von der Wand entfernt.
+- **Aufbauhöhe:** Frontplatte 1 mm, Gitter 25 mm, Rückrahmen 10 mm, zusammen **36 mm**. Von der Rückseite der Frontplatte bis zur Wand sind es 35 mm.
+- **3D-Modelle:** Für ESP32-S3-MINI-1, USB-C (HRO TYPE-C-31-M-12), Hohlbuchse (CUI PJ-036AH-SMT) und BH1750 liegen in `3dmodels/` maßgenaue Platzhalter. In der KiCad-Bibliothek gibt es für diese Teile keine Modelle. Die 0-Ω-Brücken werden am Footprint J_OUT dargestellt.
 - **Lichtsensor:** Der BH1750 (U5) sitzt oben unter dem Lichtleiter Mentor 1282.1000. Der Lichtleiter wird von vorn in das 2,8-mm-Loch im Gitter (Q4, unterer Rahmen) gedrückt.
 - **ESP32-Pins:** LED-Daten IO16 (über 74AHCT1G125 auf 5 V), I2C SDA IO17, SCL IO18, BOOT IO0.
 
