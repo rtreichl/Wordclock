@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "WortUhr")(type "KiCad")(uri "${KIPRJMOD}/WortUhr.kicad_sym")(options "")(descr "Projektbibliothek WortUhr"))
+)

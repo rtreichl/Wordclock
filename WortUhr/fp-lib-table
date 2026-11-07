@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "WortUhr")(type "KiCad")(uri "${KIPRJMOD}/WortUhr.pretty")(options "")(descr "Projekt-Footprints WortUhr"))
+)
