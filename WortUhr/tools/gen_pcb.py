@@ -248,6 +248,27 @@ for ref in ("J1", "J2"):
 
 assert len(placed) == len(parts), set(parts) - set(placed)
 
+# ---------------------------------------------------------------- 3D-Modelle
+# Fehlende Herstellermodelle -> massgenaue Platzhalter aus ${KIPRJMOD}/3dmodels
+def set_model(ref, fname, off=(0, 0, 0), rot=(0, 0, 0), keep=False):
+    fp = placed[ref]
+    if not keep:
+        fp.Models().clear()
+    m = pcbnew.FP_3DMODEL()
+    m.m_Filename = fname
+    m.m_Offset = pcbnew.VECTOR3D(*off); m.m_Rotation = pcbnew.VECTOR3D(*rot)
+    fp.Models().push_back(m)
+
+
+set_model("U1", "${KIPRJMOD}/3dmodels/ESP32-S3-MINI-1_Platzhalter.step")
+set_model("J1", "${KIPRJMOD}/3dmodels/USB_C_HRO_TYPE-C-31-M-12_Platzhalter.step")
+set_model("J2", "${KIPRJMOD}/3dmodels/BarrelJack_CUI_PJ-036AH-SMT_Platzhalter.step")
+set_model("U5", "${KIPRJMOD}/3dmodels/BH1750_WSOF6I_Platzhalter.step")
+# 0R-2512-Bruecken (Darstellung nur an J_OUT, Mitte ueber dem Spalt)
+for i, xo in enumerate((-10, -5, 0, 5, 10)):
+    set_model("J4", "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.step",
+              (xo, 2.25, 0), (0, 0, 90), keep=i > 0)
+
 # ---------------------------------------------------------------- Flaechen
 def zone(layer, netname, poly, prio=0, clearance=0.3):
     z = pcbnew.ZONE(board)
