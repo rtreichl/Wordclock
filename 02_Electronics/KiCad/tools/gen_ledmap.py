@@ -14,7 +14,10 @@ for name, f in BOARDS:
     for (k, j), _ in D.PATH:
         cells.append(f(k, j))
 assert len(set(cells)) == 144
-out = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "WLED")
+root = os.path.dirname(os.path.abspath(__file__))
+while not os.path.isdir(os.path.join(root, ".git")) and os.path.dirname(root) != root:
+    root = os.path.dirname(root)
+out = os.path.join(root, "03_Software", "WLED")
 os.makedirs(out, exist_ok=True)
 # 1 LED je Kammer: Matrix 12x12, map[Matrixposition] = physischer Index
 m1 = [0] * 144

@@ -35,7 +35,7 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
   - H1–H3, H5, H6: je **M3×20** durch den Rückrahmen. Der Kopf wird versenkt: bis Ø 6 mm und 3 mm hoch.
 - **Rückrahmen:** 8 gerade Leisten, 10 mm dick. Die Dicke ist nötig, weil die Hohlbuchse ca. 11,4 mm hoch ist.
   - Je Viertel eine lange Leiste mit 240 × 56 mm und 3 Schrauben und eine kurze mit 184 × 56 mm und 2 Schrauben.
-  - Druck: `Rueckrahmen_Druckplatte1_lange_Leisten.3mf` (4 lange Leisten, 244 × 243 mm) und `Rueckrahmen_Druckplatte2_kurze_Leisten.3mf` (4 kurze Leisten, 188 × 243 mm). Die Wandseite liegt auf dem Bett, die Dome zeigen nach oben.
+  - Druck: `01_Mechanic/Rueckrahmen/Rueckrahmen_Druckplatte1_lange_Leisten.3mf` (4 lange Leisten, 244 × 243 mm) und `Rueckrahmen_Druckplatte2_kurze_Leisten.3mf` (4 kurze Leisten, 188 × 243 mm). Die Wandseite liegt auf dem Bett, die Dome zeigen nach oben.
   - In den langen Leisten oben (Q1, Q2) ist je ein Schlüsselloch für die Wandschraube: Kopf bis Ø 8 mm und 3 mm Höhe, Schaft bis 4,5 mm, Abstand 260 mm.
   - Ausschnitte für C1 sowie für USB-C und Hohlbuchse (Q4 unten). Die Bauteile bleiben mindestens 2 mm von der Wand entfernt.
 - **Aufbauhöhe:** Frontplatte 1 mm, Gitter 25 mm, Rückrahmen 10 mm, zusammen **36 mm**. Von der Rückseite der Frontplatte bis zur Wand sind es 35 mm.
@@ -46,19 +46,19 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
 ## WLED
 
 - LED-Typ: *SK6812/WS2814 RGBW*, Datenpin GPIO16
-- 2D-Matrix: bei 2 LEDs je Kammer 24×12 mit `WLED/ledmap_2LED_24x12.json`, bei 1 LED je Kammer 12×12 mit `ledmap_1LED_12x12.json` (als `ledmap.json` hochladen)
+- 2D-Matrix: bei 2 LEDs je Kammer 24×12 mit `03_Software/WLED/ledmap_2LED_24x12.json`, bei 1 LED je Kammer 12×12 mit `ledmap_1LED_12x12.json` (als `ledmap.json` hochladen)
 - Stromgrenze (ABL) einstellen: USB-C 2,5 A, Netzteil je nach Leistung, z. B. 4 A
 - Lichtsensor: Usermod BH1750, I2C SDA 17 / SCL 18
 
 ## Erzeugung
 
-Schaltplan und Platine werden per Skript erzeugt (KiCad-Python):
+Schaltplan und Platine werden per Skript erzeugt (KiCad-Python, im Ordner `02_Electronics/KiCad`):
 
 ```
 python tools/gen_sch.py      # WortUhr.kicad_sch + WortUhr.kicad_sym
 python tools/gen_pcb.py      # WortUhr.kicad_pcb (Platzierung, LED-Feld geroutet, Flächen)
 python tools/route_master.py # Master-Elektronik mit Freerouting routen
-python tools/gen_ledmap.py   # WLED/ledmap_*.json
+python tools/gen_ledmap.py   # 03_Software/WLED/ledmap_*.json
 ```
 
 `route_master.py` erwartet Freerouting unter `~/.kicad-mcp/freerouting.jar` und eine Java-25-Laufzeit unter `~/.kicad-mcp/jre/`. Achtung: `gen_pcb.py` überschreibt die Platine. Manuelle Änderungen am Layout gehen dabei verloren.
