@@ -89,11 +89,13 @@ def build_parts():
                       extra={"Hinweis": "schliessen wenn LED B nicht bestueckt"}))
         prev = b_out
     # --- Verbindungen / allgemein --------------------------------------------
-    FP_JST = "Connector_JST:JST_XH_S6B-XH-SM4-TB_1x06-1MP_P2.50mm_Horizontal"
-    P.append(Part("J3", "Connector_Generic:Conn_01x06", "J_IN", FP_JST,
-                  {"1": "+5V", "2": "+5V", "3": "DIN", "4": "GND", "5": "GND", "6": "GND"}))
-    P.append(Part("J4", "Connector_Generic:Conn_01x06", "J_OUT", FP_JST,
-                  {"1": "+5V", "2": "+5V", "3": "DOUT", "4": "GND", "5": "GND", "6": "GND"}))
+    FP_BR = "WortUhr:EdgeBridge_5x2512"
+    P.append(Part("J3", "Connector_Generic:Conn_01x05", "Bruecke_IN", FP_BR,
+                  {"1": "GND", "2": "+5V", "3": "DIN", "4": "+5V", "5": "GND"},
+                  extra={"Hinweis": "0R 2512 ueber die Kante zur Nachbarplatine (5x)"}))
+    P.append(Part("J4", "Connector_Generic:Conn_01x05", "Bruecke_OUT", FP_BR,
+                  {"1": "GND", "2": "+5V", "3": "DOUT", "4": "+5V", "5": "GND"},
+                  extra={"Hinweis": "Gegenstueck zu Bruecke_IN der naechsten Platine"}))
     P.append(Part("C1", "Device:C_Polarized", "470u/6.3V", "Capacitor_SMD:CP_Elec_6.3x7.7",
                   {"1": "+5V", "2": "GND"}))
     for i in range(4):

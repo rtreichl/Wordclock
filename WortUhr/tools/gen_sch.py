@@ -146,7 +146,7 @@ class Sch:
         for k, v in (fields or {}).items():
             props.append((k, v, (x, y), True))
         s = ['(symbol (lib_id %s) (at %s %s 0) (unit 1) (exclude_from_sim no) (in_bom %s) (on_board yes) (dnp no) (uuid "%s")'
-             % (q(lib_id), fmt(x), fmt(y), "no" if ref.startswith("#") or ref.startswith("H") or ref.startswith("JP") else "yes", uuid_)]
+             % (q(lib_id), fmt(x), fmt(y), "no" if ref.startswith("#") or ref.startswith("H") or ref.startswith("JP") or ref in ("J3", "J4") else "yes", uuid_)]
         for k, v, (px, py), hide in props:
             s.append('(property %s %s (at %s %s 0) (effects (font (size 1.27 1.27))%s))'
                      % (q(k), q(v), fmt(px), fmt(py), " (hide yes)" if hide else ""))

@@ -193,45 +193,43 @@ for c in range(35):
         pts = [p1, (p1[0], ym), (p2[0], ym), p2]
     track(pts, n, pcbnew.B_Cu)
 
-# ---------------------------------------------------------------- Verbinder J_IN / J_OUT
-# J3 (J_IN) am linken Rand, Steckseite nach links; J4 (J_OUT) am oberen Rand, Steckseite nach oben.
-place(parts["J3"], 8.0, D.CONN_POS, 90, "B")
-place(parts["J4"], D.CONN_POS, 8.0, 0, "B")
+# ---------------------------------------------------------------- Kantenbruecken J_IN / J_OUT
+# 5 Pads je Kante (GND, +5V, Daten, +5V, GND) fuer 0R-2512 ueber den 1-mm-Spalt zur Nachbarplatine.
+EDGE_PAD = D.BOARD_MIN + 0.45 + 1.3          # Padmitte 2.25 mm von der Schnittkante
 
 
-def front_dir(ref):
-    """Richtung Signalpads -> Montagepads (= Steckrichtung) zur Kontrolle."""
-    fp = placed[ref]
-    sig = [p for p in fp.Pads() if p.GetNumber() not in ("MP", "")]
-    mp = [p for p in fp.Pads() if p.GetNumber() == "MP"]
-    sx = sum(pcbnew.ToMM(p.GetPosition().x) for p in sig) / len(sig); sy = sum(pcbnew.ToMM(p.GetPosition().y) for p in sig) / len(sig)
-    mx = sum(pcbnew.ToMM(p.GetPosition().x) for p in mp) / len(mp); my = sum(pcbnew.ToMM(p.GetPosition().y) for p in mp) / len(mp)
-    return round(mx - sx, 2), round(my - sy, 2)
+def place_bridge(ref, x, y, rot, axis):
+    for r in (rot, rot + 180):
+        if ref in placed:
+            board.Remove(placed.pop(ref))
+        place(parts[ref], x, y, r, "B")
+        xs = [pad_xy(ref, str(i))[axis] for i in range(1, 6)]
+        if all(abs(v - EDGE_PAD) < 0.01 for v in xs):
+            return
+    raise RuntimeError("Bruecke %s falsch orientiert" % ref)
 
 
-print("J3 front", front_dir("J3"), "J4 front", front_dir("J4"))
-
-def conn_5v(ref):
-    """+5V-Pads per Via (zwischen Pad und Steckseite) auf die obere +5V-Flaeche."""
-    fx, fy = front_dir(ref)
-    L = math.hypot(fx, fy); ux, uy = fx / L, fy / L
-    for pn in ("1", "2"):
+place_bridge("J3", EDGE_PAD, D.CONN_POS, 270, 0)   # linke Kante
+place_bridge("J4", D.CONN_POS, EDGE_PAD, 180, 1)   # obere Kante
+for ref in ("J3", "J4"):
+    for p in placed[ref].Pads():
+        p.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
+    for pn in ("2", "4"):
         x, y = pad_xy(ref, pn)
-        vxx, vyy = x + ux * 3.4, y + uy * 3.4
-        track([(x, y), (vxx, vyy)], "+5V", pcbnew.B_Cu, w=0.8); via(vxx, vyy, "+5V", 0.8, 0.4)
+        vx_, vy_ = (x + 3.2, y) if ref == "J3" else (x, y + 3.2)
+        track([(x, y), (vx_, vy_)], "+5V", pcbnew.B_Cu, w=1.2); via(vx_, vy_, "+5V", 0.9, 0.5)
+        vx2, vy2 = (vx_, vy_ + 1.6) if ref == "J3" else (vx_ + 1.6, vy_)
+        track([(vx_, vy_), (vx2, vy2)], "+5V", pcbnew.B_Cu, w=1.2); via(vx2, vy2, "+5V", 0.9, 0.5)
 
-
-# J_IN: Pin3 -> erster LED-Eingang (Via)
+# J_IN: Daten -> erster LED-Eingang (Via)
 x3, y3 = pad_xy("J3", "3")
 vx, vy = via_in[0]
 track([(x3, y3), (17.0, y3), (17.0, vy), (vx, vy)], "DIN", pcbnew.B_Cu)
-conn_5v("J3")
-# J_OUT: letzte Kammer -> Pin3 (rechts am Feld vorbei, dann oberhalb der Kammer (5,0))
+# J_OUT: letzte Kammer -> Daten (rechts am Feld vorbei, dann oberhalb der Kammer (5,0))
 x3, y3 = pad_xy("J4", "3")
 vx, vy = via_out[35]
 xr = D.cell_center(5, 0)[0] + D.C0 - 0.5
 track([(vx, vy), (xr, vy), (xr, 14.6), (x3, 14.6), (x3, y3)], "DOUT", pcbnew.B_Cu)
-conn_5v("J4")
 
 # Puffer-Elko (jede Platine) unter der Wand nahe J_IN
 place(parts["C1"], 26.0, D.CONN_POS, 0, "B")
@@ -274,8 +272,8 @@ zone(pcbnew.B_Cu, "GND", full)
 text(pcbnew.B_SilkS, "WortUhr LED-Board rev2  -  4x identisch", 117.0, 120.0, 2.0, mirror=True)
 text(pcbnew.B_SilkS, "Master: U1..U5, J1, J2 bestuecken", 117.0, 124.0, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "JPx schliessen wenn LED B fehlt", 117.0, 127.5, 1.5, mirror=True)
-text(pcbnew.B_SilkS, "J_IN", 14.0, D.CONN_POS - 9.5, 1.2, mirror=True)
-text(pcbnew.B_SilkS, "J_OUT", D.CONN_POS + 11.0, 12.0, 1.2, mirror=True)
+text(pcbnew.B_SilkS, "IN", 7.5, D.CONN_POS - 14.0, 1.2, mirror=True)
+text(pcbnew.B_SilkS, "OUT", D.CONN_POS + 15.0, 7.0, 1.2, mirror=True)
 
 pcbnew.ZONE_FILLER(board).Fill(board.Zones())
 out = os.path.join(PRJ, "WortUhr.kicad_pcb")
