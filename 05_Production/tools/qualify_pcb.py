@@ -100,7 +100,7 @@ def _pad(ref, num):
     for p in b.FindFootprintByReference(ref).Pads():
         if p.GetNumber() == num:
             return p.GetPosition()
-DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C175": ("D75", "1")}
+DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C9": ("U1", "3"), "C175": ("D75", "1"), "C22": ("U7", "1")}
 DEC.update({f"C{100 + n}": (f"D{n}", "1") for n in range(1, 73)})
 dist = {}
 for cref, (ic, pin) in DEC.items():
@@ -111,7 +111,7 @@ worst = max(dist, key=dist.get)
 check("Layout", "Abblock-C am Versorgungspin", "Pad-Abstand <= 8 mm (C175: Unterseite, ueber Via)",
       f"max. {dist[worst]:.1f} mm ({worst}), IC-C: " + ", ".join(f"{k} {dist[k]:.1f}" for k in ("C2", "C3", "C4", "C6", "C8")),
       all(v <= 8.0 for v in dist.values()))
-LOCK = {"J1", "J2", "J3", "J4", "U1"} | {fp.GetReference() for fp in b.GetFootprints() if fp.GetReference().startswith(("H", "FID"))}
+LOCK = {"J1", "J3", "J4", "U1"} | {fp.GetReference() for fp in b.GetFootprints() if fp.GetReference().startswith(("H", "FID"))}
 unl = sorted(r for r in LOCK if not b.FindFootprintByReference(r).IsLocked())
 check("Layout", "Kritische Teile gesperrt", "Steckverbinder, Kantenbruecken, ESP32, Montageloecher, Passermarken", f"{len(LOCK) - len(unl)}/{len(LOCK)}", not unl)
 holes = [(fp.GetReference(), round(mm(fp.GetPosition().x) - 40, 2), round(mm(fp.GetPosition().y) - 40, 2))

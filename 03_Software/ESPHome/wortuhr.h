@@ -130,6 +130,11 @@ struct Renderer {
     float dt = last_ms ? (now_ms - last_ms) / 1000.0f : 1.0f;
     last_ms = now_ms;
     float step = fade_s > 0.01f ? dt / fade_s : 1.0f;
+    // Stromgrenze: Wandler 6 A, Firmware begrenzt auf 5 A (Schaetzung 16 mA je voll angesteuertem LED-Kanal)
+    int lit = m.minutes;
+    for (bool b : m.on) lit += b ? leds_per_cell : 0;
+    float amp = lit * 0.016f * ((base.r + base.g + base.b + base.w) / 255.0f) * factor;
+    if (amp > 5.0f) factor *= 5.0f / amp;
     for (int r = 0; r < ROWS; r++) {
       for (int c = 0; c < COLS; c++) {
         int i = r * COLS + c;

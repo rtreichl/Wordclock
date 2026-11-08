@@ -72,8 +72,8 @@ time:
 
 # ------------------------------------------------------------------ Sensorik
 i2c:
-  sda: GPIO17
-  scl: GPIO18
+  sda: GPIO1
+  scl: GPIO2
   frequency: 400kHz
 
 sensor:
@@ -89,6 +89,15 @@ sensor:
     name: "Laufzeit"
 
 binary_sensor:
+  - platform: gpio            # CH224K PG: low = PD-Spannung liegt an. Ohne PD (z. B. am PC) bleiben die LEDs aus.
+    id: pd_ok
+    name: "USB-PD aktiv"
+    pin:
+      number: GPIO38
+      inverted: true
+      mode:
+        input: true
+        pullup: true
   - platform: gpio            # BOOT-Taster: kurz = Licht an/aus
     id: taster
     pin:
@@ -198,7 +207,7 @@ light:
   - platform: esp32_rmt_led_strip
     id: uhr
     name: "Wortuhr"
-    pin: GPIO16
+    pin: GPIO8
     num_leds: ${num_leds}
     chipset: SK6812
     channel_colors: GRBW     # SK6812 RGBW
@@ -226,7 +235,7 @@ light:
                 m.add(wortuhr::W_WLAN);   // Uhr laeuft weiter, WLAN-Hinweis leuchtet
               }
             }
-            renderer.draw(it, m, current_color, id(auto_factor), ${leds_per_cell}, 0.8f, false, millis());
+            renderer.draw(it, m, current_color, (id(pd_ok).state ? id(auto_factor) : 0.0f), ${leds_per_cell}, 0.8f, false, millis());
             if (m.text != last_text) {
               last_text = m.text;
               id(anzeige).publish_state(m.text);
@@ -248,7 +257,7 @@ light:
               o.show_punkt = id(zeige_punkt).state;
               m = wortuhr::compose(now.hour, now.minute, now.day_of_month, now.month, o);
             }
-            renderer.draw(it, m, current_color, id(auto_factor), ${leds_per_cell}, 0.8f, true, millis());
+            renderer.draw(it, m, current_color, (id(pd_ok).state ? id(auto_factor) : 0.0f), ${leds_per_cell}, 0.8f, true, millis());
       - addressable_rainbow:
           name: "Regenbogen (Test)"
       - addressable_scan:

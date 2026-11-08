@@ -56,3 +56,7 @@ uv pip install --python .venv\Scripts\python.exe esphome
 - Im Raster fehlen **ES** und **UHR**. Die Anzeige beginnt deshalb mit „IST“, das sich abschalten lässt.
 - Zeile 8 lautet `Z E H N E U N E V I E R` (ZEHN, NEUN, VIER; das zweite E ist Füllbuchstabe).
 - **Minutenpunkte:** Die Minuten zwischen den 5-Minuten-Schritten (Minute mod 5) zeigen 1–4 Punkte in den Ecken, im Uhrzeigersinn ab oben links. Beispiel 11:42 = IST ZWANZIG VOR ZWÖLF + 2 Punkte. Im Text-Sensor steht dann „… +2“.
+
+## Versorgung
+
+Die Uhr braucht ein USB-C-PD-Netzteil mit 15 V (ab 45 W). Ohne PD, zum Beispiel am PC, laufen ESP32 und Flashen, die LEDs bleiben aus (Sensor `USB-PD aktiv`, GPIO38). Die Firmware begrenzt den geschaetzten LED-Strom auf 5 A.
