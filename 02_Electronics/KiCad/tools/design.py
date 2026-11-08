@@ -102,7 +102,7 @@ def build_parts():
     P.append(Part("C1", "Device:C_Polarized", "470u/6.3V", "Capacitor_SMD:CP_Elec_6.3x7.7",
                   {"1": "+5V", "2": "GND"}))
     for i in range(6):
-        P.append(Part(f"H{i+1}", "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_3.2mm_M3", {}))
+        P.append(Part(f"H{i+1}", "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_4.3mm_M4", {}))
     for i in range(6):   # Passermarken fuer die Bestueckung (JLCPCB Standard-PCBA), je 3 oben/unten
         P.append(Part(f"FID{i+1}", "Mechanical:Fiducial", "Fiducial", "Fiducial:Fiducial_1mm_Mask2mm", {}))
     # --- Master ---------------------------------------------------------------

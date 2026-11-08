@@ -30,8 +30,8 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
 | J1 USB-C, J2 Hohlbuchse 5 V, D73 SS34, D74 SS54, SW1/SW2, R1–R8, C2–C8 | | ✓ |
 
 - **LED:** SK6812 RGBW, 5050. Im Footprint ist die Pinbelegung des WS2812B hinterlegt: 1 VDD, 2 DOUT, 3 VSS, 4 DIN. Vor der Bestellung mit dem Datenblatt des konkreten Herstellers vergleichen.
-- **Montage Platine:** Die Platine wird von hinten mit **M3**-Kunststoffschrauben in die Kernlöcher der Gitterkreuzungen geschraubt. Die Kernlöcher haben Ø 2,6 mm und sind 9 mm tief. Je Platine gibt es 6 Löcher:
-  - H4, nahe der Uhrmitte: M3×8.
+- **Montage Platine:** Die Platine wird von hinten mit **M3**-Kunststoffschrauben in die Kernlöcher der Gitterkreuzungen geschraubt. Die Kernlöcher haben Ø 2,6 mm und sind 9 mm tief. Je Platine gibt es 6 Löcher. Sie haben Ø 4,3 mm, also ±0,65 mm Spiel für M3. Das gleicht Druck- und Montagetoleranzen des Gitters aus.
+  - H4, nahe der Uhrmitte: M3×8 mit Unterlegscheibe M3 (Ø 7 mm, DIN 125/ISO 7089), weil der Kopf direkt auf der Platine sitzt.
   - H1–H3, H5, H6: je **M3×20** durch den Rückrahmen. Der Kopf wird versenkt: bis Ø 6 mm und 3 mm hoch.
 - **Rückrahmen:** 8 gerade Leisten, 10 mm dick. Die Dicke ist nötig, weil die Hohlbuchse ca. 11,4 mm hoch ist.
   - Je Viertel eine lange Leiste mit 240 × 56 mm und 3 Schrauben und eine kurze mit 184 × 56 mm und 2 Schrauben.
