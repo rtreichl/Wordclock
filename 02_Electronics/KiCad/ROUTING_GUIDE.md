@@ -13,19 +13,19 @@ Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit 
 
 | Punkt im Leitfaden | Umsetzung | Prüfung |
 |---|---|---|
-| Netzklassen Power/GND, breitere Leiterbahnen | `+5V`: ganze Oberseite als Fläche. `GND`: ganze Unterseite als Fläche. Netzklassen `VDC` 1,2 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm. Power-Vias 0,8/0,4 mm (Mehrfach-Pins) | DRC, `qualify_pcb.py` |
+| Netzklassen Power/GND, breitere Leiterbahnen | `+5V`: ganze Oberseite als Fläche. `GND`: ganze Unterseite als Fläche. Netzklassen `VDC` 1,2 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm. Die `+3V3`-Hauptleitung und die `VBUS`-Anschlüsse an J1 und U3 sind in `route_master.py` fest vorgegeben, weil der Autorouter sie ohne Einschnürung nicht zuverlässig verbindet. Einzige schmale Stelle: U5 Pin 1 mit 0,25 mm auf gut 2 mm wegen 0,5 mm Pinraster. Power-Vias 0,8/0,4 mm (Mehrfach-Pins) | DRC, `qualify_pcb.py` |
 | Signale 0,2–0,25 mm | Signale 0,3 mm im LED-Feld (Daten), Freerouting-Standard 0,25 mm | DRC (min. 0,1 mm bei JLCPCB) |
-| Orthogonale Lagen (oben horizontal, unten vertikal) | Freerouting-Einstellung `--router.layers.preferred_direction_horizontal=true,false` | Routing-Protokoll |
+| Orthogonale Lagen (oben horizontal, unten vertikal) | Freerouting-MCP, Job-Einstellung `layers[].preferred_direction_horizontal` = oben true, unten false | `get_effective_settings` je Job |
 | Abblock-C so nah wie möglich | Platzierung in `design.py` / `gen_pcb.py` (LED-C 3,7 mm vom VDD-Pad) | `qualify_pcb.py`: Abstand Abblock-C zum Versorgungspin |
 | Kritische Teile sperren | USB-C, Hohlbuchse, Kantenbrücken, ESP32-Modul (Antenne), Montagelöcher, Passermarken werden nach dem Platzieren gesperrt (`SetLocked`) | `qualify_pcb.py` |
 | Funktionsblöcke gruppieren | Master-Streifen am unteren Rand: Stromversorgung (J1, J2, D73, D74, U2), ESP32 (U1, R3, R4, C4, C5, SW1, SW2), Pegelwandler (U4, R5), Sensor unter dem Lichtleiter (U5) | Sichtprüfung |
-| `max_passes` ≥ 100 | `-mp 100` und `--router.autorouter.max_passes=100` | Routing-Protokoll |
+| `max_passes` ≥ 100 | MCP-Einstellung `autorouter.max_passes = 100` (Feldname in snake_case, sonst wird der Wert ignoriert), `automatic_neckdown = false` | `get_effective_settings` je Job |
 | Pull-tight | Freerouting-Standard (Optimierer aktiv), nicht abgeschaltet | – |
 | Nachbearbeitung: Umwege, überflüssige Vias | `route_master.py` entfernt Stichleitungen und unverbundene Vias; Vias haben mindestens Bohrung + 0,4 mm | DRC `via_dangling`, `track_dangling` = 0 |
 | GND-Flächen oben **und** unten | **Abweichung:** Die Oberseite ist die `+5V`-Fläche. Die Platine verteilt bis zu 73 LEDs × 60 mA ≈ 4,4 A je Platine; eine durchgehende Fläche ist dafür nötig. GND liegt durchgehend unten. Damit gibt es keine GND-Fläche oben, die man vernähen könnte. | Entscheidung, siehe hier |
 | DRC direkt nach dem Import | `build_pcb.py` führt nach jedem Durchlauf DRC mit Schaltplan-Abgleich aus und wiederholt bis 0 Fehler / 0 offen / 0 Abweichungen | `build_pcb.py`, `qualify_pcb.py` |
 
-Freerouting wird direkt (`java -jar freerouting.jar`) aus `route_master.py` aufgerufen, nicht über MCP. Grund: Vor dem Routen wird das LED-Feld gesperrt und nicht zu routende Leiterbahnen bekommen Ersatznetze (`OBST_n`), damit Freerouting sie als feste Hindernisse behandelt. Das ist über das MCP-Werkzeug nicht möglich. Die Engine ist dieselbe.
+Ablauf mit MCP: `gen_pcb.py`, dann `route_master.py --prepare` (sperrt das LED-Feld, gibt nicht zu routenden Leiterbahnen Ersatznetze `OBST_n`, schreibt die DSN). Die DSN geht als Job an den Freerouting-MCP (`enqueue_job`, `upload_job_input_from_local_file`, `update_job_settings`, `start_job`, `download_job_output_to_local_file`). `route_finish.py` übernimmt die SES, danach DRC über den KiCad-MCP. `build_pcb.py` bleibt als lokaler Lauf mit derselben Engine (`java -jar`) erhalten. Der MCP braucht den lokalen API-Dienst auf Port 37864.
 
 ## Umsetzung Teil 2: Power-Integrity-Review
 
