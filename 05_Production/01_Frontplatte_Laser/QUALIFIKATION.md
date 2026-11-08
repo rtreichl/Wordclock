@@ -5,9 +5,9 @@
 | Bauteil | Frontplatte Cortenstahl 1 mm |
 | Fertiger | laserteile-online.eu |
 | Datum | 2026-11-08 |
-| Stand | Git `8a65c57` |
+| Stand | Git `ac30050` |
 | Pruefung | automatisch, `05_Production/tools/` |
-| Ergebnis | **laserteile-online.eu: GESPERRT** |
+| Ergebnis | **laserteile-online.eu: FREIGEGEBEN** |
 
 ## Pruefergebnisse
 
@@ -29,18 +29,19 @@
 | Lieferant | Min. Lochdurchmesser | >= 1.0 mm | Ø 2.80 mm | ✅ bestanden |
 | Konstruktion | Lichtleiter-Bohrung | 1 x Ø 2,8 mm an Sollposition (256,63 | 19,00) | 1 x bei (256.63 | 19.00) | ✅ bestanden |
 | Passung | Buchstaben ueber den Kammern | jeder Buchstabe innerhalb einer 30-mm-Kammer | 0 ausserhalb | ✅ bestanden |
-| Funktion | Alle Uhrzeit-Woerter zusammenhaengend im Raster | 18 Woerter (IST ... ZWÖLF) | fehlend: ['NEUN'] | ❌ nicht bestanden |
+| Funktion | Alle Uhrzeit-Woerter zusammenhaengend im Raster | 18 Woerter (IST ... ZWÖLF) | fehlend: - | ✅ bestanden |
 | DXF | Bestell-DXF (R12) geschrieben und gelesen | 152 Konturen | 152 Konturen | ✅ bestanden |
 
 ## Hinweise und offene Punkte
 
 - **Werkstoff verfuegbar:** Lieferung blank/mit Walzhaut - Patina bildet sich erst; ggf. kuenstlich vorrosten.
 - **Keine Inseln (Schablonenschrift):** Buchstabeninnenteile wuerden sonst herausfallen.
-- **Alle Uhrzeit-Woerter zusammenhaengend im Raster:** Zeile 8 lautet 'ZEHNEUENVIER': NEUN nur nicht zusammenhaengend (N-E-U-_-N); die Firmware ueberspringt das E.
 
 ## Freigegebene Dateien
 
-Keine – das Bauteil ist fuer keinen Fertiger freigegeben. Die Daten bleiben in ihrem Quellordner.
+| Datei | SHA256 |
+|---|---|
+| `Frontplatte_Corten_1mm_R12.dxf` | `e91bfbb90be6a0b5…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 
