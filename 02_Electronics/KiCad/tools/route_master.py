@@ -153,6 +153,54 @@ add_track(board, (x2, y2), (xo, y2), "/GND", pcbnew.F_Cu, 0.2)
 add_track(board, (x3, y3), (xo, y3), "/GND", pcbnew.F_Cu, 0.2)
 add_track(board, (xo, y2), (xo, y3 - 1.6), "/GND", pcbnew.F_Cu, 0.25)
 add_via(board, xo, y3 - 1.6, "/GND", 0.7, 0.3); added += 1
+# U5 Pin 1 (+3V3): 0,5-mm-Raster laesst keine 0,5-mm-Bahn zu -> kurzer 0,25-mm-Anschluss, Via, 0,5 mm zu C8 (direkt darunter)
+x1, y1 = pp["1"]
+c8 = {p.GetNumber(): pos(p.GetPosition()) for p in board.FindFootprintByReference("C8").Pads() if p.GetNetname() == "/+3V3"}
+cx, cy = list(c8.values())[0]
+vx3 = cx + 1.2
+add_track(board, (x1, y1), (x1 + 1.1, cy), "/+3V3", pcbnew.F_Cu, 0.25)
+add_track(board, (x1 + 1.1, cy), (vx3, cy), "/+3V3", pcbnew.F_Cu, 0.25)
+add_via(board, vx3, cy, "/+3V3", 0.8, 0.4); added += 1
+add_track(board, (vx3, cy), (cx, cy), "/+3V3", pcbnew.B_Cu, 0.5)
+# J1 VBUS: 0,6 mm passt nur gerade aus den Pins heraus -> feste Anschluesse, Vias und 0,6-mm-Steg oben (PWR-001)
+_vb = sorted(pos(p.GetPosition()) for p in board.FindFootprintByReference("J1").Pads() if p.GetNetname() == "/VBUS")
+_xs = sorted({round(x, 3) for x, y in _vb}); _y = min(y for x, y in _vb) - 2.2
+for _x in _xs:
+    add_track(board, [(x, y) for x, y in _vb if abs(x - _x) < 0.01][0], (_x, _y), "/VBUS", pcbnew.B_Cu, 0.6)
+    add_via(board, _x, _y, "/VBUS", 0.8, 0.4); added += 1
+_yb = _y - 2.5      # Steg oberhalb lassen: darunter wechseln die USB-Datenleitungen die Lage
+add_track(board, (_xs[0], _y), (_xs[0], _yb), "/VBUS", pcbnew.F_Cu, 0.6)
+add_track(board, (_xs[-1], _y), (_xs[-1], _yb), "/VBUS", pcbnew.F_Cu, 0.6)
+add_track(board, (_xs[0], _yb), (_xs[-1], _yb), "/VBUS", pcbnew.F_Cu, 0.6)
+print("VBUS pins", _vb, "y", _y)
+# +3V3-Hauptleitung fest vorgeben (PWR-001: durchgehend 0,5 mm, Autorouter streut sonst)
+def _pad(ref, num):
+    return [pos(p.GetPosition()) for p in board.FindFootprintByReference(ref).Pads() if p.GetNumber() == num][0]
+def _rel(x, y):
+    return (x + 40.0, y + 40.0)
+def _poly(pts, layer, net="/+3V3", w=0.5):
+    for a_, c_ in zip(pts, pts[1:]):
+        add_track(board, a_, c_, net, layer, w)
+_v1, _v2, _v3 = _rel(45.2, 224.1), _rel(24.8, 225.5), _rel(4.6, 229.2)
+_j1, _j2, _j3, _j4 = _rel(23.0, 225.3), _rel(4.6, 226.8), _rel(4.6, 231.4), _rel(5.5, 232.3)
+_poly([_pad("C3", "1"), _pad("U2", "5"), _rel(49.9, 226.7), _rel(46.6, 226.7), _rel(45.2, 225.3), _v1], pcbnew.B_Cu)
+_poly([_v1, _pad("R3", "1")], pcbnew.B_Cu)
+_poly([_v1, _rel(26.1, 224.1), _rel(24.7, 225.5), _v2], pcbnew.F_Cu)
+_poly([_rel(24.7, 225.5), _rel(8.1, 225.5), _v3], pcbnew.F_Cu)
+_poly([_v2, _rel(25.2, 225.7), _pad("U1", "3")], pcbnew.B_Cu)
+_poly([_v2, _j1, _pad("C4", "1")], pcbnew.B_Cu)
+_poly([_j1, _rel(21.7, 224.0), _pad("R4", "1")], pcbnew.B_Cu)
+_poly([_v3, _j2, _pad("R8", "1")], pcbnew.B_Cu)
+_poly([_j2, _rel(6.0, 226.8), _pad("R6", "1")], pcbnew.B_Cu)
+_poly([_v3, _j3, _pad("R7", "1")], pcbnew.B_Cu)
+_poly([_j3, _j4, _pad("C8", "1")], pcbnew.B_Cu)
+for _v in (_v1, _v2, _v3):
+    add_via(board, _v[0], _v[1], "/+3V3", 0.8, 0.4); added += 1
+# U3 Pin 5 (VBUS) auf den Steg oben
+_u = _pad("U3", "5"); _vv = (_u[0] + 1.9, _u[1])
+add_track(board, _u, _vv, "/VBUS", pcbnew.B_Cu, 0.6)
+add_via(board, _vv[0], _vv[1], "/VBUS", 0.8, 0.4); added += 1
+_poly([_vv, (_vv[0], _yb), (_xs[-1], _yb)], pcbnew.F_Cu, "/VBUS", 0.6)
 print("power vias", added)
 pcbnew.SaveBoard(PCB, board)
 
@@ -218,83 +266,15 @@ tb = pcbnew.LoadBoard(tmp_pcb)
 dsn, ses = os.path.join(tmpd, "route.dsn"), os.path.join(tmpd, "route.ses")
 assert pcbnew.ExportSpecctraDSN(tb, dsn), "DSN export failed"
 print("routing ...", dsn)
-FR_ARGS = ["--router.autorouter.max_passes=100",         # ROUTING_GUIDE.md, Abschnitt 3
-           "--router.layers.preferred_direction_horizontal=true,false",   # oben horizontal, unten vertikal
-           "--gui.enabled=false"]
+# Zustand fuer route_finish.py (getrennte Schritte: Routing laeuft ueber den Freerouting-MCP)
+import json
+STATE = os.path.join(tempfile.gettempdir(), "wortuhr_route_state.json")
+json.dump({"tmp_pcb": tmp_pcb, "dsn": dsn, "ses": ses, "route": sorted(ROUTE), "created": sorted(CREATED)}, open(STATE, "w"))
+print("STATE", STATE); print("DSN", dsn); print("SES", ses)
+if "--prepare" in sys.argv:
+    sys.exit(0)
+# Ohne --prepare: lokaler Lauf mit derselben Engine (build_pcb.py)
+FR_ARGS = ["--router.autorouter.max_passes=100", "--router.automatic_neckdown=false", "--gui.enabled=false"]
 r = subprocess.run([JAVA, "-jar", JAR, "-de", dsn, "-do", ses, "-l", "en"] + FR_ARGS, capture_output=True, text=True, timeout=3600)
-_log = r.stdout + r.stderr
-_warn = [l for l in _log.splitlines() if ("WARN" in l or "ERROR" in l) and ("preferred_direction" in l or "max_passes" in l or "unknown" in l.lower())]
-print("freerouting rc", r.returncode, "Hinweise zu Parametern:", _warn or "keine")
-print(r.stdout[-1500:], r.stderr[-800:])
-assert os.path.exists(ses), "no SES"
-before = {id(t) for t in tb.GetTracks()}
-assert pcbnew.ImportSpecctraSES(tb, ses), "SES import failed"
-
-# ---------------------------------------------------------------- 3. Uebernehmen
-old = set()
-for t in board.GetTracks():
-    key = (t.GetClass(), t.GetNetname(), t.GetStart().x, t.GetStart().y, t.GetEnd().x if t.GetClass() != "PCB_VIA" else 0)
-    old.add(key)
-copied = 0
-COPIED_VIAS = []
-for t in tb.GetTracks():
-    n = t.GetNetname()
-    if n not in ROUTE:
-        continue
-    key = (t.GetClass(), n, t.GetStart().x, t.GetStart().y, t.GetEnd().x if t.GetClass() != "PCB_VIA" else 0)
-    if key in old:
-        continue
-    if t.GetClass() == "PCB_VIA":
-        COPIED_VIAS.append(add_via(board, toMM(t.GetPosition().x), toMM(t.GetPosition().y), n, max(toMM(t.GetWidth(pcbnew.F_Cu)), toMM(t.GetDrillValue()) + 0.4), toMM(t.GetDrillValue())))   # Restring >= 0.2 mm (JLCPCB)
-    else:
-        add_track(board, pos(t.GetStart()), pos(t.GetEnd()), n, t.GetLayer(), toMM(t.GetWidth()))
-    copied += 1
-print("copied", copied)
-# ueberfluessige Vias (nur auf einer Lage angeschlossen) entfernen
-ends = {}
-for t in board.GetTracks():
-    if t.GetClass() == "PCB_TRACK":
-        for p in (t.GetStart(), t.GetEnd()):
-            ends.setdefault((round(p.x / 20000), round(p.y / 20000), t.GetNetname()), set()).add(t.GetLayer())
-pads = {(round(p.GetPosition().x / 20000), round(p.GetPosition().y / 20000)) for fp in board.GetFootprints() for p in fp.Pads()}
-removed = 0
-POUR = {"/GND": pcbnew.B_Cu, "/+5V": pcbnew.F_Cu}
-for v in COPIED_VIAS:
-    n = v.GetNetname()
-    key = (round(v.GetPosition().x / 20000), round(v.GetPosition().y / 20000), n)
-    if (key[0], key[1]) in pads:
-        continue
-    lay = set(ends.get(key, set()))
-    if n in POUR:
-        lay.add(POUR[n])          # Flaeche verbindet die andere Lage
-    if len(lay) < 2:
-        board.Remove(v); removed += 1
-print("dangling vias removed", removed)
-# kurze Stummel ohne Anschluss (Reste entfernter Vias) entfernen
-q = lambda p: (round(p.x / 20000), round(p.y / 20000))
-stubs = 0
-for _ in range(5):
-    pts = {}
-    for t in board.GetTracks():
-        if t.GetClass() == "PCB_TRACK":
-            for p in (t.GetStart(), t.GetEnd()):
-                pts.setdefault((q(p), t.GetNetname(), t.GetLayer()), 0)
-                pts[(q(p), t.GetNetname(), t.GetLayer())] += 1
-    anchors = {(q(v.GetPosition()), v.GetNetname()) for v in board.GetTracks() if v.GetClass() == "PCB_VIA"}
-    padpts = {q(p.GetPosition()) for fp in board.GetFootprints() for p in fp.Pads()}
-    gone = 0
-    for t in list(board.GetTracks()):
-        if t.GetClass() != "PCB_TRACK" or toMM(t.GetLength()) > 1.0 or t.m_Uuid.AsString() in CREATED:
-            continue
-        for p in (t.GetStart(), t.GetEnd()):
-            k = q(p)
-            if pts[(k, t.GetNetname(), t.GetLayer())] == 1 and (k, t.GetNetname()) not in anchors and k not in padpts:
-                board.Remove(t); gone += 1
-                break
-    stubs += gone
-    if not gone:
-        break
-print("dangling stubs removed", stubs)
-pcbnew.ZONE_FILLER(board).Fill(board.Zones())
-pcbnew.SaveBoard(PCB, board)
-print("saved")
+print("freerouting rc", r.returncode, r.stdout[-800:], r.stderr[-400:])
+subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "route_finish.py")], check=True)

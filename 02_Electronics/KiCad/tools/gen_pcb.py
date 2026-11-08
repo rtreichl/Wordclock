@@ -165,7 +165,7 @@ for c, ((k, j), d) in enumerate(D.PATH):
     a_in = pA.pins["4"]
     place(pA, *T(-D.LED_OFF, 0), rot)
     place(pB, *T(+D.LED_OFF, 0), rot)
-    place(parts[f"C{100+nA}"], *T(-7.5, 4.6), rp)      # Pad1 (GND) links, Pad2 (+5V) rechts
+    place(parts[f"C{100+nA}"], *T(-7.5, -4.6), rp)     # Pad1 (GND) direkt am GND-Pin/Via der LED (DEC-002: Schleife ohne Vias)
     place(parts[f"C{100+nB}"], *T(7.5, -4.6), rp)
     place(parts[f"JP{c+1}"], *T(7.5, 4.4), rp)
     for r in (f"D{nA}", f"D{nB}", f"C{100+nA}", f"C{100+nB}", f"JP{c+1}"):
@@ -179,7 +179,7 @@ for c, ((k, j), d) in enumerate(D.PATH):
     track([T(-9.95, -1.65), T(-9.95, -3.5)], "GND", w=W_GND); via(*T(-9.95, -3.5), "GND")
     track([T(5.05, -1.65), T(5.05, -3.5)], "GND", w=W_GND); via(*T(5.05, -3.5), "GND")
     track([T(6.72, -4.6), T(5.05, -3.5)], "GND", w=W_GND)
-    track([T(-8.28, 4.6), T(-8.28, 6.1)], "GND", w=W_GND); via(*T(-8.28, 6.1), "GND")
+    track([T(-8.28, -4.6), T(-9.95, -3.5)], "GND", w=W_GND)
     # Bruecke JP: Pad1 -> B.DIN, Pad2 -> B.DOUT
     track([T(6.85, 4.4), T(5.05, 2.6), T(5.05, 1.65)], a_out)
     track([T(8.15, 4.4), T(11.7, 4.4), T(11.7, -1.65)], b_out)
