@@ -13,7 +13,7 @@ Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit 
 
 | Punkt im Leitfaden | Umsetzung | Prüfung |
 |---|---|---|
-| Netzklassen Power/GND, breitere Leiterbahnen | `+5V`: ganze Oberseite als Fläche. `GND`: ganze Unterseite als Fläche. Netzklassen `VDC` 1,2 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm. Die `+3V3`-Hauptleitung und die `VBUS`-Anschlüsse an J1 und U3 sind in `route_master.py` fest vorgegeben, weil der Autorouter sie ohne Einschnürung nicht zuverlässig verbindet. Einzige schmale Stelle: U5 Pin 1 mit 0,25 mm auf gut 2 mm wegen 0,5 mm Pinraster. Power-Vias 0,8/0,4 mm (Mehrfach-Pins) | DRC, `qualify_pcb.py` |
+| Netzklassen Power/GND, breitere Leiterbahnen | `+5V`: ganze Oberseite als Fläche. `GND`: ganze Unterseite als Fläche. Netzklassen `+15V` 0,8 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm, `USB` 0,2 mm (Paar an U1 0,45 mm / Abstand 0,15 mm), `LED_DATA` 0,3 mm. Die `+3V3`-Hauptleitung und die `VBUS`-Anschlüsse an J1 und U3 sind in `route_master.py` fest vorgegeben, weil der Autorouter sie ohne Einschnürung nicht zuverlässig verbindet. Einzige schmale Stelle: U5 Pin 1 mit 0,25 mm auf gut 2 mm wegen 0,5 mm Pinraster. Power-Vias 0,8/0,4 mm (Mehrfach-Pins) | DRC, `qualify_pcb.py` |
 | Signale 0,2–0,25 mm | Signale 0,3 mm im LED-Feld (Daten), Freerouting-Standard 0,25 mm | DRC (min. 0,1 mm bei JLCPCB) |
 | Orthogonale Lagen (oben horizontal, unten vertikal) | Freerouting-MCP, Job-Einstellung `layers[].preferred_direction_horizontal` = oben true, unten false | `get_effective_settings` je Job |
 | Abblock-C so nah wie möglich | Platzierung in `design.py` / `gen_pcb.py` (LED-C 3,7 mm vom VDD-Pad) | `qualify_pcb.py`: Abstand Abblock-C zum Versorgungspin |
@@ -56,7 +56,7 @@ Gilt für jedes Review nach Teil 2. Befunde nennen die Rule ID.
 | DEC-009 | Abblock-C höchstens 8 mm Pad-Abstand zum Versorgungspin (Projektgrenze, kein elektrischer Grenzwert) | SOFT | `qualify_pcb.py` |
 | DEC-010 | Jede IC-Versorgung hat Abblockung nach Datenblatt, jede Abweichung ist begründet | CONDITIONAL | Datenblatt, Netzliste |
 | LAY-001 | Steckverbinder, ESP32-Modul, Montagelöcher und Passermarken sind gesperrt | HARD | `qualify_pcb.py` |
-| PWR-001 | Netzklassen einhalten: `VDC` 1,2 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm | HARD | DRC, `qualify_pcb.py` |
+| PWR-001 | Netzklassen einhalten: `+15V` 0,8 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm | HARD | DRC, `qualify_pcb.py` |
 | PWR-002 | Power-Vias 0,8/0,4 mm, bei Mehrfach-Pins mehrere Vias | SOFT | Review |
 | PWR-003 | Ein- und Ausgangs-C des LDO U2 erfüllen die Stabilitätsvorgaben des Datenblatts | HARD | Datenblatt |
 | PWR-004 | Keine Einschnürung oder Unterbrechung der `+5V`- und GND-Flächen im Hauptstromweg, Bewertung bei 4,4 A | ANALYSIS | Zonen-Prüfung, Berechnung |

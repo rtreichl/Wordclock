@@ -34,7 +34,7 @@ nets = {}
 
 
 def net(name):
-    return rawnet("/" + name)
+    return rawnet(FULLNET.get(name, name))
 
 
 def load_fp(fpid):
@@ -53,7 +53,7 @@ def place(part, x, y, rot, side="F"):
     fp = load_fp(part.fp)
     fp.SetReference(part.ref)
     fp.SetValue(part.value)
-    fp.SetPath(pcbnew.KIID_PATH("/" + part.uuid))
+    fp.SetPath(pcbnew.KIID_PATH("/" + D.sheet_uuid(D.sheet_of(part.ref)) + "/" + part.uuid))
     for k, v in dict(part.extra, Variante=part.variant).items():
         f = pcbnew.PCB_FIELD(fp, pcbnew.FIELD_T_USER, k)
         f.SetText(v); f.SetVisible(False); f.SetLayer(pcbnew.F_Fab)
@@ -98,6 +98,21 @@ def track(pts, netname, layer=pcbnew.F_Cu, w=W_SIG):
         board.Add(t)
 
 
+def chamfer(pts, r=2.0):
+    """Rechte Winkel durch 45-Grad-Stuecke ersetzen."""
+    out = [pts[0]]
+    for i in range(1, len(pts) - 1):
+        a, b, c = pts[i - 1], pts[i], pts[i + 1]
+        la = abs(b[0] - a[0]) + abs(b[1] - a[1]); lc = abs(c[0] - b[0]) + abs(c[1] - b[1])
+        q_ = min(r, la / 2, lc / 2)
+        if q_ < 0.05 or not ((a[0] == b[0]) != (b[0] == c[0])):
+            out.append(b); continue
+        ua = ((b[0] - a[0]) / la, (b[1] - a[1]) / la); uc = ((c[0] - b[0]) / lc, (c[1] - b[1]) / lc)
+        out += [(b[0] - ua[0] * q_, b[1] - ua[1] * q_), (b[0] + uc[0] * q_, b[1] + uc[1] * q_)]
+    out.append(pts[-1])
+    return out
+
+
 def via(x, y, netname, d=VIA_D, drill=VIA_DRILL):
     v = pcbnew.PCB_VIA(board)
     v.SetPosition(V(x, y)); v.SetWidth(mm(d)); v.SetDrill(mm(drill))
@@ -134,6 +149,9 @@ for _blk in re.split(r"\(net\s+\(code ", _t[_t.find("(nets"):])[1:]:
         PADNET[(_r, _p)] = _name
 
 
+FULLNET = {v.rsplit("/", 1)[-1]: v for v in PADNET.values()}
+
+
 def rawnet(name):
     if name not in nets:
         ni = pcbnew.NETINFO_ITEM(board, name, len(nets) + 1)
@@ -165,9 +183,11 @@ for c, ((k, j), d) in enumerate(D.PATH):
     a_in = pA.pins["4"]
     place(pA, *T(-D.LED_OFF, 0), rot)
     place(pB, *T(+D.LED_OFF, 0), rot)
-    place(parts[f"C{100+nA}"], *T(-7.5, -4.6), rp)     # Pad1 (GND) direkt am GND-Pin/Via der LED (DEC-002: Schleife ohne Vias)
-    place(parts[f"C{100+nB}"], *T(7.5, -4.6), rp)
-    place(parts[f"JP{c+1}"], *T(7.5, 4.4), rp)
+    # Abblock-C am +5V-Pin (Punkt 1): +5V-Pad zum Pin, eigenes GND-Via direkt am GND-Pad
+    rc = 90 if d > 0 else 270
+    place(parts[f"C{100+nA}"], *T(-2.9, 2.45), rc)
+    place(parts[f"C{100+nB}"], *T(12.1, 2.45), rc)
+    place(parts[f"JP{c+1}"], *T(7.5, -4.4), rp)
     for r in (f"D{nA}", f"D{nB}", f"C{100+nA}", f"C{100+nB}", f"JP{c+1}"):
         placed[r].Reference().SetVisible(False)
     # Daten innerhalb der Kammer: A.DOUT -> B.DIN
@@ -178,11 +198,14 @@ for c, ((k, j), d) in enumerate(D.PATH):
     # GND
     track([T(-9.95, -1.65), T(-9.95, -3.5)], "GND", w=W_GND); via(*T(-9.95, -3.5), "GND")
     track([T(5.05, -1.65), T(5.05, -3.5)], "GND", w=W_GND); via(*T(5.05, -3.5), "GND")
-    track([T(6.72, -4.6), T(5.05, -3.5)], "GND", w=W_GND)
-    track([T(-8.28, -4.6), T(-9.95, -3.5)], "GND", w=W_GND)
+    for cref, vdd in ((f"C{100+nA}", T(-5.05, 1.65)), (f"C{100+nB}", T(9.95, 1.65))):
+        gx, gy = pad_xy(cref, "1"); px_, py_ = pad_xy(cref, "2")
+        track([vdd, (px_, py_)], "+5V", w=W_GND)
+        vg = (gx + d * 1.0, gy + d * 1.25)
+        track([(gx, gy), vg], "GND", w=W_GND); via(*vg, "GND")
     # Bruecke JP: Pad1 -> B.DIN, Pad2 -> B.DOUT
-    track([T(6.85, 4.4), T(5.05, 2.6), T(5.05, 1.65)], a_out)
-    track([T(8.15, 4.4), T(11.7, 4.4), T(11.7, -1.65)], b_out)
+    track([T(6.85, -4.4), T(1.5, -4.4), T(0.0, -2.9), T(0.0, -1.65)], a_out)
+    track([T(8.15, -4.4), T(11.7, -4.4), T(11.7, -1.65)], b_out)
 
 # Minuten-LED in der Aussenecke, zwischen Kammer MINUTE_AFTER und der naechsten
 mx, my = D.MINUTE_LED_POS
@@ -214,14 +237,14 @@ for c in range(35):
     n = parts[f"D{2*c+2}"].pins["2"]
     c1, c2 = D.cell_center(k1, j1), D.cell_center(k2, j2)
     if j1 == j2:
-        xm = (c1[0] + c2[0]) / 2
+        xm = 44.0 if c == 0 else (c1[0] + c2[0]) / 2      # c == 0: Platz fuer das USB-Paar an U1
         pts = [p1, (xm, p1[1]), (xm, p2[1]), p2]
     elif abs(p1[0] - p2[0]) < 1e-6:
         pts = [p1, p2]
     else:
         ym = (c1[1] + c2[1]) / 2
         pts = [p1, (p1[0], ym), (p2[0], ym), p2]
-    track(pts, n, pcbnew.B_Cu)
+    track(chamfer(pts), n, pcbnew.B_Cu)
 
 # ---------------------------------------------------------------- Kantenbruecken J_IN / J_OUT
 # 5 Pads je Kante (GND, +5V, Daten, +5V, GND) fuer 0R-2512 ueber den 1-mm-Spalt zur Nachbarplatine.
@@ -254,12 +277,12 @@ for ref in ("J3", "J4"):
 # J_IN: Daten -> erster LED-Eingang (Via)
 x3, y3 = pad_xy("J3", "3")
 vx, vy = via_in[0]
-track([(x3, y3), (17.0, y3), (17.0, vy), (vx, vy)], "DIN", pcbnew.B_Cu)
+track(chamfer([(x3, y3), (17.0, y3), (17.0, vy), (vx, vy)]), "DIN", pcbnew.B_Cu)
 # J_OUT: letzte Kammer -> Daten (rechts am Feld vorbei, dann oberhalb der Kammer (5,0))
 x3, y3 = pad_xy("J4", "3")
 vx, vy = via_out[35]
 xr = D.cell_center(5, 0)[0] + D.C0 - 0.5
-track([(vx, vy), (xr, vy), (xr, 14.6), (x3, 14.6), (x3, y3)], "DOUT", pcbnew.B_Cu)
+track(chamfer([(vx, vy), (xr, vy), (xr, 14.6), (x3, 14.6), (x3, y3)]), "DOUT", pcbnew.B_Cu)
 
 # Puffer-Elko (jede Platine) unter der Wand nahe J_IN
 place(parts["C1"], 26.0, D.CONN_POS, 0, "B")
@@ -279,13 +302,13 @@ for ref, (x, y, rot, side) in D.MASTER_PLACE.items():
 # R5 (Pegelwandler-Ausgang) direkt an die DIN-Leitung
 x5, y5 = pad_xy("R5", "2")
 track([(x5, y5), (x5, via_in[0][1])], "DIN", pcbnew.B_Cu)
-for ref in ("J1", "J2"):
+for ref in ("J1",):
     fp = placed[ref]; bb = fp.GetBoundingBox(False)
     print(ref, "bbox y", round(pcbnew.ToMM(bb.GetTop()) - O, 2), round(pcbnew.ToMM(bb.GetBottom()) - O, 2))
 
 assert len(placed) == len(parts), set(parts) - set(placed)
 # ROUTING_GUIDE.md: kritische Teile sperren (Steckverbinder, Kantenbruecken, Funkmodul, Montageloecher, Passermarken)
-LOCK = {"J1", "J2", "J3", "J4", "U1"} | {r for r in placed if r.startswith(("H", "FID"))}
+LOCK = {"J1", "J3", "J4", "U1"} | {r for r in placed if r.startswith(("H", "FID"))}
 for r in LOCK:
     placed[r].SetLocked(True)
 
@@ -303,7 +326,6 @@ def set_model(ref, fname, off=(0, 0, 0), rot=(0, 0, 0), keep=False):
 
 set_model("U1", "${KIPRJMOD}/3dmodels/ESP32-S3-MINI-1_Platzhalter.step")
 set_model("J1", "${KIPRJMOD}/3dmodels/USB_C_HRO_TYPE-C-31-M-12_Platzhalter.step")
-set_model("J2", "${KIPRJMOD}/3dmodels/BarrelJack_CUI_PJ-036AH-SMT_Platzhalter.step")
 set_model("U5", "${KIPRJMOD}/3dmodels/BH1750_WSOF6I_Platzhalter.step")
 # 0R-2512-Bruecken (Darstellung nur an J_OUT, Mitte ueber dem Spalt)
 for i, xo in enumerate((-10, -5, 0, 5, 10)):
@@ -332,7 +354,7 @@ zone(pcbnew.B_Cu, "GND", full)
 
 # ---------------------------------------------------------------- Beschriftung
 text(pcbnew.B_SilkS, "WortUhr LED-Board rev2  -  4x identisch", 117.0, 120.0, 2.0, mirror=True)
-text(pcbnew.B_SilkS, "Master: U1..U5, J1, J2 bestuecken", 117.0, 124.0, 1.5, mirror=True)
+text(pcbnew.B_SilkS, "Master: U1..U7, J1 bestuecken", 117.0, 124.0, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "JPx schliessen wenn LED B fehlt", 117.0, 127.5, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "IN", 7.5, D.CONN_POS - 14.0, 1.2, mirror=True)
 text(pcbnew.B_SilkS, "OUT", D.CONN_POS + 15.0, 7.0, 1.2, mirror=True)
@@ -347,6 +369,15 @@ import json
 _pro = os.path.join(PRJ, "WortUhr.kicad_pro")
 _d = json.load(open(_pro, encoding="utf-8"))
 _r = _d["board"]["design_settings"]["rules"]
+_ns = _d.setdefault("net_settings", {})
+_cl = _ns["classes"][0]
+def _nc(name, w, clr=0.2, vd=0.7, vh=0.3):
+    return dict(_cl, name=name, track_width=w, clearance=clr, via_diameter=vd, via_drill=vh, priority=len(_ns["classes"]))
+_ns["classes"] = [dict(_cl, track_width=0.2, clearance=0.2, via_diameter=0.7, via_drill=0.3)] + [
+    _nc("PWR_15V", 0.8, vd=0.8, vh=0.4), _nc("PWR_VBUS", 0.6, vd=0.8, vh=0.4), _nc("PWR_3V3", 0.5, vd=0.8, vh=0.4),
+    _nc("PWR_5V", 0.6, vd=0.8, vh=0.4), _nc("GND", 0.4), _nc("USB", 0.2, clr=0.15), _nc("LED_DATA", 0.3)]
+_ns["netclass_patterns"] = [{"netclass": c, "pattern": p_} for c, p_ in (("PWR_15V", "+15V"), ("PWR_VBUS", "VBUS"), ("PWR_3V3", "+3V3"), ("PWR_5V", "+5V"), ("GND", "GND"),
+                            ("USB", "USB_D*"), ("LED_DATA", "*/C??_*_OUT"), ("LED_DATA", "DIN"), ("LED_DATA", "*/DOUT"), ("LED_DATA", "*/MIN_OUT"), ("LED_DATA", "*/LED_5V"))]
 _r["min_copper_edge_clearance"] = 0.3
 _r["min_track_width"] = 0.1
 json.dump(_d, open(_pro, "w", encoding="utf-8"), indent=2)

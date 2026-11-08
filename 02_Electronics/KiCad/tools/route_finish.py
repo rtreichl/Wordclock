@@ -62,7 +62,7 @@ for t in board.GetTracks():
             ends.setdefault((round(p.x / 20000), round(p.y / 20000), t.GetNetname()), set()).add(t.GetLayer())
 pads = {(round(p.GetPosition().x / 20000), round(p.GetPosition().y / 20000)) for fp in board.GetFootprints() for p in fp.Pads()}
 removed = 0
-POUR = {"/GND": pcbnew.B_Cu, "/+5V": pcbnew.F_Cu}
+POUR = {"GND": pcbnew.B_Cu, "+5V": pcbnew.F_Cu}
 for v in COPIED_VIAS:
     n = v.GetNetname()
     key = (round(v.GetPosition().x / 20000), round(v.GetPosition().y / 20000), n)
@@ -99,6 +99,24 @@ for _ in range(5):
     if not gone:
         break
 print("dangling stubs removed", stubs)
+# Nacharbeit (ROUTING_GUIDE Abschnitt 4): GND-Inseln um USB-C und U1 an die Hauptflaeche
+R = lambda x, y: (x + 40.0, y + 40.0)
+_q = (80.0, 254.45)
+_u1 = board.FindFootprintByReference("U1")
+_gp = [pos(p_.GetPosition()) for p_ in _u1.Pads() if p_.GetNetname() == "GND"]
+_gq = min(_gp, key=lambda v: (v[0] - _q[0]) ** 2 + (v[1] - _q[1]) ** 2)
+_inner = [v for v in _gp if 68 < v[0] < 78 and 257 < v[1] < 270]
+_in = min(_inner, key=lambda v: (v[0] - _gq[0]) ** 2 + (v[1] - _gq[1]) ** 2)
+for t in list(board.GetTracks()):
+    if t.GetClass() == "PCB_TRACK" and t.GetNetname() == "GND" and (abs(toMM(t.GetStart().x) - _gq[0]) < 0.02 and abs(toMM(t.GetStart().y) - _gq[1]) < 0.02):
+        board.Remove(t)
+_va, _vb = R(41.1, 216.0), R(36.5, 216.0)
+add_track(board, _va, _vb, "GND", pcbnew.F_Cu, 0.4)
+add_via(board, _va[0], _va[1], "GND", 0.7, 0.3); add_via(board, _vb[0], _vb[1], "GND", 0.7, 0.3)
+for a_, b_ in ((R(67.44, 219.5), R(67.44, 217.6)), (R(58.9, 224.5), R(57.0, 224.5))):
+    add_track(board, a_, b_, "GND", pcbnew.F_Cu, 0.4)
+    add_via(board, b_[0], b_[1], "GND", 0.7, 0.3)
+add_via(board, R(58.9, 224.5)[0], R(58.9, 224.5)[1], "GND", 0.7, 0.3)
 pcbnew.ZONE_FILLER(board).Fill(board.Zones())
 pcbnew.SaveBoard(PCB, board)
 print("saved")

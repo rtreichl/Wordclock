@@ -76,6 +76,25 @@ class Part:
         self.uuid = uid("sym/" + ref)
 
 
+SHEETS = {"Versorgung": "Versorgung.kicad_sch", "ESP32": "ESP32.kicad_sch", "LED_Feld": "LED_Feld.kicad_sch", "Abblockung": "Abblockung.kicad_sch"}
+VERSORGUNG = {"J1", "F1", "U3", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1"}
+ESP32 = {"U1", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8"}
+
+
+def sheet_of(ref):
+    if ref in VERSORGUNG:
+        return "Versorgung"
+    if ref in ESP32:
+        return "ESP32"
+    if ref.startswith("C") and ref[1:].isdigit() and int(ref[1:]) > 100:
+        return "Abblockung"
+    return "LED_Feld"
+
+
+def sheet_uuid(name):
+    return uid("sheet/" + name)
+
+
 def build_parts():
     P = []
     # --- LED-Feld -------------------------------------------------------------
@@ -111,7 +130,7 @@ def build_parts():
     P.append(Part("J4", "Connector_Generic:Conn_01x05", "Bruecke_OUT", FP_BR,
                   {"1": "GND", "2": "+5V", "3": "DOUT", "4": "+5V", "5": "GND"},
                   extra={"Hinweis": "Gegenstueck zu Bruecke_IN der naechsten Platine"}))
-    P.append(Part("C1", "Device:C_Polarized", "470u/6.3V", "Capacitor_SMD:CP_Elec_6.3x7.7",
+    P.append(Part("C1", "Device:C_Polarized", "100u/10V", "Capacitor_SMD:CP_Elec_6.3x7.7",
                   {"1": "+5V", "2": "GND"}))
     for i in range(6):
         P.append(Part(f"H{i+1}", "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_4.3mm_M4", {}))
@@ -123,21 +142,15 @@ def build_parts():
                   {"A1": "GND", "A12": "GND", "B1": "GND", "B12": "GND", "SH": "GND",
                    "A4": "VBUS", "A9": "VBUS", "B4": "VBUS", "B9": "VBUS",
                    "A5": "CC1", "B5": "CC2", "A6": "USB_DP", "B6": "USB_DP", "A7": "USB_DN", "B7": "USB_DN"}, M))
-    P.append(Part("R1", "Device:R", "5k1", FP_R0603, {"1": "CC1", "2": "GND"}, M))
-    P.append(Part("R2", "Device:R", "5k1", FP_R0603, {"1": "CC2", "2": "GND"}, M))
     P.append(Part("U3", "Power_Protection:USBLC6-2SC6", "USBLC6-2SC6", "Package_TO_SOT_SMD:SOT-23-6",
-                  {"1": "USB_DN", "6": "USB_DN", "3": "USB_DP", "4": "USB_DP", "2": "GND", "5": "VBUS"}, M))
-    P.append(Part("D73", "Device:D_Schottky", "SS34", "Diode_SMD:D_SMA", {"1": "+5V", "2": "VBUS"}, M))
-    P.append(Part("J2", "Connector:Barrel_Jack_Switch", "5V DC 5.5/2.1", "Connector_BarrelJack:BarrelJack_CUI_PJ-036AH-SMT_Horizontal",
-                  {"1": "VDC", "2": "GND"}, M, nc=["3"]))
-    P.append(Part("D74", "Device:D_Schottky", "SS54", "Diode_SMD:D_SMC", {"1": "+5V", "2": "VDC"}, M))
+                  {"1": "USB_DN", "6": "USB_DN", "3": "USB_DP", "4": "USB_DP", "2": "GND", "5": "+5V"}, M))
     P.append(Part("U2", "Regulator_Linear:AP2112K-3.3", "AP2112K-3.3", "Package_TO_SOT_SMD:SOT-23-5",
                   {"1": "+5V", "3": "+5V", "2": "GND", "5": "+3V3"}, M, nc=["4"]))
     P.append(Part("C2", "Device:C", "10u", FP_C0805, {"1": "+5V", "2": "GND"}, M))
     P.append(Part("C3", "Device:C", "10u", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
     P.append(Part("C4", "Device:C", "100n", FP_C0603, {"1": "+3V3", "2": "GND"}, M))
-    esp = {"1": "GND", "2": "GND", "3": "+3V3", "45": "EN", "4": "BOOT", "20": "LED_3V3",
-           "21": "SDA", "22": "SCL", "23": "USB_DN", "24": "USB_DP"}
+    esp = {"1": "GND", "2": "GND", "3": "+3V3", "45": "EN", "4": "BOOT", "12": "LED_3V3",
+           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_DN", "24": "USB_DP"}
     for n in list(range(42, 44)) + list(range(46, 66)):
         esp[str(n)] = "GND"
     used = set(esp)
@@ -159,35 +172,71 @@ def build_parts():
     P.append(Part("C8", "Device:C", "100n", FP_C0603, {"1": "+3V3", "2": "GND"}, M))
     P.append(Part("R7", "Device:R", "4k7", FP_R0603, {"1": "+3V3", "2": "SDA"}, M))
     P.append(Part("R8", "Device:R", "4k7", FP_R0603, {"1": "+3V3", "2": "SCL"}, M))
+    # --- USB-C Power Delivery + Abwaertswandler 15 V -> 5 V / 6 A (ersetzt Hohlbuchse und Dioden) ---
+    FP_L = "Inductor_SMD:L_Bourns_SRP1245A"
+    FP_C1206 = "Capacitor_SMD:C_1206_3216Metric"
+    P.append(Part("F1", "Device:Polyfuse", "PTC 3A/24V", "Fuse:Fuse_1812_4532Metric", {"1": "VBUS", "2": "+15V"}, M))
+    P.append(Part("U6", "WortUhr:CH224K", "CH224K", "Package_SO:SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm",
+                  {"1": "PD_VDD", "2": "PD_VDD", "3": "PD_VDD", "6": "CC2", "7": "CC1", "8": "PD_SENSE", "9": "GND", "10": "PD_GOOD", "11": "GND"},
+                  M, nc=["4", "5"], extra={"Hinweis": "CFG1=0, CFG2=1, CFG3=1: fordert 15 V an"}))
+    P.append(Part("R20", "Device:R", "1k", FP_R0603, {"1": "+15V", "2": "PD_VDD"}, M))
+    P.append(Part("C20", "Device:C", "1u/25V", FP_C0603, {"1": "PD_VDD", "2": "GND"}, M))
+    P.append(Part("R21", "Device:R", "10k", FP_R0603, {"1": "+15V", "2": "PD_SENSE"}, M))
+    P.append(Part("U7", "WortUhr:SCT2360", "SCT2360FPBR", "WortUhr:QFN-12_SCT2360",
+                  {"1": "+15V", "2": "GND", "4": "GND", "5": "+5V", "7": "BUCK_SW", "8": "BUCK_BST",
+                   "9": "BUCK_VCC", "10": "GND", "11": "BUCK_FB"}, M, nc=["3", "6", "12"],
+                  extra={"Hinweis": "FSEL=GND: 400 kHz; MODE offen: USM; EN offen: Start automatisch"}))
+    P.append(Part("L1", "Device:L", "3.3uH Isat>=10A", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
+    P.append(Part("C21", "Device:C", "22u/25V", FP_C1206, {"1": "+15V", "2": "GND"}, M))
+    P.append(Part("C22", "Device:C", "100n/25V", FP_C0603, {"1": "+15V", "2": "GND"}, M))
+    for i, ref in enumerate(("C23", "C24", "C25")):
+        P.append(Part(ref, "Device:C", "22u/10V", FP_C0805, {"1": "+5V", "2": "GND"}, M))
+    P.append(Part("C26", "Device:C", "100n/25V", FP_C0603, {"1": "BUCK_BST", "2": "BUCK_SW"}, M))
+    P.append(Part("C27", "Device:C", "1u/10V", FP_C0603, {"1": "BUCK_VCC", "2": "GND"}, M))
+    P.append(Part("R22", "Device:R", "75k", FP_R0603, {"1": "+5V", "2": "BUCK_FB"}, M))
+    P.append(Part("R23", "Device:R", "10.2k", FP_R0603, {"1": "BUCK_FB", "2": "GND"}, M))
+    P.append(Part("C9", "Device:C", "22u/10V", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
     return P
 
 
 # Platzierung Master-Teile (lokal, Unterseite ausser U5), (x, y, rot, seite)
 MASTER_PLACE = {
     "U1": (33.0, 224.0, 0, "B"),      # ESP32-S3: Antenne zum unteren Rand
-    "C4": (22.5, 226.5, 0, "B"),      # 100n direkt am 3V3-Pin 3 des ESP32 (ROUTING_GUIDE.md)
+    "C4": (23.3, 226.3, 90, "B"),     # 100n: Versorgung kommt aussen an, laeuft durch den C zum Pin 3
+    "C9": (20.6, 226.3, 90, "B"),     # 22u nach Espressif-Referenz
     "U2": (51.0, 223.5, 0, "B"),      # LDO 3.3V
     "C2": (47.0, 223.5, 90, "B"),
     "C3": (55.0, 223.5, 90, "B"),
     "R3": (43.5, 223.0, 90, "B"),     # EN-Pullup direkt am EN-Pin
-    "C5": (43.5, 227.0, 90, "B"),     # 1u am EN-Pin 45 (rechte Modulseite)
+    "C5": (43.5, 227.0, 90, "B"),     # 1u am EN-Pin 45
     "R4": (22.5, 221.5, 0, "B"),      # BOOT-Pullup
-    "SW1": (78.0, 219.0, 0, "B"),     # RESET
+    "SW1": (82.0, 217.0, 0, "B"),     # RESET
     "SW2": (5.4, 218.6, 0, "B"),      # BOOT
     "J1": (63.0, 230.6, 180, "B"),    # USB-C
-    "U3": (63.0, 219.5, 0, "B"),
-    "R1": (57.0, 223.0, 90, "B"),
-    "R2": (69.0, 223.0, 90, "B"),
-    "D73": (72.0, 230.0, 0, "B"),     # SS34 USB
-    "J2": (100.0, 224.0, 180, "B"),   # Hohlbuchse 5.5/2.1
-    "D74": (114.0, 219.0, 0, "B"),    # SS54 Hohlbuchse
-    "U4": (19.0, 218.5, 0, "B"),      # Pegelwandler 3.3 -> 5V
+    "U3": (63.0, 219.5, 180, "B"),    # DN oben, DP unten: passt zur Lage am ESP32 ohne Kreuzung
+    "F1": (72.0, 230.5, 0, "B"),      # Eingangssicherung
+    "U6": (71.5, 222.0, 0, "B"),      # PD-Controller
+    "R20": (76.5, 224.0, 90, "B"),
+    "C20": (76.5, 220.0, 90, "B"),
+    "R21": (78.5, 224.0, 90, "B"),
+    "C21": (85.0, 224.0, 90, "B"),    # Eingang Wandler
+    "C22": (87.2, 228.0, 0, "B"),
+    "U7": (90.5, 224.0, 0, "B"),      # Abwaertswandler, SW zur Spule
+    "C26": (93.5, 228.0, 0, "B"),
+    "C27": (90.4, 227.7, 180, "B"),
+    "R22": (92.0, 219.0, 90, "B"),
+    "R23": (94.0, 219.0, 90, "B"),
+    "L1": (102.0, 224.0, 0, "B"),
+    "C23": (111.0, 219.5, 90, "B"),
+    "C24": (113.5, 219.5, 90, "B"),
+    "C25": (116.0, 219.5, 90, "B"),
+    "U4": (19.0, 218.5, 180, "B"),    # Pegelwandler: A zum ESP32, Y zu R5
     "C6": (19.0, 215.0, 0, "B"),
     "R5": (14.5, 219.0, 90, "B"),
-    "U5": (SENSOR_POS[0], SENSOR_POS[1], 90, "F"),
-    "C8": (8.0, 231.5, 90, "B"),      # direkt unter U5 Pin 1 (DEC-002)
-    "R6": (6.5, 225.5, 90, "B"),
-    "C7": (9.5, 225.5, 90, "B"),
-    "R7": (3.5, 231.5, 90, "B"),
-    "R8": (3.5, 225.5, 90, "B"),
+    "U5": (SENSOR_POS[0], SENSOR_POS[1], 270, "F"),   # SDA/SCL zum ESP32 gedreht
+    "C8": (3.5, 229.5, 0, "B"),
+    "R6": (9.5, 225.5, 90, "B"),
+    "C7": (3.0, 224.5, 90, "B"),
+    "R7": (11.5, 225.5, 90, "B"),
+    "R8": (13.5, 225.5, 90, "B"),
 }

@@ -28,7 +28,7 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
 | D75 Minuten-LED (Außenecke) + C175 (Unterseite) | ✓ | |
 | J3/J4 (Kantenbrücken, nur Pads), C1 (470 µF) | ✓ | |
 | U1 ESP32-S3-MINI-1, U2 AP2112K-3.3, U3 USBLC6, U4 74AHCT1G125, U5 BH1750FVI | | ✓ |
-| J1 USB-C, J2 Hohlbuchse 5 V, D73 SS34, D74 SS54, SW1/SW2, R1–R8, C2–C8 | | ✓ |
+| J1 USB-C, F1, U6 CH224K, U7 SCT2360, L1, SW1/SW2, R3–R8, R20–R23, C2–C9, C20–C27 | | ✓ |
 
 **Minutenpunkte:** Jede Platine hat an der Außenecke eine Minuten-LED D75. In der Datenkette sitzt sie direkt nach Kammer (5,5). Durch die Drehung der Platinen leuchtet sie in allen vier Ecken unter den Ø-4-mm-Punkten der Frontplatte (18 mm vom Rand). Darüber liegt im Gitter ein runder Diffusor Ø 5,6 × 2 mm.
 
@@ -45,7 +45,8 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
 - **Aufbauhöhe:** Frontplatte 1 mm, Gitter 25 mm, Rückrahmen 10 mm, zusammen **36 mm**. Von der Rückseite der Frontplatte bis zur Wand sind es 35 mm.
 - **3D-Modelle:** Für ESP32-S3-MINI-1, USB-C (HRO TYPE-C-31-M-12), Hohlbuchse (CUI PJ-036AH-SMT) und BH1750 liegen in `3dmodels/` maßgenaue Platzhalter. In der KiCad-Bibliothek gibt es für diese Teile keine Modelle. Die 0-Ω-Brücken werden am Footprint J_OUT dargestellt.
 - **Lichtsensor:** Der BH1750 (U5) sitzt oben unter dem Lichtleiter Mentor 1282.1000. Der Lichtleiter wird von vorn in das 2,8-mm-Loch im Gitter (Q4, unterer Rahmen) gedrückt.
-- **ESP32-Pins:** LED-Daten IO16 (über 74AHCT1G125 auf 5 V), I2C SDA IO17, SCL IO18, BOOT IO0.
+- **ESP32-Pins:** LED-Daten IO8 (über 74AHCT1G125 auf 5 V), I2C SDA IO1, SCL IO2, PD-Status IO38, BOOT IO0.
+- **Versorgung:** Nur USB-C. Der CH224K fordert 15 V an (Netzteil ab 45 W), der SCT2360 erzeugt daraus 5 V. An einem normalen USB-Port (5 V) laufen Logik und Flashen, die LEDs bleiben aus.
 
 ## Bilder zum Pruefen ohne KiCad
 
