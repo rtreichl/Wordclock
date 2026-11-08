@@ -1,0 +1,50 @@
+# Leitfaden PCB-Layout und Freerouting
+
+Vorgabe des Projekts (2026-11-08) für jede Layout- und Routing-Arbeit an der LED-Platine. Der Originaltext steht unten. Darüber steht, wie er in den Skripten `tools/gen_pcb.py`, `tools/route_master.py` und `tools/build_pcb.py` umgesetzt ist und wo das Projekt bewusst abweicht.
+
+## Umsetzung im Projekt
+
+| Punkt im Leitfaden | Umsetzung | Prüfung |
+|---|---|---|
+| Netzklassen Power/GND, breitere Leiterbahnen | `+5V`: ganze Oberseite als Fläche. `GND`: ganze Unterseite als Fläche. Netzklassen `VDC` 1,2 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm. Power-Vias 0,8/0,4 mm (Mehrfach-Pins) | DRC, `qualify_pcb.py` |
+| Signale 0,2–0,25 mm | Signale 0,3 mm im LED-Feld (Daten), Freerouting-Standard 0,25 mm | DRC (min. 0,1 mm bei JLCPCB) |
+| Orthogonale Lagen (oben horizontal, unten vertikal) | Freerouting-Einstellung `--router.layers.preferred_direction_horizontal=true,false` | Routing-Protokoll |
+| Abblock-C so nah wie möglich | Platzierung in `design.py` / `gen_pcb.py` (LED-C 3,7 mm vom VDD-Pad) | `qualify_pcb.py`: Abstand Abblock-C zum Versorgungspin |
+| Kritische Teile sperren | USB-C, Hohlbuchse, Kantenbrücken, ESP32-Modul (Antenne), Montagelöcher, Passermarken werden nach dem Platzieren gesperrt (`SetLocked`) | `qualify_pcb.py` |
+| Funktionsblöcke gruppieren | Master-Streifen am unteren Rand: Stromversorgung (J1, J2, D73, D74, U2), ESP32 (U1, R3, R4, C4, C5, SW1, SW2), Pegelwandler (U4, R5), Sensor unter dem Lichtleiter (U5) | Sichtprüfung |
+| `max_passes` ≥ 100 | `-mp 100` und `--router.autorouter.max_passes=100` | Routing-Protokoll |
+| Pull-tight | Freerouting-Standard (Optimierer aktiv), nicht abgeschaltet | – |
+| Nachbearbeitung: Umwege, überflüssige Vias | `route_master.py` entfernt Stichleitungen und unverbundene Vias; Vias haben mindestens Bohrung + 0,4 mm | DRC `via_dangling`, `track_dangling` = 0 |
+| GND-Flächen oben **und** unten | **Abweichung:** Die Oberseite ist die `+5V`-Fläche. Die Platine verteilt bis zu 73 LEDs × 60 mA ≈ 4,4 A je Platine; eine durchgehende Fläche ist dafür nötig. GND liegt durchgehend unten. Damit gibt es keine GND-Fläche oben, die man vernähen könnte. | Entscheidung, siehe hier |
+| DRC direkt nach dem Import | `build_pcb.py` führt nach jedem Durchlauf DRC mit Schaltplan-Abgleich aus und wiederholt bis 0 Fehler / 0 offen / 0 Abweichungen | `build_pcb.py`, `qualify_pcb.py` |
+
+Freerouting wird direkt (`java -jar freerouting.jar`) aus `route_master.py` aufgerufen, nicht über MCP. Grund: Vor dem Routen wird das LED-Feld gesperrt und nicht zu routende Leiterbahnen bekommen Ersatznetze (`OBST_n`), damit Freerouting sie als feste Hindernisse behandelt. Das ist über das MCP-Werkzeug nicht möglich. Die Engine ist dieselbe.
+
+## Originaltext
+
+> You are an expert Hardware Engineer specializing in PCB layout optimization using the FreeRouting engine via the Model Context Protocol (MCP). Your task is to process a Specctra .dsn file and configure FreeRouting parameter overrides to generate a clean, highly reliable, professional-grade layout.
+>
+> Strictly adhere to the following layout guide to prevent common autorouter flaws (like via-spamming, poor signal integrity, or bad power handling).
+>
+> ### 1. NETCLASS DEFINITIONS & LAYER CONTROLLER
+> - CRITICAL NETS (Power/GND): Manually define or isolate NetClasses for VCC, VDD, and GND. Ensure these use wider traces (minimum 0.5mm to 1.0mm depending on current) before passing to the engine.
+> - SIGNAL NETS: Keep default signals at standard widths (e.g., 0.2mm to 0.25mm) with appropriate clearance constraints to minimize crosstalk.
+> - LAYER DIRECTIONALITY: Enforce orthogonal routing strategy. Set Top layer preferred direction to Horizontal and Bottom layer preferred direction to Vertical to maximize routing efficiency.
+>
+> ### 2. PRE-ROUTING COMPONENT LAYOUT SANITY CHECK
+> - Ensure decoupling capacitors are placed as close as humanly possible to target IC power pins.
+> - Lock all critical connectors, mounting holes, and RF/High-speed components so the router does not shift them.
+> - Group functional blocks (e.g., power stage, microcontroller, analog sensor node) together to keep ratline lengths minimal.
+>
+> ### 3. COMMAND-LINE CONFIGURATION OVERRIDES
+> When initiating the FreeRouting session, invoke the following routing parameters:
+> - Set `--router.autorouter.max_passes=100` (or higher) to allow the engine sufficient time to optimize and reduce via counts during the post-route/rip-up phase.
+> - Use `--router.layers.preferred_direction_horizontal=true,false` mapped correctly to your active stackup.
+> - Keep `pull tight regions` enabled to force the router to hug obstacles tightly, leaving wider open spaces for copper pours/ground planes later.
+>
+> ### 4. POST-ROUTING CLEANUP INSTRUCTIONS (CRITICAL)
+> Once the .ses file is exported and pulled back into the primary CAD software:
+> 1. RIP-UP & REPLACE: Manually inspect and clean up any "zaggy" or unnecessarily complex paths generated by the router.
+> 2. GROUND PLANES: Drop large, low-impedance GND copper pours on both top and bottom layers.
+> 3. VIA MINIMIZATION: Stitch the ground planes with vias, and manually eliminate any redundant signal vias that the engine failed to optimize.
+> 4. DRC VALIDATION: Run a full Design Rule Check (DRC) immediately to guarantee that no clearance violations occurred during the file format conversion.

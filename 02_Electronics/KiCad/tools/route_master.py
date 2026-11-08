@@ -18,7 +18,7 @@ HOME = os.path.expanduser("~/.kicad-mcp")
 JAVA = glob.glob(os.path.join(HOME, "jre", "*", "bin", "java.exe"))[0]
 JAR = os.path.join(HOME, "freerouting.jar")
 MASTER = set(D.MASTER_PLACE)
-POWER_W = {"/VBUS": 0.6, "/VDC": 1.2, "/+3V3": 0.4}
+POWER_W = {"/VBUS": 0.6, "/VDC": 1.2, "/+3V3": 0.5}   # ROUTING_GUIDE.md: Power >= 0,5 mm
 mm, toMM = pcbnew.FromMM, pcbnew.ToMM
 
 board = pcbnew.LoadBoard(PCB)
@@ -218,7 +218,13 @@ tb = pcbnew.LoadBoard(tmp_pcb)
 dsn, ses = os.path.join(tmpd, "route.dsn"), os.path.join(tmpd, "route.ses")
 assert pcbnew.ExportSpecctraDSN(tb, dsn), "DSN export failed"
 print("routing ...", dsn)
-r = subprocess.run([JAVA, "-jar", JAR, "-de", dsn, "-do", ses, "-mp", "60", "-l", "en"], capture_output=True, text=True, timeout=1800)
+FR_ARGS = ["--router.autorouter.max_passes=100",         # ROUTING_GUIDE.md, Abschnitt 3
+           "--router.layers.preferred_direction_horizontal=true,false",   # oben horizontal, unten vertikal
+           "--gui.enabled=false"]
+r = subprocess.run([JAVA, "-jar", JAR, "-de", dsn, "-do", ses, "-l", "en"] + FR_ARGS, capture_output=True, text=True, timeout=3600)
+_log = r.stdout + r.stderr
+_warn = [l for l in _log.splitlines() if ("WARN" in l or "ERROR" in l) and ("preferred_direction" in l or "max_passes" in l or "unknown" in l.lower())]
+print("freerouting rc", r.returncode, "Hinweise zu Parametern:", _warn or "keine")
 print(r.stdout[-1500:], r.stderr[-800:])
 assert os.path.exists(ses), "no SES"
 before = {id(t) for t in tb.GetTracks()}
