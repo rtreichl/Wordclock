@@ -5,7 +5,7 @@
 | Bauteil | Diffusor Opal-Acrylglas 30 x 30 x 2 mm (144 Stk.) |
 | Fertiger | laserteile-online.eu |
 | Datum | 2026-11-08 |
-| Stand | Git `ac30050` |
+| Stand | Git `e687f99` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **laserteile-online.eu: GESPERRT** |
 

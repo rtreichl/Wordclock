@@ -5,7 +5,7 @@
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
 | Datum | 2026-11-08 |
-| Stand | Git `ac30050` |
+| Stand | Git `e687f99` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
@@ -30,7 +30,7 @@
 | Fertigung | Isolationsabstand (Netzklasse Default, vom DRC geprueft) | >= 0.1 mm | 0.20 mm | ✅ bestanden |
 | Bestueckung | Passermarken (Standard-PCBA) | >= 3 je bestueckter Seite | oben 3, unten 3 | ✅ bestanden |
 | Fertigung | Bestueckungsdruck Text | Hoehe >= 1.0 mm, Strich >= 0.15 mm | Hoehe 1.00 mm, Strich 0.15 mm | ✅ bestanden |
-| Mechanik | Montageloecher M3 | 6 x Bohrung 3,2 mm an den Stegkreuzungen | 6 Stk. | ✅ bestanden |
+| Mechanik | Montageloecher M3 | 6 x Bohrung 4,3 mm (M3 mit +-0,65 mm Spiel) an den Stegkreuzungen | 6 Stk. | ✅ bestanden |
 | Fertigungsdaten | Gerber vollstaendig | 9 Lagen | 12 Dateien, fehlend: - | ✅ bestanden |
 | Fertigungsdaten | Bohrdateien | PTH + NPTH Excellon (mm) | WortUhr-NPTH.drl, WortUhr-PTH.drl | ✅ bestanden |
 | Fertigungsdaten | Umriss im Gerber | 234 x 234 mm (+-0,1) | 234.00 x 234.00 mm | ✅ bestanden |
@@ -60,10 +60,10 @@
 | `BOM_Slave.csv` | `659a6c9a58c911d4…` |
 | `CPL_Master.csv` | `1af49a2669deabbb…` |
 | `CPL_Slave.csv` | `ee987d8fe182009d…` |
-| `LED-Board_master.step` | `4339b850f37e062d…` |
-| `LED-Board_slave.step` | `e76c7074e7a81bff…` |
-| `WortUhr_LED-Board_Gerber.zip` | `87563806732bd841…` |
-| `WortUhr_Schaltplan.pdf` | `c2bd8dbd720d7141…` |
+| `LED-Board_master.step` | `4d9abb74e21af8d8…` |
+| `LED-Board_slave.step` | `766fd2dc83f3ab5b…` |
+| `WortUhr_LED-Board_Gerber.zip` | `96cb7d020fb79604…` |
+| `WortUhr_Schaltplan.pdf` | `0634af93900be182…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 
