@@ -24,10 +24,18 @@ jobs:
         run: |
           mkdir -p stage
           python3 05_Production/tools/qualify_pcb.py stage
+      - name: Bilder der Platine (3D-Ansichten, Lagen-PDF, Kupfer-SVG)
+        env:
+          KICAD_CLI: kicad-cli
+        run: python3 02_Electronics/KiCad/tools/pcb_images.py pcb-bilder
       - uses: actions/upload-artifact@v6
         with:
           name: stage-pcb
           path: stage
+      - uses: actions/upload-artifact@v6
+        with:
+          name: WortUhr-Platine-Bilder
+          path: pcb-bilder
 
   mechanik:
     name: Laser- und 3D-Druckteile (FreeCAD)

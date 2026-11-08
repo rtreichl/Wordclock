@@ -47,6 +47,16 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
 - **Lichtsensor:** Der BH1750 (U5) sitzt oben unter dem Lichtleiter Mentor 1282.1000. Der Lichtleiter wird von vorn in das 2,8-mm-Loch im Gitter (Q4, unterer Rahmen) gedrückt.
 - **ESP32-Pins:** LED-Daten IO16 (über 74AHCT1G125 auf 5 V), I2C SDA IO17, SCL IO18, BOOT IO0.
 
+## Bilder zum Pruefen ohne KiCad
+
+In `02_Electronics/Bilder/` (und bei jedem Push im Workflow-Artefakt **WortUhr-Platine-Bilder**):
+
+- `Platine_3D_oben.png`, `Platine_3D_unten.png`, `Platine_3D_schraeg_*.png`: 3D-Ansichten (Master mit allen Bauteilen)
+- `Platine_Lagen.pdf`: eine Seite je Lage (Kupfer, Bestueckungsdruck, Loetstopp, Fab), beliebig zoombar
+- `Platine_Kupfer_oben.svg`, `Platine_Kupfer_unten.svg` (gespiegelt, Blick von unten): Kupferlagen im Browser
+
+Neu erzeugen: `python tools/pcb_images.py` (KiCad-Python).
+
 ## WLED
 
 - LED-Typ: *SK6812/WS2814 RGBW*, Datenpin GPIO16, LED-Anzahl **292** (2 LEDs je Kammer) bzw. **148** (1 LED je Kammer): je Platine 36 Kammern + 1 Minuten-LED
