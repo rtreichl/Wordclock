@@ -5,7 +5,7 @@
 | Bauteil | Lichtgitter Q1–Q4 |
 | Fertiger | P1S, JLC3DP |
 | Datum | 2026-11-08 |
-| Stand | Git `b68292c` |
+| Stand | Git `8c9f8da` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Bambu Lab P1S: FREIGEGEBEN** · **JLC3DP: FREIGEGEBEN** |
 
@@ -47,7 +47,7 @@
 | Netz | Gitter Q4 (P1S-Variante): Geschlossen und mannigfaltig | solid, keine nicht-mannigfaltigen Kanten, keine Selbstdurchdringung | solid=True, nonmanifold=False, selfint=False | ✅ bestanden | – |
 | Bauraum | Gitter Q4 (P1S-Variante): Groesse in Druckorientierung | P1S <= 256^3; JLC3DP <= 250 x 250 x 300, >= 30 x 30 x 10 | 239.4 x 240.0 x 25.0 mm | ✅ bestanden | – |
 | Bauraum | Gitter Q4 (P1S-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 239 cm^2 | ✅ bestanden | – |
-| Wandstaerke | Gitter Q4 (P1S-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 0.84 mm | 2.50 mm bei (362.6, -253.8, 22.9) | ✅ bestanden | – |
+| Wandstaerke | Gitter Q4 (P1S-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 0.84 mm | 2.50 mm bei (285.4, -253.8, 22.9) | ✅ bestanden | – |
 | Bohrungen | Gitter Q4 (P1S-Variante): Kleinste Bohrung | >= 1.5 mm | Kernloch M3 2,6 mm; Magnet 3,2 mm; Lichtleiter 2,8 mm | ✅ bestanden | – |
 | Passung | Gitter Q4 (P1S-Variante): Kollision mit Platine (inkl. Bauteile) | 0 mm^3 | 0.000 mm^3 | ✅ bestanden | – |
 | Passung | Gitter Q4 (P1S-Variante): Ueberschneidung mit Nachbarteilen | 0 mm^3 | 0.000 mm^3 | ✅ bestanden | – |
@@ -56,8 +56,8 @@
 | Geometrie | Gitter Q1 (JLC3DP-Variante): Gueltiger Volumenkoerper | 1 gueltiger Solid | valid=True, solids=1 | – | ✅ bestanden |
 | Netz | Gitter Q1 (JLC3DP-Variante): Geschlossen und mannigfaltig | solid, keine nicht-mannigfaltigen Kanten, keine Selbstdurchdringung | solid=True, nonmanifold=False, selfint=False | – | ✅ bestanden |
 | Bauraum | Gitter Q1 (JLC3DP-Variante): Groesse in Druckorientierung | P1S <= 256^3; JLC3DP <= 250 x 250 x 300, >= 30 x 30 x 10 | 243.9 x 243.3 x 25.0 mm | – | ✅ bestanden |
-| Bauraum | Gitter Q1 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 241 cm^2 | – | ✅ bestanden |
-| Wandstaerke | Gitter Q1 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (12.5, -96.6, 3.3) | – | ✅ bestanden |
+| Bauraum | Gitter Q1 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 240 cm^2 | – | ✅ bestanden |
+| Wandstaerke | Gitter Q1 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (12.5, -173.2, 1.7) | – | ✅ bestanden |
 | Bohrungen | Gitter Q1 (JLC3DP-Variante): Kleinste Bohrung | >= 1.5 mm | Kernloch M3 2,6 mm; Magnet 3,2 mm; Lichtleiter 2,8 mm | – | ✅ bestanden |
 | Passung | Gitter Q1 (JLC3DP-Variante): Kollision mit Platine (inkl. Bauteile) | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
 | Passung | Gitter Q1 (JLC3DP-Variante): Ueberschneidung mit Nachbarteilen | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
@@ -68,8 +68,8 @@
 | Geometrie | Gitter Q2 (JLC3DP-Variante): Gueltiger Volumenkoerper | 1 gueltiger Solid | valid=True, solids=1 | – | ✅ bestanden |
 | Netz | Gitter Q2 (JLC3DP-Variante): Geschlossen und mannigfaltig | solid, keine nicht-mannigfaltigen Kanten, keine Selbstdurchdringung | solid=True, nonmanifold=False, selfint=False | – | ✅ bestanden |
 | Bauraum | Gitter Q2 (JLC3DP-Variante): Groesse in Druckorientierung | P1S <= 256^3; JLC3DP <= 250 x 250 x 300, >= 30 x 30 x 10 | 239.1 x 243.3 x 25.0 mm | – | ✅ bestanden |
-| Bauraum | Gitter Q2 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 238 cm^2 | – | ✅ bestanden |
-| Wandstaerke | Gitter Q2 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (254.3, -207.9, 22.9) | – | ✅ bestanden |
+| Bauraum | Gitter Q2 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 237 cm^2 | – | ✅ bestanden |
+| Wandstaerke | Gitter Q2 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (254.1, -131.1, 22.9) | – | ✅ bestanden |
 | Bohrungen | Gitter Q2 (JLC3DP-Variante): Kleinste Bohrung | >= 1.5 mm | Kernloch M3 2,6 mm; Magnet 3,2 mm; Lichtleiter 2,8 mm | – | ✅ bestanden |
 | Passung | Gitter Q2 (JLC3DP-Variante): Kollision mit Platine (inkl. Bauteile) | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
 | Passung | Gitter Q2 (JLC3DP-Variante): Ueberschneidung mit Nachbarteilen | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
@@ -80,8 +80,8 @@
 | Geometrie | Gitter Q3 (JLC3DP-Variante): Gueltiger Volumenkoerper | 1 gueltiger Solid | valid=True, solids=1 | – | ✅ bestanden |
 | Netz | Gitter Q3 (JLC3DP-Variante): Geschlossen und mannigfaltig | solid, keine nicht-mannigfaltigen Kanten, keine Selbstdurchdringung | solid=True, nonmanifold=False, selfint=False | – | ✅ bestanden |
 | Bauraum | Gitter Q3 (JLC3DP-Variante): Groesse in Druckorientierung | P1S <= 256^3; JLC3DP <= 250 x 250 x 300, >= 30 x 30 x 10 | 243.9 x 239.8 x 25.0 mm | – | ✅ bestanden |
-| Bauraum | Gitter Q3 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 241 cm^2 | – | ✅ bestanden |
-| Wandstaerke | Gitter Q3 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (215.7, -253.7, 22.9) | – | ✅ bestanden |
+| Bauraum | Gitter Q3 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 240 cm^2 | – | ✅ bestanden |
+| Wandstaerke | Gitter Q3 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (138.6, -253.7, 22.9) | – | ✅ bestanden |
 | Bohrungen | Gitter Q3 (JLC3DP-Variante): Kleinste Bohrung | >= 1.5 mm | Kernloch M3 2,6 mm; Magnet 3,2 mm; Lichtleiter 2,8 mm | – | ✅ bestanden |
 | Passung | Gitter Q3 (JLC3DP-Variante): Kollision mit Platine (inkl. Bauteile) | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
 | Passung | Gitter Q3 (JLC3DP-Variante): Ueberschneidung mit Nachbarteilen | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
@@ -92,8 +92,8 @@
 | Geometrie | Gitter Q4 (JLC3DP-Variante): Gueltiger Volumenkoerper | 1 gueltiger Solid | valid=True, solids=1 | – | ✅ bestanden |
 | Netz | Gitter Q4 (JLC3DP-Variante): Geschlossen und mannigfaltig | solid, keine nicht-mannigfaltigen Kanten, keine Selbstdurchdringung | solid=True, nonmanifold=False, selfint=False | – | ✅ bestanden |
 | Bauraum | Gitter Q4 (JLC3DP-Variante): Groesse in Druckorientierung | P1S <= 256^3; JLC3DP <= 250 x 250 x 300, >= 30 x 30 x 10 | 239.1 x 239.8 x 25.0 mm | – | ✅ bestanden |
-| Bauraum | Gitter Q4 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 238 cm^2 | – | ✅ bestanden |
-| Wandstaerke | Gitter Q4 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (254.2, -284.8, 22.9) | – | ✅ bestanden |
+| Bauraum | Gitter Q4 (JLC3DP-Variante): Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 237 cm^2 | – | ✅ bestanden |
+| Wandstaerke | Gitter Q4 (JLC3DP-Variante): Duennste Wand (Strahlmessung, 20000 Punkte) | >= 2.5 mm | 2.50 mm bei (254.2, -445.6, 22.9) | – | ✅ bestanden |
 | Bohrungen | Gitter Q4 (JLC3DP-Variante): Kleinste Bohrung | >= 1.5 mm | Kernloch M3 2,6 mm; Magnet 3,2 mm; Lichtleiter 2,8 mm | – | ✅ bestanden |
 | Passung | Gitter Q4 (JLC3DP-Variante): Kollision mit Platine (inkl. Bauteile) | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
 | Passung | Gitter Q4 (JLC3DP-Variante): Ueberschneidung mit Nachbarteilen | 0 mm^3 | 0.000 mm^3 | – | ✅ bestanden |
@@ -134,22 +134,22 @@
 
 | Datei | SHA256 |
 |---|---|
-| `Gitter_Q1_obenlinks.step` | `222792215ee259d2…` |
-| `Gitter_Q1_obenlinks_JLC3DP.step` | `f7d2798a08c7b8d7…` |
-| `Gitter_Q1_obenlinks_JLC3DP_druckfertig.3mf` | `32df5f84ba5ccbb9…` |
-| `Gitter_Q1_obenlinks_druckfertig.3mf` | `c512cc4f20b8e9e9…` |
-| `Gitter_Q2_obenrechts.step` | `fa64acc04ee9a894…` |
-| `Gitter_Q2_obenrechts_JLC3DP.step` | `600921a9e2105327…` |
-| `Gitter_Q2_obenrechts_JLC3DP_druckfertig.3mf` | `d3aa20be34fd5c2b…` |
-| `Gitter_Q2_obenrechts_druckfertig.3mf` | `c497366ba2daddcc…` |
-| `Gitter_Q3_untenlinks.step` | `6a3e61f23e66309d…` |
-| `Gitter_Q3_untenlinks_JLC3DP.step` | `09aa75bbaeaab895…` |
-| `Gitter_Q3_untenlinks_JLC3DP_druckfertig.3mf` | `0e97a434c82a63d8…` |
-| `Gitter_Q3_untenlinks_druckfertig.3mf` | `f2b7cf264af943e5…` |
-| `Gitter_Q4_untenrechts.step` | `6bbebb8dd4b00988…` |
-| `Gitter_Q4_untenrechts_JLC3DP.step` | `809547465e7370c8…` |
-| `Gitter_Q4_untenrechts_JLC3DP_druckfertig.3mf` | `162b62f60978be70…` |
-| `Gitter_Q4_untenrechts_druckfertig.3mf` | `facc458769c9152d…` |
+| `Gitter_Q1_obenlinks.step` | `7725c478193fb764…` |
+| `Gitter_Q1_obenlinks_JLC3DP.step` | `16964a987c3249e7…` |
+| `Gitter_Q1_obenlinks_JLC3DP_druckfertig.3mf` | `90f5346fd77986e1…` |
+| `Gitter_Q1_obenlinks_druckfertig.3mf` | `179a4d64ef6c6e47…` |
+| `Gitter_Q2_obenrechts.step` | `113b9d3d01cc0ba6…` |
+| `Gitter_Q2_obenrechts_JLC3DP.step` | `8c0787b24e400f75…` |
+| `Gitter_Q2_obenrechts_JLC3DP_druckfertig.3mf` | `8688b861642d8da3…` |
+| `Gitter_Q2_obenrechts_druckfertig.3mf` | `f466d78a61dc06a5…` |
+| `Gitter_Q3_untenlinks.step` | `57159257ab917b6e…` |
+| `Gitter_Q3_untenlinks_JLC3DP.step` | `51162a58c96c1e39…` |
+| `Gitter_Q3_untenlinks_JLC3DP_druckfertig.3mf` | `dc0893f47630a0c0…` |
+| `Gitter_Q3_untenlinks_druckfertig.3mf` | `17754dc1e6e4d6c3…` |
+| `Gitter_Q4_untenrechts.step` | `a61be4029f274bc2…` |
+| `Gitter_Q4_untenrechts_JLC3DP.step` | `d2efce433491f0bc…` |
+| `Gitter_Q4_untenrechts_JLC3DP_druckfertig.3mf` | `432d5da8599d5e3b…` |
+| `Gitter_Q4_untenrechts_druckfertig.3mf` | `a79ab730cee3b6b5…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 

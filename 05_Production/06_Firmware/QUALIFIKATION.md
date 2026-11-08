@@ -5,7 +5,7 @@
 | Bauteil | 03_Software/ESPHome/wortuhr.yaml |
 | Fertiger | ESPHome |
 | Datum | 2026-11-08 |
-| Stand | Git `b68292c` |
+| Stand | Git `8c9f8da` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Build: FREIGEGEBEN** |
 
@@ -22,8 +22,10 @@
 | Anforderung | Bedienung ohne Home Assistant | web_server + captive_portal + Ersatz-Hotspot | web_server=True, captive_portal=True, ap=True | ✅ bestanden |
 | Sicherheit | Keine Zugangsdaten im Repository | secrets.yaml in .gitignore, nur Vorlage eingecheckt | ok | ✅ bestanden |
 | Build | Kompiliert (ESP32-S3, ESP-IDF) | erfolgreich | erfolgreich | ✅ bestanden |
-| Build | Speicherreserve | RAM < 60 %, Flash < 80 % (Reserve fuer OTA/Erweiterungen) | RAM 31.9 %, Flash 23.9 % | ✅ bestanden |
+| Build | Speicherreserve | RAM < 60 %, Flash < 80 % (Reserve fuer OTA/Erweiterungen) | RAM 32.0 %, Flash 24.0 % | ✅ bestanden |
 | Build | Keine Compiler-Warnungen im eigenen Code | 0 | 0 | ✅ bestanden |
+| Konsistenz | LED-Anzahl in der Kette | num_leds = 4 x (36 x leds_per_cell + 1) | num_leds 292, leds_per_cell 2 | ✅ bestanden |
+| Logik | Minutenpunkte | Minute mod 5 -> 1..4 Punkte im Uhrzeigersinn ab oben links | 1: LED 158 (oben links), 2: LED 85 (oben rechts), 3: LED 12 (unten rechts), 4: LED 231 (unten links) | ✅ bestanden |
 
 ## Hinweise und offene Punkte
 
