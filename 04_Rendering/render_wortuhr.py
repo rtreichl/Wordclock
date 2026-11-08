@@ -2,6 +2,7 @@
 """Fotorealistisches Bild der WortUhr mit leuchtenden Buchstaben (Blender, Cycles).
 
 Aufruf:  blender.exe -b -P render_wortuhr.py -- [--samples N] [--res WxH] [--out datei.png] [--view front|angle]
+                                              [--color warm|blau|R,G,B] [--dark 0|1]
 Die Netze kommen aus FreeCAD (meshes/*.stl, Einheit mm). Die Uhr liegt in der XY-Ebene,
 die Front zeigt nach +Z; die Wand ist die Ebene z = -10 mm.
 """
@@ -11,10 +12,13 @@ from mathutils import Vector
 HERE = os.path.dirname(os.path.abspath(__file__))
 MESH = os.path.join(HERE, "meshes")
 argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
-opt = {"--samples": "160", "--res": "1800x1800", "--out": os.path.join(HERE, "WortUhr_Render.png"), "--view": "angle"}
+opt = {"--samples": "160", "--res": "1800x1800", "--out": os.path.join(HERE, "WortUhr_Render.png"), "--view": "angle", "--color": "warm", "--dark": "0"}
 for i in range(0, len(argv) - 1, 2):
     opt[argv[i]] = argv[i + 1]
 SAMPLES = int(opt["--samples"]); RX, RY = map(int, opt["--res"].split("x"))
+COLORS = {"warm": (1.0, 0.80, 0.55), "blau": (0.10, 0.35, 1.0)}
+LED_RGB = COLORS.get(opt["--color"]) or tuple(float(v) for v in opt["--color"].split(","))
+DARK = opt["--dark"] == "1"
 
 # ---------------------------------------------------------------- Szene leeren
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -84,7 +88,7 @@ setin(b, ["Transmission Weight", "Transmission"], 0.25)
 # Diffusor an: warmweisses Leuchten (SK6812 RGBW warmweiss)
 led, nt, b = node_mat("Opal_an")
 setin(b, "Base Color", (0.95, 0.9, 0.82, 1)); setin(b, "Roughness", 0.35)
-setin(b, ["Emission Color", "Emission"], (1.0, 0.80, 0.55, 1)); setin(b, "Emission Strength", 18.0)
+setin(b, ["Emission Color", "Emission"], LED_RGB + (1,)); setin(b, "Emission Strength", 10.0 if DARK else 18.0)
 
 # Gitter / Rueckrahmen: schwarzes PLA
 pla, nt, b = node_mat("PLA_schwarz")
@@ -130,7 +134,9 @@ FRONT = Vector((0, -1, 0))
 
 # ---------------------------------------------------------------- Licht
 world = bpy.data.worlds.new("Raum"); scene.world = world; world.use_nodes = True
-bg = world.node_tree.nodes["Background"]; bg.inputs["Color"].default_value = (0.55, 0.52, 0.48, 1); bg.inputs["Strength"].default_value = 0.06
+bg = world.node_tree.nodes["Background"]; bg.inputs["Color"].default_value = (0.55, 0.52, 0.48, 1)
+bg.inputs["Strength"].default_value = 0.008 if DARK else 0.06
+LIGHT = 0.0 if DARK else 1.0                  # im Dunkeln leuchtet nur die Uhr
 
 
 def area(name, loc, size, energy, color=(1, 0.95, 0.88)):
@@ -142,8 +148,8 @@ def area(name, loc, size, energy, color=(1, 0.95, 0.88)):
     return L
 
 
-area("Fenster", (C.x - 1.5, C.y - 1.0, C.z + 0.9), 1.4, 110.0, (0.92, 0.95, 1.0))   # kuehles Tageslicht von links oben
-area("Raumlicht", (C.x + 1.3, C.y - 1.4, C.z - 0.4), 1.6, 25.0, (1.0, 0.86, 0.7))  # warmes Fuelllicht
+area("Fenster", (C.x - 1.5, C.y - 1.0, C.z + 0.9), 1.4, 110.0 * LIGHT, (0.92, 0.95, 1.0))   # kuehles Tageslicht von links oben
+area("Raumlicht", (C.x + 1.3, C.y - 1.4, C.z - 0.4), 1.6, 25.0 * LIGHT, (1.0, 0.86, 0.7))  # warmes Fuelllicht
 
 # ---------------------------------------------------------------- Kamera
 bpy.ops.object.camera_add()

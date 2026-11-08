@@ -2,7 +2,7 @@
 """Render-Netze aus dem FreeCAD-Modell schreiben (freecadcmd 04_Rendering/export_meshes.py).
 
 Ausgabe: 04_Rendering/meshes/*.stl (oder Ordner aus WORTUHR_MESH_OUT), Einheit mm, Modellkoordinaten.
-Leuchtende Kammern: "IST ZWANZIG VOR ZWOELF" (Zeile/Spalte 1-basiert wie im Buchstabenraster).
+Leuchtend: "IST ZWANZIG VOR ZWOELF" + 2 Minutenpunkte (oben links, oben rechts) = 11:42.
 """
 import os
 import FreeCAD as App, Part, MeshPart
@@ -26,6 +26,10 @@ on, off = [], []
 for r in range(1, 13):
     for c in range(1, 13):
         (on if (r, c) in lit else off).append(Part.makeBox(30, 30, 2.0, V(xs[c - 1] - 15, ys[r - 1] - 15, 22.9)))
+DOTS = [(18.0, -18.0), (482.0, -18.0), (482.0, -482.0), (18.0, -482.0)]   # Minute 1..4 im Uhrzeigersinn
+MINUTES = 2
+for n, (x, y) in enumerate(DOTS):
+    (on if n < MINUTES else off).append(Part.makeCylinder(2.8, 2.0, V(x, y, 22.9)))
 w(doc.getObject("Frontplatte").Shape, "frontplatte", 0.02)
 w(Part.makeCompound(on), "diffusor_an"); w(Part.makeCompound(off), "diffusor_aus")
 for n in ("Q1_obenlinks", "Q2_obenrechts", "Q3_untenlinks", "Q4_untenrechts"):

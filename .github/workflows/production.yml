@@ -96,13 +96,14 @@ jobs:
           sudo apt-get install -y -qq libxrender1 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 libxxf86vm1 libxfixes3 > /dev/null
           curl -sSL "$BLENDER_URL" | tar -xJ
           mv blender-5.2.3-linux-x64 blender
-      - name: Rendern (Schraeg- und Frontansicht)
+      - name: Rendern (schraeg, frontal, blau im Dunkeln)
         run: |
           mkdir -p renders
-          for v in angle front; do
-            ./blender/blender -b -P 04_Rendering/render_wortuhr.py -- --samples 64 --res 1200x1200 --view $v --out "$PWD/renders/WortUhr_$v.png"
-            test -f "renders/WortUhr_$v.png"
-          done
+          R="./blender/blender -b -P 04_Rendering/render_wortuhr.py -- --samples 64 --res 1200x1200"
+          $R --view angle --out "$PWD/renders/WortUhr_angle.png"
+          $R --view front --out "$PWD/renders/WortUhr_front.png"
+          $R --view front --color blau --dark 1 --out "$PWD/renders/WortUhr_front_blau_dunkel.png"
+          ls renders/*.png | wc -l | grep -q 3
       - uses: actions/upload-artifact@v6
         with:
           name: WortUhr-Renderings
