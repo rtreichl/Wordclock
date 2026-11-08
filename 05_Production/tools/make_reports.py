@@ -55,6 +55,10 @@ def report(folder, title, part, supplier_lines, checks, cols, files, extra_notes
     copied = []
     if any(released.values()):
         for src in files:
+            if "_JLC3DP" in os.path.basename(src) and not released.get("JLC3DP", True):
+                continue                      # JLC3DP-Variante nur bei JLC3DP-Freigabe
+            if "_JLC3DP" not in os.path.basename(src) and os.path.basename(src).startswith("Gitter_") and not released.get("Bambu Lab P1S", True):
+                continue
             dst = os.path.join(d, os.path.basename(src)); shutil.copy(src, dst); copied.append(dst)
     tab, notes = table(checks, cols)
     status = " · ".join(f"**{k}: {'FREIGEGEBEN' if v else 'GESPERRT'}**" for k, v in released.items())
