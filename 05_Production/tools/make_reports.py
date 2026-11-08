@@ -24,6 +24,8 @@ SRC = {
     "laserteile-online.eu": "[Fertigungsgrenzen](https://www.laserteile-online.eu/wissen/fertigungsgrenzen), [DXF-Datei erstellen](https://www.laserteile-online.eu/wissen/dxf-datei-erstellen), [Cortenstahl lasern](https://www.laserteile-online.eu/cortenstahl-lasern)",
     "P1S": "[Bambu Lab P1S Spezifikation](https://wiki.bambulab.com/en/p1/manual/unboxing-p1s)",
     "JLC3DP": "[JLC3DP 3D Printing Design Guideline](https://jlc3dp.com/help/article/3D-Printing-Design-Guideline)",
+    "Cutworks": "Cutworks: keine oeffentlichen Konstruktionsregeln gefunden; allgemeine Regeln fuer CO2-Laser in Acrylglas, Angebot laut Nutzer 0,83 EUR/Stk. (2026-11-08)",
+    "Eigenzuschnitt": "Plattenware (eBay, Artikel 205831697352), Zuschnitt von Hand mit Anschlag",
 }
 
 
@@ -100,14 +102,17 @@ summary.append(report("05_Platine_JLCPCB", "LED-Platine (4x identisch, Master/Sl
 
 # ---------------------------------------------------------------- Laser
 las = J("laser_result.json")
-for part, folder, title, src in (("Frontplatte", "01_Frontplatte_Laser", "Frontplatte Cortenstahl 1 mm", "Frontplatte_Corten_1mm_R12.dxf"),
-                                 ("Diffusor", "02_Diffusor_Laser", "Diffusor Opal-Acrylglas 30 x 30 x 2 mm (144 Stk.)", "Diffusor_30x30_R12.dxf")):
-    cs = las[part]
-    for c in cs:
-        c["lo"] = c["ok"]
-    ok = all(c["ok"] for c in cs)
-    summary.append(report(folder, title, title, ["laserteile-online.eu"], cs, [("laserteile-online.eu", "lo")],
-                          [os.path.join(STAGE, "Laser", src)], (), {"laserteile-online.eu": ok}))
+cs = las["Frontplatte"]
+for c in cs:
+    c["lo"] = c["ok"]
+summary.append(report("01_Frontplatte_Laser", "Frontplatte Cortenstahl 1 mm", "Frontplatte Cortenstahl 1 mm", ["laserteile-online.eu"], cs,
+                      [("laserteile-online.eu", "lo")], [os.path.join(STAGE, "Laser", "Frontplatte_Corten_1mm_R12.dxf")], (),
+                      {"laserteile-online.eu": all(c["ok"] for c in cs)}))
+cs = las["Diffusor"]
+summary.append(report("02_Diffusor_Laser", "Diffusor Opal-Acrylglas 30 x 30 x 2 mm (144 Stk.)", "Diffusor Opal-Acrylglas 30 x 30 x 2 mm (144 Stk.)",
+                      ["Eigenzuschnitt", "Cutworks"], cs, [("Eigenzuschnitt", "self"), ("Cutworks", "cw")],
+                      [os.path.join(STAGE, "Laser", "Diffusor_30x30_R12.dxf")], (),
+                      {"Eigenzuschnitt": all(c.get("self") is not False for c in cs), "Cutworks": all(c.get("cw") is not False for c in cs)}))
 
 # ---------------------------------------------------------------- 3D-Druck
 pr = J("print_result.json")

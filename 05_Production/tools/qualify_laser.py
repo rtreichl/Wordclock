@@ -175,10 +175,17 @@ n = read_r12(dst)
 check(P, "DXF", "Bestell-DXF (R12) geschrieben und gelesen", f"{len(ents)} Konturen", f"{n} Konturen", n == len(ents))
 
 # ================================================================== Diffusor
+# Zwei Wege (Stand 2026-11-08): Platte kaufen und selbst zuschneiden, oder Zuschnitt bei Cutworks
+# (144 Stk., ca. 0,83 EUR/Stk.). Cutworks veroeffentlicht keine Konstruktionsregeln; geprueft wird gegen
+# allgemeine Regeln fuer CO2-Laser in Acrylglas (Schnittfuge 0,1-0,2 mm, Toleranz +-0,1 mm,
+# kleinstes Merkmal >= Materialdicke, Haarlinien-Kontur in mm 1:1, keine Doppellinien).
 D = "Diffusor"
-check(D, "Lieferant", "Werkstoff bei laserteile-online.eu", "Opal-Acrylglas (Plexiglas WN071XT) 2 mm",
-      "nicht im Angebot (nur Metalle)", False, "Diffusoren bei einem Kunststoff-Laserdienst bestellen (z. B. Acrylglas-Zuschnitt).")
-de, dother, dunits = read_dxf(os.path.join(ROOT, "01_Mechanic", "Diffusor", "Diffusor_30x30.dxf")) if False else ([], [], None)
+def dchk(cat, name, crit, meas, ok_self, ok_cw, note=""):
+    checks[D].append({"cat": cat, "name": name, "crit": crit, "meas": meas,
+                      "self": None if ok_self is None else bool(ok_self), "cw": None if ok_cw is None else bool(ok_cw),
+                      "ok": all(x is not False for x in (ok_self, ok_cw)), "note": note})
+T_NOM, T_TOL, POCKET_D, POCKET_W = 2.0, 0.1, 2.1, 30.4
+SELF_TOL, LASER_TOL = 0.2, 0.1
 # Diffusor-DXF besteht aus LINE-Elementen: direkt einlesen
 t = open(os.path.join(ROOT, "01_Mechanic", "Diffusor", "Diffusor_30x30.dxf"), encoding="ascii").read().splitlines()
 pr = [(t[i].strip(), t[i + 1].strip()) for i in range(0, len(t) - 1, 2)]
@@ -192,14 +199,30 @@ for c, v in pr:
 if cur: segs.append(cur)
 w = Part.Wire(Part.__sortEdges__([Part.LineSegment(V(s_["10"], s_["20"], 0), V(s_["11"], s_["21"], 0)).toShape() for s_ in segs]))
 db = w.BoundBox
-check(D, "DXF", "Kontur", "1 geschlossene Kontur 30 x 30 mm (+-0,1)", f"{'geschlossen' if w.isClosed() else 'offen'}, {db.XLength:.2f} x {db.YLength:.2f} mm",
-      w.isClosed() and abs(db.XLength - 30) < 0.1 and abs(db.YLength - 30) < 0.1)
-check(D, "Passung", "Spiel in der Gitter-Tasche", "Tasche 30,4 mm: 0,2 mm je Seite >= Laser-Toleranz 0,1 mm", "0,20 mm je Seite", True)
-check(D, "Passung", "Dicke vs. Taschentiefe", "Platte 2,0 mm <= Tasche 2,1 mm (Toleranz Acrylglas beachten)", "0,1 mm Luft", True,
-      "Extrudiertes Acryl hat oft +-0,1..0,2 mm Dickentoleranz: Dicke beim Lieferanten anfragen.")
+dup = len(segs) - len({tuple(sorted(((s_["10"], s_["20"]), (s_["11"], s_["21"])))) for s_ in segs})
+dchk("Geometrie", "Kontur", "1 geschlossene Kontur 30 x 30 mm (+-0,1), keine Doppellinien",
+     f"{'geschlossen' if w.isClosed() else 'offen'}, {db.XLength:.2f} x {db.YLength:.2f} mm, {dup} doppelt",
+     w.isClosed() and abs(db.XLength - 30) < 0.1 and abs(db.YLength - 30) < 0.1 and dup == 0,
+     w.isClosed() and abs(db.XLength - 30) < 0.1 and abs(db.YLength - 30) < 0.1 and dup == 0)
+dchk("Geometrie", "Kleinstes Merkmal", ">= Materialdicke 2 mm (Laser)", "30 mm (Quadrat ohne Ausschnitte)", True, True)
+SELF_NOM = 29.9                                   # Eigenzuschnitt: Anschlag auf 29,9 mm
+gap_self = (POCKET_W - SELF_NOM - SELF_TOL) / 2; gap_cw = (POCKET_W - 30.0 - LASER_TOL) / 2
+dchk("Passung", "Spiel in der Gitter-Tasche", f"Tasche {POCKET_W} mm: Restspiel je Seite beim Groesstmass >= 0,1 mm",
+     f"Eigenzuschnitt {SELF_NOM} +-{SELF_TOL} mm -> {gap_self:.2f} mm; Laser 30,0 +-{LASER_TOL} mm -> {gap_cw:.2f} mm",
+     gap_self >= 0.1 - 1e-9, gap_cw >= 0.1 - 1e-9,
+     "Eigenzuschnitt: Anschlag auf 29,9 mm stellen. Ecken bleiben eckig (Tasche hat Eckfreistiche).")
+dchk("Passung", "Dicke vs. Taschentiefe", f"Nenndicke {T_NOM} mm + Toleranz <= Taschentiefe {POCKET_D} mm",
+     f"{T_NOM} +- {T_TOL} mm -> max. {T_NOM + T_TOL:.1f} mm", T_NOM + T_TOL <= POCKET_D + 1e-9, T_NOM + T_TOL <= POCKET_D + 1e-9,
+     "Dickentoleranz der gekauften Platte pruefen (extrudiertes XT-Acryl: Datenblatt). Ist sie groesser als +-0,1 mm, Tasche tiefer machen.")
+dchk("Werkstoff", "Acrylglas-Typ fuer den Laser", "Laserbar; manche Dienste schneiden kein extrudiertes (XT) Acryl",
+     "Plexiglas WN071 XT (extrudiert)", None, True, "Bei Cutworks vor der Bestellung bestaetigen lassen, dass XT-Material geschnitten wird.")
+n_needed = 144
+dchk("Menge", "Stueckzahl und Zuschnittplan", f"{n_needed} Stk. 30 x 30 mm",
+     f"Raster 31 mm (1 mm Saegefuge): 12 x 12 Stk. aus mind. 372 x 372 mm; Cutworks: {n_needed} x 0,83 EUR = {n_needed * 0.83:.2f} EUR",
+     True, True, "Eigenzuschnitt: erst Streifen 30 mm, dann Quadrate; Kanten leicht entgraten.")
 dd = os.path.join(out_dir, "Diffusor_30x30_R12.dxf")
 write_r12(dd, [("Kontur", {"type": "LWPOLYLINE", "pts": [[0, 0], [30, 0], [30, 30], [0, 30]]})])
-check(D, "DXF", "Bestell-DXF (R12) geschrieben und gelesen", "1 Kontur", f"{read_r12(dd)} Kontur", read_r12(dd) == 1)
+dchk("DXF", "Bestell-DXF (R12) geschrieben und gelesen", "1 Kontur, mm 1:1", f"{read_r12(dd)} Kontur", None, read_r12(dd) == 1)
 
 json.dump(checks, open(os.path.join(STAGE, "laser_result.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 print({k: f"{sum(c['ok'] for c in v)}/{len(v)}" for k, v in checks.items()})
