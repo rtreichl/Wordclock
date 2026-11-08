@@ -54,5 +54,5 @@ uv pip install --python .venv\Scripts\python.exe esphome
 ## Hinweise zum Buchstabenraster
 
 - Im Raster fehlen **ES** und **UHR**. Die Anzeige beginnt deshalb mit „IST“, das sich abschalten lässt.
-- Zeile 8 lautet `Z E H N E U E N V I E R`. Ein durchgehendes **NEUN** gibt es nicht. Die Firmware leuchtet N-E-U-_-N und lässt das zweite E aus. Falls das ein Tippfehler im Layout ist (gedacht war vermutlich `ZEHNEUNVIER` + 1 Füllbuchstabe), bitte vor der Bestellung der Frontplatte in der DXF korrigieren.
+- Zeile 8 lautet `Z E H N E U N E V I E R` (ZEHN, NEUN, VIER; das zweite E ist Füllbuchstabe).
 - Mehr als 5-Minuten-Genauigkeit ist nicht möglich: Das Raster hat keine Minutenpunkte.

@@ -28,14 +28,14 @@ static const Word W_PUNKT{5, 0, 5, "PUNKT"}, W_ZWANZIG{5, 5, 7, "ZWANZIG"};
 static const Word W_VOR{6, 0, 3, "VOR"}, W_NACH{6, 3, 4, "NACH"}, W_HALB{6, 8, 4, "HALB"};
 static const Word W_MITTERNACHT{10, 0, 11, "MITTERNACHT"}, W_NACHT{10, 6, 5, "NACHT"};
 
-// Stunden 1..12. NEUN steht im Raster nicht zusammenhaengend (Z E H N E U E N): N-E-U-(E)-N.
+// Stunden 1..12. Zeile 8: Z E H N E U N E V I E R (ZEHN, NEUN, VIER).
 struct Hour {
   uint8_t row, col, len;
   const char *text;
 };
 static const Hour HOURS[13] = {
     {0, 0, 0, ""},        {9, 0, 4, "EINS"}, {9, 8, 4, "ZWEI"},   {8, 7, 4, "DREI"},  {7, 8, 4, "VIER"},
-    {11, 0, 4, "FÜNF"},   {9, 3, 5, "SECHS"}, {8, 1, 6, "SIEBEN"}, {10, 7, 4, "ACHT"}, {7, 3, 0, "NEUN"},
+    {11, 0, 4, "FÜNF"},   {9, 3, 5, "SECHS"}, {8, 1, 6, "SIEBEN"}, {10, 7, 4, "ACHT"}, {7, 3, 4, "NEUN"},
     {7, 0, 4, "ZEHN"},    {11, 9, 3, "ELF"},  {11, 4, 5, "ZWÖLF"}};
 
 struct Mask {
@@ -49,11 +49,7 @@ struct Mask {
   }
   void hour(int h12) {
     const Hour &h = HOURS[h12];
-    if (h12 == 9) {  // NEUN: Spalten 3,4,5,7
-      cell(7, 3); cell(7, 4); cell(7, 5); cell(7, 7);
-    } else {
-      for (int i = 0; i < h.len; i++) cell(h.row, h.col + i);
-    }
+    for (int i = 0; i < h.len; i++) cell(h.row, h.col + i);
     if (!text.empty()) text += ' ';
     text += h.text;
   }

@@ -43,9 +43,7 @@ hours = re.findall(r"\{(\d+), (\d+), (\d+), \"([^\"]*)\"\}", h[h.index("HOURS[13
 bad = []
 for r, c, n, txt in words + hours:
     r, c, n = int(r), int(c), int(n)
-    if txt == "NEUN":
-        got = "".join(grid[7][k] for k in (3, 4, 5, 7))
-    elif not txt:
+    if not txt:
         continue
     else:
         got = "".join(grid[r][c + k] for k in range(n))

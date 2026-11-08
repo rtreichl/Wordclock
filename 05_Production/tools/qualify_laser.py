@@ -168,7 +168,7 @@ need = ["IST", "FÜNF", "ZEHN", "VIERTEL", "ZWANZIG", "HALB", "VOR", "NACH", "EI
 missing = [w for w in need if not any(w in row for row in rows)]
 check(P, "Funktion", "Alle Uhrzeit-Woerter zusammenhaengend im Raster", "18 Woerter (IST ... ZWÖLF)",
       f"fehlend: {missing or '-'}", not missing,
-      "Zeile 8 lautet 'ZEHNEUENVIER': NEUN nur nicht zusammenhaengend (N-E-U-_-N); die Firmware ueberspringt das E.")
+      "" if not missing else "Fehlende Woerter im Buchstabenraster ergaenzen (00_Design/Frontplatte-500mm-Sencilla.svg).")
 dst = os.path.join(out_dir, "Frontplatte_Corten_1mm_R12.dxf")
 write_r12(dst, [("Kontur", outer[0])] + [("Kontur", e) for e in inner])
 n = read_r12(dst)

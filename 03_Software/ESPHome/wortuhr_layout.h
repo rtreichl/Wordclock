@@ -12,7 +12,7 @@ namespace wortuhr {
 //   D R E I W V I E R T E L
 //   P U N K T Z W A N Z I G
 //   V O R N A C H L H A L B
-//   Z E H N E U E N V I E R
+//   Z E H N E U N E V I E R
 //   Q S I E B E N D R E I U
 //   E I N S E C H S Z W E I
 //   M I T T E R N A C H T R

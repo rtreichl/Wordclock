@@ -9,7 +9,7 @@ import os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = HERE
-while not os.path.isdir(os.path.join(ROOT, ".git")):
+while not os.path.isdir(os.path.join(ROOT, "05_Production")):  # Repo-Wurzel (auch ohne .git)
     ROOT = os.path.dirname(ROOT)
 sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
 import design as D  # noqa: E402
