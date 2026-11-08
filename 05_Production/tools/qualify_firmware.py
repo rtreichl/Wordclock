@@ -108,10 +108,24 @@ if "--no-compile" not in sys.argv:
 wl = os.path.join(ROOT, "03_Software", "WLED")
 m1 = json.load(open(os.path.join(wl, "ledmap_1LED_12x12.json")))["map"]
 m2 = json.load(open(os.path.join(wl, "ledmap_2LED_24x12.json")))["map"]
-check("WLED", "Konsistenz", "ledmap 1 LED/Kammer", "Permutation 0..143", f"{len(m1)} Eintraege", sorted(m1) == list(range(144)))
-check("WLED", "Konsistenz", "ledmap 2 LED/Kammer", "Permutation 0..287", f"{len(m2)} Eintraege", sorted(m2) == list(range(288)))
-same = all(m1[r * 12 + c] == idx[r][c] for r in range(12) for c in range(12))
-check("WLED", "Konsistenz", "Gleiche LED-Reihenfolge wie ESPHome", "ledmap = CELL_INDEX", "identisch" if same else "abweichend", same)
+MA = int(re.search(r"MINUTE_AFTER = (\d+);", before).group(1))
+MB = list(map(int, re.search(r"MINUTE_BOARD\[4\] = \{([^}]*)\}", before).group(1).split(",")))
+cell_led = lambda seq, lpc: (seq // 36) * (36 * lpc + 1) + (seq % 36) * lpc + (1 if seq % 36 > MA else 0)
+minute_led = lambda n, lpc: MB[n] * (36 * lpc + 1) + (MA + 1) * lpc
+for lpc, mp, name in ((1, m1, "ledmap 1 LED/Kammer"), (2, m2, "ledmap 2 LED/Kammer")):
+    total = 4 * (36 * lpc + 1)
+    expect = sorted(set(range(total)) - {minute_led(n, lpc) for n in range(4)})
+    check("WLED", "Konsistenz", name, f"alle {total} LEDs ausser den 4 Minuten-LEDs genau einmal",
+          f"{len(mp)} Eintraege", sorted(mp) == expect)
+same = all(m1[r * 12 + c] == cell_led(idx[r][c], 1) for r in range(12) for c in range(12))
+check("WLED", "Konsistenz", "Gleiche LED-Reihenfolge wie ESPHome", "ledmap = cell_led(CELL_INDEX)", "identisch" if same else "abweichend", same)
+nl = int(re.search(r'num_leds: "(\d+)"', ytxt).group(1)); lp = int(re.search(r'leds_per_cell: "(\d+)"', ytxt).group(1))
+check("Firmware", "Konsistenz", "LED-Anzahl in der Kette", "num_leds = 4 x (36 x leds_per_cell + 1)", f"num_leds {nl}, leds_per_cell {lp}",
+      nl == 4 * (36 * lp + 1))
+corners = {2: "oben links", 1: "oben rechts", 0: "unten rechts", 3: "unten links"}
+check("Firmware", "Logik", "Minutenpunkte", "Minute mod 5 -> 1..4 Punkte im Uhrzeigersinn ab oben links",
+      ", ".join(f"{n + 1}: LED {minute_led(n, lp)} ({corners[MB[n]]})" for n in range(4)),
+      [corners[b] for b in MB] == ["oben links", "oben rechts", "unten rechts", "unten links"] and "m.minutes = minute % 5" in h)
 
 json.dump(checks, open(os.path.join(sys.argv[1], "firmware_result.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 for k, v in checks.items():

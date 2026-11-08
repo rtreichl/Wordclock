@@ -95,6 +95,25 @@ for fp in b.GetFootprints():
 th = min(mm(t.GetTextHeight()) for t in texts); tw_ = min(mm(t.GetTextThickness()) for t in texts)
 check("Fertigung", "Bestueckungsdruck Text", f"Hoehe >= {JLC['min_silk_h']} mm, Strich >= {JLC['min_silk_w']} mm",
       f"Hoehe {th:.2f} mm, Strich {tw_:.2f} mm", th >= JLC["min_silk_h"] - 1e-6 and tw_ >= JLC["min_silk_w"] - 1e-6)
+# ROUTING_GUIDE.md: Abblock-Kondensatoren nah am Versorgungspin, kritische Teile gesperrt
+def _pad(ref, num):
+    for p in b.FindFootprintByReference(ref).Pads():
+        if p.GetNumber() == num:
+            return p.GetPosition()
+DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C175": ("D75", "1")}
+DEC.update({f"C{100 + n}": (f"D{n}", "1") for n in range(1, 73)})
+dist = {}
+for cref, (ic, pin) in DEC.items():
+    cfp = b.FindFootprintByReference(cref)
+    tgt = _pad(ic, pin)
+    dist[cref] = min(mm((p.GetPosition() - tgt).EuclideanNorm()) for p in cfp.Pads() if p.GetNetname() == b.FindFootprintByReference(ic).FindPadByNumber(pin).GetNetname())
+worst = max(dist, key=dist.get)
+check("Layout", "Abblock-C am Versorgungspin", "Pad-Abstand <= 8 mm (C175: Unterseite, ueber Via)",
+      f"max. {dist[worst]:.1f} mm ({worst}), IC-C: " + ", ".join(f"{k} {dist[k]:.1f}" for k in ("C2", "C3", "C4", "C6", "C8")),
+      all(v <= 8.0 for v in dist.values()))
+LOCK = {"J1", "J2", "J3", "J4", "U1"} | {fp.GetReference() for fp in b.GetFootprints() if fp.GetReference().startswith(("H", "FID"))}
+unl = sorted(r for r in LOCK if not b.FindFootprintByReference(r).IsLocked())
+check("Layout", "Kritische Teile gesperrt", "Steckverbinder, Kantenbruecken, ESP32, Montageloecher, Passermarken", f"{len(LOCK) - len(unl)}/{len(LOCK)}", not unl)
 holes = [(fp.GetReference(), round(mm(fp.GetPosition().x) - 40, 2), round(mm(fp.GetPosition().y) - 40, 2))
          for fp in b.GetFootprints() if fp.GetReference().startswith("H")]
 check("Mechanik", "Montageloecher M3", "6 x Bohrung 4,3 mm (M3 mit +-0,65 mm Spiel) an den Stegkreuzungen", f"{len(holes)} Stk.",
@@ -163,7 +182,7 @@ for vname, refs in (("Master", assy), ("Slave", [r for r in assy if r not in MAS
     check("Stueckliste", f"BOM/CPL {vname}", "jede Position mit Wert, Footprint und Koordinate",
           f"{n} Bauteile, {len(rows)} Positionen", not noval and not nfp and sum(1 for _ in open(cpl, encoding='utf-8')) == n + 1)
 leds = sum(1 for r in assy if fps[r].GetValue() == "SK6812RGBW")
-check("Stueckliste", "LED-Anzahl", "72 je Platine (2 je Kammer)", f"{leds}", leds == 72)
+check("Stueckliste", "LED-Anzahl", "73 je Platine (2 je Kammer + 1 Minutenpunkt)", f"{leds}", leds == 73)
 
 # Schaltplan-PDF, 3D
 run(["sch", "export", "pdf", "-o", os.path.join(STAGE, "WortUhr_Schaltplan.pdf"), SCH])

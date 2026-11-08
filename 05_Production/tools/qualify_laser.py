@@ -149,6 +149,10 @@ lp = [e for e in holes if abs(2 * e["r"] - 2.8) < 0.01]
 check(P, "Konstruktion", "Lichtleiter-Bohrung", "1 x Ø 2,8 mm an Sollposition (256,63 | 19,00)",
       f"{len(lp)} x" + (f" bei ({lp[0]['c'][0]:.2f} | {lp[0]['c'][1]:.2f})" if lp else ""),
       len(lp) == 1 and abs(lp[0]["c"][0] - 256.627) < 0.05 and abs(lp[0]["c"][1] - 19.0) < 0.05)
+MIN_DOTS = [(18.0, 18.0), (482.0, 18.0), (18.0, 482.0), (482.0, 482.0)]
+md = [e for e in holes if abs(2 * e["r"] - 4.0) < 0.01]
+okd = len(md) == 4 and all(any(abs(e["c"][0] - x) < 0.05 and abs(e["c"][1] - y) < 0.05 for e in md) for x, y in MIN_DOTS)
+check(P, "Konstruktion", "Minutenpunkte", "4 x Ø 4,0 mm, je 18 mm von beiden Kanten", f"{len(md)} x Ø 4,0 mm", okd)
 # Buchstabenraster gegen Kammern (Kammermitten der Gitterteile)
 PX, PY, XC, YC = 38.5177, 38.4037, 250.6275, 250.0
 xs = [XC + (i - 5.5) * PX for i in range(12)]; ys = [YC - (5.5 - j) * PY for j in range(12)]
@@ -220,6 +224,16 @@ n_needed = 144
 dchk("Menge", "Stueckzahl und Zuschnittplan", f"{n_needed} Stk. 30 x 30 mm",
      f"Raster 31 mm (1 mm Saegefuge): 12 x 12 Stk. aus mind. 372 x 372 mm; Cutworks: {n_needed} x 0,83 EUR = {n_needed * 0.83:.2f} EUR",
      True, True, "Eigenzuschnitt: erst Streifen 30 mm, dann Quadrate; Kanten leicht entgraten.")
+# Minutenpunkte: 4 runde Diffusoren Ø 5,6 x 2 mm in Taschen Ø 5,9 mm (Gitter-Ecken)
+DOT_POCKET, DOT_NOM_SELF, DOT_NOM_LASER = 5.9, 5.5, 5.6
+dchk("Passung", "Minutenpunkt-Diffusor Ø 5,6 (4 Stk.)", f"Tasche Ø {DOT_POCKET} mm: Restspiel je Seite beim Groesstmass >= 0,1 mm",
+     f"Eigenzuschnitt Ø {DOT_NOM_SELF} +-{SELF_TOL} mm -> {(DOT_POCKET - DOT_NOM_SELF - SELF_TOL) / 2:.2f} mm; "
+     f"Laser Ø {DOT_NOM_LASER} +-{LASER_TOL} mm -> {(DOT_POCKET - DOT_NOM_LASER - LASER_TOL) / 2:.2f} mm",
+     (DOT_POCKET - DOT_NOM_SELF - SELF_TOL) / 2 >= 0.1 - 1e-9, (DOT_POCKET - DOT_NOM_LASER - LASER_TOL) / 2 >= 0.1 - 1e-9,
+     "Eigenzuschnitt: 6 x 6 mm zuschneiden und rund auf Ø 5,5 mm schleifen, oder mit den 144 Quadraten bei Cutworks bestellen.")
+dd6 = os.path.join(out_dir, "Diffusor_Minutenpunkt_D5.6_R12.dxf")
+write_r12(dd6, [("Kontur", {"type": "CIRCLE", "c": [2.8, 2.8], "r": 2.8})])
+dchk("DXF", "Bestell-DXF Minutenpunkt (R12)", "1 Kreis Ø 5,6 mm", f"{read_r12(dd6)} Kontur", None, read_r12(dd6) == 1)
 dd = os.path.join(out_dir, "Diffusor_30x30_R12.dxf")
 write_r12(dd, [("Kontur", {"type": "LWPOLYLINE", "pts": [[0, 0], [30, 0], [30, 30], [0, 30]]})])
 dchk("DXF", "Bestell-DXF (R12) geschrieben und gelesen", "1 Kontur, mm 1:1", f"{read_r12(dd)} Kontur", None, read_r12(dd) == 1)

@@ -109,9 +109,9 @@ summary.append(report("01_Frontplatte_Laser", "Frontplatte Cortenstahl 1 mm", "F
                       [("laserteile-online.eu", "lo")], [os.path.join(STAGE, "Laser", "Frontplatte_Corten_1mm_R12.dxf")], (),
                       {"laserteile-online.eu": all(c["ok"] for c in cs)}))
 cs = las["Diffusor"]
-summary.append(report("02_Diffusor_Laser", "Diffusor Opal-Acrylglas 30 x 30 x 2 mm (144 Stk.)", "Diffusor Opal-Acrylglas 30 x 30 x 2 mm (144 Stk.)",
+summary.append(report("02_Diffusor_Laser", "Diffusor Opal-Acrylglas 2 mm (144 x 30 x 30, 4 x Ø 5,6)", "Diffusor Opal-Acrylglas 2 mm (144 x 30 x 30, 4 x Ø 5,6)",
                       ["Eigenzuschnitt", "Cutworks"], cs, [("Eigenzuschnitt", "self"), ("Cutworks", "cw")],
-                      [os.path.join(STAGE, "Laser", "Diffusor_30x30_R12.dxf")], (),
+                      [os.path.join(STAGE, "Laser", f) for f in ("Diffusor_30x30_R12.dxf", "Diffusor_Minutenpunkt_D5.6_R12.dxf")], (),
                       {"Eigenzuschnitt": all(c.get("self") is not False for c in cs), "Cutworks": all(c.get("cw") is not False for c in cs)}))
 
 # ---------------------------------------------------------------- 3D-Druck
