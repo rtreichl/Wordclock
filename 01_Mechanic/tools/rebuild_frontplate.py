@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Frontplatte aus der DXF neu aufbauen (WORTUHR_CONTOURS=<konturen.json> freecadcmd rebuild_frontplate.py).
 
-Anlass: NEUN-Korrektur. In Zeile 8 wurden E (Spalte 7) und N (Spalte 8) getauscht, damit die Zeile
+Anlaesse: NEUN-Korrektur, 4 Minutenpunkte Ø 4 mm in den Ecken (18 mm vom Rand). In Zeile 8 wurden E (Spalte 7) und N (Spalte 8) getauscht, damit die Zeile
 ZEHNEUNEVIER lautet und NEUN zusammenhaengend ist. Die Konturen kommen als JSON (aus der DXF per ezdxf).
 Ersetzt die Form von 'Frontplatte' (z 25-26, y = DXF-y - 500), exportiert STEP und das Render-Netz.
 """
@@ -32,7 +32,7 @@ plate.translate(V(0, -500, 25))
 plate = plate.removeSplitter()
 assert plate.isValid() and len(plate.Solids) == 1
 print("VOL old %.3f new %.3f  faces old %d new %d" % (old.Shape.Volume, plate.Volume, len(old.Shape.Faces), len(plate.Faces)))
-assert abs(old.Shape.Volume - plate.Volume) < 0.5, "Volumen weicht ab"
+print("Volumenaenderung %.2f mm^3 (4 Minutenpunkte Ø 4 x 1 mm = -50,27)" % (plate.Volume - old.Shape.Volume))
 old.Shape = plate
 doc.recompute(); doc.save()
 Part.export([old], os.path.join(ROOT, "01_Mechanic", "Frontplatte", "Frontplatte_1mm.step"))
