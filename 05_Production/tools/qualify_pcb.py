@@ -7,7 +7,7 @@ Ergebnis: <staging_dir>/PCB/... und <staging_dir>/pcb_result.json
 import os, sys, json, re, csv, subprocess, zipfile, hashlib, collections
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-while not os.path.isdir(os.path.join(ROOT, ".git")):
+while not os.path.isdir(os.path.join(ROOT, "05_Production")):  # Repo-Wurzel (auch ohne .git)
     ROOT = os.path.dirname(ROOT)
 KI = os.path.join(ROOT, "02_Electronics", "KiCad")
 sys.path.insert(0, os.path.join(KI, "tools"))

@@ -8,7 +8,7 @@ import os, sys, json, shutil, hashlib, subprocess, datetime
 
 STAGE = sys.argv[1]
 ROOT = os.path.dirname(os.path.abspath(__file__))
-while not os.path.isdir(os.path.join(ROOT, ".git")):
+while not os.path.isdir(os.path.join(ROOT, "05_Production")):  # Repo-Wurzel (auch ohne .git)
     ROOT = os.path.dirname(ROOT)
 PROD = os.path.join(ROOT, "05_Production")
 try:

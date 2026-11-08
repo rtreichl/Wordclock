@@ -15,7 +15,7 @@ for name, f in BOARDS:
         cells.append(f(k, j))
 assert len(set(cells)) == 144
 root = os.path.dirname(os.path.abspath(__file__))
-while not os.path.isdir(os.path.join(root, ".git")) and os.path.dirname(root) != root:
+while not os.path.isdir(os.path.join(root, "05_Production")) and os.path.dirname(root) != root:
     root = os.path.dirname(root)
 out = os.path.join(root, "03_Software", "WLED")
 os.makedirs(out, exist_ok=True)

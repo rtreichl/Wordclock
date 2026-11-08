@@ -9,7 +9,7 @@ landen nur im Staging, nicht im Repository.
 import os, sys, re, json, subprocess, shutil, hashlib, base64, secrets as pysecrets, tempfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-while not os.path.isdir(os.path.join(ROOT, ".git")):
+while not os.path.isdir(os.path.join(ROOT, "05_Production")):  # Repo-Wurzel (auch ohne .git)
     ROOT = os.path.dirname(ROOT)
 STAGE = os.path.join(sys.argv[1], "Firmware"); os.makedirs(STAGE, exist_ok=True)
 EH = os.path.join(ROOT, "03_Software", "ESPHome")
