@@ -40,6 +40,7 @@ static const Hour HOURS[13] = {
 
 struct Mask {
   std::array<bool, CELLS> on{};
+  uint8_t minutes = 0;        // Minutenpunkte 0..4 (Minute mod 5)
   std::string text;
   void cell(int r, int c) { on[r * COLS + c] = true; }
   void add(const Word &w) {
@@ -62,13 +63,14 @@ struct Options {
   bool show_punkt = true;     // "PUNKT" zur vollen Stunde
 };
 
-// Uhrzeit -> Woerter (5-Minuten-Schritte, abgerundet)
+// Uhrzeit -> Woerter (5-Minuten-Schritte, abgerundet) + Minutenpunkte fuer die Minuten dazwischen
 inline Mask compose(int hour24, int minute, int day, int month, const Options &o) {
   Mask m;
   int m5 = (minute / 5) * 5;
   int h = hour24;
   bool next = false;
 
+  m.minutes = minute % 5;
   if (o.show_ist) m.add(W_IST);
   if (hour24 == 0 && m5 == 0) {
     m.add(W_MITTERNACHT);
@@ -105,6 +107,7 @@ inline Mask compose(int hour24, int minute, int day, int month, const Options &o
     else if (t >= 11 * 60 + 30 && t < 13 * 60 + 30) { m.add(W_GUTEN); m.add(W_MITTAG); }
     else if (t >= 22 * 60 || t < 30) { m.add(W_GUTE); m.add(W_NACHT); }
   }
+  if (m.minutes) m.text += " +" + std::to_string(m.minutes);
   return m;
 }
 
@@ -118,6 +121,7 @@ inline Mask status_wlan() {
 // ---------------------------------------------------------------- Ausgabe mit Ueberblendung
 struct Renderer {
   std::array<float, CELLS> level{};   // aktueller Helligkeitsanteil je Kammer (0..1)
+  std::array<float, 4> dot{};         // Minutenpunkte
   uint32_t last_ms = 0;
 
   // it: LED-Kette, base: Farbe/Helligkeit des Light-Entities, factor: Umgebungslicht-Faktor (0..1)
@@ -139,11 +143,21 @@ struct Renderer {
         }
         float f = level[i] * factor;
         esphome::Color out(uint8_t(col.r * f), uint8_t(col.g * f), uint8_t(col.b * f), uint8_t(col.w * f));
-        int base_idx = CELL_INDEX[r][c] * leds_per_cell;
+        int base_idx = cell_led(CELL_INDEX[r][c], leds_per_cell);
         for (int k = 0; k < leds_per_cell; k++) {
           if (base_idx + k < it.size()) it[base_idx + k] = out;
         }
       }
+    }
+    for (int n = 0; n < 4; n++) {     // Minutenpunkte 1..4 im Uhrzeigersinn ab oben links
+      float target = n < m.minutes ? 1.0f : 0.0f;
+      if (dot[n] < target) dot[n] = std::min(target, dot[n] + step);
+      else if (dot[n] > target) dot[n] = std::max(target, dot[n] - step);
+      esphome::Color col = rainbow ? hsv(std::fmod((now_ms / 60000.0f) * 360.0f + n * 90.0f, 360.0f)) : base;
+      float f = dot[n] * factor;
+      int idx = minute_led(n, leds_per_cell);
+      if (idx < it.size())
+        it[idx] = esphome::Color(uint8_t(col.r * f), uint8_t(col.g * f), uint8_t(col.b * f), uint8_t(col.w * f));
     }
   }
 

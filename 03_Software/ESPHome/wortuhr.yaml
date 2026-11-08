@@ -11,7 +11,7 @@ substitutions:
   name: wortuhr
   friendly_name: WortUhr
   leds_per_cell: "2"        # 1 = nur LED A je Kammer bestueckt (JPx geschlossen), 2 = LED A + B
-  num_leds: "288"           # 144 * leds_per_cell
+  num_leds: "292"           # 4 * (36 * leds_per_cell + 1): je Platine + 1 Minuten-LED (1 LED/Kammer: 148)
   timezone: "Europe/Berlin"
 
 esphome:

@@ -38,10 +38,26 @@ out = ["// Automatisch erzeugt von 03_Software/ESPHome/tools/gen_layout.py - nic
 for r in range(12):
     out.append("//   " + " ".join(letters[(r, c)] for c in range(12)))
 out += ["", "// Physischer Kammer-Index (0..143) in der Datenkette fuer [Zeile][Spalte].",
-        "// LED-Nummer = Index * LEDS_PER_CELL + 0..LEDS_PER_CELL-1", "static const uint8_t CELL_INDEX[12][12] = {"]
+        "// LED-Nummer: cell_led(Index, LEDS_PER_CELL) + 0..LEDS_PER_CELL-1", "static const uint8_t CELL_INDEX[12][12] = {"]
 for r in range(12):
     out.append("  {" + ", ".join("%3d" % phys[(r, c)] for c in range(12)) + "},")
-out += ["};", "", "}  // namespace wortuhr", ""]
+out += ["};", "",
+        "// Je Platine: 36 Kammern, nach Kammer %d (Kette) folgt die Minuten-LED in der Aussenecke." % D.MINUTE_AFTER,
+        "static const uint8_t MINUTE_AFTER = %d;" % D.MINUTE_AFTER,
+        "// Platine (0 = Q4 Master unten rechts, 1 = Q2 oben rechts, 2 = Q1 oben links, 3 = Q3 unten links)",
+        "// fuer Minutenpunkt 1..4 im Uhrzeigersinn ab oben links.",
+        "static const uint8_t MINUTE_BOARD[4] = {2, 1, 0, 3};", "",
+        "inline int leds_per_board(int lpc) { return 36 * lpc + 1; }",
+        "// Erste LED einer Kammer (Index aus CELL_INDEX) in der Kette",
+        "inline int cell_led(int cell, int lpc) {",
+        "  int b = cell / 36, c = cell % 36;",
+        "  return b * leds_per_board(lpc) + c * lpc + (c > MINUTE_AFTER ? 1 : 0);",
+        "}",
+        "// LED des Minutenpunkts n (0..3)",
+        "inline int minute_led(int n, int lpc) {",
+        "  return MINUTE_BOARD[n] * leds_per_board(lpc) + (MINUTE_AFTER + 1) * lpc;",
+        "}", "",
+        "}  // namespace wortuhr", ""]
 dst = os.path.join(os.path.dirname(HERE), "wortuhr_layout.h")
 open(dst, "w", encoding="utf-8", newline="\n").write("\n".join(out))
 print("geschrieben:", dst)

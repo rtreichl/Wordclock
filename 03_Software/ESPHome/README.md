@@ -48,11 +48,11 @@ uv pip install --python .venv\Scripts\python.exe esphome
 
 ## Bestückungsvarianten
 
-- **2 LEDs je Kammer:** `leds_per_cell: "2"`, `num_leds: "288"`. Das ist die Voreinstellung.
-- **1 LED je Kammer** (Lötbrücken JP geschlossen): `leds_per_cell: "1"`, `num_leds: "144"`.
+- **2 LEDs je Kammer:** `leds_per_cell: "2"`, `num_leds: "292"` (4 × 72 + 4 Minuten-LEDs). Das ist die Voreinstellung.
+- **1 LED je Kammer** (Lötbrücken JP geschlossen): `leds_per_cell: "1"`, `num_leds: "148"`.
 
 ## Hinweise zum Buchstabenraster
 
 - Im Raster fehlen **ES** und **UHR**. Die Anzeige beginnt deshalb mit „IST“, das sich abschalten lässt.
 - Zeile 8 lautet `Z E H N E U N E V I E R` (ZEHN, NEUN, VIER; das zweite E ist Füllbuchstabe).
-- Mehr als 5-Minuten-Genauigkeit ist nicht möglich: Das Raster hat keine Minutenpunkte.
+- **Minutenpunkte:** Die Minuten zwischen den 5-Minuten-Schritten (Minute mod 5) zeigen 1–4 Punkte in den Ecken, im Uhrzeigersinn ab oben links. Beispiel 11:42 = IST ZWANZIG VOR ZWÖLF + 2 Punkte. Im Text-Sensor steht dann „… +2“.
