@@ -210,9 +210,10 @@ def main():
             S.symbol(p.lib_id, p.ref, p.value, p.fp, x, y, p.uuid, dict(p.extra, Variante=p.variant), p.pins, p.nc)
     # restliche Teile
     S.text("Verbinder / alle Varianten", 444.5, 25.4, 3.0)
+    S.text("D75: Minutenpunkt in der Aussenecke (Kette nach Kammer 5,5)", 574.04, 38.1, 1.8)
     S.text("Master-Variante (nur auf einer Platine bestuecken)", 444.5, 132.08, 3.0)
     S.text("Hinweise: SK6812RGBW-Pinbelegung vor Bestellung mit Datenblatt pruefen. JPx schliessen, wenn LED B einer Kammer nicht bestueckt wird.", 25.4, 375.92, 2.0)
-    pos = {"J3": (457.2, 50.8), "J4": (500.38, 50.8), "C1": (543.56, 50.8),
+    pos = {"J3": (457.2, 50.8), "J4": (500.38, 50.8), "C1": (543.56, 50.8), "D75": (589.28, 50.8), "C175": (619.76, 50.8),
            "H1": (457.2, 96.52), "H2": (482.6, 96.52), "H3": (508.0, 96.52), "H4": (533.4, 96.52), "H5": (558.8, 96.52), "H6": (584.2, 96.52),
            "FID1": (609.6, 96.52), "FID2": (622.3, 96.52), "FID3": (635.0, 96.52), "FID4": (647.7, 96.52), "FID5": (660.4, 96.52), "FID6": (673.1, 96.52),
            "J1": (467.36, 172.72), "R1": (510.54, 165.1), "R2": (523.24, 165.1), "U3": (558.8, 167.64),

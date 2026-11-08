@@ -45,6 +45,12 @@ CONN_POS = wall(4)       # 192.29: J_IN bei y=CONN_POS am linken Rand, J_OUT bei
 SENSOR_POS = (6.0, 231.0)  # Lichtsensor unter dem Lichtleiter (Rahmen unten, nahe Mitte)
 FIDUCIALS = [(4.0, 4.0, "F"), (230.0, 4.0, "F"), (4.0, 170.0, "F"),
              (4.0, 4.0, "B"), (230.0, 4.0, "B"), (230.0, 170.0, "B")]
+# Minuten-LED (1..4 Minuten zwischen den 5-Minuten-Schritten): eine je Platine an der Aussenecke.
+# Durch die Drehung der vier Platinen landet sie in allen vier Ecken der Uhr. In der Datenkette
+# sitzt sie direkt nach Kammer MINUTE_AFTER (= Kammer (5,5), schon in der Ecke).
+MINUTE_LED_POS = (230.0, 230.0)
+MINUTE_AFTER = 5
+CORNER_R = 3.0           # Radius der Aussenecke der Platine (Platz fuer die Minuten-LED)
 MOUNT_HOLES = [(wall(0), wall(0)), (wall(4), wall(0)), (wall(0), wall(4)), (wall(4), wall(4)),
                (wall(2), wall(4)), (wall(4), wall(2))]   # H5/H6 fuer die Rueckrahmen-Leisten
 
@@ -91,6 +97,12 @@ def build_parts():
                       {"1": a_out, "2": b_out},
                       extra={"Hinweis": "schliessen wenn LED B nicht bestueckt"}))
         prev = b_out
+        if c == MINUTE_AFTER:
+            P.append(Part("D75", "LED:WS2812B", "SK6812RGBW", FP_LED,
+                          {"1": "+5V", "2": "MIN_OUT", "3": "GND", "4": prev},
+                          extra={"LED": "Minutenpunkt (Ecke)"}))
+            P.append(Part("C175", "Device:C", "100n", FP_C0603, {"1": "GND", "2": "+5V"}))
+            prev = "MIN_OUT"
     # --- Verbindungen / allgemein --------------------------------------------
     FP_BR = "WortUhr:EdgeBridge_5x2512"
     P.append(Part("J3", "Connector_Generic:Conn_01x05", "Bruecke_IN", FP_BR,
@@ -153,12 +165,12 @@ def build_parts():
 # Platzierung Master-Teile (lokal, Unterseite ausser U5), (x, y, rot, seite)
 MASTER_PLACE = {
     "U1": (33.0, 224.0, 0, "B"),      # ESP32-S3: Antenne zum unteren Rand
-    "C4": (44.5, 219.0, 90, "B"),
+    "C4": (22.5, 226.5, 0, "B"),      # 100n direkt am 3V3-Pin 3 des ESP32 (ROUTING_GUIDE.md)
     "U2": (51.0, 223.5, 0, "B"),      # LDO 3.3V
     "C2": (47.0, 223.5, 90, "B"),
     "C3": (55.0, 223.5, 90, "B"),
     "R3": (22.5, 224.0, 0, "B"),      # EN-Pullup
-    "C5": (22.5, 226.5, 0, "B"),
+    "C5": (43.5, 227.0, 90, "B"),     # 1u am EN-Pin 45 (rechte Modulseite)
     "R4": (22.5, 221.5, 0, "B"),      # BOOT-Pullup
     "SW1": (78.0, 219.0, 0, "B"),     # RESET
     "SW2": (5.4, 218.6, 0, "B"),      # BOOT

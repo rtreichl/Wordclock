@@ -25,9 +25,13 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
 | D1, D3, … (LED A je Kammer), C101, C103, … | ✓ | |
 | D2, D4, … (LED B je Kammer), C102, C104, … | optional | |
 | JP1–JP36 (Lötbrücke) | **schließen, wenn LED B nicht bestückt** | |
+| D75 Minuten-LED (Außenecke) + C175 (Unterseite) | ✓ | |
 | J3/J4 (Kantenbrücken, nur Pads), C1 (470 µF) | ✓ | |
 | U1 ESP32-S3-MINI-1, U2 AP2112K-3.3, U3 USBLC6, U4 74AHCT1G125, U5 BH1750FVI | | ✓ |
 | J1 USB-C, J2 Hohlbuchse 5 V, D73 SS34, D74 SS54, SW1/SW2, R1–R8, C2–C8 | | ✓ |
+
+**Minutenpunkte:** Jede Platine hat an der Außenecke eine Minuten-LED D75. In der Datenkette sitzt sie direkt nach Kammer (5,5). Durch die Drehung der Platinen leuchtet sie in allen vier Ecken unter den Ø-4-mm-Punkten der Frontplatte (18 mm vom Rand). Darüber liegt im Gitter ein runder Diffusor Ø 5,6 × 2 mm.
+
 
 - **LED:** SK6812 RGBW, 5050. Im Footprint ist die Pinbelegung des WS2812B hinterlegt: 1 VDD, 2 DOUT, 3 VSS, 4 DIN. Vor der Bestellung mit dem Datenblatt des konkreten Herstellers vergleichen.
 - **Montage Platine:** Die Platine wird von hinten mit **M3**-Kunststoffschrauben in die Kernlöcher der Gitterkreuzungen geschraubt. Die Kernlöcher haben Ø 2,6 mm und sind 9 mm tief. Je Platine gibt es 6 Löcher. Sie haben Ø 4,3 mm, also ±0,65 mm Spiel für M3. Das gleicht Druck- und Montagetoleranzen des Gitters aus.
@@ -45,8 +49,8 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
 
 ## WLED
 
-- LED-Typ: *SK6812/WS2814 RGBW*, Datenpin GPIO16
-- 2D-Matrix: bei 2 LEDs je Kammer 24×12 mit `03_Software/WLED/ledmap_2LED_24x12.json`, bei 1 LED je Kammer 12×12 mit `ledmap_1LED_12x12.json` (als `ledmap.json` hochladen)
+- LED-Typ: *SK6812/WS2814 RGBW*, Datenpin GPIO16, LED-Anzahl **292** (2 LEDs je Kammer) bzw. **148** (1 LED je Kammer): je Platine 36 Kammern + 1 Minuten-LED
+- 2D-Matrix: bei 2 LEDs je Kammer 24×12 mit `03_Software/WLED/ledmap_2LED_24x12.json`, bei 1 LED je Kammer 12×12 mit `ledmap_1LED_12x12.json` (als `ledmap.json` hochladen). Die 4 Minuten-LEDs gehören nicht zur Matrix und bleiben in WLED aus.
 - Stromgrenze (ABL) einstellen: USB-C 2,5 A, Netzteil je nach Leistung, z. B. 4 A
 - Lichtsensor: Usermod BH1750, I2C SDA 17 / SCL 18
 

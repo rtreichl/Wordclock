@@ -142,7 +142,7 @@ def rawnet(name):
     return nets[name]
 
 # ---------------------------------------------------------------- Umriss
-R = 6.0
+R = D.CORNER_R
 a, b = D.BOARD_MIN, D.BOARD_MAX
 line(pcbnew.Edge_Cuts, (a, a), (b, a)); line(pcbnew.Edge_Cuts, (b, a), (b, b - R))
 line(pcbnew.Edge_Cuts, (b - R, b), (a, b)); line(pcbnew.Edge_Cuts, (a, b), (a, a))
@@ -184,8 +184,31 @@ for c, ((k, j), d) in enumerate(D.PATH):
     track([T(6.85, 4.4), T(5.05, 2.6), T(5.05, 1.65)], a_out)
     track([T(8.15, 4.4), T(11.7, 4.4), T(11.7, -1.65)], b_out)
 
+# Minuten-LED in der Aussenecke, zwischen Kammer MINUTE_AFTER und der naechsten
+mx, my = D.MINUTE_LED_POS
+place(parts["D75"], mx, my, 180)                    # Pads wie LED A bei Laufrichtung +1
+place(parts["C175"], mx, my - 4.5, 0, "B")
+placed["D75"].Reference().SetVisible(False); placed["C175"].Reference().SetVisible(False)
+m_in, m_out = parts["D75"].pins["4"], parts["D75"].pins["2"]
+xi, yi = pad_xy("D75", "4"); xo, yo = pad_xy("D75", "2"); xg, yg = pad_xy("D75", "3")
+p1 = via_out[D.MINUTE_AFTER]
+track([p1, (p1[0], yi)], m_in, pcbnew.B_Cu); via(p1[0], yi, m_in); track([(p1[0], yi), (xi, yi)], m_in)
+track([(xo, yo), (xo, yo - 2.4)], m_out); via(xo, yo - 2.4, m_out)
+p2 = via_in[D.MINUTE_AFTER + 1]
+track([(xo, yo - 2.4), (xo, p2[1] + 3.6), (p2[0], p2[1] + 3.6), p2], m_out, pcbnew.B_Cu)
+track([(xg, yg), (xg - 2.0, yg)], "GND", w=W_GND); via(xg - 2.0, yg, "GND")
+# Abblock-C auf der Unterseite: GND an die GND-Via der LED, +5V per Via an die +5V-Flaeche oben
+for pn in ("1", "2"):
+    x, y = pad_xy("C175", pn); n = parts["C175"].pins[pn]
+    if n == "GND":
+        track([(x, y), (xg - 2.0, y), (xg - 2.0, yg)], n, pcbnew.B_Cu, w=W_GND)
+    else:
+        track([(x, y), (x, y - 1.6)], n, pcbnew.B_Cu, w=W_GND); via(x, y - 1.6, n)
+
 # Spruenge zwischen den Kammern (Unterseite)
 for c in range(35):
+    if c == D.MINUTE_AFTER:
+        continue                                     # laeuft ueber die Minuten-LED
     (k1, j1), _ = D.PATH[c]; (k2, j2), _ = D.PATH[c + 1]
     p1, p2 = via_out[c], via_in[c + 1]
     n = parts[f"D{2*c+2}"].pins["2"]
@@ -261,6 +284,10 @@ for ref in ("J1", "J2"):
     print(ref, "bbox y", round(pcbnew.ToMM(bb.GetTop()) - O, 2), round(pcbnew.ToMM(bb.GetBottom()) - O, 2))
 
 assert len(placed) == len(parts), set(parts) - set(placed)
+# ROUTING_GUIDE.md: kritische Teile sperren (Steckverbinder, Kantenbruecken, Funkmodul, Montageloecher, Passermarken)
+LOCK = {"J1", "J2", "J3", "J4", "U1"} | {r for r in placed if r.startswith(("H", "FID"))}
+for r in LOCK:
+    placed[r].SetLocked(True)
 
 # ---------------------------------------------------------------- 3D-Modelle
 # Fehlende Herstellermodelle -> massgenaue Platzhalter aus ${KIPRJMOD}/3dmodels
