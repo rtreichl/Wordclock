@@ -97,8 +97,8 @@ check("Fertigung", "Bestueckungsdruck Text", f"Hoehe >= {JLC['min_silk_h']} mm, 
       f"Hoehe {th:.2f} mm, Strich {tw_:.2f} mm", th >= JLC["min_silk_h"] - 1e-6 and tw_ >= JLC["min_silk_w"] - 1e-6)
 holes = [(fp.GetReference(), round(mm(fp.GetPosition().x) - 40, 2), round(mm(fp.GetPosition().y) - 40, 2))
          for fp in b.GetFootprints() if fp.GetReference().startswith("H")]
-check("Mechanik", "Montageloecher M3", "6 x Bohrung 3,2 mm an den Stegkreuzungen", f"{len(holes)} Stk.",
-      len(holes) == 6 and all(abs(d - 3.2) < 0.01 for d in npth if d > 3.0))
+check("Mechanik", "Montageloecher M3", "6 x Bohrung 4,3 mm (M3 mit +-0,65 mm Spiel) an den Stegkreuzungen", f"{len(holes)} Stk.",
+      len(holes) == 6 and all(abs(d - 4.3) < 0.01 for d in npth if d > 3.0))
 
 # ---------------------------------------------------------------- Fertigungsdaten erzeugen
 g = os.path.join(STAGE, "gerber"); os.makedirs(g, exist_ok=True)
