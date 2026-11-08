@@ -5,7 +5,7 @@
 | Bauteil | 03_Software/ESPHome/wortuhr.yaml |
 | Fertiger | ESPHome |
 | Datum | 2026-11-08 |
-| Stand | Git `f7ad136` |
+| Stand | Git `d71eccd` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Build: FREIGEGEBEN** |
 

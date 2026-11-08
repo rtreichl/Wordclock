@@ -5,7 +5,7 @@
 | Bauteil | Lichtgitter Q1–Q4 |
 | Fertiger | P1S, JLC3DP |
 | Datum | 2026-11-08 |
-| Stand | Git `f7ad136` |
+| Stand | Git `d71eccd` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Bambu Lab P1S: FREIGEGEBEN** · **JLC3DP: FREIGEGEBEN** |
 
