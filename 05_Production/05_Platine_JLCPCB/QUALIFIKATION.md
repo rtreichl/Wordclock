@@ -5,7 +5,7 @@
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
 | Datum | 2026-11-08 |
-| Stand | Git `e687f99` |
+| Stand | Git `b68292c` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
