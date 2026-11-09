@@ -4,8 +4,8 @@
 |---|---|
 | Bauteil | Frontplatte Cortenstahl 1 mm |
 | Fertiger | laserteile-online.eu |
-| Datum | 2026-11-08 |
-| Stand | Git `d71eccd` (mit nicht eingecheckten Aenderungen) |
+| Datum | 2026-11-09 |
+| Stand | Git `7e6598b` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **laserteile-online.eu: FREIGEGEBEN** |
 
