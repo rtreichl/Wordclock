@@ -5,7 +5,7 @@
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
 | Datum | 2026-11-09 |
-| Stand | Git `6b290f5` (mit nicht eingecheckten Aenderungen) |
+| Stand | Git `1393c4c` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
@@ -51,23 +51,23 @@
 - Loetstopplack: gruen empfohlen (min. Steg 0,10 mm); bei Schwarz/Weiss gilt 0,13 mm.
 - SK6812RGBW: Footprint mit WS2812B-Pinbelegung (1 VDD, 2 DOUT, 3 VSS, 4 DIN) - vor Bestellung mit dem Datenblatt des gewaehlten Herstellers abgleichen.
 - BH1750 (U5): Footprint WSOF6I selbst erstellt nach ROHM-Zeichnung, ungetestet.
-- LCSC-Teilenummern in BOM leer - bei JLCPCB-Bestueckung zuordnen.
+- LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. SRP1245A-3R3M zuletzt ohne LCSC-Bestand, F1 (Littelfuse 1812L300/24SLER) nicht bei LCSC gefunden: ggf. selbst beschaffen.
 - Die 19 Kantenbruecken (0R 2512) werden nach dem Zusammenbau von Hand geloetet und sind nicht in der BOM.
-- Schaltwandler U7 (SCT2360): Footprint nach Datenblatt erstellt, ungetestet. L1, F1 und SK6812-Typ vor der Bestellung festlegen.
+- Schaltwandler U7 (SCT2360): Footprint gegen Package-Zeichnung geprueft, ungetestet. LEDs: SK6812 RGBNW (Pinbelegung des Angebots passt zum Footprint) werden separat beschafft.
 - Versorgung: USB-C PD 15 V, Schaltwandler 5 V / 6 A, Firmware begrenzt auf geschaetzte 5 A.
 
 ## Freigegebene Dateien
 
 | Datei | SHA256 |
 |---|---|
-| `BOM_Master.csv` | `2efa0aa9d641a742…` |
+| `BOM_Master.csv` | `99fb1e55cb7b72fc…` |
 | `BOM_Slave.csv` | `824dc6c89fba55fb…` |
-| `CPL_Master.csv` | `536496cb10ac0cf4…` |
-| `CPL_Slave.csv` | `64900b99df0da37b…` |
-| `LED-Board_master.step` | `5dfa985aec3e481e…` |
-| `LED-Board_slave.step` | `afc5154148931647…` |
-| `WortUhr_LED-Board_Gerber.zip` | `bbbaebca636526f8…` |
-| `WortUhr_Schaltplan.pdf` | `1d5b4dec805997ca…` |
+| `CPL_Master.csv` | `65aa2eddac352349…` |
+| `CPL_Slave.csv` | `f8d1804b95d1da42…` |
+| `LED-Board_master.step` | `75c8234cb16cfec2…` |
+| `LED-Board_slave.step` | `1f80b9f54b1f42bd…` |
+| `WortUhr_LED-Board_Gerber.zip` | `07987764011fa15e…` |
+| `WortUhr_Schaltplan.pdf` | `b4fb8c70917f0855…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 
