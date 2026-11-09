@@ -3,7 +3,7 @@
 
 Quelle: 02_Electronics/3D-Export/LED-Board_master.step (Q4) und _slave.step (Q2, Q1, Q3).
 Die Lage ergibt sich aus der Leiterplatte selbst: Sie wird auf die bisherige Lage der jeweiligen Platine gelegt,
-gedreht um 0/90/180/270 Grad. Fuer L1 gibt es kein 3D-Modell, deshalb ein Platzhalter 13,5 x 12,5 x 4,5 mm (Bourns SRP1245A).
+gedreht um 0/90/180/270 Grad. Fuer L1 gibt es kein 3D-Modell, deshalb ein Platzhalter 13,5 x 12,5 x 6,5 mm (Bourns SRP1265A, Maximalhoehe).
 Prueft danach Kollisionen mit beiden Gitter-Varianten und dem Rueckrahmen.
 """
 import os
@@ -39,7 +39,7 @@ for name, (f, ang) in PL.items():
     sols = list(s2.Solids)
     if name == "PCB_Q4_Master":
         lx, ly = local_to_global(102.0, 224.0, 0)
-        sols.append(Part.makeBox(13.5, 12.5, 4.5, V(lx - 6.75, ly - 6.25, Z_TOP - (bb.ZMax - bb.ZMin) - 4.5)))
+        sols.append(Part.makeBox(13.5, 12.5, 6.5, V(lx - 6.75, ly - 6.25, Z_TOP - (bb.ZMax - bb.ZMin) - 6.5)))
     o = doc.getObject(name)
     nb = board(sols).BoundBox
     print(name, "Platine", [round(v, 2) for v in (nb.XMin, nb.XMax, nb.YMin, nb.YMax, nb.ZMin, nb.ZMax)], "Solids", len(sols), "alt", len(o.Shape.Solids))
