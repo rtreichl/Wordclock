@@ -1,10 +1,10 @@
 # WortUhr – Produktionsdaten
 
-Stand Git `9f4ec3a`, geprueft am 2026-11-09. In diesem Ordner liegen nur Daten, die alle Qualifikationspruefungen fuer den jeweiligen Fertiger bestanden haben. Gesperrte Bauteile haben einen Bericht, aber keine Dateien.
+Stand Git `cba669d`, geprueft am 2026-11-09. In diesem Ordner liegen nur Daten, die alle Qualifikationspruefungen fuer den jeweiligen Fertiger bestanden haben. Gesperrte Bauteile haben einen Bericht, aber keine Dateien.
 
 | Bauteil | Ordner | Freigabe | Pruefungen | Dateien |
 |---|---|---|---|---|
-| LED-Platine (4x identisch, Master/Slave) | [`05_Platine_JLCPCB`](05_Platine_JLCPCB/QUALIFIKATION.md) | JLCPCB: ✅ | 32 ✅ / 0 ❌ | 9 |
+| LED-Platine (4x identisch, Master/Slave) | [`05_Platine_JLCPCB`](05_Platine_JLCPCB/QUALIFIKATION.md) | JLCPCB: ✅ | 32 ✅ / 0 ❌ | 10 |
 | Frontplatte Cortenstahl 1 mm | [`01_Frontplatte_Laser`](01_Frontplatte_Laser/QUALIFIKATION.md) | laserteile-online.eu: ✅ | 19 ✅ / 0 ❌ | 1 |
 | Diffusor Opal-Acrylglas 2 mm (144 x 30 x 30, 4 x Ø 5,6) | [`02_Diffusor_Laser`](02_Diffusor_Laser/QUALIFIKATION.md) | Eigenzuschnitt: ✅, Cutworks: ✅ | 15 ✅ / 0 ❌ | 2 |
 | Lichtgitter Q1–Q4 | [`03_Gitter_3D-Druck`](03_Gitter_3D-Druck/QUALIFIKATION.md) | Bambu Lab P1S: ✅, JLC3DP: ✅ | 88 ✅ / 0 ❌ | 16 |

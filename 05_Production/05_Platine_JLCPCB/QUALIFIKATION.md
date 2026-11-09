@@ -5,7 +5,7 @@
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
 | Datum | 2026-11-09 |
-| Stand | Git `9f4ec3a` (mit nicht eingecheckten Aenderungen) |
+| Stand | Git `cba669d` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
@@ -38,7 +38,7 @@
 | Fertigungsdaten | Bohrdateien | PTH + NPTH Excellon (mm) | WortUhr-NPTH.drl, WortUhr-PTH.drl | ✅ bestanden |
 | Fertigungsdaten | Umriss im Gerber | 234 x 234 mm (+-0,1) | 234.00 x 234.00 mm | ✅ bestanden |
 | Fertigungsdaten | Gerber-Archiv | ZIP lesbar, alle Dateien enthalten | 14 Dateien | ✅ bestanden |
-| Stueckliste | BOM DigiKey (1 Master + 3 Slaves) | CSV fuer den DigiKey BOM Manager erzeugt | 29 Positionen, davon 21 ohne DigiKey-Nummer | ✅ bestanden |
+| Stueckliste | BOM DigiKey (1 Master + 3 Slaves) | Jede Position hat eine DigiKey-Nummer oder steht in der separaten Beschaffungsliste | 26 bei DigiKey, separat: USB-C, CH224K, SCT2360FPBR | ✅ bestanden |
 | Stueckliste | BOM/CPL Master | jede Position mit Wert, Footprint und Koordinate | 188 Bauteile, 30 Positionen | ✅ bestanden |
 | Stueckliste | BOM/CPL Slave | jede Position mit Wert, Footprint und Koordinate | 147 Bauteile, 3 Positionen | ✅ bestanden |
 | Stueckliste | LED-Anzahl | 73 je Platine (2 je Kammer + 1 Minutenpunkt) | 73 | ✅ bestanden |
@@ -48,12 +48,12 @@
 
 ## Hinweise und offene Punkte
 
-- **BOM DigiKey (1 Master + 3 Slaves):** Positionen ohne Nummer im BOM Manager von Hand zuordnen; LEDs sind nicht enthalten.
+- **BOM DigiKey (1 Master + 3 Slaves):** LEDs sind nicht enthalten.
 - Bestueckung: Master = Standard-PCBA (beidseitig, Passermarken vorhanden, Nutzenraender 'by JLCPCB' bestellen). Slave = nur Oberseite bestueckt; C1 (Unterseite) von Hand loeten oder ebenfalls Standard-PCBA.
 - Loetstopplack: gruen empfohlen (min. Steg 0,10 mm); bei Schwarz/Weiss gilt 0,13 mm.
 - SK6812RGBW: Footprint mit WS2812B-Pinbelegung (1 VDD, 2 DOUT, 3 VSS, 4 DIN) - vor Bestellung mit dem Datenblatt des gewaehlten Herstellers abgleichen.
 - BH1750 (U5): Footprint WSOF6I selbst erstellt nach ROHM-Zeichnung, ungetestet.
-- DigiKey-BOM: BOM_DigiKey.csv enthaelt nur bestaetigte Bestellnummern, offene Positionen im BOM Manager zuordnen. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. SRP1245A-3R3M zuletzt ohne LCSC-Bestand, F1 (Littelfuse 1812L300/24SLER) nicht bei LCSC gefunden: ggf. selbst beschaffen.
+- DigiKey: BOM_DigiKey.csv (Cut Tape, Satz aus 1 Master + 3 Slaves) direkt in den BOM Manager laden; J1, U6, U7 fuehrt DigiKey nicht, siehe BOM_Separat_Beschaffung.csv. SRP1245A-3R3M war bei der Pruefung nicht auf Lager. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. SRP1245A-3R3M zuletzt ohne LCSC-Bestand, F1 (Littelfuse 1812L300/24SLER) nicht bei LCSC gefunden: ggf. selbst beschaffen.
 - Die 19 Kantenbruecken (0R 2512) werden nach dem Zusammenbau von Hand geloetet und sind nicht in der BOM.
 - Schaltwandler U7 (SCT2360): Footprint gegen Package-Zeichnung geprueft, ungetestet. LEDs: SK6812 RGBNW (Pinbelegung des Angebots passt zum Footprint) werden separat beschafft.
 - Versorgung: USB-C PD 15 V, Schaltwandler 5 V / 6 A, Firmware begrenzt auf geschaetzte 5 A.
@@ -62,15 +62,16 @@
 
 | Datei | SHA256 |
 |---|---|
-| `BOM_DigiKey.csv` | `58c91d28e58bd158…` |
+| `BOM_DigiKey.csv` | `0a430314a7202c77…` |
 | `BOM_Master.csv` | `99fb1e55cb7b72fc…` |
+| `BOM_Separat_Beschaffung.csv` | `ca51992415df923e…` |
 | `BOM_Slave.csv` | `824dc6c89fba55fb…` |
-| `CPL_Master.csv` | `1dd259148eb8a16a…` |
-| `CPL_Slave.csv` | `e282cd437896e787…` |
-| `LED-Board_master.step` | `8d56827f37683a6c…` |
-| `LED-Board_slave.step` | `2a688830b4e156f1…` |
-| `WortUhr_LED-Board_Gerber.zip` | `f85929d336aa3928…` |
-| `WortUhr_Schaltplan.pdf` | `f6922ee707bd2cf1…` |
+| `CPL_Master.csv` | `3336e991058995bb…` |
+| `CPL_Slave.csv` | `906ef9fb09de0f1d…` |
+| `LED-Board_master.step` | `c0c08e74bd90baa7…` |
+| `LED-Board_slave.step` | `394e44dca3096baf…` |
+| `WortUhr_LED-Board_Gerber.zip` | `b894e7f2db8e0fe9…` |
+| `WortUhr_Schaltplan.pdf` | `5405ae7a6715e93c…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 
