@@ -1,6 +1,6 @@
 # WortUhr – Produktionsdaten
 
-Stand Git `7e6598b`, geprueft am 2026-11-09. In diesem Ordner liegen nur Daten, die alle Qualifikationspruefungen fuer den jeweiligen Fertiger bestanden haben. Gesperrte Bauteile haben einen Bericht, aber keine Dateien.
+Stand Git `6b290f5`, geprueft am 2026-11-09. In diesem Ordner liegen nur Daten, die alle Qualifikationspruefungen fuer den jeweiligen Fertiger bestanden haben. Gesperrte Bauteile haben einen Bericht, aber keine Dateien.
 
 | Bauteil | Ordner | Freigabe | Pruefungen | Dateien |
 |---|---|---|---|---|

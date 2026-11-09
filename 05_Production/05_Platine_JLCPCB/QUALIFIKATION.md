@@ -5,7 +5,7 @@
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
 | Datum | 2026-11-09 |
-| Stand | Git `7e6598b` (mit nicht eingecheckten Aenderungen) |
+| Stand | Git `6b290f5` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
@@ -15,13 +15,13 @@
 |---|---|---|---|---|
 | Elektrisch | ERC (Schaltplan) | 0 Fehler | 0 Fehler | ✅ bestanden |
 | Elektrisch | DRC Fehler | 0 | 0 | ✅ bestanden |
-| Elektrisch | DRC Warnungen | nur kosmetisch (Bestueckungsdruck, Waermefalle) | {"silk_edge_clearance": 4, "silk_over_copper": 94, "silk_overlap": 13} | ✅ bestanden |
+| Elektrisch | DRC Warnungen | nur kosmetisch (Bestueckungsdruck, Waermefalle) | {"silk_edge_clearance": 4, "silk_over_copper": 96, "silk_overlap": 16} | ✅ bestanden |
 | Elektrisch | Offene Verbindungen | 0 | 0 | ✅ bestanden |
 | Elektrisch | Schaltplan-/Layout-Abgleich | 0 Abweichungen | 0 | ✅ bestanden |
 | Fertigung | Platinengroesse | <= 670 x 600 mm (Fertigung), <= 460 x 500 mm (Standard-Bestueckung), Soll 234 x 234 mm | 234.00 x 234.00 mm | ✅ bestanden |
 | Fertigung | Lagenzahl | 2 | 2 | ✅ bestanden |
 | Fertigung | Min. Leiterbahnbreite | >= 0.1 mm | 0.150 mm | ✅ bestanden |
-| Fertigung | Via-Bohrung | >= 0.15 mm | 0.30 mm (288 Vias) | ✅ bestanden |
+| Fertigung | Via-Bohrung | >= 0.15 mm | 0.30 mm (292 Vias) | ✅ bestanden |
 | Fertigung | Via-Durchmesser | >= 0.25 mm | 0.70 mm | ✅ bestanden |
 | Fertigung | Restring Via (absolutes Minimum 2 Lagen 1 oz) | >= 0.18 mm | 0.200 mm | ✅ bestanden |
 | Fertigung | Min. Bohrung durchkontaktiert (Pads) | >= 0.15 mm | 0.60 mm | ✅ bestanden |
@@ -38,7 +38,7 @@
 | Fertigungsdaten | Bohrdateien | PTH + NPTH Excellon (mm) | WortUhr-NPTH.drl, WortUhr-PTH.drl | ✅ bestanden |
 | Fertigungsdaten | Umriss im Gerber | 234 x 234 mm (+-0,1) | 234.00 x 234.00 mm | ✅ bestanden |
 | Fertigungsdaten | Gerber-Archiv | ZIP lesbar, alle Dateien enthalten | 14 Dateien | ✅ bestanden |
-| Stueckliste | BOM/CPL Master | jede Position mit Wert, Footprint und Koordinate | 185 Bauteile, 28 Positionen | ✅ bestanden |
+| Stueckliste | BOM/CPL Master | jede Position mit Wert, Footprint und Koordinate | 188 Bauteile, 30 Positionen | ✅ bestanden |
 | Stueckliste | BOM/CPL Slave | jede Position mit Wert, Footprint und Koordinate | 147 Bauteile, 3 Positionen | ✅ bestanden |
 | Stueckliste | LED-Anzahl | 73 je Platine (2 je Kammer + 1 Minutenpunkt) | 73 | ✅ bestanden |
 | Fertigungsdaten | 3D-Modell master | STEP-Export erfolgreich | ok | ✅ bestanden |
@@ -60,14 +60,14 @@
 
 | Datei | SHA256 |
 |---|---|
-| `BOM_Master.csv` | `c0eebceb345d8078…` |
+| `BOM_Master.csv` | `2efa0aa9d641a742…` |
 | `BOM_Slave.csv` | `824dc6c89fba55fb…` |
-| `CPL_Master.csv` | `2fa107039dc86ac2…` |
-| `CPL_Slave.csv` | `523dc35c488cf074…` |
-| `LED-Board_master.step` | `147df631bc4c8b46…` |
-| `LED-Board_slave.step` | `b811d9e7b77b3f33…` |
-| `WortUhr_LED-Board_Gerber.zip` | `4dd7abd564b0a6de…` |
-| `WortUhr_Schaltplan.pdf` | `bfe4e10a40bace69…` |
+| `CPL_Master.csv` | `536496cb10ac0cf4…` |
+| `CPL_Slave.csv` | `64900b99df0da37b…` |
+| `LED-Board_master.step` | `5dfa985aec3e481e…` |
+| `LED-Board_slave.step` | `afc5154148931647…` |
+| `WortUhr_LED-Board_Gerber.zip` | `bbbaebca636526f8…` |
+| `WortUhr_Schaltplan.pdf` | `1d5b4dec805997ca…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 
