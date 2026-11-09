@@ -453,6 +453,10 @@
         "pattern": "USB_D*"
       },
       {
+        "netclass": "USB",
+        "pattern": "*/USB_D*"
+      },
+      {
         "netclass": "LED_DATA",
         "pattern": "*/C??_*_OUT"
       },

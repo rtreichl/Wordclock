@@ -77,8 +77,8 @@ class Part:
 
 
 SHEETS = {"Versorgung": "Versorgung.kicad_sch", "ESP32": "ESP32.kicad_sch", "LED_Feld": "LED_Feld.kicad_sch", "Abblockung": "Abblockung.kicad_sch"}
-VERSORGUNG = {"J1", "F1", "U3", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1"}
-ESP32 = {"U1", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8"}
+VERSORGUNG = {"J1", "F1", "U3", "C28", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1"}
+ESP32 = {"U1", "R24", "R25", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8"}
 
 
 def sheet_of(ref):
@@ -144,13 +144,18 @@ def build_parts():
                    "A5": "CC1", "B5": "CC2", "A6": "USB_D+", "B6": "USB_D+", "A7": "USB_D-", "B7": "USB_D-"}, M))
     P.append(Part("U3", "Power_Protection:USBLC6-2SC6", "USBLC6-2SC6", "Package_TO_SOT_SMD:SOT-23-6",
                   {"1": "USB_D-", "6": "USB_D-", "3": "USB_D+", "4": "USB_D+", "2": "GND", "5": "+5V"}, M))
+    P.append(Part("C28", "Device:C", "100n", FP_C0603, {"1": "+5V", "2": "GND"}, M, extra={"Hinweis": "ST USBLC6-2 Figure 17: C_BUS an Pin 5"}))
+    # Espressif: Serienwiderstaende 22/33 Ohm in D+/D- nahe am Chip
+    FP_R0402 = "Resistor_SMD:R_0402_1005Metric"
+    P.append(Part("R24", "Device:R", "22", FP_R0402, {"1": "USB_D-", "2": "USB_D-_ESP"}, M))
+    P.append(Part("R25", "Device:R", "22", FP_R0402, {"1": "USB_D+", "2": "USB_D+_ESP"}, M))
     P.append(Part("U2", "Regulator_Linear:AP2112K-3.3", "AP2112K-3.3", "Package_TO_SOT_SMD:SOT-23-5",
                   {"1": "+5V", "3": "+5V", "2": "GND", "5": "+3V3"}, M, nc=["4"]))
     P.append(Part("C2", "Device:C", "10u", FP_C0805, {"1": "+5V", "2": "GND"}, M))
     P.append(Part("C3", "Device:C", "10u", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
     P.append(Part("C4", "Device:C", "100n", FP_C0603, {"1": "+3V3", "2": "GND"}, M))
     esp = {"1": "GND", "2": "GND", "3": "+3V3", "45": "EN", "4": "BOOT", "12": "LED_3V3",
-           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_D-", "24": "USB_D+"}
+           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_D-_ESP", "24": "USB_D+_ESP"}
     for n in list(range(42, 44)) + list(range(46, 66)):
         esp[str(n)] = "GND"
     used = set(esp)
@@ -179,7 +184,7 @@ def build_parts():
     P.append(Part("U6", "WortUhr:CH224K", "CH224K", "Package_SO:SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm",
                   {"1": "PD_VDD", "2": "PD_VDD", "3": "PD_VDD", "6": "CC2", "7": "CC1", "8": "PD_SENSE", "9": "GND", "10": "PD_GOOD", "11": "GND"},
                   M, nc=["4", "5"], extra={"Hinweis": "CFG1=0, CFG2=1, CFG3=1: fordert 15 V an"}))
-    P.append(Part("R20", "Device:R", "1k", FP_R0603, {"1": "+15V", "2": "PD_VDD"}, M))
+    P.append(Part("R20", "Device:R", "1k", "Resistor_SMD:R_1206_3216Metric", {"1": "+15V", "2": "PD_VDD"}, M))
     P.append(Part("C20", "Device:C", "1u/25V", FP_C0603, {"1": "PD_VDD", "2": "GND"}, M))
     P.append(Part("R21", "Device:R", "10k", FP_R0603, {"1": "+15V", "2": "PD_SENSE"}, M))
     P.append(Part("U7", "WortUhr:SCT2360", "SCT2360FPBR", "WortUhr:QFN-12_SCT2360",
@@ -214,11 +219,14 @@ MASTER_PLACE = {
     "SW2": (5.4, 218.6, 0, "B"),      # BOOT
     "J1": (63.0, 230.6, 180, "B"),    # USB-C
     "U3": (60.4, 221.5, 180, "B"),    # nah an J1; D- oben, D+ unten: passt zur Lage am ESP32
+    "C28": (60.9, 222.2, 0, "F"),     # C_BUS oben direkt ueber U3
+    "R24": (36.0, 211.9, 180, "B"),     # USB-Serienwiderstaende nahe U1
+    "R25": (36.0, 212.9, 180, "B"),
     "F1": (72.0, 230.5, 0, "B"),      # Eingangssicherung
     "U6": (71.5, 222.0, 0, "B"),      # PD-Controller
-    "R20": (76.5, 224.0, 90, "B"),
+    "R20": (76.9, 224.0, 90, "B"),     # 1206: 137 mW bei 15 V
     "C20": (76.5, 220.0, 90, "B"),
-    "R21": (78.5, 224.0, 90, "B"),
+    "R21": (79.0, 224.0, 90, "B"),
     "C21": (85.7, 224.0, 90, "B"),     # Figure 22: Eingangs-C ueber VIN (Pin 1) und PGND (Pin 2)
     "C22": (87.75, 224.0, 90, "B"),    # Figure 22: 100n direkt an Pin 1/2 (Hot-Loop)
     "U7": (90.5, 224.0, 0, "B"),      # Abwaertswandler, SW zur Spule
