@@ -118,7 +118,7 @@ BEZUG = {
     ("RESET", "SW_SPST_TL3342"): ("TL3342F160QG/TR", "EG2531CT-ND"),
     ("BOOT", "SW_SPST_TL3342"): ("TL3342F160QG/TR", "EG2531CT-ND"),
     ("ESP32-S3-MINI-1-N8", "ESP32-S2-MINI-1"): ("ESP32-S3-MINI-1-N8", "5407-ESP32-S3-MINI-1-N8CT-ND"),
-    ("SRP1245A-3R3M", "L_Bourns_SRP1245A"): ("SRP1245A-3R3M", "SRP1245A-3R3MCT-ND"),
+    ("SRP1265A-3R3M", "L_Bourns_SRP1245A"): ("SRP1265A-3R3M", "SRP1265A-3R3MCT-ND"),   # gleiche Pads wie SRP1245A
     ("1812L300/24SLER", "Fuse_1812_4532Metric"): ("1812L300/24SLER", "18-1812L300/24SLERCT-ND"),
     ("AP2112K-3.3", "SOT-23-5"): ("AP2112K-3.3TRG1", "AP2112K-3.3TRG1DICT-ND"),
     ("USBLC6-2SC6", "SOT-23-6"): ("USBLC6-2SC6", "497-5235-1-ND"),
@@ -236,7 +236,7 @@ def build_parts():
                   {"1": "+15V", "2": "GND", "4": "GND", "5": "+5V", "7": "BUCK_SW", "8": "BUCK_BST",
                    "9": "BUCK_VCC", "10": "GND", "11": "BUCK_FB"}, M, nc=["3", "6", "12"],
                   extra={"Hinweis": "FSEL=GND: 400 kHz; MODE offen: USM; EN offen: Start automatisch"}))
-    P.append(Part("L1", "Device:L", "SRP1245A-3R3M", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
+    P.append(Part("L1", "Device:L", "SRP1265A-3R3M", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
     P.append(Part("C21", "Device:C", "22u/25V", FP_C1206, {"1": "+15V", "2": "GND"}, M))
     P.append(Part("C22", "Device:C", "100n/25V", FP_C0603, {"1": "+15V", "2": "GND"}, M))
     for i, ref in enumerate(("C23", "C24", "C25")):
