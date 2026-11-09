@@ -199,15 +199,18 @@ for r in sorted(assy, key=lambda s: (re.sub(r"\d", "", s), int(re.sub(r"\D", "",
     k = (fps[r].GetValue(), fps[r].GetFPIDAsString().split(":")[-1])
     e = _bez.setdefault(k, {"refs": [], "qty": 0})
     e["refs"].append(r); e["qty"] += 1 + (3 if r in _slave else 0)
-_dk_offen = 0
-with open(os.path.join(STAGE, "BOM_DigiKey.csv"), "w", newline="", encoding="utf-8") as fh:
+_dk_offen = []
+with open(os.path.join(STAGE, "BOM_DigiKey.csv"), "w", newline="", encoding="utf-8") as fh, open(os.path.join(STAGE, "BOM_Separat_Beschaffung.csv"), "w", newline="", encoding="utf-8") as fo:
     w = csv.writer(fh); w.writerow(["Digi-Key Part Number", "Manufacturer Part Number", "Quantity", "Customer Reference", "Description"])
+    wo = csv.writer(fo); wo.writerow(["Manufacturer Part Number", "Quantity", "Reference", "Description", "LCSC"])
     for (val, foot), e in _bez.items():
         mpn, dk = D.BEZUG.get((val, foot), ("", ""))
-        _dk_offen += 0 if dk else 1
-        w.writerow([dk, mpn, e["qty"], ",".join(e["refs"])[:60], f"{val} {foot}"])
-check("Stueckliste", "BOM DigiKey (1 Master + 3 Slaves)", "CSV fuer den DigiKey BOM Manager erzeugt", f"{len(_bez)} Positionen, davon {_dk_offen} ohne DigiKey-Nummer", True,
-      "Positionen ohne Nummer im BOM Manager von Hand zuordnen; LEDs sind nicht enthalten.")
+        if dk:
+            w.writerow([dk, mpn, e["qty"], ",".join(e["refs"])[:60], f"{val} {foot}"])
+        else:
+            _dk_offen.append(val); wo.writerow([mpn, e["qty"], ",".join(e["refs"]), f"{val} {foot}", LCSC.get(val, "")])
+check("Stueckliste", "BOM DigiKey (1 Master + 3 Slaves)", "Jede Position hat eine DigiKey-Nummer oder steht in der separaten Beschaffungsliste",
+      f"{len(_bez) - len(_dk_offen)} bei DigiKey, separat: {', '.join(_dk_offen) or '-'}", True, "LEDs sind nicht enthalten.")
 for vname, refs in (("Master", assy), ("Slave", [r for r in assy if r not in MASTER])):
     bom, cpl, rows = variant(vname, refs)
     noval = [r for r in refs if not fps[r].GetValue() or fps[r].GetValue() in ("~", "")]
@@ -241,7 +244,7 @@ notes = ["Bestueckung: Master = Standard-PCBA (beidseitig, Passermarken vorhande
          "Loetstopplack: gruen empfohlen (min. Steg 0,10 mm); bei Schwarz/Weiss gilt 0,13 mm.",
 "SK6812RGBW: Footprint mit WS2812B-Pinbelegung (1 VDD, 2 DOUT, 3 VSS, 4 DIN) - vor Bestellung mit dem Datenblatt des gewaehlten Herstellers abgleichen.",
          "BH1750 (U5): Footprint WSOF6I selbst erstellt nach ROHM-Zeichnung, ungetestet.",
-         "DigiKey-BOM: BOM_DigiKey.csv enthaelt nur bestaetigte Bestellnummern, offene Positionen im BOM Manager zuordnen. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. SRP1245A-3R3M zuletzt ohne LCSC-Bestand, F1 (Littelfuse 1812L300/24SLER) nicht bei LCSC gefunden: ggf. selbst beschaffen.",
+         "DigiKey: BOM_DigiKey.csv (Cut Tape, Satz aus 1 Master + 3 Slaves) direkt in den BOM Manager laden; J1, U6, U7 fuehrt DigiKey nicht, siehe BOM_Separat_Beschaffung.csv. SRP1245A-3R3M war bei der Pruefung nicht auf Lager. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. SRP1245A-3R3M zuletzt ohne LCSC-Bestand, F1 (Littelfuse 1812L300/24SLER) nicht bei LCSC gefunden: ggf. selbst beschaffen.",
          "Die 19 Kantenbruecken (0R 2512) werden nach dem Zusammenbau von Hand geloetet und sind nicht in der BOM.",
          "Schaltwandler U7 (SCT2360): Footprint gegen Package-Zeichnung geprueft, ungetestet. LEDs: SK6812 RGBNW (Pinbelegung des Angebots passt zum Footprint) werden separat beschafft.",
          "Versorgung: USB-C PD 15 V, Schaltwandler 5 V / 6 A, Firmware begrenzt auf geschaetzte 5 A."]
