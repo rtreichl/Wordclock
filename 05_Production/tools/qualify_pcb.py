@@ -100,7 +100,7 @@ def _pad(ref, num):
     for p in b.FindFootprintByReference(ref).Pads():
         if p.GetNumber() == num:
             return p.GetPosition()
-DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C9": ("U1", "3"), "C175": ("D75", "1"), "C22": ("U7", "1")}
+DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C9": ("U1", "3"), "C175": ("D75", "1"), "C22": ("U7", "1"), "C28": ("U3", "5")}
 DEC.update({f"C{100 + n}": (f"D{n}", "1") for n in range(1, 73)})
 dist = {}
 for cref, (ic, pin) in DEC.items():
