@@ -119,6 +119,18 @@ holes = [(fp.GetReference(), round(mm(fp.GetPosition().x) - 40, 2), round(mm(fp.
 check("Mechanik", "Montageloecher M3", "6 x Bohrung 4,3 mm (M3 mit +-0,65 mm Spiel) an den Stegkreuzungen", f"{len(holes)} Stk.",
       len(holes) == 6 and all(abs(d - 4.3) < 0.01 for d in npth if d > 3.0))
 
+import math
+_off = []
+for _t in b.GetTracks():
+    if _t.GetClass() != "PCB_TRACK" or _t.GetStart() == _t.GetEnd():
+        continue
+    _dx, _dy = abs(_t.GetEnd().x - _t.GetStart().x), abs(_t.GetEnd().y - _t.GetStart().y)
+    _w = math.degrees(math.atan2(_dy, _dx))
+    # Kurze Stuecke auf dem Fertigungsraster duerfen wegen Rundung etwas abweichen
+    if min(abs(_w - x) for x in (0, 45, 90)) > 0.5 and abs(_dx - _dy) > 30000 and min(_dx, _dy) > 30000:
+        _off.append(_t.GetNetname())
+check("Layout", "Leiterbahnwinkel", "nur horizontal, vertikal oder 45 Grad", f"{len(_off)} abweichend" + (f" ({sorted(set(_off))[:5]})" if _off else ""), not _off)
+
 # ---------------------------------------------------------------- Fertigungsdaten erzeugen
 g = os.path.join(STAGE, "gerber"); os.makedirs(g, exist_ok=True)
 layers = "F.Cu,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts"
@@ -209,7 +221,8 @@ notes = ["Bestueckung: Master = Standard-PCBA (beidseitig, Passermarken vorhande
          "BH1750 (U5): Footprint WSOF6I selbst erstellt nach ROHM-Zeichnung, ungetestet.",
          "LCSC-Teilenummern in BOM leer - bei JLCPCB-Bestueckung zuordnen.",
          "Die 19 Kantenbruecken (0R 2512) werden nach dem Zusammenbau von Hand geloetet und sind nicht in der BOM.",
-         "Bei > 3 A ueber die Hohlbuchse: 2-oz-Kupfer waehlen oder Strombegrenzung in der Firmware."]
+         "Schaltwandler U7 (SCT2360): Footprint nach Datenblatt erstellt, ungetestet. L1, F1 und SK6812-Typ vor der Bestellung festlegen.",
+         "Versorgung: USB-C PD 15 V, Schaltwandler 5 V / 6 A, Firmware begrenzt auf geschaetzte 5 A."]
 json.dump({"checks": checks, "notes": notes}, open(os.path.join(sys.argv[1], "pcb_result.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 for f in ("erc.json", "drc.json"):
     os.replace(os.path.join(STAGE, f), os.path.join(sys.argv[1], f))
