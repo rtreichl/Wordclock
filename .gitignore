@@ -24,3 +24,6 @@ fp-info-cache
 *.blend1
 stage/
 __pycache__/
+
+# Datenblaetter: nur lokal
+06_Datenbl*/
