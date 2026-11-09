@@ -27,3 +27,6 @@ __pycache__/
 
 # Datenblaetter: nur lokal
 06_Datenbl*/
+
+# Zugangsdaten (DigiKey-API)
+.env
