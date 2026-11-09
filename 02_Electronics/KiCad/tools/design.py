@@ -95,6 +95,38 @@ def sheet_uuid(name):
     return uid("sheet/" + name)
 
 
+# Bezugsdaten: (Wert, Footprint) -> (Hersteller-Teilenummer, DigiKey-Bestellnummer als Cut Tape).
+# Nur eintragen, was auf digikey.de bestaetigt ist. Leere DigiKey-Nummer: Teil existiert dort, Bestellnummer noch offen.
+BEZUG = {
+    ("100n", "C_0603_1608Metric"): ("C0603C104K5RACTU", "399-C0603C104K5RACTUCT-ND"),
+    ("100n/25V", "C_0603_1608Metric"): ("C0603C104K5RACTU", "399-C0603C104K5RACTUCT-ND"),
+    ("1u", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
+    ("1u/25V", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
+    ("1u/10V", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
+    ("10u", "C_0805_2012Metric"): ("C0805C106K4PACTU", "399-C0805C106K4PACTUCT-ND"),
+    ("22u/10V", "C_0805_2012Metric"): ("C0805C226M8PACTU", "399-C0805C226M8PACTUCT-ND"),
+    ("22u/25V", "C_1206_3216Metric"): ("CL31A226KAHNNNE", "1276-3047-1-ND"),
+    ("10k", "R_0603_1608Metric"): ("ERJ-3EKF1002V", ""),
+    ("33", "R_0603_1608Metric"): ("ERJ-3EKF33R0V", ""),
+    ("1k", "R_0603_1608Metric"): ("ERJ-3EKF1001V", ""),
+    ("ESP32-S3-MINI-1-N8", "ESP32-S2-MINI-1"): ("ESP32-S3-MINI-1-N8", ""),
+    ("SRP1245A-3R3M", "L_Bourns_SRP1245A"): ("SRP1245A-3R3M", ""),
+    ("1812L300/24SLER", "Fuse_1812_4532Metric"): ("1812L300/24SLER", ""),
+    ("AP2112K-3.3", "SOT-23-5"): ("AP2112K-3.3TRG1", ""),
+    ("USBLC6-2SC6", "SOT-23-6"): ("USBLC6-2SC6", ""),
+    ("USB-C", "USB_C_Receptacle_HRO_TYPE-C-31-M-12"): ("TYPE-C-31-M-12", ""),
+}
+
+
+def bezug(p):
+    """Tragt MPN und DigiKey-Nummer als Symboleigenschaften ein, soweit bekannt."""
+    mpn, dk = BEZUG.get((p.value, p.fp.split(":")[-1]), ("", ""))
+    if mpn:
+        p.extra["MPN"] = mpn
+    if dk:
+        p.extra["DigiKey"] = dk
+
+
 def build_parts():
     P = []
     # --- LED-Feld -------------------------------------------------------------
@@ -201,6 +233,8 @@ def build_parts():
     P.append(Part("R22", "Device:R", "75k", FP_R0603, {"1": "+5V", "2": "BUCK_FB"}, M))
     P.append(Part("R23", "Device:R", "10.2k", FP_R0603, {"1": "BUCK_FB", "2": "GND"}, M))
     P.append(Part("C9", "Device:C", "22u/10V", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
+    for p in P:
+        bezug(p)
     return P
 
 
