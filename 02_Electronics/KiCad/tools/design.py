@@ -180,7 +180,7 @@ def build_parts():
     # --- USB-C Power Delivery + Abwaertswandler 15 V -> 5 V / 6 A (ersetzt Hohlbuchse und Dioden) ---
     FP_L = "Inductor_SMD:L_Bourns_SRP1245A"
     FP_C1206 = "Capacitor_SMD:C_1206_3216Metric"
-    P.append(Part("F1", "Device:Polyfuse", "PTC 3A/24V", "Fuse:Fuse_1812_4532Metric", {"1": "VBUS", "2": "+15V"}, M))
+    P.append(Part("F1", "Device:Polyfuse", "1812L300/24SLER", "Fuse:Fuse_1812_4532Metric", {"1": "VBUS", "2": "+15V"}, M))
     P.append(Part("U6", "WortUhr:CH224K", "CH224K", "Package_SO:SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm",
                   {"1": "PD_VDD", "2": "PD_VDD", "3": "PD_VDD", "6": "CC2", "7": "CC1", "8": "PD_SENSE", "9": "GND", "10": "PD_GOOD", "11": "GND"},
                   M, nc=["4", "5"], extra={"Hinweis": "CFG1=0, CFG2=1, CFG3=1: fordert 15 V an"}))
@@ -191,7 +191,7 @@ def build_parts():
                   {"1": "+15V", "2": "GND", "4": "GND", "5": "+5V", "7": "BUCK_SW", "8": "BUCK_BST",
                    "9": "BUCK_VCC", "10": "GND", "11": "BUCK_FB"}, M, nc=["3", "6", "12"],
                   extra={"Hinweis": "FSEL=GND: 400 kHz; MODE offen: USM; EN offen: Start automatisch"}))
-    P.append(Part("L1", "Device:L", "3.3uH Isat>=10A", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
+    P.append(Part("L1", "Device:L", "SRP1245A-3R3M", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
     P.append(Part("C21", "Device:C", "22u/25V", FP_C1206, {"1": "+15V", "2": "GND"}, M))
     P.append(Part("C22", "Device:C", "100n/25V", FP_C0603, {"1": "+15V", "2": "GND"}, M))
     for i, ref in enumerate(("C23", "C24", "C25")):
