@@ -41,7 +41,7 @@ Insgesamt werden 19× 0 Ω 2512 benötigt. Jede Brücke ist für etwa 3 A ausgel
   - Je Viertel eine lange Leiste mit 240 × 56 mm und 3 Schrauben und eine kurze mit 184 × 56 mm und 2 Schrauben.
   - Druck: `01_Mechanic/Rueckrahmen/Rueckrahmen_Druckplatte1_lange_Leisten.3mf` (4 lange Leisten, 244 × 243 mm) und `Rueckrahmen_Druckplatte2_kurze_Leisten.3mf` (4 kurze Leisten, 188 × 243 mm). Die Wandseite liegt auf dem Bett, die Dome zeigen nach oben.
   - In den langen Leisten oben (Q1, Q2) ist je ein Schlüsselloch für die Wandschraube: Kopf bis Ø 8 mm und 3 mm Höhe, Schaft bis 4,5 mm, Abstand 260 mm.
-  - Ausschnitte für C1 sowie für USB-C und Hohlbuchse (Q4 unten). Die Bauteile bleiben mindestens 2 mm von der Wand entfernt.
+  - Ausschnitte für C1 sowie für USB-C (Q4 unten) und eine Tasche für die Spule L1 (Q4 lang). Die Bauteile bleiben mindestens 2 mm von der Wand entfernt.
 - **Aufbauhöhe:** Frontplatte 1 mm, Gitter 25 mm, Rückrahmen 10 mm, zusammen **36 mm**. Von der Rückseite der Frontplatte bis zur Wand sind es 35 mm.
 - **3D-Modelle:** Für ESP32-S3-MINI-1, USB-C (HRO TYPE-C-31-M-12), Hohlbuchse (CUI PJ-036AH-SMT) und BH1750 liegen in `3dmodels/` maßgenaue Platzhalter. In der KiCad-Bibliothek gibt es für diese Teile keine Modelle. Die 0-Ω-Brücken werden am Footprint J_OUT dargestellt.
 - **Lichtsensor:** Der BH1750 (U5) sitzt oben unter dem Lichtleiter Mentor 1282.1000. Der Lichtleiter wird von vorn in das 2,8-mm-Loch im Gitter (Q4, unterer Rahmen) gedrückt.

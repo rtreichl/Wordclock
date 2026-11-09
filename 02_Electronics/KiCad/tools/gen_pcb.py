@@ -185,8 +185,8 @@ for c, ((k, j), d) in enumerate(D.PATH):
     place(pB, *T(+D.LED_OFF, 0), rot)
     # Abblock-C am +5V-Pin (Punkt 1): +5V-Pad zum Pin, eigenes GND-Via direkt am GND-Pad
     rc = 90 if d > 0 else 270
-    place(parts[f"C{100+nA}"], *T(-2.9, 2.45), rc)
-    place(parts[f"C{100+nB}"], *T(12.1, 2.45), rc)
+    place(parts[f"C{100+nA}"], *T(-2.9, 2.425), rc)
+    place(parts[f"C{100+nB}"], *T(12.1, 2.425), rc)
     place(parts[f"JP{c+1}"], *T(7.5, -4.4), rp)
     for r in (f"D{nA}", f"D{nB}", f"C{100+nA}", f"C{100+nB}", f"JP{c+1}"):
         placed[r].Reference().SetVisible(False)
@@ -201,7 +201,7 @@ for c, ((k, j), d) in enumerate(D.PATH):
     for cref, vdd in ((f"C{100+nA}", T(-5.05, 1.65)), (f"C{100+nB}", T(9.95, 1.65))):
         gx, gy = pad_xy(cref, "1"); px_, py_ = pad_xy(cref, "2")
         track([vdd, (px_, py_)], "+5V", w=W_GND)
-        vg = (gx + d * 1.0, gy + d * 1.25)
+        vg = (gx + d * 1.25, gy + d * 1.25)
         track([(gx, gy), vg], "GND", w=W_GND); via(*vg, "GND")
     # Bruecke JP: Pad1 -> B.DIN, Pad2 -> B.DOUT
     track([T(6.85, -4.4), T(1.5, -4.4), T(0.0, -2.9), T(0.0, -1.65)], a_out)
@@ -353,7 +353,7 @@ zone(pcbnew.B_Cu, "GND", full)
 
 
 # ---------------------------------------------------------------- Beschriftung
-text(pcbnew.B_SilkS, "WortUhr LED-Board rev2  -  4x identisch", 117.0, 120.0, 2.0, mirror=True)
+text(pcbnew.B_SilkS, "WortUhr LED-Board rev3  -  4x identisch", 117.0, 120.0, 2.0, mirror=True)
 text(pcbnew.B_SilkS, "Master: U1..U7, J1 bestuecken", 117.0, 124.0, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "JPx schliessen wenn LED B fehlt", 117.0, 127.5, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "IN", 7.5, D.CONN_POS - 14.0, 1.2, mirror=True)
@@ -377,7 +377,7 @@ _ns["classes"] = [dict(_cl, track_width=0.2, clearance=0.2, via_diameter=0.7, vi
     _nc("PWR_15V", 0.8, vd=0.8, vh=0.4), _nc("PWR_VBUS", 0.6, vd=0.8, vh=0.4), _nc("PWR_3V3", 0.5, vd=0.8, vh=0.4),
     _nc("PWR_5V", 0.6, vd=0.8, vh=0.4), _nc("GND", 0.4), _nc("USB", 0.2, clr=0.15), _nc("LED_DATA", 0.3)]
 _ns["netclass_patterns"] = [{"netclass": c, "pattern": p_} for c, p_ in (("PWR_15V", "+15V"), ("PWR_VBUS", "VBUS"), ("PWR_3V3", "+3V3"), ("PWR_5V", "+5V"), ("GND", "GND"),
-                            ("USB", "USB_D*"), ("LED_DATA", "*/C??_*_OUT"), ("LED_DATA", "DIN"), ("LED_DATA", "*/DOUT"), ("LED_DATA", "*/MIN_OUT"), ("LED_DATA", "*/LED_5V"))]
+                            ("USB", "USB_D*"), ("USB", "*/USB_D*"), ("LED_DATA", "*/C??_*_OUT"), ("LED_DATA", "DIN"), ("LED_DATA", "*/DOUT"), ("LED_DATA", "*/MIN_OUT"), ("LED_DATA", "*/LED_5V"))]
 _r["min_copper_edge_clearance"] = 0.3
 _r["min_track_width"] = 0.1
 json.dump(_d, open(_pro, "w", encoding="utf-8"), indent=2)

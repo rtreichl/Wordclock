@@ -4,8 +4,8 @@
 |---|---|
 | Bauteil | 03_Software/WLED/ledmap_*.json |
 | Fertiger | WLED |
-| Datum | 2026-11-08 |
-| Stand | Git `d71eccd` (mit nicht eingecheckten Aenderungen) |
+| Datum | 2026-11-09 |
+| Stand | Git `63f04dd` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **WLED: FREIGEGEBEN** |
 

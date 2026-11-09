@@ -4,8 +4,8 @@
 |---|---|
 | Bauteil | Rückrahmen (8 Leisten, 2 Druckplatten) |
 | Fertiger | P1S, JLC3DP |
-| Datum | 2026-11-08 |
-| Stand | Git `d71eccd` (mit nicht eingecheckten Aenderungen) |
+| Datum | 2026-11-09 |
+| Stand | Git `63f04dd` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Bambu Lab P1S: FREIGEGEBEN** · **JLC3DP: FREIGEGEBEN** |
 
@@ -59,7 +59,7 @@
 | Netz | Rueckrahmen Q4_untenrechts_lang: Geschlossen und mannigfaltig | solid, keine nicht-mannigfaltigen Kanten, keine Selbstdurchdringung | solid=True, nonmanifold=False, selfint=False | ✅ bestanden | ✅ bestanden |
 | Bauraum | Rueckrahmen Q4_untenrechts_lang: Groesse in Druckorientierung | P1S <= 256^3; JLC3DP <= 250 x 250 x 300, >= 30 x 30 x 10 | 239.2 x 56.0 x 13.4 mm | ✅ bestanden | ✅ bestanden |
 | Bauraum | Rueckrahmen Q4_untenrechts_lang: Flach auf dem Druckbett | Auflageflaeche > 20 cm^2 bei z = 0 | 127 cm^2 | ✅ bestanden | ✅ bestanden |
-| Wandstaerke | Rueckrahmen Q4_untenrechts_lang: Duennste Wand (Strahlmessung, 1604 Punkte) | P1S >= 0.84 mm; JLC3DP >= 2.5 mm | 2.54 mm bei (369.9, -444.0, 2.3) | ✅ bestanden | ✅ bestanden |
+| Wandstaerke | Rueckrahmen Q4_untenrechts_lang: Duennste Wand (Strahlmessung, 1624 Punkte) | P1S >= 0.84 mm; JLC3DP >= 2.5 mm | 2.54 mm bei (369.9, -444.0, 2.3) | ✅ bestanden | ✅ bestanden |
 | Passung | Rueckrahmen Q4_untenrechts_lang: Kollision mit Gitter | 0 mm^3 | 0.000 mm^3 | ✅ bestanden | ✅ bestanden |
 | Bohrungen | Rueckrahmen Q4_untenrechts_lang: Kleinste Bohrung | JLC3DP >= 1.5 mm | Durchgang M3 3,4 mm; Schluesselloch 4,6/9 mm | ✅ bestanden | ✅ bestanden |
 | Geometrie | Rueckrahmen Q4_untenrechts_kurz: Gueltiger Volumenkoerper | 1 gueltiger Solid | valid=True, solids=1 | ✅ bestanden | ✅ bestanden |
@@ -80,7 +80,7 @@
 
 | Datei | SHA256 |
 |---|---|
-| `Rueckrahmen_Druckplatte1_lange_Leisten.3mf` | `e88b110fabfd0c40…` |
+| `Rueckrahmen_Druckplatte1_lange_Leisten.3mf` | `4fffa3f2a7c0ab02…` |
 | `Rueckrahmen_Druckplatte2_kurze_Leisten.3mf` | `cd0ee39d4455c04a…` |
 | `Rueckrahmen_Q1_obenlinks_kurz.step` | `99528059c08c30a2…` |
 | `Rueckrahmen_Q1_obenlinks_lang.step` | `600fd471a78d4eb7…` |
@@ -89,7 +89,7 @@
 | `Rueckrahmen_Q3_untenlinks_kurz.step` | `e402e935e3c285b7…` |
 | `Rueckrahmen_Q3_untenlinks_lang.step` | `f9db8c83b3353f21…` |
 | `Rueckrahmen_Q4_untenrechts_kurz.step` | `460c64799af1df21…` |
-| `Rueckrahmen_Q4_untenrechts_lang.step` | `bfd928b0b0ef5202…` |
+| `Rueckrahmen_Q4_untenrechts_lang.step` | `87ab05c4ed5b20d8…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 

@@ -63,6 +63,7 @@ Gilt für jedes Review nach Teil 2. Befunde nennen die Rule ID.
 | MFG-001 | DRC und Schaltplan-Abgleich: 0 Fehler, 0 offen, 0 Abweichungen | HARD | `build_pcb.py`, `qualify_pcb.py` |
 | MFG-002 | Keine offenen Vias oder Stichleitungen (`via_dangling`, `track_dangling` = 0), Via mindestens Bohrung + 0,4 mm | HARD | `route_master.py`, DRC |
 | RF-001 | Antennenbereich des ESP32-S3-MINI-1 nach Herstellervorgabe von Kupfer und Bauteilen freihalten | HARD | Datenblatt, Geometrie |
+| DES-001 | Vor Schaltplan und Layout jedes ICs, Moduls und Steckverbinders das Datenblatt nach Layout Guidelines, Referenzschaltung und Land Pattern durchsuchen, bestenfalls auch nach Beispiel-Layouts und Evaluation Boards. Gefundene Vorgaben umsetzen; Abweichungen und nicht auffindbare Unterlagen im Review nennen | HARD | Liste je Bauteil: Quelle, Vorgabe, Umsetzung |
 
 ### Pflege des Regelwerks
 

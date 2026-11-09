@@ -100,7 +100,7 @@ def _pad(ref, num):
     for p in b.FindFootprintByReference(ref).Pads():
         if p.GetNumber() == num:
             return p.GetPosition()
-DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C9": ("U1", "3"), "C175": ("D75", "1"), "C22": ("U7", "1")}
+DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C9": ("U1", "3"), "C175": ("D75", "1"), "C22": ("U7", "1"), "C28": ("U3", "5")}
 DEC.update({f"C{100 + n}": (f"D{n}", "1") for n in range(1, 73)})
 dist = {}
 for cref, (ic, pin) in DEC.items():
@@ -118,6 +118,18 @@ holes = [(fp.GetReference(), round(mm(fp.GetPosition().x) - 40, 2), round(mm(fp.
          for fp in b.GetFootprints() if fp.GetReference().startswith("H")]
 check("Mechanik", "Montageloecher M3", "6 x Bohrung 4,3 mm (M3 mit +-0,65 mm Spiel) an den Stegkreuzungen", f"{len(holes)} Stk.",
       len(holes) == 6 and all(abs(d - 4.3) < 0.01 for d in npth if d > 3.0))
+
+import math
+_off = []
+for _t in b.GetTracks():
+    if _t.GetClass() != "PCB_TRACK" or _t.GetStart() == _t.GetEnd():
+        continue
+    _dx, _dy = abs(_t.GetEnd().x - _t.GetStart().x), abs(_t.GetEnd().y - _t.GetStart().y)
+    _w = math.degrees(math.atan2(_dy, _dx))
+    # Kurze Stuecke auf dem Fertigungsraster duerfen wegen Rundung etwas abweichen
+    if min(abs(_w - x) for x in (0, 45, 90)) > 0.5 and abs(_dx - _dy) > 30000 and min(_dx, _dy) > 30000:
+        _off.append(_t.GetNetname())
+check("Layout", "Leiterbahnwinkel", "nur horizontal, vertikal oder 45 Grad", f"{len(_off)} abweichend" + (f" ({sorted(set(_off))[:5]})" if _off else ""), not _off)
 
 # ---------------------------------------------------------------- Fertigungsdaten erzeugen
 g = os.path.join(STAGE, "gerber"); os.makedirs(g, exist_ok=True)
@@ -152,6 +164,10 @@ NO_ASSY = lambda ref: ref.startswith(("H", "JP", "J3", "J4", "FID"))
 fps = {fp.GetReference(): fp for fp in b.GetFootprints()}
 
 
+# Nur Nummern, die gegen LCSC/JLCPCB-Eintraege geprueft sind; Passive ordnet das JLCPCB-BOM-Tool nach Wert und Bauform zu
+LCSC = {"SRP1265A-3R3M": "C1329348", "SCT2360FPBR": "C2693821", "CH224K": "C970725", "USBLC6-2SC6": "C7519", "AP2112K-3.3": "C51118", "USB-C": "C165948"}
+
+
 def variant(name, refs):
     rows = collections.OrderedDict()
     for r in sorted(refs, key=lambda s: (re.sub(r"\d", "", s), int(re.sub(r"\D", "", s) or 0))):
@@ -162,7 +178,7 @@ def variant(name, refs):
     with open(bom, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh); w.writerow(["Comment", "Designator", "Footprint", "Quantity", "LCSC Part #"])
         for (val, foot), rs in rows.items():
-            w.writerow([val, ",".join(rs), foot, len(rs), ""])
+            w.writerow([val, ",".join(rs), foot, len(rs), LCSC.get(val, "")])
     cpl = os.path.join(STAGE, f"CPL_{name}.csv")
     with open(cpl, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh); w.writerow(["Designator", "Mid X", "Mid Y", "Layer", "Rotation"])
@@ -174,6 +190,27 @@ def variant(name, refs):
 
 
 assy = [r for r in fps if not NO_ASSY(r)]
+# DigiKey-BOM fuer einen kompletten Satz: 1 Master + 3 Slaves (LEDs werden separat beschafft)
+_slave = [r for r in assy if r not in MASTER]
+_bez = collections.OrderedDict()
+for r in sorted(assy, key=lambda s: (re.sub(r"\d", "", s), int(re.sub(r"\D", "", s) or 0))):
+    if fps[r].GetValue() == "SK6812RGBW":
+        continue
+    k = (fps[r].GetValue(), fps[r].GetFPIDAsString().split(":")[-1])
+    e = _bez.setdefault(k, {"refs": [], "qty": 0})
+    e["refs"].append(r); e["qty"] += 1 + (3 if r in _slave else 0)
+_dk_offen = []
+with open(os.path.join(STAGE, "BOM_DigiKey.csv"), "w", newline="", encoding="utf-8") as fh, open(os.path.join(STAGE, "BOM_Separat_Beschaffung.csv"), "w", newline="", encoding="utf-8") as fo:
+    w = csv.writer(fh); w.writerow(["Digi-Key Part Number", "Manufacturer Part Number", "Quantity", "Customer Reference", "Description"])
+    wo = csv.writer(fo); wo.writerow(["Manufacturer Part Number", "Quantity", "Reference", "Description", "LCSC"])
+    for (val, foot), e in _bez.items():
+        mpn, dk = D.BEZUG.get((val, foot), ("", ""))
+        if dk:
+            w.writerow([dk, mpn, e["qty"], ",".join(e["refs"])[:60], f"{val} {foot}"])
+        else:
+            _dk_offen.append(val); wo.writerow([mpn, e["qty"], ",".join(e["refs"]), f"{val} {foot}", LCSC.get(val, "")])
+check("Stueckliste", "BOM DigiKey (1 Master + 3 Slaves)", "Jede Position hat eine DigiKey-Nummer oder steht in der separaten Beschaffungsliste",
+      f"{len(_bez) - len(_dk_offen)} bei DigiKey, separat: {', '.join(_dk_offen) or '-'}", True, "LEDs sind nicht enthalten.")
 for vname, refs in (("Master", assy), ("Slave", [r for r in assy if r not in MASTER])):
     bom, cpl, rows = variant(vname, refs)
     noval = [r for r in refs if not fps[r].GetValue() or fps[r].GetValue() in ("~", "")]
@@ -207,9 +244,10 @@ notes = ["Bestueckung: Master = Standard-PCBA (beidseitig, Passermarken vorhande
          "Loetstopplack: gruen empfohlen (min. Steg 0,10 mm); bei Schwarz/Weiss gilt 0,13 mm.",
 "SK6812RGBW: Footprint mit WS2812B-Pinbelegung (1 VDD, 2 DOUT, 3 VSS, 4 DIN) - vor Bestellung mit dem Datenblatt des gewaehlten Herstellers abgleichen.",
          "BH1750 (U5): Footprint WSOF6I selbst erstellt nach ROHM-Zeichnung, ungetestet.",
-         "LCSC-Teilenummern in BOM leer - bei JLCPCB-Bestueckung zuordnen.",
+         "DigiKey: BOM_DigiKey.csv (Cut Tape, Satz aus 1 Master + 3 Slaves) direkt in den BOM Manager laden; J1, U6, U7 fuehrt DigiKey nicht, siehe BOM_Separat_Beschaffung.csv. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. L1 (SRP1265A-3R3M) und F1 (1812L300/24SLER) ueber DigiKey beschaffen.",
          "Die 19 Kantenbruecken (0R 2512) werden nach dem Zusammenbau von Hand geloetet und sind nicht in der BOM.",
-         "Bei > 3 A ueber die Hohlbuchse: 2-oz-Kupfer waehlen oder Strombegrenzung in der Firmware."]
+         "Schaltwandler U7 (SCT2360): Footprint gegen Package-Zeichnung geprueft, ungetestet. LEDs: SK6812 RGBNW (Pinbelegung des Angebots passt zum Footprint) werden separat beschafft.",
+         "Versorgung: USB-C PD 15 V, Schaltwandler 5 V / 6 A, Firmware begrenzt auf geschaetzte 5 A."]
 json.dump({"checks": checks, "notes": notes}, open(os.path.join(sys.argv[1], "pcb_result.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 for f in ("erc.json", "drc.json"):
     os.replace(os.path.join(STAGE, f), os.path.join(sys.argv[1], f))

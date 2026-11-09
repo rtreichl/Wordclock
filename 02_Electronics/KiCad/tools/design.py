@@ -77,8 +77,8 @@ class Part:
 
 
 SHEETS = {"Versorgung": "Versorgung.kicad_sch", "ESP32": "ESP32.kicad_sch", "LED_Feld": "LED_Feld.kicad_sch", "Abblockung": "Abblockung.kicad_sch"}
-VERSORGUNG = {"J1", "F1", "U3", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1"}
-ESP32 = {"U1", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8"}
+VERSORGUNG = {"J1", "F1", "U3", "C28", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1"}
+ESP32 = {"U1", "R24", "R25", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8"}
 
 
 def sheet_of(ref):
@@ -93,6 +93,51 @@ def sheet_of(ref):
 
 def sheet_uuid(name):
     return uid("sheet/" + name)
+
+
+# Bezugsdaten: (Wert, Footprint) -> (Hersteller-Teilenummer, DigiKey-Bestellnummer als Cut Tape).
+# Nur eintragen, was ueber die DigiKey-API bestaetigt ist. Leere DigiKey-Nummer: dort nicht gefuehrt.
+BEZUG = {
+    ("100n", "C_0603_1608Metric"): ("C0603C104K5RACTU", "399-C0603C104K5RACTUCT-ND"),
+    ("100n/25V", "C_0603_1608Metric"): ("C0603C104K5RACTU", "399-C0603C104K5RACTUCT-ND"),
+    ("1u", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
+    ("1u/25V", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
+    ("1u/10V", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
+    ("10u", "C_0805_2012Metric"): ("TMK212BBJ106MG-T", "587-6025-1-ND"),
+    ("22u/10V", "C_0805_2012Metric"): ("C0805C226M8PACTU", "399-C0805C226M8PACTUCT-ND"),
+    ("22u/25V", "C_1206_3216Metric"): ("CC1206MKX5R8BB226", "311-3522-1-ND"),
+    ("100u/10V", "CP_Elec_6.3x7.7"): ("UWT1A101MCL1GB", "493-2165-1-ND"),
+    ("10k", "R_0603_1608Metric"): ("ERJ-3EKF1002V", "P10.0KHCT-ND"),
+    ("33", "R_0603_1608Metric"): ("ERJ-3EKF33R0V", "P33.0HCT-ND"),
+    ("1k", "R_0603_1608Metric"): ("ERJ-3EKF1001V", "P1.00KHCT-ND"),
+    ("4k7", "R_0603_1608Metric"): ("ERJ-3EKF4701V", "P4.70KHCT-ND"),
+    ("75k", "R_0603_1608Metric"): ("ERJ-3EKF7502V", "P75.0KHCT-ND"),
+    ("10.2k", "R_0603_1608Metric"): ("ERJ-3EKF1022V", "P10.2KHCT-ND"),
+    ("22", "R_0402_1005Metric"): ("ERJ-2RKF22R0X", "P22.0LCT-ND"),
+    ("1k", "R_1206_3216Metric"): ("RC1206FR-071KL", "311-1.00KFRCT-ND"),
+    ("RESET", "SW_SPST_TL3342"): ("TL3342F160QG/TR", "EG2531CT-ND"),
+    ("BOOT", "SW_SPST_TL3342"): ("TL3342F160QG/TR", "EG2531CT-ND"),
+    ("ESP32-S3-MINI-1-N8", "ESP32-S2-MINI-1"): ("ESP32-S3-MINI-1-N8", "5407-ESP32-S3-MINI-1-N8CT-ND"),
+    ("SRP1265A-3R3M", "L_Bourns_SRP1245A"): ("SRP1265A-3R3M", "SRP1265A-3R3MCT-ND"),   # gleiche Pads wie SRP1245A
+    ("1812L300/24SLER", "Fuse_1812_4532Metric"): ("1812L300/24SLER", "18-1812L300/24SLERCT-ND"),
+    ("AP2112K-3.3", "SOT-23-5"): ("AP2112K-3.3TRG1", "AP2112K-3.3TRG1DICT-ND"),
+    ("USBLC6-2SC6", "SOT-23-6"): ("USBLC6-2SC6", "497-5235-1-ND"),
+    ("74AHCT1G125", "SOT-23-5"): ("SN74AHCT1G125DBVR", "296-4708-1-ND"),
+    ("BH1750FVI", "WSOF6I_BH1750"): ("BH1750FVI-TR", "BH1750FVICT-ND"),
+    # Bei DigiKey nicht gefuehrt: separat beschaffen
+    ("USB-C", "USB_C_Receptacle_HRO_TYPE-C-31-M-12"): ("TYPE-C-31-M-12", ""),
+    ("CH224K", "SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm"): ("CH224K", ""),
+    ("SCT2360FPBR", "QFN-12_SCT2360"): ("SCT2360FPBR", ""),
+}
+
+
+def bezug(p):
+    """Tragt MPN und DigiKey-Nummer als Symboleigenschaften ein, soweit bekannt."""
+    mpn, dk = BEZUG.get((p.value, p.fp.split(":")[-1]), ("", ""))
+    if mpn:
+        p.extra["MPN"] = mpn
+    if dk:
+        p.extra["DigiKey"] = dk
 
 
 def build_parts():
@@ -141,16 +186,21 @@ def build_parts():
     P.append(Part("J1", "Connector:USB_C_Receptacle_USB2.0_14P", "USB-C", "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
                   {"A1": "GND", "A12": "GND", "B1": "GND", "B12": "GND", "SH": "GND",
                    "A4": "VBUS", "A9": "VBUS", "B4": "VBUS", "B9": "VBUS",
-                   "A5": "CC1", "B5": "CC2", "A6": "USB_DP", "B6": "USB_DP", "A7": "USB_DN", "B7": "USB_DN"}, M))
+                   "A5": "CC1", "B5": "CC2", "A6": "USB_D+", "B6": "USB_D+", "A7": "USB_D-", "B7": "USB_D-"}, M))
     P.append(Part("U3", "Power_Protection:USBLC6-2SC6", "USBLC6-2SC6", "Package_TO_SOT_SMD:SOT-23-6",
-                  {"1": "USB_DN", "6": "USB_DN", "3": "USB_DP", "4": "USB_DP", "2": "GND", "5": "+5V"}, M))
+                  {"1": "USB_D-", "6": "USB_D-", "3": "USB_D+", "4": "USB_D+", "2": "GND", "5": "+5V"}, M))
+    P.append(Part("C28", "Device:C", "100n", FP_C0603, {"1": "+5V", "2": "GND"}, M, extra={"Hinweis": "ST USBLC6-2 Figure 17: C_BUS an Pin 5"}))
+    # Espressif: Serienwiderstaende 22/33 Ohm in D+/D- nahe am Chip
+    FP_R0402 = "Resistor_SMD:R_0402_1005Metric"
+    P.append(Part("R24", "Device:R", "22", FP_R0402, {"1": "USB_D-", "2": "USB_D-_ESP"}, M))
+    P.append(Part("R25", "Device:R", "22", FP_R0402, {"1": "USB_D+", "2": "USB_D+_ESP"}, M))
     P.append(Part("U2", "Regulator_Linear:AP2112K-3.3", "AP2112K-3.3", "Package_TO_SOT_SMD:SOT-23-5",
                   {"1": "+5V", "3": "+5V", "2": "GND", "5": "+3V3"}, M, nc=["4"]))
     P.append(Part("C2", "Device:C", "10u", FP_C0805, {"1": "+5V", "2": "GND"}, M))
     P.append(Part("C3", "Device:C", "10u", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
     P.append(Part("C4", "Device:C", "100n", FP_C0603, {"1": "+3V3", "2": "GND"}, M))
     esp = {"1": "GND", "2": "GND", "3": "+3V3", "45": "EN", "4": "BOOT", "12": "LED_3V3",
-           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_DN", "24": "USB_DP"}
+           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_D-_ESP", "24": "USB_D+_ESP"}
     for n in list(range(42, 44)) + list(range(46, 66)):
         esp[str(n)] = "GND"
     used = set(esp)
@@ -175,18 +225,18 @@ def build_parts():
     # --- USB-C Power Delivery + Abwaertswandler 15 V -> 5 V / 6 A (ersetzt Hohlbuchse und Dioden) ---
     FP_L = "Inductor_SMD:L_Bourns_SRP1245A"
     FP_C1206 = "Capacitor_SMD:C_1206_3216Metric"
-    P.append(Part("F1", "Device:Polyfuse", "PTC 3A/24V", "Fuse:Fuse_1812_4532Metric", {"1": "VBUS", "2": "+15V"}, M))
+    P.append(Part("F1", "Device:Polyfuse", "1812L300/24SLER", "Fuse:Fuse_1812_4532Metric", {"1": "VBUS", "2": "+15V"}, M))
     P.append(Part("U6", "WortUhr:CH224K", "CH224K", "Package_SO:SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm",
                   {"1": "PD_VDD", "2": "PD_VDD", "3": "PD_VDD", "6": "CC2", "7": "CC1", "8": "PD_SENSE", "9": "GND", "10": "PD_GOOD", "11": "GND"},
                   M, nc=["4", "5"], extra={"Hinweis": "CFG1=0, CFG2=1, CFG3=1: fordert 15 V an"}))
-    P.append(Part("R20", "Device:R", "1k", FP_R0603, {"1": "+15V", "2": "PD_VDD"}, M))
+    P.append(Part("R20", "Device:R", "1k", "Resistor_SMD:R_1206_3216Metric", {"1": "+15V", "2": "PD_VDD"}, M))
     P.append(Part("C20", "Device:C", "1u/25V", FP_C0603, {"1": "PD_VDD", "2": "GND"}, M))
     P.append(Part("R21", "Device:R", "10k", FP_R0603, {"1": "+15V", "2": "PD_SENSE"}, M))
     P.append(Part("U7", "WortUhr:SCT2360", "SCT2360FPBR", "WortUhr:QFN-12_SCT2360",
                   {"1": "+15V", "2": "GND", "4": "GND", "5": "+5V", "7": "BUCK_SW", "8": "BUCK_BST",
                    "9": "BUCK_VCC", "10": "GND", "11": "BUCK_FB"}, M, nc=["3", "6", "12"],
                   extra={"Hinweis": "FSEL=GND: 400 kHz; MODE offen: USM; EN offen: Start automatisch"}))
-    P.append(Part("L1", "Device:L", "3.3uH Isat>=10A", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
+    P.append(Part("L1", "Device:L", "SRP1265A-3R3M", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
     P.append(Part("C21", "Device:C", "22u/25V", FP_C1206, {"1": "+15V", "2": "GND"}, M))
     P.append(Part("C22", "Device:C", "100n/25V", FP_C0603, {"1": "+15V", "2": "GND"}, M))
     for i, ref in enumerate(("C23", "C24", "C25")):
@@ -196,6 +246,8 @@ def build_parts():
     P.append(Part("R22", "Device:R", "75k", FP_R0603, {"1": "+5V", "2": "BUCK_FB"}, M))
     P.append(Part("R23", "Device:R", "10.2k", FP_R0603, {"1": "BUCK_FB", "2": "GND"}, M))
     P.append(Part("C9", "Device:C", "22u/10V", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
+    for p in P:
+        bezug(p)
     return P
 
 
@@ -213,23 +265,26 @@ MASTER_PLACE = {
     "SW1": (82.0, 217.0, 0, "B"),     # RESET
     "SW2": (5.4, 218.6, 0, "B"),      # BOOT
     "J1": (63.0, 230.6, 180, "B"),    # USB-C
-    "U3": (63.0, 219.5, 180, "B"),    # DN oben, DP unten: passt zur Lage am ESP32 ohne Kreuzung
+    "U3": (60.4, 221.5, 180, "B"),    # nah an J1; D- oben, D+ unten: passt zur Lage am ESP32
+    "C28": (60.9, 222.2, 0, "F"),     # C_BUS oben direkt ueber U3
+    "R24": (36.0, 211.9, 180, "B"),     # USB-Serienwiderstaende nahe U1
+    "R25": (36.0, 212.9, 180, "B"),
     "F1": (72.0, 230.5, 0, "B"),      # Eingangssicherung
     "U6": (71.5, 222.0, 0, "B"),      # PD-Controller
-    "R20": (76.5, 224.0, 90, "B"),
+    "R20": (76.9, 224.0, 90, "B"),     # 1206: 137 mW bei 15 V
     "C20": (76.5, 220.0, 90, "B"),
-    "R21": (78.5, 224.0, 90, "B"),
-    "C21": (85.0, 224.0, 90, "B"),    # Eingang Wandler
-    "C22": (87.2, 228.0, 0, "B"),
+    "R21": (79.0, 224.0, 90, "B"),
+    "C21": (85.7, 224.0, 90, "B"),     # Figure 22: Eingangs-C ueber VIN (Pin 1) und PGND (Pin 2)
+    "C22": (87.75, 224.0, 90, "B"),    # Figure 22: 100n direkt an Pin 1/2 (Hot-Loop)
     "U7": (90.5, 224.0, 0, "B"),      # Abwaertswandler, SW zur Spule
-    "C26": (93.5, 228.0, 0, "B"),
-    "C27": (90.4, 227.7, 180, "B"),
-    "R22": (92.0, 219.0, 90, "B"),
-    "R23": (94.0, 219.0, 90, "B"),
-    "L1": (102.0, 224.0, 0, "B"),
-    "C23": (111.0, 219.5, 90, "B"),
-    "C24": (113.5, 219.5, 90, "B"),
-    "C25": (116.0, 219.5, 90, "B"),
+    "C26": (93.0, 226.7, 0, "B"),      # BST direkt zwischen Pin 8 und SW
+    "C27": (92.03, 228.2, 0, "B"),     # VCC direkt unter Pin 9
+    "R22": (85.9, 227.7, 0, "B"),      # Rueckfuehrung an der Pinreihe 9-12
+    "R23": (88.9, 227.7, 0, "B"),
+    "L1": (102.0, 224.0, 0, "B"),     # so nah wie moeglich an SW
+    "C23": (111.3, 221.5, 0, "B"),     # Ausgangs-Cs direkt am Spulenanschluss
+    "C24": (111.3, 224.0, 0, "B"),
+    "C25": (111.3, 226.5, 0, "B"),
     "U4": (19.0, 218.5, 180, "B"),    # Pegelwandler: A zum ESP32, Y zu R5
     "C6": (19.0, 215.0, 0, "B"),
     "R5": (14.5, 219.0, 90, "B"),

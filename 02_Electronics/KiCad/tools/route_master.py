@@ -18,7 +18,7 @@ HOME = os.path.expanduser("~/.kicad-mcp")
 JAVA = glob.glob(os.path.join(HOME, "jre", "*", "bin", "java.exe"))[0]
 JAR = os.path.join(HOME, "freerouting.jar")
 MASTER = set(D.MASTER_PLACE)
-POWER_W = {"VBUS": 0.6, "+15V": 0.8, "+3V3": 0.5, "USB_DP": 0.2, "USB_DN": 0.2}   # ROUTING_GUIDE.md: Power >= 0,5 mm
+POWER_W = {"VBUS": 0.6, "+15V": 0.8, "+3V3": 0.5, "USB_D+": 0.2, "USB_D-": 0.2}   # ROUTING_GUIDE.md: Power >= 0,5 mm
 mm, toMM = pcbnew.FromMM, pcbnew.ToMM
 
 board = pcbnew.LoadBoard(PCB)
@@ -76,10 +76,10 @@ def free_spot(x, y, netname, obs, ks, r=0.4, gap=0.35, seg_from=None, center=Non
     """Freien Via-Platz nahe (x,y) suchen (beide Lagen); bevorzugt von der Bauteilmitte weg."""
     base = 0.0
     if center is not None and math.hypot(x - center[0], y - center[1]) > 1e-3:
-        base = math.degrees(math.atan2(y - center[1], x - center[0]))
+        base = round(math.degrees(math.atan2(y - center[1], x - center[0])) / 45.0) * 45.0
     for d in (1.4, 1.8, 2.3, 2.8, 3.4, 4.0):
-        for k in range(12):
-            ang = base + (k + 1) // 2 * 30 * (1 if k % 2 else -1)
+        for k in range(8):
+            ang = base + (k + 1) // 2 * 45 * (1 if k % 2 else -1)
             vx, vy = x + d * math.cos(math.radians(ang)), y + d * math.sin(math.radians(ang))
             if not (toMM(edge.GetLeft()) + 1 < vx < toMM(edge.GetRight()) - 1 and toMM(edge.GetTop()) + 1 < vy < toMM(edge.GetBottom()) - 1):
                 continue
@@ -125,7 +125,7 @@ for fp in board.GetFootprints():
     for p in fp.Pads():
         n = p.GetNetname()
         top = p.IsOnLayer(pcbnew.F_Cu) and not p.IsOnLayer(pcbnew.B_Cu)
-        if ref == "U5" or (ref == "U7" and p.GetNumber() == "5") or (ref == "U3" and p.GetNumber() == "5"):
+        if ref in ("U5", "U7", "L1", "C23", "C24", "C25", "R22", "C28") or (ref == "U3" and p.GetNumber() == "5"):
             continue
         need = (n == "+5V") or (n == "GND" and top)
         if not need:
@@ -158,105 +158,102 @@ cx, cy = [pos(p.GetPosition()) for p in board.FindFootprintByReference("C8").Pad
 add_track(board, (x1, y1), (cx, y1), "+3V3", pcbnew.F_Cu, 0.25)
 add_via(board, cx, y1, "+3V3", 0.8, 0.4); added += 1
 add_track(board, (cx, y1), (cx, cy), "+3V3", pcbnew.B_Cu, 0.5)
-# J1 VBUS: 0,6 mm passt nur gerade aus den Pins heraus -> feste Anschluesse, Vias und 0,6-mm-Steg oben (PWR-001)
-_vb = sorted(pos(p.GetPosition()) for p in board.FindFootprintByReference("J1").Pads() if p.GetNetname() == "VBUS")
-_xs = sorted({round(x, 3) for x, y in _vb}); _y = min(y for x, y in _vb) - 2.2
-for _x in _xs:
-    add_track(board, [(x, y) for x, y in _vb if abs(x - _x) < 0.01][0], (_x, _y), "VBUS", pcbnew.B_Cu, 0.6)
-    add_via(board, _x, _y, "VBUS", 0.8, 0.4); added += 1
-_yb = _y - 2.5      # Steg oberhalb lassen: darunter wechseln die USB-Datenleitungen die Lage
-add_track(board, (_xs[0], _y), (_xs[0], _yb), "VBUS", pcbnew.F_Cu, 0.6)
-add_track(board, (_xs[-1], _y), (_xs[-1], _yb), "VBUS", pcbnew.F_Cu, 0.6)
-add_track(board, (_xs[0], _yb), (_xs[-1], _yb), "VBUS", pcbnew.F_Cu, 0.6)
-_f1 = [pos(p.GetPosition()) for p in board.FindFootprintByReference("F1").Pads() if p.GetNetname() == "VBUS"][0]
-_fx = 40 + 68.6
-for a_, c_ in zip([(_xs[-1], _y), (_xs[-1] + 1.45, _y + 1.45), (_fx, _y + 1.45), (_fx, _f1[1])], [(_xs[-1] + 1.45, _y + 1.45), (_fx, _y + 1.45), (_fx, _f1[1])]):
-    add_track(board, a_, c_, "VBUS", pcbnew.F_Cu, 0.6)
-add_via(board, _fx, _f1[1], "VBUS", 0.8, 0.4); added += 1
-add_track(board, (_fx, _f1[1]), _f1, "VBUS", pcbnew.B_Cu, 0.6)
-NET_SW = [n for n in board.GetNetsByName().keys() if str(n).endswith("BUCK_SW")][0]
-NET_SW = str(NET_SW)
 def _pad(ref, num):
     return [pos(p.GetPosition()) for p in board.FindFootprintByReference(ref).Pads() if p.GetNumber() == num][0]
 def _rel(x, y):
     return (x + 40.0, y + 40.0)
 def _poly(pts, layer, net, w):
     for a_, c_ in zip(pts, pts[1:]):
+        dx_, dy_ = abs(a_[0] - c_[0]), abs(a_[1] - c_[1])
+        assert dx_ < 1e-3 or dy_ < 1e-3 or abs(dx_ - dy_) < 0.03, ("Winkel", net, a_, c_)
         add_track(board, a_, c_, net, layer, w)
-# Wandler: kurze, breite Wege (Datenblatt-Layout)
-_sw = _pad("U7", "7"); _swa = (_sw[0] + 2.35, _sw[1])
-_poly([_sw, _swa], pcbnew.B_Cu, NET_SW, 0.3); _poly([_swa, _pad("L1", "1")], pcbnew.B_Cu, NET_SW, 1.5)
-_c = _pad("C21", "1"); _u = _pad("U7", "1")
-_ua = (_u[0] - 1.3, _u[1])
-_poly([_c, (_c[0], _u[1]), _ua], pcbnew.B_Cu, "+15V", 0.8); _poly([_ua, _u], pcbnew.B_Cu, "+15V", 0.3)
-# U7: BST-Kondensator, Masse der feinen Pins
-_b8 = _pad("U7", "8"); _c1 = _pad("C26", "1"); _c2 = _pad("C26", "2")
-_poly([_b8, (_b8[0] + 0.4, _b8[1] + 0.7), _c1], pcbnew.B_Cu, [n for n in map(str, board.GetNetsByName().keys()) if n.endswith("BUCK_BST")][0], 0.25)
-_poly([_c2, (_c2[0], _swa[1])], pcbnew.B_Cu, NET_SW, 0.5)
-_p4 = _pad("U7", "4"); _p10 = _pad("U7", "10")
-_poly([_p4, (_p4[0], _p4[1] - 0.8), (_p4[0] - 0.9, _p4[1] - 1.7)], pcbnew.B_Cu, "GND", 0.25)
-pass
-_v5 = _pad("U7", "5"); _sg = -1 if _v5[1] < 40 + 224.0 else 1
-_v5a = (_v5[0], _v5[1] + _sg * 1.7); _v5b = (_v5[0], _v5[1] + _sg * 2.4)
-_poly([_v5, _v5a], pcbnew.B_Cu, "+5V", 0.25); _poly([_v5a, _v5b], pcbnew.B_Cu, "+5V", 0.65)
-add_via(board, _v5b[0], _v5b[1], "+5V", 0.8, 0.4); added += 1
-_u35 = _pad("U3", "5"); _uv = _rel(60.1, 219.5)
-add_track(board, _u35, _uv, "+5V", pcbnew.B_Cu, 0.4); add_via(board, _uv[0], _uv[1], "+5V", 0.8, 0.4); added += 1
+# VBUS: beide Pinpaare ueber Vias und Steg oben, dann zur Sicherung
+_vb = sorted(pos(p.GetPosition()) for p in board.FindFootprintByReference("J1").Pads() if p.GetNetname() == "VBUS")
+_xs = sorted({round(x, 3) for x, y in _vb}); _y = min(y for x, y in _vb) - 2.2
+for _x in _xs:
+    _poly([[(x, y) for x, y in _vb if abs(x - _x) < 0.01][0], (_x, _y)], pcbnew.B_Cu, "VBUS", 0.6)
+    add_via(board, _x, _y, "VBUS", 0.8, 0.4); added += 1
+_poly([(_xs[0], _y), (_xs[-1], _y)], pcbnew.F_Cu, "VBUS", 0.6)
+_f1 = [pos(p.GetPosition()) for p in board.FindFootprintByReference("F1").Pads() if p.GetNetname() == "VBUS"][0]
+_fx = 40 + 68.6
+_poly([(_xs[-1], _y), (_xs[-1] + 1.45, _y + 1.45), (_fx, _y + 1.45), (_fx, _f1[1])], pcbnew.F_Cu, "VBUS", 0.6)
+add_via(board, _fx, _f1[1], "VBUS", 0.8, 0.4); added += 1
+_poly([(_fx, _f1[1]), _f1], pcbnew.B_Cu, "VBUS", 0.6)
 # +3V3 fest (PWR-001, Punkt 3: von aussen ueber die Kondensatoren zum Pin)
 _V1, _V2, _V3, _V4 = _rel(45.2, 224.1), _rel(21.9, 228.6), _rel(11.5, 227.6), _rel(22.5, 224.1)
 _P = "+3V3"
-_poly([_pad("C3", "1"), _pad("U2", "5"), _rel(49.9, 226.7), _rel(46.6, 226.7), _rel(45.2, 225.3), _V1], pcbnew.B_Cu, _P, 0.5)
-_poly([_V1, _pad("R3", "1")], pcbnew.B_Cu, _P, 0.5)
+_c3, _u25 = _pad("C3", "1"), _pad("U2", "5")
+_poly([_c3, (_c3[0], _u25[1]), _u25, (_u25[0] - 2.3, _u25[1] + 2.3), _rel(46.6, _u25[1] + 2.3 - 40), (_rel(46.6, 0)[0] - 1.4, _u25[1] + 0.9), (_V1[0], _V1[1])], pcbnew.B_Cu, _P, 0.65)
+_r31 = _pad("R3", "1")
+_poly([_V1, (_r31[0] + (_V1[1] - _r31[1]), _V1[1]), _r31], pcbnew.B_Cu, _P, 0.5)
 _T = _rel(26.1, 224.1)
-_poly([_V1, _T, _rel(21.9, 228.3), _V2], pcbnew.F_Cu, _P, 0.5)
+_poly([_V1, _T, _rel(21.9, 228.3), _V2], pcbnew.F_Cu, _P, 0.65)   # Espressif: Hauptleitung >= 25 mil
+# Espressif: beim Lagenwechsel der Hauptleitung mindestens zwei Vias
+_V1b = (_V1[0], _u25[1] + 0.9)
+_poly([_V1, _V1b], pcbnew.F_Cu, _P, 0.65)
+add_via(board, _V1b[0], _V1b[1], _P, 0.8, 0.4); added += 1
 _poly([_T, _V4], pcbnew.F_Cu, _P, 0.5)
-_poly([_V4, _pad("R4", "1")], pcbnew.B_Cu, _P, 0.5)
-_poly([_V2, _pad("C9", "1")], pcbnew.B_Cu, _P, 0.5)
-_poly([_V2, _pad("C4", "1"), _rel(24.6, 225.7), _pad("U1", "3")], pcbnew.B_Cu, _P, 0.5)
-_poly([_V2, _rel(15.0, 228.6), _V3, _rel(4.0, 227.6), _rel(2.73, 228.9), (cx, y1)], pcbnew.F_Cu, _P, 0.5)
+_r41 = _pad("R4", "1")
+_poly([_V4, (_V4[0], _r41[1] + (_V4[0] - _r41[0])), _r41], pcbnew.B_Cu, _P, 0.5)
+_c91 = _pad("C9", "1"); _c41 = _pad("C4", "1"); _u13 = _pad("U1", "3")
+_poly([_V2, (_V2[0], _c91[1] + (_V2[0] - _c91[0])), _c91], pcbnew.B_Cu, _P, 0.5)
+_poly([_V2, (_c41[0], _V2[1]), _c41, (_c41[0] + (_c41[1] - _u13[1]), _u13[1]), _u13], pcbnew.B_Cu, _P, 0.5)
+_poly([_V2, _rel(15.0, 228.6), _rel(14.0, 227.6), _V3, _rel(4.0, 227.6), (cx, _rel(0, 227.6)[1] + (_rel(4.0, 0)[0] - cx)), (cx, y1)], pcbnew.F_Cu, _P, 0.5)
 _poly([_V3, _pad("R7", "1")], pcbnew.B_Cu, _P, 0.5)
-_poly([_V3, _rel(10.2, 227.6), _pad("R6", "1")], pcbnew.B_Cu, _P, 0.5)
-_poly([_V3, _rel(12.8, 227.6), _pad("R8", "1")], pcbnew.B_Cu, _P, 0.5)
+_r61 = _pad("R6", "1"); _r81 = _pad("R8", "1")
+_poly([_V3, (_r61[0] + (_V3[1] - _r61[1]), _V3[1]), _r61], pcbnew.B_Cu, _P, 0.5)
+_poly([_V3, (_r81[0] - (_V3[1] - _r81[1]), _V3[1]), _r81], pcbnew.B_Cu, _P, 0.5)
+_V2b = (_c41[0], _V2[1])
+_poly([_V2, _V2b], pcbnew.F_Cu, _P, 0.65)
+add_via(board, _V2b[0], _V2b[1], _P, 0.8, 0.4); added += 1
 for _v in (_V1, _V2, _V3, _V4):
     add_via(board, _v[0], _v[1], _P, 0.8, 0.4); added += 1
-_NV = [n for n in map(str, board.GetNetsByName().keys()) if n.endswith("BUCK_VCC")][0]
-_p9 = _pad("U7", "9"); _c = [pos(p.GetPosition()) for p in board.FindFootprintByReference("C27").Pads() if p.GetNetname() == _NV][0]
-_poly([_p9, (_p9[0], _c[1]), _c], pcbnew.B_Cu, _NV, 0.25)
-# Masse-Inseln an feinen Pins an die Flaeche anbinden
-_gp = lambda ref, num: _pad(ref, num)
-_c27g = [pos(p.GetPosition()) for p in board.FindFootprintByReference("C27").Pads() if p.GetNetname() == "GND"][0]
-_c22g = [pos(p.GetPosition()) for p in board.FindFootprintByReference("C22").Pads() if p.GetNetname() == "GND"][0]
-_poly([_p10, (_p10[0], _p10[1] + 1.2), _c27g, _c22g], pcbnew.B_Cu, "GND", 0.25)
-_u32 = _pad("U3", "2"); _g1 = (_u32[0] + 1.46, _u32[1]); _g2 = (_g1[0] + 1.8, _g1[1])
-_poly([_u32, _g1], pcbnew.B_Cu, "GND", 0.3); _poly([_g1, _g2], pcbnew.F_Cu, "GND", 0.4)      # kurze Bruecke ueber die USB-Leitungen
-add_via(board, _g1[0], _g1[1], "GND", 0.7, 0.3); add_via(board, _g2[0], _g2[1], "GND", 0.7, 0.3); added += 2
-# U1: Masse-Pins der Ostseite innerhalb des USB-Paars an die Massefelder unter dem Modul
-_gu = [(p.GetNumber(), pos(p.GetPosition())) for p in board.FindFootprintByReference("U1").Pads() if p.GetNetname() == "GND"]
-_east = [q for n, q in _gu if abs(q[0] - (40 + 40.0)) < 0.5 and q[1] < 40 + 218]
-_inner = [q for n, q in _gu if 40 + 28 < q[0] < 40 + 38 and 40 + 217 < q[1] < 40 + 230]
-print("U1 Ost-GND", _east, "innen", len(_inner))
 # +15V: Sicherung -> PD-Widerstaende -> Wandler-Eingang
 _f2 = [pos(p.GetPosition()) for p in board.FindFootprintByReference("F1").Pads() if p.GetNetname() == "+15V"][0]
-_y15 = 40 + 227.0
-_poly([_f2, _rel(76.5, 227.0), _rel(85.0, 227.0), _pad("C21", "1")], pcbnew.B_Cu, "+15V", 0.8)
-_poly([_rel(76.5, 227.0), _pad("R20", "1")], pcbnew.B_Cu, "+15V", 0.8)
-_poly([_rel(78.5, 227.0), _pad("R21", "1")], pcbnew.B_Cu, "+15V", 0.8)
-_poly([_rel(85.0, 227.0), _pad("C22", "1")], pcbnew.B_Cu, "+15V", 0.8)
+_y15 = 40 + 226.2
+_c211 = _pad("C21", "1")
+_xa = _f2[0] + (_f2[1] - _y15)
+_poly([_f2, (_xa, _y15), (_c211[0] - (_y15 - _c211[1]), _y15), _c211], pcbnew.B_Cu, "+15V", 0.8)
+_r20 = _pad("R20", "1"); _r21 = _pad("R21", "1")
+_poly([_r20, (_r20[0], _y15), (_xa, _y15)], pcbnew.B_Cu, "+15V", 0.8)
+_poly([_r21, (_r21[0], _y15)], pcbnew.B_Cu, "+15V", 0.8)
 _u69 = _pad("U6", "9"); _u611 = _pad("U6", "11")
 _poly([(_u611[0] + 1.0, _u69[1]), _u69, (_u69[0] + 1.4, _u69[1])], pcbnew.B_Cu, "GND", 0.3)
 # EN und PD_GOOD: lange Wege quer ueber den Streifen auf der Oberseite
 _NE = [n for n in map(str, board.GetNetsByName().keys()) if n.endswith("/EN")][0]
 _r2 = _pad("R3", "2"); _ve1 = (_r2[0], _r2[1] - 2.3); _sw = [pos(p.GetPosition()) for p in board.FindFootprintByReference("SW1").Pads() if p.GetNetname() == _NE]
 _sw1 = min(_sw, key=lambda q: abs(q[1] - (40 + 219)) + q[0] * 0.001); _ve2 = (_sw1[0], 40 + 220.3)
-_poly([_r2, _ve1], pcbnew.B_Cu, _NE, 0.25); _poly([_ve1, (_ve1[0] + 0.5, 40 + 220.3), _ve2], pcbnew.F_Cu, _NE, 0.25); _poly([_ve2, _sw1], pcbnew.B_Cu, _NE, 0.25)
-_p34 = _pad("U1", "34"); _pg1 = _rel(41.0, 218.3); _u610 = _pad("U6", "10"); _pg2 = _rel(75.3, 224.9)
-_poly([_p34, _pg1], pcbnew.B_Cu, "PD_GOOD", 0.2); _poly([_pg1, _rel(41.0, 220.9), _rel(75.3, 220.9), _pg2], pcbnew.F_Cu, "PD_GOOD", 0.2); _poly([_pg2, _u610], pcbnew.B_Cu, "PD_GOOD", 0.2)
+_poly([_r2, _ve1], pcbnew.B_Cu, _NE, 0.25); _poly([_ve1, (_ve1[0] + (40 + 220.3 - _ve1[1]), 40 + 220.3), _ve2], pcbnew.F_Cu, _NE, 0.25); _poly([_ve2, _sw1], pcbnew.B_Cu, _NE, 0.25)
+_p34 = _pad("U1", "34"); _pg1 = (_p34[0] + 1.0, _p34[1] + 0.25); _u610 = _pad("U6", "10"); _pg2 = _rel(75.3, 224.9)
+_poly([_p34, (_pg1[0] - 0.25, _p34[1]), _pg1], pcbnew.B_Cu, "PD_GOOD", 0.2)
+_poly([_pg1, (_pg1[0], _rel(0, 220.8)[1]), _rel(75.3, 220.8), _pg2], pcbnew.F_Cu, "PD_GOOD", 0.2)
+_poly([_pg2, (_u610[0] + (_pg2[1] - _u610[1]), _pg2[1]), _u610], pcbnew.B_Cu, "PD_GOOD", 0.2)
 for _v, _n in ((_ve1, _NE), (_ve2, _NE), (_pg1, "PD_GOOD"), (_pg2, "PD_GOOD")):
     add_via(board, _v[0], _v[1], _n, 0.7, 0.3); added += 1
-# USB als Paar: w 0,45 / s 0,15 mm auf der Unterseite
-_dn, _dp = _pad("U3", "6"), _pad("U3", "4")
-_poly([_dn, _rel(59.6, 218.55), _rel(58.25, 217.2), _rel(43.0, 217.2), _rel(42.6, 216.8), _rel(42.6, 213.0), _rel(42.2, 212.6), _rel(33.4, 212.6), _rel(33.0, 213.0), _pad("U1", "23")], pcbnew.B_Cu, "USB_DN", 0.45)
-_poly([_dp, _rel(59.6, 220.45), _rel(56.95, 217.8), _rel(42.4, 217.8), _rel(42.0, 217.4), _rel(42.0, 213.6), _rel(41.6, 213.2), _rel(34.25, 213.2), _rel(33.85, 213.6), _pad("U1", "24")], pcbnew.B_Cu, "USB_DP", 0.45)
+# SW1: beide Pads 1 durchverbinden
+_poly([sorted(_sw)[0], sorted(_sw)[-1]], pcbnew.B_Cu, _NE, 0.25)
+# I2C an U5: unter der Antennen-Sperrflaeche (y >= 229.25) unten nach Osten, an R6-R8 vorbei
+_NA, _NC = [[n for n in map(str, board.GetNetsByName().keys()) if n.endswith(e)][0] for e in ("/SDA", "/SCL")]
+_u54 = _pad("U5", "4"); _u56 = _pad("U5", "6"); _r82 = _pad("R8", "2")
+_sc = _rel(8.9, 228.9); _sa = _rel(9.9, 229.9); _sa2 = _rel(15.0, 222.98)
+_poly([_u56, (_u56[0], _rel(0, 229.6)[1]), _rel(8.0, 228.9), _sc], pcbnew.F_Cu, _NC, 0.2)
+_poly([_sc, _rel(9.5, 228.3), _rel(14.1, 228.3), _rel(14.4, 228.0), (_rel(14.4, 0)[0], _r82[1] + 0.9), _r82], pcbnew.B_Cu, _NC, 0.2)
+_poly([_u54, _rel(9.4, 231.5), _rel(9.9, 231.0), _sa], pcbnew.F_Cu, _NA, 0.2)
+_poly([_sa, _rel(9.9, 229.3), _rel(10.4, 228.8), _rel(14.6, 228.8), _rel(15.0, 228.4), _sa2], pcbnew.B_Cu, _NA, 0.2)
+# I2C komplett bis U1: der Router laesst diese Stuecke sonst offen
+_r72 = _pad("R7", "2"); _u15 = _pad("U1", "5"); _u16 = _pad("U1", "6")
+_a1 = (_r72[0], _sa2[1]); _a2 = _rel(24.89, 223.28)
+_poly([_r72, _a1], pcbnew.B_Cu, _NA, 0.2)
+_poly([_a1, _sa2, _rel(24.59, 222.98), _a2], pcbnew.F_Cu, _NA, 0.2)
+_poly([_a2, (_a2[0], _u15[1] - 0.37), (_a2[0] + 0.37, _u15[1]), _u15], pcbnew.B_Cu, _NA, 0.2)
+_c1 = (_r82[0], _rel(0, 221.6)[1]); _c2 = _rel(24.66, 221.6)
+_poly([_r82, _c1], pcbnew.B_Cu, _NC, 0.2)
+_poly([_c1, _c2], pcbnew.F_Cu, _NC, 0.2)
+_poly([_c2, (_c2[0], _u16[1] - 1.16), (_c2[0] + 1.16, _u16[1]), _u16], pcbnew.B_Cu, _NC, 0.2)
+for _v, _n in ((_a1, _NA), (_a2, _NA), (_c1, _NC), (_c2, _NC)):
+    add_via(board, _v[0], _v[1], _n, 0.7, 0.3); added += 1
+for _v, _n in ((_sc, _NC), (_sa, _NA), (_sa2, _NA)):
+    add_via(board, _v[0], _v[1], _n, 0.7, 0.3); added += 1
 print("power vias", added)
 pcbnew.SaveBoard(PCB, board)
 
@@ -281,6 +278,18 @@ def top_keepout(x0, y0, x1, y1):
     tb.Add(ko)
 
 
+def buck_keepout(layer):
+    ko = pcbnew.ZONE(tb)
+    ko.SetIsRuleArea(True); ko.SetDoNotAllowTracks(True); ko.SetDoNotAllowVias(True)
+    ko.SetDoNotAllowZoneFills(False); ko.SetDoNotAllowPads(False); ko.SetDoNotAllowFootprints(False)
+    ko.SetLayer(layer)
+    o = ko.Outline(); o.NewOutline()
+    for _x, _y in [(84.0, 216.0), (116.0, 216.0), (116.0, 231.0), (84.0, 231.0)]:
+        o.Append(mm(40 + _x), mm(40 + _y))
+    tb.Add(ko)
+
+
+buck_keepout(pcbnew.B_Cu); buck_keepout(pcbnew.F_Cu)     # Wandler ist von Hand verlegt
 top_keepout(0, 0, 240, 205.0)            # LED-Feld oberhalb des Masterstreifens
 top_keepout(140, 205.0, 240, 240)        # rechter Teil der untersten Reihe
 for _k in range(4):                      # LED-Gruppen der untersten Reihe im Masterstreifen
