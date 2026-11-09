@@ -5,7 +5,7 @@
 | Bauteil | Rückrahmen (8 Leisten, 2 Druckplatten) |
 | Fertiger | P1S, JLC3DP |
 | Datum | 2026-11-09 |
-| Stand | Git `1393c4c` (mit nicht eingecheckten Aenderungen) |
+| Stand | Git `9f4ec3a` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Bambu Lab P1S: FREIGEGEBEN** · **JLC3DP: FREIGEGEBEN** |
 
