@@ -185,8 +185,8 @@ for c, ((k, j), d) in enumerate(D.PATH):
     place(pB, *T(+D.LED_OFF, 0), rot)
     # Abblock-C am +5V-Pin (Punkt 1): +5V-Pad zum Pin, eigenes GND-Via direkt am GND-Pad
     rc = 90 if d > 0 else 270
-    place(parts[f"C{100+nA}"], *T(-2.9, 2.45), rc)
-    place(parts[f"C{100+nB}"], *T(12.1, 2.45), rc)
+    place(parts[f"C{100+nA}"], *T(-2.9, 2.425), rc)
+    place(parts[f"C{100+nB}"], *T(12.1, 2.425), rc)
     place(parts[f"JP{c+1}"], *T(7.5, -4.4), rp)
     for r in (f"D{nA}", f"D{nB}", f"C{100+nA}", f"C{100+nB}", f"JP{c+1}"):
         placed[r].Reference().SetVisible(False)
@@ -201,7 +201,7 @@ for c, ((k, j), d) in enumerate(D.PATH):
     for cref, vdd in ((f"C{100+nA}", T(-5.05, 1.65)), (f"C{100+nB}", T(9.95, 1.65))):
         gx, gy = pad_xy(cref, "1"); px_, py_ = pad_xy(cref, "2")
         track([vdd, (px_, py_)], "+5V", w=W_GND)
-        vg = (gx + d * 1.0, gy + d * 1.25)
+        vg = (gx + d * 1.25, gy + d * 1.25)
         track([(gx, gy), vg], "GND", w=W_GND); via(*vg, "GND")
     # Bruecke JP: Pad1 -> B.DIN, Pad2 -> B.DOUT
     track([T(6.85, -4.4), T(1.5, -4.4), T(0.0, -2.9), T(0.0, -1.65)], a_out)

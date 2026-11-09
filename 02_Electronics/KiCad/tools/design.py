@@ -141,16 +141,16 @@ def build_parts():
     P.append(Part("J1", "Connector:USB_C_Receptacle_USB2.0_14P", "USB-C", "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
                   {"A1": "GND", "A12": "GND", "B1": "GND", "B12": "GND", "SH": "GND",
                    "A4": "VBUS", "A9": "VBUS", "B4": "VBUS", "B9": "VBUS",
-                   "A5": "CC1", "B5": "CC2", "A6": "USB_DP", "B6": "USB_DP", "A7": "USB_DN", "B7": "USB_DN"}, M))
+                   "A5": "CC1", "B5": "CC2", "A6": "USB_D+", "B6": "USB_D+", "A7": "USB_D-", "B7": "USB_D-"}, M))
     P.append(Part("U3", "Power_Protection:USBLC6-2SC6", "USBLC6-2SC6", "Package_TO_SOT_SMD:SOT-23-6",
-                  {"1": "USB_DN", "6": "USB_DN", "3": "USB_DP", "4": "USB_DP", "2": "GND", "5": "+5V"}, M))
+                  {"1": "USB_D-", "6": "USB_D-", "3": "USB_D+", "4": "USB_D+", "2": "GND", "5": "+5V"}, M))
     P.append(Part("U2", "Regulator_Linear:AP2112K-3.3", "AP2112K-3.3", "Package_TO_SOT_SMD:SOT-23-5",
                   {"1": "+5V", "3": "+5V", "2": "GND", "5": "+3V3"}, M, nc=["4"]))
     P.append(Part("C2", "Device:C", "10u", FP_C0805, {"1": "+5V", "2": "GND"}, M))
     P.append(Part("C3", "Device:C", "10u", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
     P.append(Part("C4", "Device:C", "100n", FP_C0603, {"1": "+3V3", "2": "GND"}, M))
     esp = {"1": "GND", "2": "GND", "3": "+3V3", "45": "EN", "4": "BOOT", "12": "LED_3V3",
-           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_DN", "24": "USB_DP"}
+           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_D-", "24": "USB_D+"}
     for n in list(range(42, 44)) + list(range(46, 66)):
         esp[str(n)] = "GND"
     used = set(esp)
@@ -213,23 +213,23 @@ MASTER_PLACE = {
     "SW1": (82.0, 217.0, 0, "B"),     # RESET
     "SW2": (5.4, 218.6, 0, "B"),      # BOOT
     "J1": (63.0, 230.6, 180, "B"),    # USB-C
-    "U3": (63.0, 219.5, 180, "B"),    # DN oben, DP unten: passt zur Lage am ESP32 ohne Kreuzung
+    "U3": (60.4, 221.5, 180, "B"),    # nah an J1; D- oben, D+ unten: passt zur Lage am ESP32
     "F1": (72.0, 230.5, 0, "B"),      # Eingangssicherung
     "U6": (71.5, 222.0, 0, "B"),      # PD-Controller
     "R20": (76.5, 224.0, 90, "B"),
     "C20": (76.5, 220.0, 90, "B"),
     "R21": (78.5, 224.0, 90, "B"),
-    "C21": (85.0, 224.0, 90, "B"),    # Eingang Wandler
-    "C22": (87.2, 228.0, 0, "B"),
+    "C21": (85.7, 224.0, 90, "B"),     # Figure 22: Eingangs-C ueber VIN (Pin 1) und PGND (Pin 2)
+    "C22": (87.75, 224.0, 90, "B"),    # Figure 22: 100n direkt an Pin 1/2 (Hot-Loop)
     "U7": (90.5, 224.0, 0, "B"),      # Abwaertswandler, SW zur Spule
-    "C26": (93.5, 228.0, 0, "B"),
-    "C27": (90.4, 227.7, 180, "B"),
-    "R22": (92.0, 219.0, 90, "B"),
-    "R23": (94.0, 219.0, 90, "B"),
-    "L1": (102.0, 224.0, 0, "B"),
-    "C23": (111.0, 219.5, 90, "B"),
-    "C24": (113.5, 219.5, 90, "B"),
-    "C25": (116.0, 219.5, 90, "B"),
+    "C26": (93.0, 226.7, 0, "B"),      # BST direkt zwischen Pin 8 und SW
+    "C27": (92.03, 228.2, 0, "B"),     # VCC direkt unter Pin 9
+    "R22": (85.9, 227.7, 0, "B"),      # Rueckfuehrung an der Pinreihe 9-12
+    "R23": (88.9, 227.7, 0, "B"),
+    "L1": (102.0, 224.0, 0, "B"),     # so nah wie moeglich an SW
+    "C23": (111.3, 221.5, 0, "B"),     # Ausgangs-Cs direkt am Spulenanschluss
+    "C24": (111.3, 224.0, 0, "B"),
+    "C25": (111.3, 226.5, 0, "B"),
     "U4": (19.0, 218.5, 180, "B"),    # Pegelwandler: A zum ESP32, Y zu R5
     "C6": (19.0, 215.0, 0, "B"),
     "R5": (14.5, 219.0, 90, "B"),
