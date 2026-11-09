@@ -96,25 +96,38 @@ def sheet_uuid(name):
 
 
 # Bezugsdaten: (Wert, Footprint) -> (Hersteller-Teilenummer, DigiKey-Bestellnummer als Cut Tape).
-# Nur eintragen, was auf digikey.de bestaetigt ist. Leere DigiKey-Nummer: Teil existiert dort, Bestellnummer noch offen.
+# Nur eintragen, was ueber die DigiKey-API bestaetigt ist. Leere DigiKey-Nummer: dort nicht gefuehrt.
 BEZUG = {
     ("100n", "C_0603_1608Metric"): ("C0603C104K5RACTU", "399-C0603C104K5RACTUCT-ND"),
     ("100n/25V", "C_0603_1608Metric"): ("C0603C104K5RACTU", "399-C0603C104K5RACTUCT-ND"),
     ("1u", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
     ("1u/25V", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
     ("1u/10V", "C_0603_1608Metric"): ("C0603C105K3RACTU", "399-C0603C105K3RACTUCT-ND"),
-    ("10u", "C_0805_2012Metric"): ("C0805C106K4PACTU", "399-C0805C106K4PACTUCT-ND"),
+    ("10u", "C_0805_2012Metric"): ("TMK212BBJ106MG-T", "587-6025-1-ND"),
     ("22u/10V", "C_0805_2012Metric"): ("C0805C226M8PACTU", "399-C0805C226M8PACTUCT-ND"),
-    ("22u/25V", "C_1206_3216Metric"): ("CL31A226KAHNNNE", "1276-3047-1-ND"),
-    ("10k", "R_0603_1608Metric"): ("ERJ-3EKF1002V", ""),
-    ("33", "R_0603_1608Metric"): ("ERJ-3EKF33R0V", ""),
-    ("1k", "R_0603_1608Metric"): ("ERJ-3EKF1001V", ""),
-    ("ESP32-S3-MINI-1-N8", "ESP32-S2-MINI-1"): ("ESP32-S3-MINI-1-N8", ""),
-    ("SRP1245A-3R3M", "L_Bourns_SRP1245A"): ("SRP1245A-3R3M", ""),
-    ("1812L300/24SLER", "Fuse_1812_4532Metric"): ("1812L300/24SLER", ""),
-    ("AP2112K-3.3", "SOT-23-5"): ("AP2112K-3.3TRG1", ""),
-    ("USBLC6-2SC6", "SOT-23-6"): ("USBLC6-2SC6", ""),
+    ("22u/25V", "C_1206_3216Metric"): ("CC1206MKX5R8BB226", "311-3522-1-ND"),
+    ("100u/10V", "CP_Elec_6.3x7.7"): ("UWT1A101MCL1GB", "493-2165-1-ND"),
+    ("10k", "R_0603_1608Metric"): ("ERJ-3EKF1002V", "P10.0KHCT-ND"),
+    ("33", "R_0603_1608Metric"): ("ERJ-3EKF33R0V", "P33.0HCT-ND"),
+    ("1k", "R_0603_1608Metric"): ("ERJ-3EKF1001V", "P1.00KHCT-ND"),
+    ("4k7", "R_0603_1608Metric"): ("ERJ-3EKF4701V", "P4.70KHCT-ND"),
+    ("75k", "R_0603_1608Metric"): ("ERJ-3EKF7502V", "P75.0KHCT-ND"),
+    ("10.2k", "R_0603_1608Metric"): ("ERJ-3EKF1022V", "P10.2KHCT-ND"),
+    ("22", "R_0402_1005Metric"): ("ERJ-2RKF22R0X", "P22.0LCT-ND"),
+    ("1k", "R_1206_3216Metric"): ("RC1206FR-071KL", "311-1.00KFRCT-ND"),
+    ("RESET", "SW_SPST_TL3342"): ("TL3342F160QG/TR", "EG2531CT-ND"),
+    ("BOOT", "SW_SPST_TL3342"): ("TL3342F160QG/TR", "EG2531CT-ND"),
+    ("ESP32-S3-MINI-1-N8", "ESP32-S2-MINI-1"): ("ESP32-S3-MINI-1-N8", "5407-ESP32-S3-MINI-1-N8CT-ND"),
+    ("SRP1245A-3R3M", "L_Bourns_SRP1245A"): ("SRP1245A-3R3M", "SRP1245A-3R3MCT-ND"),
+    ("1812L300/24SLER", "Fuse_1812_4532Metric"): ("1812L300/24SLER", "18-1812L300/24SLERCT-ND"),
+    ("AP2112K-3.3", "SOT-23-5"): ("AP2112K-3.3TRG1", "AP2112K-3.3TRG1DICT-ND"),
+    ("USBLC6-2SC6", "SOT-23-6"): ("USBLC6-2SC6", "497-5235-1-ND"),
+    ("74AHCT1G125", "SOT-23-5"): ("SN74AHCT1G125DBVR", "296-4708-1-ND"),
+    ("BH1750FVI", "WSOF6I_BH1750"): ("BH1750FVI-TR", "BH1750FVICT-ND"),
+    # Bei DigiKey nicht gefuehrt: separat beschaffen
     ("USB-C", "USB_C_Receptacle_HRO_TYPE-C-31-M-12"): ("TYPE-C-31-M-12", ""),
+    ("CH224K", "SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm"): ("CH224K", ""),
+    ("SCT2360FPBR", "QFN-12_SCT2360"): ("SCT2360FPBR", ""),
 }
 
 
