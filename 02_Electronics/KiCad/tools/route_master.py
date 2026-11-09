@@ -125,7 +125,7 @@ for fp in board.GetFootprints():
     for p in fp.Pads():
         n = p.GetNetname()
         top = p.IsOnLayer(pcbnew.F_Cu) and not p.IsOnLayer(pcbnew.B_Cu)
-        if ref in ("U5", "U7", "L1", "C23", "C24", "C25", "R22") or (ref == "U3" and p.GetNumber() == "5"):
+        if ref in ("U5", "U7", "L1", "C23", "C24", "C25", "R22", "C28") or (ref == "U3" and p.GetNumber() == "5"):
             continue
         need = (n == "+5V") or (n == "GND" and top)
         if not need:
@@ -183,11 +183,15 @@ _poly([(_fx, _f1[1]), _f1], pcbnew.B_Cu, "VBUS", 0.6)
 _V1, _V2, _V3, _V4 = _rel(45.2, 224.1), _rel(21.9, 228.6), _rel(11.5, 227.6), _rel(22.5, 224.1)
 _P = "+3V3"
 _c3, _u25 = _pad("C3", "1"), _pad("U2", "5")
-_poly([_c3, (_c3[0], _u25[1]), _u25, (_u25[0] - 2.3, _u25[1] + 2.3), _rel(46.6, _u25[1] + 2.3 - 40), (_rel(46.6, 0)[0] - 1.4, _u25[1] + 0.9), (_V1[0], _V1[1])], pcbnew.B_Cu, _P, 0.5)
+_poly([_c3, (_c3[0], _u25[1]), _u25, (_u25[0] - 2.3, _u25[1] + 2.3), _rel(46.6, _u25[1] + 2.3 - 40), (_rel(46.6, 0)[0] - 1.4, _u25[1] + 0.9), (_V1[0], _V1[1])], pcbnew.B_Cu, _P, 0.65)
 _r31 = _pad("R3", "1")
 _poly([_V1, (_r31[0] + (_V1[1] - _r31[1]), _V1[1]), _r31], pcbnew.B_Cu, _P, 0.5)
 _T = _rel(26.1, 224.1)
-_poly([_V1, _T, _rel(21.9, 228.3), _V2], pcbnew.F_Cu, _P, 0.5)
+_poly([_V1, _T, _rel(21.9, 228.3), _V2], pcbnew.F_Cu, _P, 0.65)   # Espressif: Hauptleitung >= 25 mil
+# Espressif: beim Lagenwechsel der Hauptleitung mindestens zwei Vias
+_V1b = (_V1[0], _u25[1] + 0.9)
+_poly([_V1, _V1b], pcbnew.F_Cu, _P, 0.65)
+add_via(board, _V1b[0], _V1b[1], _P, 0.8, 0.4); added += 1
 _poly([_T, _V4], pcbnew.F_Cu, _P, 0.5)
 _r41 = _pad("R4", "1")
 _poly([_V4, (_V4[0], _r41[1] + (_V4[0] - _r41[0])), _r41], pcbnew.B_Cu, _P, 0.5)
@@ -199,6 +203,9 @@ _poly([_V3, _pad("R7", "1")], pcbnew.B_Cu, _P, 0.5)
 _r61 = _pad("R6", "1"); _r81 = _pad("R8", "1")
 _poly([_V3, (_r61[0] + (_V3[1] - _r61[1]), _V3[1]), _r61], pcbnew.B_Cu, _P, 0.5)
 _poly([_V3, (_r81[0] - (_V3[1] - _r81[1]), _V3[1]), _r81], pcbnew.B_Cu, _P, 0.5)
+_V2b = (_c41[0], _V2[1])
+_poly([_V2, _V2b], pcbnew.F_Cu, _P, 0.65)
+add_via(board, _V2b[0], _V2b[1], _P, 0.8, 0.4); added += 1
 for _v in (_V1, _V2, _V3, _V4):
     add_via(board, _v[0], _v[1], _P, 0.8, 0.4); added += 1
 # +15V: Sicherung -> PD-Widerstaende -> Wandler-Eingang

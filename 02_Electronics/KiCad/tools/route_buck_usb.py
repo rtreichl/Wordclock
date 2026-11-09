@@ -102,12 +102,40 @@ poly([u3, u4], DP, 0.25); poly([u1, u6], DN, 0.25)
 # ---------------------------------------------------------------- USB von der Schutzdiode zum ESP32
 d1, d2 = pad("U1", "23"), pad("U1", "24")
 xe = u6[0] - 1.36
-poly([u6, (xe, u6[1]), (xe - (u6[1] - 217.2), 217.2), (43.0, 217.2), (42.6, 216.8), (42.6, 213.0), (42.2, 212.6), (33.4, 212.6), (33.0, 213.0), d1], DN, W)
-poly([u4, (xe, u4[1]), (xe - (u4[1] - 217.8), 217.8), (42.4, 217.8), (42.0, 217.4), (42.0, 213.6), (41.6, 213.2), (34.25, 213.2), (33.85, 213.6), d2], DP, W)
+def rp(ref, net):
+    for p in b.FindFootprintByReference(ref).Pads():
+        if p.GetNetname() == net or p.GetNetname().endswith("/" + net):
+            q = p.GetPosition(); return (pcbnew.ToMM(q.x) - O, pcbnew.ToMM(q.y) - O)
+    raise KeyError(ref + net)
+DNE, DPE = "USB_D-_ESP", "USB_D+_ESP"
+ne, nw, pe, pw = rp("R24", DN), rp("R24", DNE), rp("R25", DP), rp("R25", DPE)
+assert ne[0] > nw[0] and pe[0] > pw[0], "R24/R25: Pad zum Stecker muss oestlich liegen"
+poly([u6, (xe, u6[1]), (xe - (u6[1] - 217.2), 217.2), (43.0, 217.2), (42.6, 216.8), (42.6, 213.0), (42.2, 212.6), (ne[0] + 0.9, 212.6), (ne[0] + 0.2, 211.9), ne], DN, W)
+poly([nw, (nw[0] - 0.2, 211.9), (nw[0] - 0.9, 212.6), (33.4, 212.6), (33.0, 213.0), d1], DNE, W)
+poly([u4, (xe, u4[1]), (xe - (u4[1] - 217.8), 217.8), (42.4, 217.8), (42.0, 217.4), (42.0, 213.6), (41.6, 213.2), (pe[0] + 0.5, 213.2), (pe[0] + 0.2, 212.9), pe], DP, W)
+poly([pw, (pw[0] - 0.2, 212.9), (pw[0] - 0.5, 213.2), (34.25, 213.2), (33.85, 213.6), d2], DPE, W)
 # U3: Versorgung und Masse
 u5 = pad("U3", "5"); uv = (58.4, u5[1]); poly([u5, uv], "+5V", 0.4); via(uv, "+5V")
-u2 = pad("U3", "2"); g1 = (62.4, u2[1]); g2 = (61.6, 223.4)
-poly([u2, g1], "GND", 0.3); poly([g1, (g2[0], g1[1] + 0.8), g2], "GND", 0.4, pcbnew.F_Cu); via(g1, "GND"); via(g2, "GND")
+# ST: GND-Weg von Pin 2 kurz. J1 traegt den Eingangs-Rueckstrom: breite Bruecke oben, Vias zur Flaeche.
+u2 = pad("U3", "2"); g1 = (62.4, u2[1]); YB = 223.3
+poly([u2, g1], "GND", 0.3); via(g1, "GND")
+poly([g1, (g1[0], YB)], "GND", 0.6, pcbnew.F_Cu)
+poly([(66.4, 221.9), (66.4, YB), (60.2, YB)], "GND", 0.8, pcbnew.F_Cu)
+for v in ((66.4, 221.9), (66.4, YB), (61.6, YB), (60.2, YB)):
+    via(v, "GND")
+# C_BUS oben: +5V zum Via von Pin 5, GND auf den Steg
+c1p, c2p = pad("C28", "1"), pad("C28", "2")
+poly([c1p, (uv[0] + (c1p[1] - uv[1]), c1p[1]), uv], "+5V", 0.4, pcbnew.F_Cu)
+poly([c2p, (g1[0], c2p[1])], "GND", 0.4, pcbnew.F_Cu)
+# C4/C9 (ESP32-Abblockung): GND direkt zu U4 und zur Hauptflaeche, damit I2C und BOOT sie nicht abschneiden
+c9g, u43 = pad("C9", "2"), pad("U4", "3")
+poly([c9g, (c9g[0], u43[1] + (c9g[0] - u43[0])), u43], "GND", 0.5)
+c4g = pad("C4", "2")
+poly([c4g, (c4g[0], c9g[1]), c9g], "GND", 0.5)
+# Linke Ecke: Masseflaeche ueber die Oberseite verbinden, egal wo die DIN-Leitung spaeter verlaeuft
+poly([(12.0, 203.0), (22.0, 203.0)], "GND", 0.4, pcbnew.F_Cu)
+for v in ((12.0, 203.0), (22.0, 203.0)):
+    via(v, "GND")
 # R22 an die +5V-Flaeche oben (ausserhalb der oertlichen GND-Flaeche)
 r1 = pad("R22", "1"); rv = (r1[0] - 0.9, r1[1]); poly([r1, rv], "+5V", 0.3); via(rv, "+5V")
 

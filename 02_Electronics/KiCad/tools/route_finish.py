@@ -100,13 +100,7 @@ for _ in range(5):
         break
 print("dangling stubs removed", stubs)
 # GND-Inseln auf der Unterseite ueber die Oberseite anbinden
-# J1 traegt den gesamten Eingangs-Rueckstrom: breite Bruecke, je zwei Vias
 _R = lambda x, y: (x + 40.0, y + 40.0)
-_J = [(66.4, 221.9), (66.4, 223.0), (60.2, 223.0), (60.2, 223.3)]
-for _a, _c in zip(_J, _J[1:]):
-    add_track(board, _R(*_a), _R(*_c), "GND", pcbnew.F_Cu, 0.8)
-for _v in ((66.4, 221.9), (66.4, 223.0), (60.2, 223.3)):
-    add_via(board, _v[0] + 40.0, _v[1] + 40.0, "GND", 0.7, 0.3)
 # U1 Masse-Pad 64 liegt zwischen USB-Paar und Modulrand
 add_track(board, _R(41.0, 215.5), _R(43.6, 215.5), "GND", pcbnew.F_Cu, 0.4)
 for _v in ((41.0, 215.5), (43.6, 215.5)):
