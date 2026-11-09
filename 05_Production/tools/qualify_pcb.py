@@ -165,7 +165,7 @@ fps = {fp.GetReference(): fp for fp in b.GetFootprints()}
 
 
 # Nur Nummern, die gegen LCSC/JLCPCB-Eintraege geprueft sind; Passive ordnet das JLCPCB-BOM-Tool nach Wert und Bauform zu
-LCSC = {"SRP1245A-3R3M": "C1331075", "SCT2360FPBR": "C2693821", "CH224K": "C970725", "USBLC6-2SC6": "C7519", "AP2112K-3.3": "C51118", "USB-C": "C165948"}
+LCSC = {"SRP1265A-3R3M": "C1329348", "SCT2360FPBR": "C2693821", "CH224K": "C970725", "USBLC6-2SC6": "C7519", "AP2112K-3.3": "C51118", "USB-C": "C165948"}
 
 
 def variant(name, refs):
@@ -244,7 +244,7 @@ notes = ["Bestueckung: Master = Standard-PCBA (beidseitig, Passermarken vorhande
          "Loetstopplack: gruen empfohlen (min. Steg 0,10 mm); bei Schwarz/Weiss gilt 0,13 mm.",
 "SK6812RGBW: Footprint mit WS2812B-Pinbelegung (1 VDD, 2 DOUT, 3 VSS, 4 DIN) - vor Bestellung mit dem Datenblatt des gewaehlten Herstellers abgleichen.",
          "BH1750 (U5): Footprint WSOF6I selbst erstellt nach ROHM-Zeichnung, ungetestet.",
-         "DigiKey: BOM_DigiKey.csv (Cut Tape, Satz aus 1 Master + 3 Slaves) direkt in den BOM Manager laden; J1, U6, U7 fuehrt DigiKey nicht, siehe BOM_Separat_Beschaffung.csv. SRP1245A-3R3M war bei der Pruefung nicht auf Lager. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. SRP1245A-3R3M zuletzt ohne LCSC-Bestand, F1 (Littelfuse 1812L300/24SLER) nicht bei LCSC gefunden: ggf. selbst beschaffen.",
+         "DigiKey: BOM_DigiKey.csv (Cut Tape, Satz aus 1 Master + 3 Slaves) direkt in den BOM Manager laden; J1, U6, U7 fuehrt DigiKey nicht, siehe BOM_Separat_Beschaffung.csv. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. L1 (SRP1265A-3R3M) und F1 (1812L300/24SLER) ueber DigiKey beschaffen.",
          "Die 19 Kantenbruecken (0R 2512) werden nach dem Zusammenbau von Hand geloetet und sind nicht in der BOM.",
          "Schaltwandler U7 (SCT2360): Footprint gegen Package-Zeichnung geprueft, ungetestet. LEDs: SK6812 RGBNW (Pinbelegung des Angebots passt zum Footprint) werden separat beschafft.",
          "Versorgung: USB-C PD 15 V, Schaltwandler 5 V / 6 A, Firmware begrenzt auf geschaetzte 5 A."]

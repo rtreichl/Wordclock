@@ -5,7 +5,7 @@
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
 | Datum | 2026-11-09 |
-| Stand | Git `cba669d` (mit nicht eingecheckten Aenderungen) |
+| Stand | Git `63f04dd` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
@@ -53,7 +53,7 @@
 - Loetstopplack: gruen empfohlen (min. Steg 0,10 mm); bei Schwarz/Weiss gilt 0,13 mm.
 - SK6812RGBW: Footprint mit WS2812B-Pinbelegung (1 VDD, 2 DOUT, 3 VSS, 4 DIN) - vor Bestellung mit dem Datenblatt des gewaehlten Herstellers abgleichen.
 - BH1750 (U5): Footprint WSOF6I selbst erstellt nach ROHM-Zeichnung, ungetestet.
-- DigiKey: BOM_DigiKey.csv (Cut Tape, Satz aus 1 Master + 3 Slaves) direkt in den BOM Manager laden; J1, U6, U7 fuehrt DigiKey nicht, siehe BOM_Separat_Beschaffung.csv. SRP1245A-3R3M war bei der Pruefung nicht auf Lager. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. SRP1245A-3R3M zuletzt ohne LCSC-Bestand, F1 (Littelfuse 1812L300/24SLER) nicht bei LCSC gefunden: ggf. selbst beschaffen.
+- DigiKey: BOM_DigiKey.csv (Cut Tape, Satz aus 1 Master + 3 Slaves) direkt in den BOM Manager laden; J1, U6, U7 fuehrt DigiKey nicht, siehe BOM_Separat_Beschaffung.csv. LCSC-Teilenummern: ICs, Spule und USB-C eingetragen; Passive ordnet das JLCPCB-BOM-Tool zu. L1 (SRP1265A-3R3M) und F1 (1812L300/24SLER) ueber DigiKey beschaffen.
 - Die 19 Kantenbruecken (0R 2512) werden nach dem Zusammenbau von Hand geloetet und sind nicht in der BOM.
 - Schaltwandler U7 (SCT2360): Footprint gegen Package-Zeichnung geprueft, ungetestet. LEDs: SK6812 RGBNW (Pinbelegung des Angebots passt zum Footprint) werden separat beschafft.
 - Versorgung: USB-C PD 15 V, Schaltwandler 5 V / 6 A, Firmware begrenzt auf geschaetzte 5 A.
@@ -62,16 +62,16 @@
 
 | Datei | SHA256 |
 |---|---|
-| `BOM_DigiKey.csv` | `0a430314a7202c77…` |
-| `BOM_Master.csv` | `99fb1e55cb7b72fc…` |
+| `BOM_DigiKey.csv` | `0edee504983aa3d0…` |
+| `BOM_Master.csv` | `8504100dd4857e26…` |
 | `BOM_Separat_Beschaffung.csv` | `ca51992415df923e…` |
 | `BOM_Slave.csv` | `824dc6c89fba55fb…` |
-| `CPL_Master.csv` | `3336e991058995bb…` |
-| `CPL_Slave.csv` | `906ef9fb09de0f1d…` |
-| `LED-Board_master.step` | `c0c08e74bd90baa7…` |
-| `LED-Board_slave.step` | `394e44dca3096baf…` |
-| `WortUhr_LED-Board_Gerber.zip` | `b894e7f2db8e0fe9…` |
-| `WortUhr_Schaltplan.pdf` | `5405ae7a6715e93c…` |
+| `CPL_Master.csv` | `ee140c2b0895768a…` |
+| `CPL_Slave.csv` | `732dff21bc40172b…` |
+| `LED-Board_master.step` | `d9c786b4eccfd3b5…` |
+| `LED-Board_slave.step` | `3c4c52d1a39ab157…` |
+| `WortUhr_LED-Board_Gerber.zip` | `8f2aa445172ca4d6…` |
+| `WortUhr_Schaltplan.pdf` | `9edebea1dd3d3650…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 

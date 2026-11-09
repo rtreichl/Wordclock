@@ -5,7 +5,7 @@
 | Bauteil | Rückrahmen (8 Leisten, 2 Druckplatten) |
 | Fertiger | P1S, JLC3DP |
 | Datum | 2026-11-09 |
-| Stand | Git `cba669d` (mit nicht eingecheckten Aenderungen) |
+| Stand | Git `63f04dd` (mit nicht eingecheckten Aenderungen) |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Bambu Lab P1S: FREIGEGEBEN** · **JLC3DP: FREIGEGEBEN** |
 
@@ -80,7 +80,7 @@
 
 | Datei | SHA256 |
 |---|---|
-| `Rueckrahmen_Druckplatte1_lange_Leisten.3mf` | `891c553386d5caa1…` |
+| `Rueckrahmen_Druckplatte1_lange_Leisten.3mf` | `4fffa3f2a7c0ab02…` |
 | `Rueckrahmen_Druckplatte2_kurze_Leisten.3mf` | `cd0ee39d4455c04a…` |
 | `Rueckrahmen_Q1_obenlinks_kurz.step` | `99528059c08c30a2…` |
 | `Rueckrahmen_Q1_obenlinks_lang.step` | `600fd471a78d4eb7…` |
@@ -89,7 +89,7 @@
 | `Rueckrahmen_Q3_untenlinks_kurz.step` | `e402e935e3c285b7…` |
 | `Rueckrahmen_Q3_untenlinks_lang.step` | `f9db8c83b3353f21…` |
 | `Rueckrahmen_Q4_untenrechts_kurz.step` | `460c64799af1df21…` |
-| `Rueckrahmen_Q4_untenrechts_lang.step` | `d42a35487ea23d3e…` |
+| `Rueckrahmen_Q4_untenrechts_lang.step` | `87ab05c4ed5b20d8…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 
