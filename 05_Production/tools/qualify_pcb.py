@@ -111,17 +111,47 @@ def _pad(ref, num):
     for p in b.FindFootprintByReference(ref).Pads():
         if p.GetNumber() == num:
             return p.GetPosition()
-DEC = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"), "C9": ("U1", "3"), "C175": ("D75", "1"), "C22": ("U7", "1"), "C28": ("U3", "5")}
-DEC.update({f"C{100 + n}": (f"D{n}", "1") for n in range(1, 73)})
+DEC = D.DECOUPLING                      # eine Quelle: design.py
+_caps = {p.ref for p in D.build_parts() if p.lib_id.startswith("Device:C")}
+_unsorted = sorted(_caps - set(DEC) - set(D.OTHER_CAPS)) + sorted((set(DEC) | set(D.OTHER_CAPS)) - _caps)
+check("Layout", "Kondensatoren zugeordnet (DEC-010)", "jeder Kondensator ist Abblock-C eines Pins oder hat eine benannte andere Aufgabe",
+      f"{len(DEC)} Abblock-C, {len(D.OTHER_CAPS)} andere, nicht zugeordnet: {', '.join(_unsorted) or '-'}", not _unsorted)
 dist = {}
 for cref, (ic, pin) in DEC.items():
     cfp = b.FindFootprintByReference(cref)
     tgt = _pad(ic, pin)
     dist[cref] = min(mm((p.GetPosition() - tgt).EuclideanNorm()) for p in cfp.Pads() if p.GetNetname() == b.FindFootprintByReference(ic).FindPadByNumber(pin).GetNetname())
 worst = max(dist, key=dist.get)
-check("Layout", "Abblock-C am Versorgungspin", "Pad-Abstand <= 8 mm (C175: Unterseite, ueber Via)",
-      f"max. {dist[worst]:.1f} mm ({worst}), IC-C: " + ", ".join(f"{k} {dist[k]:.1f}" for k in ("C2", "C3", "C4", "C6", "C8")),
-      all(v <= 8.0 for v in dist.values()))
+_far = sorted(k for k, v in dist.items() if v > 8.0)
+check("Layout", "Abblock-C am Versorgungspin (DEC-009)", "Pad-Abstand <= 8 mm (C175: Unterseite, ueber Via)",
+      f"max. {dist[worst]:.1f} mm ({worst}), IC-C: " + ", ".join(f"{k} {dist[k]:.1f}" for k in sorted(dist, key=lambda s: int(s[1:])) if int(k[1:]) < 100)
+      + (f"; ueber der Grenze: {', '.join(_far)}" if _far else ""), not _far)
+# PWR-001: Mindestbreite je Versorgungsnetz, mit der dokumentierten Ausnahme
+_narrow, _exc = [], {}
+for _t in b.GetTracks():
+    _n = _t.GetNetname()
+    if _t.GetClass() != "PCB_TRACK" or _n not in D.PWR_MIN_WIDTH or mm(_t.GetWidth()) >= D.PWR_MIN_WIDTH[_n] - 1e-6:
+        continue
+    _e = D.PWR_WIDTH_EXCEPTION.get(_n)
+    if _e and mm(_t.GetWidth()) >= _e[2] - 1e-6 and all(mm((_q - _pad(_e[0], _e[1])).EuclideanNorm()) <= _e[4] for _q in (_t.GetStart(), _t.GetEnd())):
+        _exc[_n] = _exc.get(_n, 0) + mm(_t.GetLength())
+    else:
+        _narrow.append(f"{_n} {mm(_t.GetWidth()):.2f} mm")
+_narrow += [f"{_n}: Ausnahme {_l:.1f} mm lang" for _n, _l in _exc.items() if _l > D.PWR_WIDTH_EXCEPTION[_n][3]]
+check("Layout", "Leiterbahnbreite Versorgung (PWR-001)", ", ".join(f"{k} >= {v} mm" for k, v in D.PWR_MIN_WIDTH.items()) + "; Ausnahme +3V3 an U5 Pin 1",
+      (f"{len(_narrow)} zu schmal ({', '.join(sorted(set(_narrow))[:4])})" if _narrow else "eingehalten")
+      + "".join(f", Ausnahme {_n} {_l:.1f} mm" for _n, _l in _exc.items()), not _narrow)
+# RF-001: Sperrflaeche der Antenne im Footprint des Moduls; Verstoesse meldet der DRC als Fehler
+_ant = [z for z in b.FindFootprintByReference("U1").Zones() if z.GetIsRuleArea()]
+_ant_ok = bool(_ant) and all(z.GetDoNotAllowZoneFills() and z.GetDoNotAllowTracks() and z.GetDoNotAllowVias() and z.GetDoNotAllowFootprints()
+                             and z.IsOnLayer(pcbnew.F_Cu) and z.IsOnLayer(pcbnew.B_Cu) for z in _ant)
+check("Layout", "Antennenbereich frei (RF-001)", "Sperrflaeche an U1 auf beiden Lagen fuer Flaechen, Leiterbahnen, Vias und Bauteile; DRC ohne Fehler",
+      f"{len(_ant)} Sperrflaeche(n), DRC-Fehler {sev.get('error', 0)}", _ant_ok and sev.get("error", 0) == 0)
+# Pins des ESP32-Moduls: Zuordnung GPIO -> Modulpin in design.py gegen das KiCad-Symbol
+_pn = gen_sch.pin_names("RF_Module:ESP32-S3-MINI-1")
+_pinbad = [f"GPIO{g}: Pin {p} heisst {_pn.get(p)}" for g, p in D.ESP_MODULE_PIN.items() if _pn.get(p) != f"IO{g}"]
+check("Schaltplan", "ESP32-Pins", "Modulpin in design.py traegt im Symbol den Namen des GPIO",
+      ", ".join(f"{n}=GPIO{g}" for n, g in D.ESP_GPIO.items()) + (f"; falsch: {_pinbad}" if _pinbad else ""), not _pinbad)
 LOCK = {"J1", "J3", "J4", "U1"} | {fp.GetReference() for fp in b.GetFootprints() if fp.GetReference().startswith(("H", "FID"))}
 unl = sorted(r for r in LOCK if not b.FindFootprintByReference(r).IsLocked())
 check("Layout", "Kritische Teile gesperrt", "Steckverbinder, Kantenbruecken, ESP32, Montageloecher, Passermarken", f"{len(LOCK) - len(unl)}/{len(LOCK)}", not unl)

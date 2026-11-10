@@ -5,7 +5,8 @@
 # - ohne HA bedienbar ueber die Weboberflaeche http://wortuhr.local
 # - automatische Helligkeit ueber den BH1750 unter dem Lichtleiter (lokal, ohne HA)
 #
-# Pins laut Schaltplan: LED-Daten IO16 (ueber 74AHCT1G125), I2C SDA IO17 / SCL IO18, BOOT IO0
+# Pins laut Schaltplan (design.py, ESP_GPIO): LED-Daten GPIO8 (ueber 74AHCT1G125), I2C SDA GPIO1 / SCL GPIO2,
+# PD_GOOD GPIO38, BOOT GPIO0. qualify_firmware.py gleicht die Nummern ab.
 
 substitutions:
   name: wortuhr
@@ -201,6 +202,31 @@ interval:
             target = mn + (1.0f - mn) * std::min(1.0f, std::max(0.0f, x));
           }
           id(auto_factor) += (target - id(auto_factor)) * 0.25f;
+  # Stromgrenze und PD-Sperre fuer alles ausser den Uhrzeit-Effekten (die begrenzen sich in wortuhr.h selbst):
+  # einfarbiges Licht ohne Effekt und die Test-Effekte steuern alle LEDs an.
+  - interval: 500ms
+    then:
+      - lambda: |-
+          auto *l = id(uhr);
+          auto &v = l->remote_values;
+          if (!v.is_on()) return;
+          std::string effect = l->get_effect_name().str();
+          if (effect.rfind("Uhrzeit", 0) == 0) return;
+          if (!id(pd_ok).state) {              // ohne PD-Spannung bleiben die LEDs aus
+            auto call = l->turn_off();
+            call.set_transition_length(0);
+            call.perform();
+            return;
+          }
+          // Ohne Effekt zaehlt die eingestellte Farbe, bei Effekten der unguenstigste Fall (zwei volle Kanaele je LED)
+          float channels = effect == "None" ? v.get_color_brightness() * (v.get_red() + v.get_green() + v.get_blue()) + v.get_white() : 2.0f;
+          float max_brightness = wortuhr::limit_scale(${num_leds}, channels);
+          if (v.get_brightness() > max_brightness + 0.005f) {
+            auto call = l->make_call();
+            call.set_brightness(max_brightness);
+            call.set_transition_length(0);
+            call.perform();
+          }
 
 # ------------------------------------------------------------------ LEDs
 light:

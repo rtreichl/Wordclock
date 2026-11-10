@@ -68,15 +68,15 @@ Gilt für jedes Review nach Teil 2 und für jede Arbeit am Schaltplan (SCH). Bef
 | DEC-007 | Thermal-Relief-Anbindung hinsichtlich PI und Lötbarkeit bewerten | CONDITIONAL | Review, Zonen-Einstellung |
 | DEC-008 | Wirksame Kapazität bei Betriebsspannung berücksichtigen | ANALYSIS | Datenblatt, DC-Bias-Kurve |
 | DEC-009 | Abblock-C höchstens 8 mm Pad-Abstand zum Versorgungspin (Projektgrenze, kein elektrischer Grenzwert) | SOFT | `qualify_pcb.py` |
-| DEC-010 | Jede IC-Versorgung hat Abblockung nach Datenblatt, jede Abweichung ist begründet | CONDITIONAL | Datenblatt, Netzliste |
+| DEC-010 | Jede IC-Versorgung hat Abblockung nach Datenblatt, jede Abweichung ist begründet. Jeder Kondensator steht in `design.py` in `DECOUPLING` oder `OTHER_CAPS` | CONDITIONAL | Datenblatt, `qualify_pcb.py` |
 | LAY-001 | Steckverbinder, ESP32-Modul, Montagelöcher und Passermarken sind gesperrt | HARD | `qualify_pcb.py` |
-| PWR-001 | Netzklassen einhalten: `+15V` 0,8 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm | HARD | DRC, `qualify_pcb.py` |
+| PWR-001 | Mindestbreite der Leiterbahnen: `+15V` 0,8 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm (Werte und Ausnahme U5 Pin 1 in `design.py`) | HARD | `qualify_pcb.py` |
 | PWR-002 | Power-Vias 0,8/0,4 mm, bei Mehrfach-Pins mehrere Vias | SOFT | Review |
 | PWR-003 | Ein- und Ausgangs-C des LDO U2 erfüllen die Stabilitätsvorgaben des Datenblatts | HARD | Datenblatt |
 | PWR-004 | Keine Einschnürung oder Unterbrechung der `+5V`- und GND-Flächen im Hauptstromweg, Bewertung bei 4,4 A | ANALYSIS | Zonen-Prüfung, Berechnung |
 | MFG-001 | DRC und Schaltplan-Abgleich: 0 Fehler, 0 offen, 0 Abweichungen | HARD | `build_pcb.py`, `qualify_pcb.py` |
 | MFG-002 | Keine offenen Vias oder Stichleitungen (`via_dangling`, `track_dangling` = 0), Via mindestens Bohrung + 0,4 mm | HARD | `route_master.py`, DRC |
-| RF-001 | Antennenbereich des ESP32-S3-MINI-1 nach Herstellervorgabe von Kupfer und Bauteilen freihalten | HARD | Datenblatt, Geometrie |
+| RF-001 | Antennenbereich des ESP32-S3-MINI-1 nach Herstellervorgabe von Kupfer und Bauteilen freihalten | HARD | Sperrfläche im Footprint von U1, DRC, `qualify_pcb.py` |
 | DES-001 | Vor Schaltplan und Layout jedes ICs, Moduls und Steckverbinders das Datenblatt nach Layout Guidelines, Referenzschaltung und Land Pattern durchsuchen, bestenfalls auch nach Beispiel-Layouts und Evaluation Boards. Gefundene Vorgaben umsetzen; Abweichungen und nicht auffindbare Unterlagen im Review nennen | HARD | Liste je Bauteil: Quelle, Vorgabe, Umsetzung |
 | SCH-001 | Jedes Versorgungssymbol zeigt seinen Netznamen | HARD | `gen_sch.py` (Symbolwert immer sichtbar) |
 | SCH-002 | Signalfluss von links nach rechts, Versorgung oben, GND unten, Blöcke in der Reihenfolge der Energiekette | SOFT | Sichtprüfung |

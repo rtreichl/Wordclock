@@ -60,10 +60,10 @@ Neu erzeugen: `python tools/pcb_images.py` (KiCad-Python).
 
 ## WLED
 
-- LED-Typ: *SK6812/WS2814 RGBW*, Datenpin GPIO16, LED-Anzahl **292** (2 LEDs je Kammer) bzw. **148** (1 LED je Kammer): je Platine 36 Kammern + 1 Minuten-LED
+- LED-Typ: *SK6812/WS2814 RGBW*, Datenpin GPIO8, LED-Anzahl **292** (2 LEDs je Kammer) bzw. **148** (1 LED je Kammer): je Platine 36 Kammern + 1 Minuten-LED
 - 2D-Matrix: bei 2 LEDs je Kammer 24×12 mit `03_Software/WLED/ledmap_2LED_24x12.json`, bei 1 LED je Kammer 12×12 mit `ledmap_1LED_12x12.json` (als `ledmap.json` hochladen). Die 4 Minuten-LEDs gehören nicht zur Matrix und bleiben in WLED aus.
 - Stromgrenze (ABL) einstellen: USB-C 2,5 A, Netzteil je nach Leistung, z. B. 4 A
-- Lichtsensor: Usermod BH1750, I2C SDA 17 / SCL 18
+- Lichtsensor: Usermod BH1750, I2C SDA 1 / SCL 2
 
 ## Erzeugung
 

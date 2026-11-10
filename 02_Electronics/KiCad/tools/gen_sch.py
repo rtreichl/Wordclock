@@ -156,6 +156,16 @@ def symbol_pins(lib_id):
     return _pins[lib_id]
 
 
+def pin_names(lib_id):
+    """{Pinnummer: Pinname} eines Bibliothekssymbols."""
+    b = flat_symbol(lib_id)
+    out = {}
+    for m in re.finditer(r'\(pin \w+ \w+\s*\(at', b):
+        blk = sexpr_block(b, m.start())
+        out[re.search(r'\(number "([^"]*)"', blk).group(1)] = re.search(r'\(name "([^"]*)"', blk).group(1)
+    return out
+
+
 def symbol_body(lib_id):
     """Umriss des Symbolkoerpers (x1, y1, x2, y2) in Bibliothekskoordinaten: groesstes Rechteck, sonst Pin-Huelle."""
     if lib_id not in _body:

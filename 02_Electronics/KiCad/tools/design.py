@@ -91,6 +91,28 @@ def sheet_of(ref):
     return "LED_Feld"      # LEDs mit ihren Abblock-Kondensatoren (SCH-006), Verbinder, Mechanik
 
 
+# ---- Pruefvorgaben, die mehrere Skripte brauchen (eine Quelle) -----------------
+# ESP32-Signale: Netz -> GPIO. Die Firmware (wortuhr.yaml) und die Doku muessen dieselben Nummern nennen
+# (qualify_firmware.py). ESP_MODULE_PIN ordnet den GPIO dem Pin des ESP32-S3-MINI-1 zu (qualify_pcb.py
+# gleicht das mit den Pinnamen des KiCad-Symbols ab).
+ESP_GPIO = {"BOOT": 0, "SDA": 1, "SCL": 2, "LED_3V3": 8, "PD_GOOD": 38}
+ESP_MODULE_PIN = {0: "4", 1: "5", 2: "6", 8: "12", 38: "34"}
+
+# Abblock-Kondensatoren: C -> (IC, Versorgungspin). Regel DEC-009 prueft den Pad-Abstand.
+DECOUPLING = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C9": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"),
+              "C20": ("U6", "1"), "C21": ("U7", "1"), "C22": ("U7", "1"), "C26": ("U7", "8"), "C27": ("U7", "9"), "C28": ("U3", "5"),
+              "C175": ("D75", "1")}
+DECOUPLING.update({"C%d" % (100 + n): ("D%d" % n, "1") for n in range(1, 73)})
+# Kondensatoren mit anderer Aufgabe. Jeder Kondensator steht in genau einer der beiden Listen.
+OTHER_CAPS = {"C1": "Pufferelko +5V je Platine", "C23": "Ausgang Wandler", "C24": "Ausgang Wandler", "C25": "Ausgang Wandler",
+              "C5": "RC-Glied EN (Reset)", "C7": "RC-Glied DVI (Reset Sensor)"}
+
+# Regel PWR-001: Mindestbreite der Leiterbahnen je Versorgungsnetz in mm.
+PWR_MIN_WIDTH = {"+15V": 0.8, "VBUS": 0.6, "+3V3": 0.5}
+# Dokumentierte Ausnahme (ROUTING_GUIDE.md): Netz -> (Bauteil, Pad, kleinste Breite, groesste Laenge, Umkreis um das Pad), alles in mm
+PWR_WIDTH_EXCEPTION = {"+3V3": ("U5", "1", 0.25, 2.5, 4.0)}
+
+
 def sheet_uuid(name):
     return uid("sheet/" + name)
 
@@ -199,8 +221,8 @@ def build_parts():
     P.append(Part("C2", "Device:C", "10u", FP_C0805, {"1": "+5V", "2": "GND"}, M))
     P.append(Part("C3", "Device:C", "10u", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
     P.append(Part("C4", "Device:C", "100n", FP_C0603, {"1": "+3V3", "2": "GND"}, M))
-    esp = {"1": "GND", "2": "GND", "3": "+3V3", "45": "EN", "4": "BOOT", "12": "LED_3V3",
-           "5": "SDA", "6": "SCL", "34": "PD_GOOD", "23": "USB_D-_ESP", "24": "USB_D+_ESP"}
+    esp = {"1": "GND", "2": "GND", "3": "+3V3", "45": "EN", "23": "USB_D-_ESP", "24": "USB_D+_ESP"}
+    esp.update({ESP_MODULE_PIN[gpio]: net for net, gpio in ESP_GPIO.items()})
     for n in list(range(42, 44)) + list(range(46, 66)):
         esp[str(n)] = "GND"
     used = set(esp)
