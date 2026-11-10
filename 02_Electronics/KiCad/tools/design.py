@@ -13,6 +13,8 @@ unten rechts) im Bereich x,y = 0.5 ... 234.5.
 import uuid
 
 PROJECT = "WortUhr"
+REV = "3"                 # Platinen-Revision: einzige Quelle fuer Schriftfeld und Bestueckungsdruck (SCH-010)
+REV_DATE = "2026-11-10"   # Datum im Schriftfeld des Schaltplans
 ROOT_UUID = "71044415-29e6-47b3-b7ec-feffb4cadb55"
 
 # ---- Raster -----------------------------------------------------------------
@@ -76,7 +78,7 @@ class Part:
         self.uuid = uid("sym/" + ref)
 
 
-SHEETS = {"Versorgung": "Versorgung.kicad_sch", "ESP32": "ESP32.kicad_sch", "LED_Feld": "LED_Feld.kicad_sch", "Abblockung": "Abblockung.kicad_sch"}
+SHEETS = {"Versorgung": "Versorgung.kicad_sch", "ESP32": "ESP32.kicad_sch", "LED_Feld": "LED_Feld.kicad_sch"}
 VERSORGUNG = {"J1", "F1", "U3", "C28", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1"}
 ESP32 = {"U1", "R24", "R25", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8"}
 
@@ -86,9 +88,7 @@ def sheet_of(ref):
         return "Versorgung"
     if ref in ESP32:
         return "ESP32"
-    if ref.startswith("C") and ref[1:].isdigit() and int(ref[1:]) > 100:
-        return "Abblockung"
-    return "LED_Feld"
+    return "LED_Feld"      # LEDs mit ihren Abblock-Kondensatoren (SCH-006), Verbinder, Mechanik
 
 
 def sheet_uuid(name):

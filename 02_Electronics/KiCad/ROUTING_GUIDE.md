@@ -1,6 +1,6 @@
-# Leitfaden PCB-Layout, Freerouting und Power-Integrity-Review
+# Leitfaden PCB-Layout, Freerouting, Power-Integrity-Review und Schaltplan
 
-Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit an der LED-Platine. Teil 1 regelt das Routing, Teil 2 die Prüfung von Abblockung, Stromversorgung und Flächenanbindung. Die Originaltexte stehen unten. Darüber steht, wie sie in den Skripten `tools/gen_pcb.py`, `tools/route_master.py` und `tools/build_pcb.py` umgesetzt sind und wo das Projekt bewusst abweicht.
+Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit an der LED-Platine. Teil 1 regelt das Routing, Teil 2 die Prüfung von Abblockung, Stromversorgung und Flächenanbindung, Teil 3 (2026-11-10) die Darstellung des Schaltplans. Die Originaltexte stehen unten. Darüber steht, wie sie in den Skripten `tools/gen_pcb.py`, `tools/route_master.py` und `tools/build_pcb.py` umgesetzt sind und wo das Projekt bewusst abweicht.
 
 ## Ablauf und Vorrang
 
@@ -39,9 +39,23 @@ Ablauf mit MCP: `gen_pcb.py`, dann `route_master.py --prepare` (sperrt das LED-F
 | 7 EMV | Schleifenflächen, Rückstrompfade und Stromwege der LED-Versorgung bewerten (bis 4,4 A je Platine). Aus dem Layout wird keine Normkonformität abgeleitet. MIL-STD-461 nur, falls gefordert | ANALYSIS | Review, ggf. Messung |
 | 8, 9 Regeln, Bericht | Jeder Befund mit allen 12 Pflichtfeldern und Einstufung HARD/SOFT/CONDITIONAL/ANALYSIS | – | Review-Bericht |
 
+## Umsetzung Teil 3: Schaltplan
+
+Der Schaltplan entsteht vollständig aus `tools/design.py` (Bauteile, Netze) und `tools/gen_sch.py` (Darstellung). Von Hand geänderte Schaltplandateien gehen beim nächsten Lauf verloren. Jedes Blatt hat in `gen_sch.py` eine Funktion `sheet_*`, die Bauteile, Leitungen, Labels, Rahmen und Notizen in Rastereinheiten (2,54 mm) setzt.
+
+| Punkt | Umsetzung | Prüfung |
+|---|---|---|
+| Blätter | Wurzelblatt als Blockschaltbild (A4), `Versorgung`, `ESP32`, `LED_Feld` (je A3). Die Abblock-Kondensatoren der LEDs stehen in der Kammer neben ihrer LED | Sichtprüfung |
+| Netze | Der Generator bildet die Netze seiner Zeichnung nach und vergleicht sie mit `design.py`: jeder Pin am richtigen Netz, jedes Netz benannt, kein Kurzschluss | `gen_sch.py`, `qualify_pcb.py` |
+| Lesbarkeit | Der Generator schätzt die Lage aller Texte und meldet überlappende Texte, Leitungen durch Text und Leitungen durch fremde Symbole | `gen_sch.py`, `qualify_pcb.py` |
+| Stand | `gen_sch.py --check` vergleicht die Dateien im Projekt mit der Ausgabe des Generators | `qualify_pcb.py` |
+| ERC | 0 Fehler und 0 Warnungen | `qualify_pcb.py` |
+
+Nach jeder Änderung am Schaltplan: Netzliste vorher und nachher exportieren (`kicad-cli sch export netlist`) und vergleichen, solange das Layout nicht mitgeändert wird. Netznamen sind Teil des Layouts.
+
 ## Regelwerk
 
-Gilt für jedes Review nach Teil 2. Befunde nennen die Rule ID.
+Gilt für jedes Review nach Teil 2 und für jede Arbeit am Schaltplan (SCH). Befunde nennen die Rule ID.
 
 | Rule ID | Regel | Klasse | Prüfung |
 |---|---|---|---|
@@ -64,6 +78,16 @@ Gilt für jedes Review nach Teil 2. Befunde nennen die Rule ID.
 | MFG-002 | Keine offenen Vias oder Stichleitungen (`via_dangling`, `track_dangling` = 0), Via mindestens Bohrung + 0,4 mm | HARD | `route_master.py`, DRC |
 | RF-001 | Antennenbereich des ESP32-S3-MINI-1 nach Herstellervorgabe von Kupfer und Bauteilen freihalten | HARD | Datenblatt, Geometrie |
 | DES-001 | Vor Schaltplan und Layout jedes ICs, Moduls und Steckverbinders das Datenblatt nach Layout Guidelines, Referenzschaltung und Land Pattern durchsuchen, bestenfalls auch nach Beispiel-Layouts und Evaluation Boards. Gefundene Vorgaben umsetzen; Abweichungen und nicht auffindbare Unterlagen im Review nennen | HARD | Liste je Bauteil: Quelle, Vorgabe, Umsetzung |
+| SCH-001 | Jedes Versorgungssymbol zeigt seinen Netznamen | HARD | `gen_sch.py` (Symbolwert immer sichtbar) |
+| SCH-002 | Signalfluss von links nach rechts, Versorgung oben, GND unten, Blöcke in der Reihenfolge der Energiekette | SOFT | Sichtprüfung |
+| SCH-003 | Innerhalb eines Funktionsblocks Leitungen; Labels und Versorgungssymbole nur zwischen Blöcken und Blättern. Ausnahme: zweite Lage der USB-C-Datenpins | SOFT | Sichtprüfung |
+| SCH-004 | Keine überlappenden Texte, keine Leitung durch Text oder durch ein fremdes Symbol | HARD | `gen_sch.py`, `qualify_pcb.py` |
+| SCH-005 | Jeder Funktionsblock hat Rahmen, Titel und eine Notiz zur Auslegung (Beschaltung der Konfigurationspins, Teilerformel, Adresse, Quelle im Datenblatt) | SOFT | Sichtprüfung |
+| SCH-006 | Abblock-Kondensatoren stehen am zugehörigen IC oder an der zugehörigen LED, nicht auf einem eigenen Blatt | SOFT | Sichtprüfung |
+| SCH-007 | Bestückungsvariante sichtbar: Blätter und Ausnahmen sind mit „nur Master“ oder „alle Platinen“ beschriftet | HARD | Sichtprüfung |
+| SCH-008 | Das Wurzelblatt ist ein Blockschaltbild: Blätter in Flussrichtung, Inhalt und Schnittstellennetze als Text. Die Netze bleiben global, damit die Netznamen im Layout gleich bleiben | SOFT | Sichtprüfung |
+| SCH-009 | Netznamen sind nicht mit Referenzen verwechselbar. **Offen:** `Cnn_A_OUT`/`Cnn_B_OUT` lesen sich wie Kondensatoren; Umbenennung erst zusammen mit einer Layout-Änderung | SOFT | Review |
+| SCH-010 | Revision und Datum stehen nur in `design.py` (`REV`, `REV_DATE`); die Schaltplandateien im Projekt entsprechen der Ausgabe des Generators | HARD | `qualify_pcb.py` |
 
 ### Pflege des Regelwerks
 

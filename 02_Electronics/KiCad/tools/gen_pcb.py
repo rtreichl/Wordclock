@@ -353,7 +353,7 @@ zone(pcbnew.B_Cu, "GND", full)
 
 
 # ---------------------------------------------------------------- Beschriftung
-text(pcbnew.B_SilkS, "WortUhr LED-Board rev3  -  4x identisch", 117.0, 120.0, 2.0, mirror=True)
+text(pcbnew.B_SilkS, "WortUhr LED-Board rev%s  -  4x identisch" % D.REV, 117.0, 120.0, 2.0, mirror=True)
 text(pcbnew.B_SilkS, "Master: U1..U7, J1 bestuecken", 117.0, 124.0, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "JPx schliessen wenn LED B fehlt", 117.0, 127.5, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "IN", 7.5, D.CONN_POS - 14.0, 1.2, mirror=True)

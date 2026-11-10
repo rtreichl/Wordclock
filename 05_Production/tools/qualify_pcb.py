@@ -38,10 +38,21 @@ def run(args):
 
 
 # ---------------------------------------------------------------- ERC / DRC / Paritaet
-rc, out = run(["sch", "erc", "--format", "json", "--severity-error", "-o", os.path.join(STAGE, "erc.json"), SCH])
+rc, out = run(["sch", "erc", "--format", "json", "--severity-all", "-o", os.path.join(STAGE, "erc.json"), SCH])
 erc = json.load(open(os.path.join(STAGE, "erc.json"), encoding="utf-8"))
-n_erc = sum(len(s["violations"]) for s in erc["sheets"])
-check("Elektrisch", "ERC (Schaltplan)", "0 Fehler", f"{n_erc} Fehler", n_erc == 0)
+_ercs = collections.Counter(v["severity"] for s in erc["sheets"] for v in s["violations"])
+n_erc = _ercs.get("error", 0)
+check("Elektrisch", "ERC (Schaltplan)", "0 Fehler, 0 Warnungen", f"{n_erc} Fehler, {sum(_ercs.values()) - n_erc} Warnungen", not _ercs)
+# Schaltplan-Regeln SCH-001..010 (ROUTING_GUIDE.md): Der Generator prueft Netze und Lesbarkeit seiner Zeichnung selbst
+import gen_sch  # noqa: E402
+_sch_issues, _sch_stale = gen_sch.check()
+check("Schaltplan", "Generator-Stand (SCH-010)", "Dateien im Projekt = Ausgabe von gen_sch.py", f"{len(_sch_stale)} abweichend" + (f" ({', '.join(_sch_stale)})" if _sch_stale else ""),
+      not _sch_stale)
+check("Schaltplan", "Netze der Zeichnung", "jeder Pin am Netz aus design.py, jedes Netz benannt, kein Kurzschluss",
+      f"{sum('Netz:' in i or i.startswith('nicht') for i in _sch_issues)} Befunde", not any("Netz:" in i or i.startswith("nicht") for i in _sch_issues))
+_lesbar = [i for i in _sch_issues if "Netz:" not in i and not i.startswith("nicht")]
+check("Schaltplan", "Lesbarkeit (SCH-004)", "keine ueberlappenden Texte, keine Leitung durch Text oder fremdes Symbol",
+      f"{len(_lesbar)} Befunde" + (f" ({_lesbar[0]})" if _lesbar else ""), not _lesbar)
 rc, out = run(["pcb", "drc", "--schematic-parity", "--format", "json", "-o", os.path.join(STAGE, "drc.json"), PCB])
 drc = json.load(open(os.path.join(STAGE, "drc.json"), encoding="utf-8"))
 sev = collections.Counter(v["severity"] for v in drc["violations"])
