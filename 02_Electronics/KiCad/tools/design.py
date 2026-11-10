@@ -294,7 +294,7 @@ MASTER_PLACE = {
     "F1": (72.0, 230.5, 0, "B"),      # Eingangssicherung
     "U6": (71.5, 222.0, 0, "B"),      # PD-Controller
     "R20": (76.9, 224.0, 90, "B"),     # 1206: 137 mW bei 15 V
-    "C20": (76.5, 220.0, 90, "B"),
+    "C20": (70.2, 226.2, 0, "B"),      # VDD-Abblockung direkt unter U6 Pin 1 (DEC-009), Pad 1 zum Pin
     "R21": (79.0, 224.0, 90, "B"),
     "C21": (85.7, 224.0, 90, "B"),     # Figure 22: Eingangs-C ueber VIN (Pin 1) und PGND (Pin 2)
     "C22": (87.75, 224.0, 90, "B"),    # Figure 22: 100n direkt an Pin 1/2 (Hot-Loop)

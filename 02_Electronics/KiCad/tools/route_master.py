@@ -217,6 +217,15 @@ _poly([_f2, (_xa, _y15), (_c211[0] - (_y15 - _c211[1]), _y15), _c211], pcbnew.B_
 _r20 = _pad("R20", "1"); _r21 = _pad("R21", "1")
 _poly([_r20, (_r20[0], _y15), (_xa, _y15)], pcbnew.B_Cu, "+15V", 0.8)
 _poly([_r21, (_r21[0], _y15)], pcbnew.B_Cu, "+15V", 0.8)
+# PD_VDD: U6 Pin 3..1 -> C20 -> Via. Die Versorgung von R20 laeuft ueber den Kondensator zum Pin (DEC-002, DEC-009)
+_NV = [n for n in map(str, board.GetNetsByName().keys()) if n.endswith("/PD_VDD")][0]
+_u61, _c201 = _pad("U6", "1"), _pad("C20", "1")
+_dv = _c201[0] - _u61[0]
+assert _dv > 0, "C20 Pad 1 muss rechts unter U6 Pin 1 liegen"
+_poly([_pad("U6", "3"), _u61, (_u61[0], _u61[1] + 1.0), (_c201[0], _u61[1] + 1.0 + _dv), _c201], pcbnew.B_Cu, _NV, 0.3)
+_vv = (_c201[0] + 0.175, _c201[1] + 1.1)
+_poly([_c201, (_c201[0], _c201[1] + 0.925), _vv], pcbnew.B_Cu, _NV, 0.3)
+add_via(board, _vv[0], _vv[1], _NV, 0.7, 0.3); added += 1
 _u69 = _pad("U6", "9"); _u611 = _pad("U6", "11")
 _poly([(_u611[0] + 1.0, _u69[1]), _u69, (_u69[0] + 1.4, _u69[1])], pcbnew.B_Cu, "GND", 0.3)
 # EN und PD_GOOD: lange Wege quer ueber den Streifen auf der Oberseite
