@@ -12,10 +12,14 @@ from FreeCAD import Vector as V
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 doc = App.openDocument(os.path.join(ROOT, "01_Mechanic", "FrontPlatte-Bestellung.FCStd"))
-EXP = os.path.join(ROOT, "02_Electronics", "3D-Export")
+# Quelle der STEP-Dateien: Vorgabe 02_Electronics/3D-Export; mit WORTUHR_STEP_DIR direkt aus dem Staging von qualify_pcb.py (<stage>/PCB)
+EXP = os.environ.get("WORTUHR_STEP_DIR") or os.path.join(ROOT, "02_Electronics", "3D-Export")
+import sys
+sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
+import design as D  # noqa: E402  Rastermasse: eine Quelle
 # Objekt: STEP, Drehung, Aussenecke (x, y) der Leiterplatte am Rand der Uhr
 PL = {"PCB_Q4_Master": ("LED-Board_master.step", 0), "PCB_Q2": ("LED-Board_slave.step", 90), "PCB_Q1": ("LED-Board_slave.step", 180), "PCB_Q3": ("LED-Board_slave.step", 270)}
-XC, YC, B0, B1 = 250.627, -250.0, 0.5, 234.5
+(XC, YC), B0, B1 = D.CLOCK_CENTER, D.BOARD_MIN, D.BOARD_MAX
 
 
 def board(sols):

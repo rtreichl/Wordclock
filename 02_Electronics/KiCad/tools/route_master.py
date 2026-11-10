@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Routet die Master-Elektronik mit Freerouting (nach gen_pcb.py ausfuehren).
+"""Routet die Master-Elektronik mit Freerouting (nach gen_pcb.py und route_buck_usb.py ausfuehren).
 
 1. +5V-/GND-Pads der Master-Teile bekommen Vias auf die Flaechen (+5V oben, GND unten).
 2. Temporaere Kopie: Flaechen entfernt, vorhandene Leiterbahnen fixiert, +5V/GND ohne Netz
@@ -11,12 +11,10 @@ import os, sys, math, glob, subprocess, tempfile
 sys.path.insert(0, os.path.dirname(__file__))
 import pcbnew
 import design as D
+import kicad_env
 
 PRJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PCB = os.path.join(PRJ, "WortUhr.kicad_pcb")
-HOME = os.path.expanduser("~/.kicad-mcp")
-JAVA = glob.glob(os.path.join(HOME, "jre", "*", "bin", "java.exe"))[0]
-JAR = os.path.join(HOME, "freerouting.jar")
 MASTER = set(D.MASTER_PLACE)
 POWER_W = {"VBUS": 0.6, "+15V": 0.8, "+3V3": 0.5, "USB_D+": 0.2, "USB_D-": 0.2}   # ROUTING_GUIDE.md: Power >= 0,5 mm
 mm, toMM = pcbnew.FromMM, pcbnew.ToMM
@@ -130,7 +128,7 @@ for fp in board.GetFootprints():
         need = (n == "+5V") or (n == "GND" and top)
         if not need:
             continue
-        # Dioden-Kathoden / Hohlbuchse: mehrere Vias fuer Strom
+        # Bauteile mit hohem Strom bekaemen mehrere Vias (derzeit keines: L1 ist von Hand verlegt)
         count = 6 if ref == "L1" else 1
         x, y = pos(p.GetPosition())
         layer = pcbnew.F_Cu if top else pcbnew.B_Cu
@@ -217,6 +215,15 @@ _poly([_f2, (_xa, _y15), (_c211[0] - (_y15 - _c211[1]), _y15), _c211], pcbnew.B_
 _r20 = _pad("R20", "1"); _r21 = _pad("R21", "1")
 _poly([_r20, (_r20[0], _y15), (_xa, _y15)], pcbnew.B_Cu, "+15V", 0.8)
 _poly([_r21, (_r21[0], _y15)], pcbnew.B_Cu, "+15V", 0.8)
+# PD_VDD: U6 Pin 3..1 -> C20 -> Via. Die Versorgung von R20 laeuft ueber den Kondensator zum Pin (DEC-002, DEC-009)
+_NV = [n for n in map(str, board.GetNetsByName().keys()) if n.endswith("/PD_VDD")][0]
+_u61, _c201 = _pad("U6", "1"), _pad("C20", "1")
+_dv = _c201[0] - _u61[0]
+assert _dv > 0, "C20 Pad 1 muss rechts unter U6 Pin 1 liegen"
+_poly([_pad("U6", "3"), _u61, (_u61[0], _u61[1] + 1.0), (_c201[0], _u61[1] + 1.0 + _dv), _c201], pcbnew.B_Cu, _NV, 0.3)
+_vv = (_c201[0] + 0.175, _c201[1] + 1.1)
+_poly([_c201, (_c201[0], _c201[1] + 0.925), _vv], pcbnew.B_Cu, _NV, 0.3)
+add_via(board, _vv[0], _vv[1], _NV, 0.7, 0.3); added += 1
 _u69 = _pad("U6", "9"); _u611 = _pad("U6", "11")
 _poly([(_u611[0] + 1.0, _u69[1]), _u69, (_u69[0] + 1.4, _u69[1])], pcbnew.B_Cu, "GND", 0.3)
 # EN und PD_GOOD: lange Wege quer ueber den Streifen auf der Oberseite
@@ -339,6 +346,7 @@ print("STATE", STATE); print("DSN", dsn); print("SES", ses)
 if "--prepare" in sys.argv:
     sys.exit(0)
 # Ohne --prepare: lokaler Lauf mit derselben Engine (build_pcb.py)
+JAVA, JAR = kicad_env.freerouting()
 FR_ARGS = ["--router.autorouter.max_passes=100", "--router.automatic_neckdown=false", "--gui.enabled=false"]
 r = subprocess.run([JAVA, "-jar", JAR, "-de", dsn, "-do", ses, "-l", "en"] + FR_ARGS, capture_output=True, text=True, timeout=3600)
 print("freerouting rc", r.returncode, r.stdout[-800:], r.stderr[-400:])

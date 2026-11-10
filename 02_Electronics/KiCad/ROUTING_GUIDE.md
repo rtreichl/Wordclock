@@ -1,6 +1,6 @@
-# Leitfaden PCB-Layout, Freerouting und Power-Integrity-Review
+# Leitfaden PCB-Layout, Freerouting, Power-Integrity-Review und Schaltplan
 
-Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit an der LED-Platine. Teil 1 regelt das Routing, Teil 2 die Prüfung von Abblockung, Stromversorgung und Flächenanbindung. Die Originaltexte stehen unten. Darüber steht, wie sie in den Skripten `tools/gen_pcb.py`, `tools/route_master.py` und `tools/build_pcb.py` umgesetzt sind und wo das Projekt bewusst abweicht.
+Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit an der LED-Platine. Teil 1 regelt das Routing, Teil 2 die Prüfung von Abblockung, Stromversorgung und Flächenanbindung, Teil 3 (2026-11-10) die Darstellung des Schaltplans. Die Originaltexte stehen unten. Darüber steht, wie sie in den Skripten `tools/gen_pcb.py`, `tools/route_master.py` und `tools/build_pcb.py` umgesetzt sind und wo das Projekt bewusst abweicht.
 
 ## Ablauf und Vorrang
 
@@ -17,15 +17,17 @@ Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit 
 | Signale 0,2–0,25 mm | Signale 0,3 mm im LED-Feld (Daten), Freerouting-Standard 0,25 mm | DRC (min. 0,1 mm bei JLCPCB) |
 | Orthogonale Lagen (oben horizontal, unten vertikal) | Freerouting-MCP, Job-Einstellung `layers[].preferred_direction_horizontal` = oben true, unten false | `get_effective_settings` je Job |
 | Abblock-C so nah wie möglich | Platzierung in `design.py` / `gen_pcb.py` (LED-C 3,7 mm vom VDD-Pad) | `qualify_pcb.py`: Abstand Abblock-C zum Versorgungspin |
-| Kritische Teile sperren | USB-C, Hohlbuchse, Kantenbrücken, ESP32-Modul (Antenne), Montagelöcher, Passermarken werden nach dem Platzieren gesperrt (`SetLocked`) | `qualify_pcb.py` |
-| Funktionsblöcke gruppieren | Master-Streifen am unteren Rand: Stromversorgung (J1, J2, D73, D74, U2), ESP32 (U1, R3, R4, C4, C5, SW1, SW2), Pegelwandler (U4, R5), Sensor unter dem Lichtleiter (U5) | Sichtprüfung |
+| Kritische Teile sperren | USB-C, Kantenbrücken, ESP32-Modul (Antenne), Montagelöcher, Passermarken werden nach dem Platzieren gesperrt (`SetLocked`) | `qualify_pcb.py` |
+| Funktionsblöcke gruppieren | Master-Streifen am unteren Rand: Stromversorgung (J1, F1, U3, U6, U7, L1, U2), ESP32 (U1, R3, R4, C4, C5, SW1, SW2), Pegelwandler (U4, R5), Sensor unter dem Lichtleiter (U5) | Sichtprüfung |
 | `max_passes` ≥ 100 | MCP-Einstellung `autorouter.max_passes = 100` (Feldname in snake_case, sonst wird der Wert ignoriert), `automatic_neckdown = false` | `get_effective_settings` je Job |
 | Pull-tight | Freerouting-Standard (Optimierer aktiv), nicht abgeschaltet | – |
 | Nachbearbeitung: Umwege, überflüssige Vias | `route_master.py` entfernt Stichleitungen und unverbundene Vias; Vias haben mindestens Bohrung + 0,4 mm | DRC `via_dangling`, `track_dangling` = 0 |
 | GND-Flächen oben **und** unten | **Abweichung:** Die Oberseite ist die `+5V`-Fläche. Die Platine verteilt bis zu 73 LEDs × 60 mA ≈ 4,4 A je Platine; eine durchgehende Fläche ist dafür nötig. GND liegt durchgehend unten. Damit gibt es keine GND-Fläche oben, die man vernähen könnte. | Entscheidung, siehe hier |
 | DRC direkt nach dem Import | `build_pcb.py` führt nach jedem Durchlauf DRC mit Schaltplan-Abgleich aus und wiederholt bis 0 Fehler / 0 offen / 0 Abweichungen | `build_pcb.py`, `qualify_pcb.py` |
 
-Ablauf mit MCP: `gen_pcb.py`, dann `route_master.py --prepare` (sperrt das LED-Feld, gibt nicht zu routenden Leiterbahnen Ersatznetze `OBST_n`, schreibt die DSN). Die DSN geht als Job an den Freerouting-MCP (`enqueue_job`, `upload_job_input_from_local_file`, `update_job_settings`, `start_job`, `download_job_output_to_local_file`). `route_finish.py` übernimmt die SES, danach DRC über den KiCad-MCP. `build_pcb.py` bleibt als lokaler Lauf mit derselben Engine (`java -jar`) erhalten. Der MCP braucht den lokalen API-Dienst auf Port 37864.
+Ablauf mit MCP: `gen_pcb.py`, dann `route_buck_usb.py` (Wandler und USB-Paar von Hand), dann `route_master.py --prepare` (sperrt das LED-Feld, gibt nicht zu routenden Leiterbahnen Ersatznetze `OBST_n`, schreibt die DSN). Die DSN geht als Job an den Freerouting-MCP (`enqueue_job`, `upload_job_input_from_local_file`, `update_job_settings`, `start_job`, `download_job_output_to_local_file`). `route_finish.py` übernimmt die SES, danach DRC über den KiCad-MCP. `build_pcb.py` bleibt als lokaler Lauf mit derselben Engine (`java -jar`) erhalten und führt dieselben Schritte aus. Der MCP braucht den lokalen API-Dienst auf Port 37864.
+
+Werkzeuge: Die Pfade zu KiCad und Freerouting löst `tools/kicad_env.py` auf (Umgebungsvariablen `KICAD_CLI`, `KICAD10_SYMBOL_DIR`, `KICAD10_FOOTPRINT_DIR`, `FREEROUTING_JAR`, `FREEROUTING_JAVA`). Die eingecheckte Platine wurde mit dem Freerouting-Build `b647a2f` vom 2026-10-05 (Java 25) geroutet; `kicad_env.py` warnt bei einem anderen Stand. Freerouting arbeitet nicht deterministisch: Ein neuer Lauf ergibt eine andere Platine. Kleine Änderungen deshalb in der gerouteten Platine nachziehen und die Vorgabe zusätzlich in `design.py` und `route_master.py` eintragen.
 
 ## Umsetzung Teil 2: Power-Integrity-Review
 
@@ -39,9 +41,23 @@ Ablauf mit MCP: `gen_pcb.py`, dann `route_master.py --prepare` (sperrt das LED-F
 | 7 EMV | Schleifenflächen, Rückstrompfade und Stromwege der LED-Versorgung bewerten (bis 4,4 A je Platine). Aus dem Layout wird keine Normkonformität abgeleitet. MIL-STD-461 nur, falls gefordert | ANALYSIS | Review, ggf. Messung |
 | 8, 9 Regeln, Bericht | Jeder Befund mit allen 12 Pflichtfeldern und Einstufung HARD/SOFT/CONDITIONAL/ANALYSIS | – | Review-Bericht |
 
+## Umsetzung Teil 3: Schaltplan
+
+Der Schaltplan entsteht vollständig aus `tools/design.py` (Bauteile, Netze) und `tools/gen_sch.py` (Darstellung). Von Hand geänderte Schaltplandateien gehen beim nächsten Lauf verloren. Jedes Blatt hat in `gen_sch.py` eine Funktion `sheet_*`, die Bauteile, Leitungen, Labels, Rahmen und Notizen in Rastereinheiten (2,54 mm) setzt.
+
+| Punkt | Umsetzung | Prüfung |
+|---|---|---|
+| Blätter | Wurzelblatt als Blockschaltbild (A4), `Versorgung`, `ESP32`, `LED_Feld` (je A3). Die Abblock-Kondensatoren der LEDs stehen in der Kammer neben ihrer LED | Sichtprüfung |
+| Netze | Der Generator bildet die Netze seiner Zeichnung nach und vergleicht sie mit `design.py`: jeder Pin am richtigen Netz, jedes Netz benannt, kein Kurzschluss | `gen_sch.py`, `qualify_pcb.py` |
+| Lesbarkeit | Der Generator schätzt die Lage aller Texte und meldet überlappende Texte, Leitungen durch Text und Leitungen durch fremde Symbole | `gen_sch.py`, `qualify_pcb.py` |
+| Stand | `gen_sch.py --check` vergleicht die Dateien im Projekt mit der Ausgabe des Generators | `qualify_pcb.py` |
+| ERC | 0 Fehler und 0 Warnungen | `qualify_pcb.py` |
+
+Nach jeder Änderung am Schaltplan: Netzliste vorher und nachher exportieren (`kicad-cli sch export netlist`) und vergleichen, solange das Layout nicht mitgeändert wird. Netznamen sind Teil des Layouts.
+
 ## Regelwerk
 
-Gilt für jedes Review nach Teil 2. Befunde nennen die Rule ID.
+Gilt für jedes Review nach Teil 2 und für jede Arbeit am Schaltplan (SCH). Befunde nennen die Rule ID.
 
 | Rule ID | Regel | Klasse | Prüfung |
 |---|---|---|---|
@@ -54,16 +70,26 @@ Gilt für jedes Review nach Teil 2. Befunde nennen die Rule ID.
 | DEC-007 | Thermal-Relief-Anbindung hinsichtlich PI und Lötbarkeit bewerten | CONDITIONAL | Review, Zonen-Einstellung |
 | DEC-008 | Wirksame Kapazität bei Betriebsspannung berücksichtigen | ANALYSIS | Datenblatt, DC-Bias-Kurve |
 | DEC-009 | Abblock-C höchstens 8 mm Pad-Abstand zum Versorgungspin (Projektgrenze, kein elektrischer Grenzwert) | SOFT | `qualify_pcb.py` |
-| DEC-010 | Jede IC-Versorgung hat Abblockung nach Datenblatt, jede Abweichung ist begründet | CONDITIONAL | Datenblatt, Netzliste |
+| DEC-010 | Jede IC-Versorgung hat Abblockung nach Datenblatt, jede Abweichung ist begründet. Jeder Kondensator steht in `design.py` in `DECOUPLING` oder `OTHER_CAPS` | CONDITIONAL | Datenblatt, `qualify_pcb.py` |
 | LAY-001 | Steckverbinder, ESP32-Modul, Montagelöcher und Passermarken sind gesperrt | HARD | `qualify_pcb.py` |
-| PWR-001 | Netzklassen einhalten: `+15V` 0,8 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm | HARD | DRC, `qualify_pcb.py` |
+| PWR-001 | Mindestbreite der Leiterbahnen: `+15V` 0,8 mm, `VBUS` 0,6 mm, `+3V3` 0,5 mm (Werte und Ausnahme U5 Pin 1 in `design.py`) | HARD | `qualify_pcb.py` |
 | PWR-002 | Power-Vias 0,8/0,4 mm, bei Mehrfach-Pins mehrere Vias | SOFT | Review |
 | PWR-003 | Ein- und Ausgangs-C des LDO U2 erfüllen die Stabilitätsvorgaben des Datenblatts | HARD | Datenblatt |
 | PWR-004 | Keine Einschnürung oder Unterbrechung der `+5V`- und GND-Flächen im Hauptstromweg, Bewertung bei 4,4 A | ANALYSIS | Zonen-Prüfung, Berechnung |
 | MFG-001 | DRC und Schaltplan-Abgleich: 0 Fehler, 0 offen, 0 Abweichungen | HARD | `build_pcb.py`, `qualify_pcb.py` |
 | MFG-002 | Keine offenen Vias oder Stichleitungen (`via_dangling`, `track_dangling` = 0), Via mindestens Bohrung + 0,4 mm | HARD | `route_master.py`, DRC |
-| RF-001 | Antennenbereich des ESP32-S3-MINI-1 nach Herstellervorgabe von Kupfer und Bauteilen freihalten | HARD | Datenblatt, Geometrie |
+| RF-001 | Antennenbereich des ESP32-S3-MINI-1 nach Herstellervorgabe von Kupfer und Bauteilen freihalten | HARD | Sperrfläche im Footprint von U1, DRC, `qualify_pcb.py` |
 | DES-001 | Vor Schaltplan und Layout jedes ICs, Moduls und Steckverbinders das Datenblatt nach Layout Guidelines, Referenzschaltung und Land Pattern durchsuchen, bestenfalls auch nach Beispiel-Layouts und Evaluation Boards. Gefundene Vorgaben umsetzen; Abweichungen und nicht auffindbare Unterlagen im Review nennen | HARD | Liste je Bauteil: Quelle, Vorgabe, Umsetzung |
+| SCH-001 | Jedes Versorgungssymbol zeigt seinen Netznamen | HARD | `gen_sch.py` (Symbolwert immer sichtbar) |
+| SCH-002 | Signalfluss von links nach rechts, Versorgung oben, GND unten, Blöcke in der Reihenfolge der Energiekette | SOFT | Sichtprüfung |
+| SCH-003 | Innerhalb eines Funktionsblocks Leitungen; Labels und Versorgungssymbole nur zwischen Blöcken und Blättern. Ausnahme: zweite Lage der USB-C-Datenpins | SOFT | Sichtprüfung |
+| SCH-004 | Keine überlappenden Texte, keine Leitung durch Text oder durch ein fremdes Symbol | HARD | `gen_sch.py`, `qualify_pcb.py` |
+| SCH-005 | Jeder Funktionsblock hat Rahmen, Titel und eine Notiz zur Auslegung (Beschaltung der Konfigurationspins, Teilerformel, Adresse, Quelle im Datenblatt) | SOFT | Sichtprüfung |
+| SCH-006 | Abblock-Kondensatoren stehen am zugehörigen IC oder an der zugehörigen LED, nicht auf einem eigenen Blatt | SOFT | Sichtprüfung |
+| SCH-007 | Bestückungsvariante sichtbar: Blätter und Ausnahmen sind mit „nur Master“ oder „alle Platinen“ beschriftet | HARD | Sichtprüfung |
+| SCH-008 | Das Wurzelblatt ist ein Blockschaltbild: Blätter in Flussrichtung, Inhalt und Schnittstellennetze als Text. Die Netze bleiben global, damit die Netznamen im Layout gleich bleiben | SOFT | Sichtprüfung |
+| SCH-009 | Netznamen sind nicht mit Referenzen verwechselbar. **Offen:** `Cnn_A_OUT`/`Cnn_B_OUT` lesen sich wie Kondensatoren; Umbenennung erst zusammen mit einer Layout-Änderung | SOFT | Review |
+| SCH-010 | Revision und Datum stehen nur in `design.py` (`REV`, `REV_DATE`); die Schaltplandateien im Projekt entsprechen der Ausgabe des Generators | HARD | `qualify_pcb.py` |
 
 ### Pflege des Regelwerks
 

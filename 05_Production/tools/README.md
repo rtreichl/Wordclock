@@ -9,6 +9,7 @@ Jedes Bauteil wird gegen die Fertigungsgrenzen seines Fertigers geprüft. Nur Da
 | `qualify_print.py` | Gitter Q1–Q4 und Rückrahmen: Netz geschlossen, Bauraum, Auflagefläche, Wandstärke per Strahlmessung, Bohrungen, Passungen (Teile untereinander, Platine, Rahmen), Spiel und Toleranzen. | Bambu Lab P1S, JLC3DP | FreeCAD (`STAGE`, `ROOT` setzen) |
 | `qualify_firmware.py <stage>` | Layout aktuell, Wortpositionen, Satzbildung, ESPHome-Konfiguration, Build, Speicher, Anforderungen (NTP ohne HA, lokale Bedienung), Secrets, WLED-LED-Maps. | ESPHome / WLED | Python 3.12 mit ESPHome |
 | `make_reports.py <stage>` | Schreibt die Berichte und kopiert nur freigegebene Dateien. | – | Python |
+| `check_production.py` | Vergleicht die Dateien in `05_Production` mit den Prüfsummen ihrer Berichte und mit den gleichnamigen Quelldateien. Fällt auf, wenn jemand eine freigegebene Datei direkt ändert. | – | Python |
 
 Lokal, mit FreeCAD und laufender MCP-Bridge, oder auf der Kommandozeile mit `freecadcmd`:
 

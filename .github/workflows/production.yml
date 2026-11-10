@@ -128,6 +128,8 @@ jobs:
           path: stage
           pattern: stage-*
           merge-multiple: true
+      - name: Eingecheckte Produktionsdaten passen zu ihren Berichten
+        run: python3 05_Production/tools/check_production.py
       - name: Berichte schreiben, freigegebene Daten kopieren
         run: python3 05_Production/tools/make_reports.py stage
       - uses: actions/upload-artifact@v6

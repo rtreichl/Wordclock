@@ -118,6 +118,20 @@ inline Mask status_wlan() {
   return m;
 }
 
+// ---------------------------------------------------------------- Stromgrenze
+// Wandler 6 A, Firmware begrenzt auf 5 A. Schaetzung: 16 mA je voll angesteuertem LED-Kanal.
+constexpr float AMP_PER_CHANNEL = 0.016f;
+constexpr float AMP_LIMIT = 5.0f;
+
+// Geschaetzter Strom fuer `leds` LEDs mit der Kanalsumme `channels` (0..4: R + G + B + W, je 0..1).
+inline float estimate_amp(float leds, float channels) { return leds * AMP_PER_CHANNEL * channels; }
+
+// Faktor (0..1), mit dem die Helligkeit multipliziert werden muss, damit der Strom unter der Grenze bleibt.
+inline float limit_scale(float leds, float channels) {
+  float amp = estimate_amp(leds, channels);
+  return amp > AMP_LIMIT ? AMP_LIMIT / amp : 1.0f;
+}
+
 // ---------------------------------------------------------------- Ausgabe mit Ueberblendung
 struct Renderer {
   std::array<float, CELLS> level{};   // aktueller Helligkeitsanteil je Kammer (0..1)
@@ -130,11 +144,11 @@ struct Renderer {
     float dt = last_ms ? (now_ms - last_ms) / 1000.0f : 1.0f;
     last_ms = now_ms;
     float step = fade_s > 0.01f ? dt / fade_s : 1.0f;
-    // Stromgrenze: Wandler 6 A, Firmware begrenzt auf 5 A (Schaetzung 16 mA je voll angesteuertem LED-Kanal)
+    // Stromgrenze. Im Regenbogen leuchten je LED bis zu zwei Kanaele voll.
     int lit = m.minutes;
     for (bool b : m.on) lit += b ? leds_per_cell : 0;
-    float amp = lit * 0.016f * ((base.r + base.g + base.b + base.w) / 255.0f) * factor;
-    if (amp > 5.0f) factor *= 5.0f / amp;
+    float channels = rainbow ? 2.0f : (base.r + base.g + base.b + base.w) / 255.0f;
+    factor *= limit_scale(lit, channels * factor);
     for (int r = 0; r < ROWS; r++) {
       for (int c = 0; c < COLS; c++) {
         int i = r * COLS + c;

@@ -104,6 +104,41 @@ if "--no-compile" not in sys.argv:
     warn = [l for l in log.splitlines() if ("wortuhr.h" in l or "wortuhr_layout.h" in l) and "warning" in l]
     check("Firmware", "Build", "Keine Compiler-Warnungen im eigenen Code", "0", f"{len(warn)}", not warn)
 
+# ---------------------------------------------------------------- Pins gegen den Schaltplan (design.py)
+sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
+import design as D  # noqa: E402
+blk = lambda start: ytxt[ytxt.index(start):]
+gp = lambda txt, key: int(re.search(key + r"\s*(?:number:\s*)?GPIO(\d+)", txt).group(1))
+fw = {"SDA": gp(blk("\ni2c:"), r"sda:"), "SCL": gp(blk("\ni2c:"), r"scl:"), "LED_3V3": gp(blk("esp32_rmt_led_strip"), r"pin:"),
+      "PD_GOOD": gp(blk("id: pd_ok"), r"pin:"), "BOOT": gp(blk("id: taster"), r"pin:")}
+diff = [f"{n}: Firmware GPIO{fw[n]}, Schaltplan GPIO{g}" for n, g in D.ESP_GPIO.items() if fw.get(n) != g]
+check("Firmware", "Konsistenz", "Pins wie im Schaltplan", "GPIO je Signal = design.py (ESP_GPIO)",
+      ", ".join(f"{n}=GPIO{g}" for n, g in fw.items()) + (f"; abweichend: {diff}" if diff else ""), not diff and set(fw) == set(D.ESP_GPIO))
+doc = open(os.path.join(ROOT, "02_Electronics", "BESTUECKUNG.md"), encoding="utf-8").read()
+want = [f"Datenpin GPIO{D.ESP_GPIO['LED_3V3']},", f"SDA {D.ESP_GPIO['SDA']} / SCL {D.ESP_GPIO['SCL']}",
+        f"LED-Daten GPIO{D.ESP_GPIO['LED_3V3']} ", f"SDA GPIO{D.ESP_GPIO['SDA']} / SCL GPIO{D.ESP_GPIO['SCL']}"]
+miss = [w for w, t in zip(want, (doc, doc, ytxt, ytxt)) if w not in t]
+check("Firmware", "Konsistenz", "Pins in der Doku", "BESTUECKUNG.md (WLED) und Kopf von wortuhr.yaml nennen die Pins aus design.py",
+      "stimmt" if not miss else f"fehlt: {miss}", not miss)
+
+# ---------------------------------------------------------------- Stromgrenze und PD-Sperre in jeder Betriebsart
+A_CH = float(re.search(r"AMP_PER_CHANNEL = ([\d.]+)f", h).group(1)); A_MAX = float(re.search(r"AMP_LIMIT = ([\d.]+)f", h).group(1))
+limit_scale = lambda leds, ch: min(1.0, A_MAX / (leds * A_CH * ch)) if leds * ch else 1.0      # Nachbildung von limit_scale()
+nl_ = int(re.search(r'num_leds: "(\d+)"', ytxt).group(1))
+worst = max(nl_ * A_CH * ch * limit_scale(nl_, ch) for ch in (0.5, 1.0, 2.0, 3.0, 4.0))
+check("Firmware", "Sicherheit", "Stromgrenze rechnerisch", f"alle {nl_} LEDs, jede Farbe: geschaetzter Strom <= {A_MAX:g} A",
+      f"ohne Grenze bis {nl_ * A_CH * 4:.1f} A, mit Grenze hoechstens {worst:.2f} A", worst <= A_MAX + 1e-6 and "limit_scale(lit," in h)
+effects = re.findall(r'name: "([^"]+)"', blk("    effects:"))
+clock = [e for e in effects if e.startswith("Uhrzeit")]
+guard = blk("# Stromgrenze und PD-Sperre") if "# Stromgrenze und PD-Sperre" in ytxt else ""
+guard = guard[:guard.index("\n# ---")] if "\n# ---" in guard else guard
+g_ok = all(k in guard for k in ('rfind("Uhrzeit", 0)', "id(pd_ok).state", "turn_off()", "wortuhr::limit_scale(${num_leds}", "set_brightness(max_brightness)"))
+c_ok = len(clock) > 0 and ytxt.count("(id(pd_ok).state ? id(auto_factor) : 0.0f)") == len(clock)
+check("Firmware", "Sicherheit", "Stromgrenze und PD-Sperre in jeder Betriebsart",
+      "Uhrzeit-Effekte begrenzen im Renderer; Licht ohne Effekt und alle anderen Effekte begrenzt der Waechter",
+      f"{len(clock)} Uhrzeit-Effekte, {len(effects) - len(clock)} andere ({', '.join(e for e in effects if e not in clock)}), Waechter {'vorhanden' if g_ok else 'fehlt/unvollstaendig'}",
+      g_ok and c_ok)
+
 # ---------------------------------------------------------------- WLED-LED-Maps
 wl = os.path.join(ROOT, "03_Software", "WLED")
 m1 = json.load(open(os.path.join(wl, "ledmap_1LED_12x12.json")))["map"]

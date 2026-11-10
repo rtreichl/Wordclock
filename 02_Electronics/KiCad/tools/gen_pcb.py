@@ -3,16 +3,17 @@
 
 - Platzierung aller Bauteile (LED-Feld oben, Master-Teile unten)
 - Routing des kompletten LED-Feldes (Datenkette, GND-Vias, Bruecken)
-- +5V-Flaeche oben, GND-Flaeche unten, Antennen-Sperrflaeche
-Die Master-Elektronik ist platziert; ihre Signale sind (noch) nicht geroutet.
+- +5V-Flaeche oben, GND-Flaeche unten (die Antennen-Sperrflaeche bringt der Footprint von U1 mit)
+Die Master-Elektronik ist platziert, aber nicht geroutet: danach route_buck_usb.py und route_master.py (siehe build_pcb.py).
 """
 import os, sys, math
 sys.path.insert(0, os.path.dirname(__file__))
 import pcbnew
 import design as D
+import kicad_env
 
 PRJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-KIFP = r"P:/Program Files/KiCad/10.0/share/kicad/footprints/"
+KIFP = kicad_env.footprint_dir()
 O = 40.0                      # KiCad-Koordinate des Uhrmittelpunkts (x und y)
 W_SIG, W_GND = 0.3, 0.4
 VIA_D, VIA_DRILL = 0.7, 0.3          # Restring 0.2 mm (JLCPCB 2 Lagen: min. 0.18 mm)
@@ -29,7 +30,7 @@ board.SetCopperLayerCount(2)
 ds = board.GetDesignSettings()
 ds.SetBoardThickness(mm(1.6))
 ds.m_TrackMinWidth = mm(0.1)          # JLCPCB 2 Lagen: min. 0.1 mm
-ds.m_CopperEdgeClearance = mm(0.3)    # JLCPCB min. 0.3 mm
+ds.m_CopperEdgeClearance = mm(0.3)    # Projektregel; die Grenze des Fertigers prueft qualify_pcb.py
 nets = {}
 
 
@@ -139,7 +140,7 @@ parts = {p.ref: p for p in D.build_parts()}
 # Pad-Netze direkt aus der Schaltplan-Netzliste (garantiert Paritaet)
 import subprocess, re, tempfile
 _nl = os.path.join(tempfile.gettempdir(), "wortuhr_net.net")
-subprocess.run([r"P:/Program Files/KiCad/10.0/bin/kicad-cli.exe", "sch", "export", "netlist", "-o", _nl,
+subprocess.run([kicad_env.cli(), "sch", "export", "netlist", "-o", _nl,
                 os.path.join(PRJ, "WortUhr.kicad_sch")], check=True, capture_output=True)
 _t = open(_nl, encoding="utf-8").read()
 PADNET = {}
@@ -353,7 +354,7 @@ zone(pcbnew.B_Cu, "GND", full)
 
 
 # ---------------------------------------------------------------- Beschriftung
-text(pcbnew.B_SilkS, "WortUhr LED-Board rev3  -  4x identisch", 117.0, 120.0, 2.0, mirror=True)
+text(pcbnew.B_SilkS, "WortUhr LED-Board rev%s  -  4x identisch" % D.REV, 117.0, 120.0, 2.0, mirror=True)
 text(pcbnew.B_SilkS, "Master: U1..U7, J1 bestuecken", 117.0, 124.0, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "JPx schliessen wenn LED B fehlt", 117.0, 127.5, 1.5, mirror=True)
 text(pcbnew.B_SilkS, "IN", 7.5, D.CONN_POS - 14.0, 1.2, mirror=True)

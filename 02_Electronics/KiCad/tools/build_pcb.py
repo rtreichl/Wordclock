@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Platine komplett erzeugen: gen_pcb -> route_master -> DRC, bis alles sauber ist.
+"""Platine komplett erzeugen: gen_pcb -> route_buck_usb -> route_master -> DRC, bis alles sauber ist.
+
+Achtung: ueberschreibt WortUhr.kicad_pcb. Das Ergebnis weicht von der eingecheckten Platine ab, weil
+Freerouting nicht deterministisch arbeitet. Danach DRC, qualify_pcb.py und ein Review nach ROUTING_GUIDE.md.
+Der Leitfaden beschreibt denselben Ablauf mit dem Freerouting-MCP (route_master.py --prepare, route_finish.py).
 
 Freerouting arbeitet nicht deterministisch; daher bis zu N Versuche. Erfolgreich, wenn
 DRC 0 Fehler, 0 offene Verbindungen, 0 Abweichungen zum Schaltplan (nur kosmetische Hinweise erlaubt).
@@ -10,7 +14,9 @@ import os, sys, json, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__))
 PRJ = os.path.dirname(HERE)
 PY = sys.executable
-CLI = os.environ.get("KICAD_CLI", r"P:/Program Files/KiCad/10.0/bin/kicad-cli.exe")
+sys.path.insert(0, HERE)
+import kicad_env  # noqa: E402
+CLI = kicad_env.cli()
 COSMETIC = {"silk_edge_clearance", "silk_overlap", "silk_over_copper", "starved_thermal"}
 
 
@@ -25,7 +31,7 @@ def drc():
 
 tries = int(sys.argv[1]) if len(sys.argv) > 1 else 5
 for n in range(1, tries + 1):
-    for s in ("gen_pcb.py", "route_master.py"):
+    for s in ("gen_pcb.py", "route_buck_usb.py", "route_master.py"):
         subprocess.run([PY, os.path.join(HERE, s)], check=True, capture_output=True)
     bad, unc, par = drc()
     print(f"Versuch {n}: Fehler {len(bad)} {sorted(set(bad))}, offen {unc}, Paritaet {par}")

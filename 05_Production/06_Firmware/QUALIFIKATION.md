@@ -4,8 +4,8 @@
 |---|---|
 | Bauteil | 03_Software/ESPHome/wortuhr.yaml |
 | Fertiger | ESPHome |
-| Datum | 2026-11-09 |
-| Stand | Git `63f04dd` (mit nicht eingecheckten Aenderungen) |
+| Datum | 2026-11-10 |
+| Stand | Git `1fda351` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Build: FREIGEGEBEN** |
 
@@ -24,6 +24,10 @@
 | Build | Kompiliert (ESP32-S3, ESP-IDF) | erfolgreich | erfolgreich | ✅ bestanden |
 | Build | Speicherreserve | RAM < 60 %, Flash < 80 % (Reserve fuer OTA/Erweiterungen) | RAM 32.0 %, Flash 24.0 % | ✅ bestanden |
 | Build | Keine Compiler-Warnungen im eigenen Code | 0 | 0 | ✅ bestanden |
+| Konsistenz | Pins wie im Schaltplan | GPIO je Signal = design.py (ESP_GPIO) | SDA=GPIO1, SCL=GPIO2, LED_3V3=GPIO8, PD_GOOD=GPIO38, BOOT=GPIO0 | ✅ bestanden |
+| Konsistenz | Pins in der Doku | BESTUECKUNG.md (WLED) und Kopf von wortuhr.yaml nennen die Pins aus design.py | stimmt | ✅ bestanden |
+| Sicherheit | Stromgrenze rechnerisch | alle 292 LEDs, jede Farbe: geschaetzter Strom <= 5 A | ohne Grenze bis 18.7 A, mit Grenze hoechstens 5.00 A | ✅ bestanden |
+| Sicherheit | Stromgrenze und PD-Sperre in jeder Betriebsart | Uhrzeit-Effekte begrenzen im Renderer; Licht ohne Effekt und alle anderen Effekte begrenzt der Waechter | 2 Uhrzeit-Effekte, 2 andere (Regenbogen (Test), Lauflicht (Test)), Waechter vorhanden | ✅ bestanden |
 | Konsistenz | LED-Anzahl in der Kette | num_leds = 4 x (36 x leds_per_cell + 1) | num_leds 292, leds_per_cell 2 | ✅ bestanden |
 | Logik | Minutenpunkte | Minute mod 5 -> 1..4 Punkte im Uhrzeigersinn ab oben links | 1: LED 158 (oben links), 2: LED 85 (oben rechts), 3: LED 12 (unten rechts), 4: LED 231 (unten links) | ✅ bestanden |
 
