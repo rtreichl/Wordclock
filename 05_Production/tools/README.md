@@ -22,3 +22,10 @@ python 05_Production/tools/make_reports.py stage
 ```
 
 Automatisch: Der GitHub-Workflow `.github/workflows/production.yml` führt bei jedem Push alle Schritte in sauberen Umgebungen aus. Er nutzt den Container `kicad/kicad:10.0-full`, das FreeCAD-1.1.2-AppImage und ESPHome 2026.10.2. Die Ergebnisse stellt er als Artefakte „WortUhr-Produktion“ und „WortUhr-Firmware“ bereit.
+
+Vergleich alt/neu: `02_Electronics/KiCad/tools/vergleich.py` legt Platine (je Lage) und Schaltplan (je Blatt) zweier Stände übereinander. Rot ist nur im alten Stand vorhanden (entfernt), grün nur im neuen (hinzugefügt), grau ist unverändert. Der Workflow vergleicht im Pull Request mit dem Zielbranch und beim Push mit dem Stand davor. Das Ergebnis steht im Artefakt „WortUhr-Vergleich“ (`Vergleich.pdf`, Einzelbilder, Übersicht `Vergleich.md`); die Übersicht erscheint auch in der Zusammenfassung des Laufs. Lokal mit KiCad-Python:
+
+```
+python 02_Electronics/KiCad/tools/vergleich.py master            # master gegen Arbeitsordner
+python 02_Electronics/KiCad/tools/vergleich.py 2f6cc9d 865c1ee   # zwei Commits
+```

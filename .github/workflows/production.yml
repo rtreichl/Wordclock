@@ -1,6 +1,7 @@
 # Erzeugt und qualifiziert bei jedem Push alle Produktionsdaten.
 # Ergebnis: Artefakt "WortUhr-Produktion" (05_Production mit Berichten + freigegebenen Dateien)
 #           und Artefakt "WortUhr-Firmware" (nur Build-Pruefung mit Test-Schluesseln).
+#           Artefakt "WortUhr-Vergleich": Platine und Schaltplan alt/neu (rot = entfernt, gruen = hinzugefuegt).
 name: Produktionsdaten
 
 on:
@@ -36,6 +37,36 @@ jobs:
         with:
           name: WortUhr-Platine-Bilder
           path: pcb-bilder
+
+  vergleich:
+    name: Vergleich alt/neu (Platine, Schaltplan)
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:10.0-full
+      options: --user root
+    steps:
+      - name: Werkzeuge bereitstellen
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq git python3-pip > /dev/null
+          python3 -m pip install -q --break-system-packages pymupdf numpy
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0                       # alter Stand muss im Verlauf liegen
+      - name: Vergleichen
+        env:
+          KICAD_CLI: kicad-cli
+          # Pull Request: Zielbranch; Push: Stand vor dem Push; sonst (neuer Branch, manuell): Vorgaenger-Commit
+          ALT: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          if [ -z "$ALT" ] || ! git cat-file -e "$ALT^{commit}" 2>/dev/null; then ALT=HEAD~1; fi
+          python3 02_Electronics/KiCad/tools/vergleich.py "$ALT" HEAD --out vergleich
+          cat vergleich/Vergleich.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v6
+        with:
+          name: WortUhr-Vergleich
+          path: vergleich
 
   mechanik:
     name: Laser- und 3D-Druckteile (FreeCAD)
