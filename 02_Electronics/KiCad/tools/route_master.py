@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Routet die Master-Elektronik mit Freerouting (nach gen_pcb.py ausfuehren).
+"""Routet die Master-Elektronik mit Freerouting (nach gen_pcb.py und route_buck_usb.py ausfuehren).
 
 1. +5V-/GND-Pads der Master-Teile bekommen Vias auf die Flaechen (+5V oben, GND unten).
 2. Temporaere Kopie: Flaechen entfernt, vorhandene Leiterbahnen fixiert, +5V/GND ohne Netz
@@ -11,12 +11,10 @@ import os, sys, math, glob, subprocess, tempfile
 sys.path.insert(0, os.path.dirname(__file__))
 import pcbnew
 import design as D
+import kicad_env
 
 PRJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PCB = os.path.join(PRJ, "WortUhr.kicad_pcb")
-HOME = os.path.expanduser("~/.kicad-mcp")
-JAVA = glob.glob(os.path.join(HOME, "jre", "*", "bin", "java.exe"))[0]
-JAR = os.path.join(HOME, "freerouting.jar")
 MASTER = set(D.MASTER_PLACE)
 POWER_W = {"VBUS": 0.6, "+15V": 0.8, "+3V3": 0.5, "USB_D+": 0.2, "USB_D-": 0.2}   # ROUTING_GUIDE.md: Power >= 0,5 mm
 mm, toMM = pcbnew.FromMM, pcbnew.ToMM
@@ -130,7 +128,7 @@ for fp in board.GetFootprints():
         need = (n == "+5V") or (n == "GND" and top)
         if not need:
             continue
-        # Dioden-Kathoden / Hohlbuchse: mehrere Vias fuer Strom
+        # Bauteile mit hohem Strom bekaemen mehrere Vias (derzeit keines: L1 ist von Hand verlegt)
         count = 6 if ref == "L1" else 1
         x, y = pos(p.GetPosition())
         layer = pcbnew.F_Cu if top else pcbnew.B_Cu
@@ -348,6 +346,7 @@ print("STATE", STATE); print("DSN", dsn); print("SES", ses)
 if "--prepare" in sys.argv:
     sys.exit(0)
 # Ohne --prepare: lokaler Lauf mit derselben Engine (build_pcb.py)
+JAVA, JAR = kicad_env.freerouting()
 FR_ARGS = ["--router.autorouter.max_passes=100", "--router.automatic_neckdown=false", "--gui.enabled=false"]
 r = subprocess.run([JAVA, "-jar", JAR, "-de", dsn, "-do", ses, "-l", "en"] + FR_ARGS, capture_output=True, text=True, timeout=3600)
 print("freerouting rc", r.returncode, r.stdout[-800:], r.stderr[-400:])

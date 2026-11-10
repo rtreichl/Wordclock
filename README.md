@@ -1,6 +1,6 @@
 # WortUhr
 
-Wortuhr mit 12 × 12 Buchstaben, 500 × 500 mm. Frontplatte aus 1 mm Cortenstahl, die von Magneten gehalten wird. Lichtgitter aus 4 gedruckten Teilen. Vier gleiche LED-Platinen (SK6812 RGBW, ESP32-S3, WLED). Aufbauhöhe 36 mm.
+Wortuhr mit 12 × 12 Buchstaben, 500 × 500 mm. Frontplatte aus 1 mm Cortenstahl, die von Magneten gehalten wird. Lichtgitter aus 4 gedruckten Teilen. Vier gleiche LED-Platinen mit SK6812 RGBW; eine davon trägt als Master USB-C Power Delivery und den ESP32-S3 (ESPHome oder WLED). Aufbauhöhe 36 mm.
 
 | Ordner | Inhalt |
 |---|---|
@@ -13,8 +13,12 @@ Wortuhr mit 12 × 12 Buchstaben, 500 × 500 mm. Frontplatte aus 1 mm Cortenstahl
 | `02_Electronics/KiCad/` | KiCad-Projekt, Generator-Skripte (`tools/`), Projektbibliotheken und Platzhalter-3D-Modelle |
 | `02_Electronics/3D-Export/` | 3D-Modelle der Platine, Master- und Slave-Variante |
 | `02_Electronics/BESTUECKUNG.md` | Bestückung, Kantenbrücken, Montage, WLED-Einstellungen |
+| `02_Electronics/KiCad/ROUTING_GUIDE.md` | Regeln mit ID für Schaltplan, Layout, Routing und Review |
+| `03_Software/ESPHome/` | Firmware für den ESP32-S3 (Uhrzeit per NTP, Home Assistant, Weboberfläche), siehe `README.md` dort |
 | `03_Software/WLED/` | LED-Maps für WLED (1 oder 2 LEDs je Kammer) |
 | `04_Rendering/` | Blender-Skript, Szene, Netze und Renderbilder |
+| `05_Production/` | Geprüfte Fertigungsdaten je Bauteil mit Bericht `QUALIFIKATION.md`; Prüfskripte in `tools/` |
+| `06_Datenblätter/` | Datenblätter, nur lokal (nicht eingecheckt) |
 | `99_Archive/` | Ältere Modelle und Zwischenstände |
 
 Ein Bild mit neuen Einstellungen rendern:
@@ -22,3 +26,7 @@ Ein Bild mit neuen Einstellungen rendern:
 ```
 blender.exe -b -P 04_Rendering/render_wortuhr.py -- --samples 256 --res 2000x2000 --view angle
 ```
+
+## Arbeiten am Projekt
+
+Schaltplan und Platine entstehen aus `02_Electronics/KiCad/tools/design.py`. Jede Änderung wird gegen die Grenzen des Fertigers und gegen die Projektregeln geprüft; der GitHub-Workflow `production.yml` führt alle Prüfungen bei jedem Push aus. Regeln, Abläufe und Befehle stehen in `CLAUDE.md`, die Prüfskripte beschreibt `05_Production/tools/README.md`.

@@ -13,7 +13,9 @@ import os, sys, subprocess, shutil
 HERE = os.path.dirname(os.path.abspath(__file__))
 PRJ = os.path.dirname(HERE)
 PCB = os.path.join(PRJ, "WortUhr.kicad_pcb")
-CLI = os.environ.get("KICAD_CLI", r"P:/Program Files/KiCad/10.0/bin/kicad-cli.exe")
+sys.path.insert(0, HERE)
+import kicad_env  # noqa: E402
+CLI = kicad_env.cli()
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(PRJ), "Bilder")
 os.makedirs(OUT, exist_ok=True)
 

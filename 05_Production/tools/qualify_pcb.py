@@ -14,8 +14,8 @@ sys.path.insert(0, os.path.join(KI, "tools"))
 import pcbnew  # noqa: E402
 import design as D  # noqa: E402
 
-import shutil as _sh
-CLI = os.environ.get("KICAD_CLI") or _sh.which("kicad-cli") or r"P:/Program Files/KiCad/10.0/bin/kicad-cli.exe"
+import kicad_env  # noqa: E402
+CLI = kicad_env.cli()
 STAGE = os.path.join(sys.argv[1], "PCB")
 os.makedirs(STAGE, exist_ok=True)
 PCB = os.path.join(KI, "WortUhr.kicad_pcb"); SCH = os.path.join(KI, "WortUhr.kicad_sch")

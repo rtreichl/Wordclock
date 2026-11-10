@@ -25,6 +25,7 @@ Die Firmware für den ESP32-S3 auf der Master-Platine. Die Uhr bezieht die Uhrze
 - **Automatische Helligkeit** über den BH1750 hinter dem Lichtleiter. Sie wird lokal auf dem ESP berechnet, logarithmisch und geglättet. Einstellbar sind „Mindesthelligkeit“ und „Volle Helligkeit ab … lx“. Die Helligkeit des Licht-Entities ist dabei die Obergrenze.
 - **Viertel-Schreibweise** umschaltbar: „VIERTEL NACH/VOR ZWEI“ oder „VIERTEL/DREIVIERTEL ZWEI“.
 - **Effekte:** „Uhrzeit“ (Standard), „Uhrzeit Regenbogen“, dazu zwei LED-Tests.
+- **Stromgrenze und PD-Sperre:** Die Firmware schätzt den LED-Strom und begrenzt ihn auf 5 A. Ohne PD-Spannung (PD_GOOD, GPIO38) bleiben die LEDs aus. Das gilt für die Uhrzeit, für einfarbiges Licht und für die Test-Effekte.
 - **BOOT-Taster** (IO0): kurz drücken schaltet die Anzeige an und aus.
 
 ## Einrichten und Flashen

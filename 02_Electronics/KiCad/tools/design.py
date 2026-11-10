@@ -4,7 +4,7 @@ WortUhr LED-Board – gemeinsame Definition fuer Schaltplan- und PCB-Generator.
 
 Eine Platine (6x6 Kammern, 2 LED-Plaetze je Kammer) wird 4x bestellt und in
 0/90/180/270 Grad unter die vier Gitterteile geschraubt. Die Master-Variante
-traegt zusaetzlich ESP32-S3, USB-C, Hohlbuchse, LDO, Pegelwandler und BH1750.
+traegt zusaetzlich USB-C mit Power Delivery, Abwaertswandler, LDO, ESP32-S3, Pegelwandler und BH1750.
 
 Koordinaten "lokal" (mm): Ursprung = Mittelpunkt der Uhr, x nach rechts,
 y nach unten; die Platine liegt in der Master-Orientierung (Gitterteil Q4,
@@ -244,7 +244,7 @@ def build_parts():
     P.append(Part("C8", "Device:C", "100n", FP_C0603, {"1": "+3V3", "2": "GND"}, M))
     P.append(Part("R7", "Device:R", "4k7", FP_R0603, {"1": "+3V3", "2": "SDA"}, M))
     P.append(Part("R8", "Device:R", "4k7", FP_R0603, {"1": "+3V3", "2": "SCL"}, M))
-    # --- USB-C Power Delivery + Abwaertswandler 15 V -> 5 V / 6 A (ersetzt Hohlbuchse und Dioden) ---
+    # --- USB-C Power Delivery + Abwaertswandler 15 V -> 5 V / 6 A ---
     FP_L = "Inductor_SMD:L_Bourns_SRP1245A"
     FP_C1206 = "Capacitor_SMD:C_1206_3216Metric"
     P.append(Part("F1", "Device:Polyfuse", "1812L300/24SLER", "Fuse:Fuse_1812_4532Metric", {"1": "VBUS", "2": "+15V"}, M))

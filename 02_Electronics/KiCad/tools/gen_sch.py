@@ -16,10 +16,9 @@ Alle Koordinaten in den sheet_*-Funktionen sind Rastereinheiten (1 E = 2,54 mm, 
 import os, re, sys, tempfile
 sys.path.insert(0, os.path.dirname(__file__))
 import design as D
+import kicad_env
 
-_KI = [os.environ.get("KICAD10_SYMBOL_DIR"), os.environ.get("KICAD_SYMBOL_DIR"),
-       r"P:/Program Files/KiCad/10.0/share/kicad/symbols", "/usr/share/kicad/symbols"]
-KI = next(p for p in _KI if p and os.path.isdir(p)).rstrip("/\\") + "/"
+KI = kicad_env.symbol_dir()
 PRJ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 G = 2.54
 

@@ -17,15 +17,17 @@ Vorgabe des Projekts (2026-11-08) für jede Layout-, Routing- und Review-Arbeit 
 | Signale 0,2–0,25 mm | Signale 0,3 mm im LED-Feld (Daten), Freerouting-Standard 0,25 mm | DRC (min. 0,1 mm bei JLCPCB) |
 | Orthogonale Lagen (oben horizontal, unten vertikal) | Freerouting-MCP, Job-Einstellung `layers[].preferred_direction_horizontal` = oben true, unten false | `get_effective_settings` je Job |
 | Abblock-C so nah wie möglich | Platzierung in `design.py` / `gen_pcb.py` (LED-C 3,7 mm vom VDD-Pad) | `qualify_pcb.py`: Abstand Abblock-C zum Versorgungspin |
-| Kritische Teile sperren | USB-C, Hohlbuchse, Kantenbrücken, ESP32-Modul (Antenne), Montagelöcher, Passermarken werden nach dem Platzieren gesperrt (`SetLocked`) | `qualify_pcb.py` |
-| Funktionsblöcke gruppieren | Master-Streifen am unteren Rand: Stromversorgung (J1, J2, D73, D74, U2), ESP32 (U1, R3, R4, C4, C5, SW1, SW2), Pegelwandler (U4, R5), Sensor unter dem Lichtleiter (U5) | Sichtprüfung |
+| Kritische Teile sperren | USB-C, Kantenbrücken, ESP32-Modul (Antenne), Montagelöcher, Passermarken werden nach dem Platzieren gesperrt (`SetLocked`) | `qualify_pcb.py` |
+| Funktionsblöcke gruppieren | Master-Streifen am unteren Rand: Stromversorgung (J1, F1, U3, U6, U7, L1, U2), ESP32 (U1, R3, R4, C4, C5, SW1, SW2), Pegelwandler (U4, R5), Sensor unter dem Lichtleiter (U5) | Sichtprüfung |
 | `max_passes` ≥ 100 | MCP-Einstellung `autorouter.max_passes = 100` (Feldname in snake_case, sonst wird der Wert ignoriert), `automatic_neckdown = false` | `get_effective_settings` je Job |
 | Pull-tight | Freerouting-Standard (Optimierer aktiv), nicht abgeschaltet | – |
 | Nachbearbeitung: Umwege, überflüssige Vias | `route_master.py` entfernt Stichleitungen und unverbundene Vias; Vias haben mindestens Bohrung + 0,4 mm | DRC `via_dangling`, `track_dangling` = 0 |
 | GND-Flächen oben **und** unten | **Abweichung:** Die Oberseite ist die `+5V`-Fläche. Die Platine verteilt bis zu 73 LEDs × 60 mA ≈ 4,4 A je Platine; eine durchgehende Fläche ist dafür nötig. GND liegt durchgehend unten. Damit gibt es keine GND-Fläche oben, die man vernähen könnte. | Entscheidung, siehe hier |
 | DRC direkt nach dem Import | `build_pcb.py` führt nach jedem Durchlauf DRC mit Schaltplan-Abgleich aus und wiederholt bis 0 Fehler / 0 offen / 0 Abweichungen | `build_pcb.py`, `qualify_pcb.py` |
 
-Ablauf mit MCP: `gen_pcb.py`, dann `route_master.py --prepare` (sperrt das LED-Feld, gibt nicht zu routenden Leiterbahnen Ersatznetze `OBST_n`, schreibt die DSN). Die DSN geht als Job an den Freerouting-MCP (`enqueue_job`, `upload_job_input_from_local_file`, `update_job_settings`, `start_job`, `download_job_output_to_local_file`). `route_finish.py` übernimmt die SES, danach DRC über den KiCad-MCP. `build_pcb.py` bleibt als lokaler Lauf mit derselben Engine (`java -jar`) erhalten. Der MCP braucht den lokalen API-Dienst auf Port 37864.
+Ablauf mit MCP: `gen_pcb.py`, dann `route_buck_usb.py` (Wandler und USB-Paar von Hand), dann `route_master.py --prepare` (sperrt das LED-Feld, gibt nicht zu routenden Leiterbahnen Ersatznetze `OBST_n`, schreibt die DSN). Die DSN geht als Job an den Freerouting-MCP (`enqueue_job`, `upload_job_input_from_local_file`, `update_job_settings`, `start_job`, `download_job_output_to_local_file`). `route_finish.py` übernimmt die SES, danach DRC über den KiCad-MCP. `build_pcb.py` bleibt als lokaler Lauf mit derselben Engine (`java -jar`) erhalten und führt dieselben Schritte aus. Der MCP braucht den lokalen API-Dienst auf Port 37864.
+
+Werkzeuge: Die Pfade zu KiCad und Freerouting löst `tools/kicad_env.py` auf (Umgebungsvariablen `KICAD_CLI`, `KICAD10_SYMBOL_DIR`, `KICAD10_FOOTPRINT_DIR`, `FREEROUTING_JAR`, `FREEROUTING_JAVA`). Die eingecheckte Platine wurde mit dem Freerouting-Build `b647a2f` vom 2026-10-05 (Java 25) geroutet; `kicad_env.py` warnt bei einem anderen Stand. Freerouting arbeitet nicht deterministisch: Ein neuer Lauf ergibt eine andere Platine. Kleine Änderungen deshalb in der gerouteten Platine nachziehen und die Vorgabe zusätzlich in `design.py` und `route_master.py` eintragen.
 
 ## Umsetzung Teil 2: Power-Integrity-Review
 
