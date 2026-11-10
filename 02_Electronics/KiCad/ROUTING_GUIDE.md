@@ -88,7 +88,7 @@ Gilt für jedes Review nach Teil 2 und für jede Arbeit am Schaltplan (SCH). Bef
 | SCH-006 | Abblock-Kondensatoren stehen am zugehörigen IC oder an der zugehörigen LED, nicht auf einem eigenen Blatt | SOFT | Sichtprüfung |
 | SCH-007 | Bestückungsvariante sichtbar: Blätter und Ausnahmen sind mit „nur Master“ oder „alle Platinen“ beschriftet | HARD | Sichtprüfung |
 | SCH-008 | Das Wurzelblatt ist ein Blockschaltbild: Blätter in Flussrichtung, Inhalt und Schnittstellennetze als Text. Die Netze bleiben global, damit die Netznamen im Layout gleich bleiben | SOFT | Sichtprüfung |
-| SCH-009 | Netznamen sind nicht mit Referenzen verwechselbar. **Offen:** `Cnn_A_OUT`/`Cnn_B_OUT` lesen sich wie Kondensatoren; Umbenennung erst zusammen mit einer Layout-Änderung | SOFT | Review |
+| SCH-009 | Netznamen sind nicht mit Referenzen verwechselbar. Die Datenleitungen der Kammern heißen `Knn_A_OUT`/`Knn_B_OUT` (K = Kammer) | SOFT | Review |
 | SCH-010 | Revision und Datum stehen nur in `design.py` (`REV`, `REV_DATE`); die Schaltplandateien im Projekt entsprechen der Ausgabe des Generators | HARD | `qualify_pcb.py` |
 
 ### Pflege des Regelwerks

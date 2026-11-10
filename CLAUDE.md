@@ -9,6 +9,8 @@ Wortuhr 500 × 500 mm: Frontplatte, Lichtgitter, Rückrahmen, vier gleiche LED-P
 - **Regeln mit ID** stehen in `02_Electronics/KiCad/ROUTING_GUIDE.md` (DEC, LAY, PWR, MFG, RF, DES, SCH). Befunde nennen die Rule ID. Neue Regeln erst nach Rückfrage aufnehmen, IDs nie wiederverwenden.
 - **Datenblatt zuerst (DES-001):** Vor Änderungen an Schaltplan oder Layout das Datenblatt des betroffenen Bauteils nach Layoutvorgaben und Referenzschaltung durchsuchen. Die Datenblätter liegen lokal in `06_Datenblätter/` (nicht eingecheckt). Was nicht belegt ist, als nicht belegt benennen.
 - **Leiterbahnen** nur horizontal, vertikal oder unter 45 Grad.
+- **`05_Production` ist der Freigabe-Ordner:** Kopien der geprüften Quelldateien plus Bericht. Dort nie direkt ändern; `05_Production/tools/check_production.py` vergleicht Kopien, Prüfsummen und Quellen.
+- **Das FreeCAD-Modell ist nicht parametrisch.** Änderungen an `01_Mechanic/FrontPlatte-Bestellung.FCStd` sind Eingriffe in eine binäre Datei. Erledigte Eingriffe liegen als Skripte in `99_Archive/Einmal-Skripte/`; sie dokumentieren die Änderung und werden nicht erneut ausgeführt.
 
 ## Schaltplan ändern
 
@@ -21,7 +23,7 @@ Wortuhr 500 × 500 mm: Frontplatte, Lichtgitter, Rückrahmen, vier gleiche LED-P
 
 - Freerouting arbeitet nicht deterministisch. `build_pcb.py` erzeugt eine andere Platine als die eingecheckte. Deshalb: kleine Änderungen in der gerouteten Platine nachziehen **und** die Vorgabe in `design.py` (Platzierung) und `route_master.py` (feste Leiterbahnen) eintragen.
 - Routing-Ablauf, Freerouting-Einstellungen und das Power-Integrity-Review stehen im Leitfaden. Routing über den Freerouting-MCP (Port 37864), DRC über den KiCad-MCP oder `kicad-cli`.
-- Nach einer Layout-Änderung: DRC mit Schaltplan-Abgleich, `qualify_pcb.py`, `pcb_images.py`, Kollisionsprüfung gegen Gitter und Rückrahmen (`01_Mechanic/tools/update_pcb_model.py`, schreibt das FreeCAD-Modell).
+- Nach einer Layout-Änderung: DRC mit Schaltplan-Abgleich, `qualify_pcb.py`, `pcb_images.py`, Kollisionsprüfung gegen Gitter und Rückrahmen: `WORTUHR_STEP_DIR=<stage>/PCB freecadcmd 01_Mechanic/tools/update_pcb_model.py` (schreibt das FreeCAD-Modell; ohne die Variable liest es die freigegebenen STEP-Dateien aus `05_Production/05_Platine_JLCPCB`).
 
 ## Prüfen
 
@@ -42,11 +44,3 @@ Eine Prüfung, die rot wird, ist ein Befund. Nicht die Grenze anpassen, sondern 
 - Pfade zu KiCad und Freerouting löst `02_Electronics/KiCad/tools/kicad_env.py` auf. Keine Installationspfade in andere Skripte schreiben. Variablen: `KICAD_CLI`, `KICAD10_SYMBOL_DIR`, `KICAD10_FOOTPRINT_DIR`, `FREEROUTING_JAR`, `FREEROUTING_JAVA`.
 - `pcbnew` gibt es nur im KiCad-Python. `gen_sch.py` und `qualify_firmware.py` laufen mit jedem Python 3.
 - `.env` (DigiKey-API) und `03_Software/ESPHome/secrets.yaml` sind lokal und werden nie eingecheckt.
-
-## Bekannte Altlasten
-
-- `01_Mechanic/tools/fix_*.py` und `add_*.py` sind einmalige Eingriffe in die binäre Datei `FrontPlatte-Bestellung.FCStd`. Sie dokumentieren, was geändert wurde, lassen sich aber nicht wiederholen.
-- Die Einmal-Skripte enthalten die Rastermaße noch als Zahlen. Alle anderen Skripte lesen `GRID_PX`, `GRID_PY`, `CLOCK_CENTER` und `PITCH` aus `design.py`.
-- `05_Production` ist der Freigabe-Ordner: Kopien der geprüften Quelldateien plus Bericht. Dort nie direkt ändern; `05_Production/tools/check_production.py` vergleicht Kopien, Prüfsummen und Quellen.
-- `02_Electronics/3D-Export` wird von keinem Skript geschrieben. Für das FreeCAD-Modell `WORTUHR_STEP_DIR=<stage>/PCB` setzen, dann liest `update_pcb_model.py` die frischen STEP-Dateien aus `qualify_pcb.py`.
-- SCH-009 (Netznamen `Cnn_A_OUT`) ist offen und braucht eine Layout-Änderung.

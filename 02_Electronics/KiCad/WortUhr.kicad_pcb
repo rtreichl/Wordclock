@@ -888,7 +888,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C26_A_OUT")
+			(net "/LED_Feld/K26_A_OUT")
 			(uuid "1f6ede2c-dbe3-40ee-aea0-3018aede04d7")
 		)
 		(pad "3" smd roundrect
@@ -904,7 +904,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C25_B_OUT")
+			(net "/LED_Feld/K25_B_OUT")
 			(uuid "e11ce154-906f-4a03-8de0-20e5a27fa766")
 		)
 		(embedded_fonts no)
@@ -1405,7 +1405,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C11_A_OUT")
+			(net "/LED_Feld/K11_A_OUT")
 			(uuid "56a92a9d-dd70-4717-a5e4-1564700cca85")
 		)
 		(pad "3" smd roundrect
@@ -1421,7 +1421,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C10_B_OUT")
+			(net "/LED_Feld/K10_B_OUT")
 			(uuid "d0c33cc2-a1e7-4f7f-beec-653306b6cb96")
 		)
 		(embedded_fonts no)
@@ -1738,7 +1738,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C25_A_OUT")
+			(net "/LED_Feld/K25_A_OUT")
 			(uuid "56f1b102-eec1-4daa-88c0-28e340dc8809")
 		)
 		(pad "3" smd roundrect
@@ -1754,7 +1754,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C24_B_OUT")
+			(net "/LED_Feld/K24_B_OUT")
 			(uuid "dc922b97-f35e-4e91-a9be-7731eb5d13dc")
 		)
 		(embedded_fonts no)
@@ -2071,7 +2071,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C01_B_OUT")
+			(net "/LED_Feld/K01_B_OUT")
 			(uuid "d84a1444-c207-4b6a-9502-b6c741dc8840")
 		)
 		(pad "3" smd roundrect
@@ -2087,7 +2087,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C01_A_OUT")
+			(net "/LED_Feld/K01_A_OUT")
 			(uuid "e122817d-5663-4b7e-b158-e3b660c8f7e6")
 		)
 		(embedded_fonts no)
@@ -2404,7 +2404,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C03_B_OUT")
+			(net "/LED_Feld/K03_B_OUT")
 			(uuid "673a9ee4-aeff-4755-aede-2c54a16c2bef")
 		)
 		(pad "3" smd roundrect
@@ -2420,7 +2420,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C03_A_OUT")
+			(net "/LED_Feld/K03_A_OUT")
 			(uuid "6ac90f20-232d-4f76-89ea-3cdc44098c11")
 		)
 		(embedded_fonts no)
@@ -2737,7 +2737,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C34_B_OUT")
+			(net "/LED_Feld/K34_B_OUT")
 			(uuid "966eb4d1-253f-4320-bd9e-adcefdb5216e")
 		)
 		(pad "3" smd roundrect
@@ -2753,7 +2753,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C34_A_OUT")
+			(net "/LED_Feld/K34_A_OUT")
 			(uuid "84b35569-53f2-4ad5-9d41-21a8d7d1a5e0")
 		)
 		(embedded_fonts no)
@@ -2991,7 +2991,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C29_A_OUT")
+			(net "/LED_Feld/K29_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -3025,7 +3025,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C29_B_OUT")
+			(net "/LED_Feld/K29_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -3750,7 +3750,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C12_A_OUT")
+			(net "/LED_Feld/K12_A_OUT")
 			(uuid "88b3848e-c2fe-4847-af58-cbbabadebd77")
 		)
 		(pad "3" smd roundrect
@@ -3766,7 +3766,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C11_B_OUT")
+			(net "/LED_Feld/K11_B_OUT")
 			(uuid "91198278-8a5b-4ca2-b986-f2e21d77f4d0")
 		)
 		(embedded_fonts no)
@@ -4083,7 +4083,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C36_A_OUT")
+			(net "/LED_Feld/K36_A_OUT")
 			(uuid "5d5a5f6e-208d-4a14-ac9a-72e057502d57")
 		)
 		(pad "3" smd roundrect
@@ -4099,7 +4099,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C35_B_OUT")
+			(net "/LED_Feld/K35_B_OUT")
 			(uuid "45a5809c-409d-465c-946e-4334bf4030e9")
 		)
 		(embedded_fonts no)
@@ -4416,7 +4416,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C28_B_OUT")
+			(net "/LED_Feld/K28_B_OUT")
 			(uuid "208f7188-cefb-4176-a4b4-7551357b1e21")
 		)
 		(pad "3" smd roundrect
@@ -4432,7 +4432,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C28_A_OUT")
+			(net "/LED_Feld/K28_A_OUT")
 			(uuid "bf156c65-b799-449a-a7a8-d5a92ffa3e59")
 		)
 		(embedded_fonts no)
@@ -4945,7 +4945,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C27_B_OUT")
+			(net "/LED_Feld/K27_B_OUT")
 			(uuid "1fa41a63-9f1c-4220-8068-f8e32523fe0d")
 		)
 		(pad "3" smd roundrect
@@ -4961,7 +4961,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C27_A_OUT")
+			(net "/LED_Feld/K27_A_OUT")
 			(uuid "0944ae15-e051-4448-a496-f2222e93bb03")
 		)
 		(embedded_fonts no)
@@ -5474,7 +5474,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C07_B_OUT")
+			(net "/LED_Feld/K07_B_OUT")
 			(uuid "e055d271-f8d4-4f92-8d72-80d91a9ad925")
 		)
 		(pad "3" smd roundrect
@@ -5490,7 +5490,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C07_A_OUT")
+			(net "/LED_Feld/K07_A_OUT")
 			(uuid "4a30f66a-8df8-47a0-93a4-84281d72aa78")
 		)
 		(embedded_fonts no)
@@ -5807,7 +5807,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C19_A_OUT")
+			(net "/LED_Feld/K19_A_OUT")
 			(uuid "b31f94a3-7903-42d6-b689-0305c7a8c127")
 		)
 		(pad "3" smd roundrect
@@ -5823,7 +5823,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C18_B_OUT")
+			(net "/LED_Feld/K18_B_OUT")
 			(uuid "f2eb78d5-9f0d-44ab-ab63-247fab04420c")
 		)
 		(embedded_fonts no)
@@ -6061,7 +6061,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C28_A_OUT")
+			(net "/LED_Feld/K28_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -6095,7 +6095,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C28_B_OUT")
+			(net "/LED_Feld/K28_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -6428,7 +6428,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C18_B_OUT")
+			(net "/LED_Feld/K18_B_OUT")
 			(uuid "952abd37-319c-4fe6-8af3-be05c77c51ab")
 		)
 		(pad "3" smd roundrect
@@ -6444,7 +6444,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C18_A_OUT")
+			(net "/LED_Feld/K18_A_OUT")
 			(uuid "41eb8888-d2ea-41c7-bd86-e445a12863da")
 		)
 		(embedded_fonts no)
@@ -6761,7 +6761,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C15_B_OUT")
+			(net "/LED_Feld/K15_B_OUT")
 			(uuid "c93897ac-4733-491e-89e4-ed8e4a06b0d5")
 		)
 		(pad "3" smd roundrect
@@ -6777,7 +6777,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C15_A_OUT")
+			(net "/LED_Feld/K15_A_OUT")
 			(uuid "b1c6bbda-f323-49be-9cb1-70eaa60e22ae")
 		)
 		(embedded_fonts no)
@@ -7110,7 +7110,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C36_A_OUT")
+			(net "/LED_Feld/K36_A_OUT")
 			(uuid "06dfcd85-38cd-48de-b91d-6acd2f57fb63")
 		)
 		(embedded_fonts no)
@@ -7627,7 +7627,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C35_A_OUT")
+			(net "/LED_Feld/K35_A_OUT")
 			(uuid "48a00615-54c0-4997-99f1-3d2a591dc421")
 		)
 		(pad "3" smd roundrect
@@ -7643,7 +7643,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C34_B_OUT")
+			(net "/LED_Feld/K34_B_OUT")
 			(uuid "5cdd3bf2-572b-4a29-b6f3-794372b609a1")
 		)
 		(embedded_fonts no)
@@ -7960,7 +7960,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C28_A_OUT")
+			(net "/LED_Feld/K28_A_OUT")
 			(uuid "0d517322-3bb0-4cbe-af7d-efbfc8bb6990")
 		)
 		(pad "3" smd roundrect
@@ -7976,7 +7976,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C27_B_OUT")
+			(net "/LED_Feld/K27_B_OUT")
 			(uuid "bb7df3c9-7189-4790-bc21-baed3893b510")
 		)
 		(embedded_fonts no)
@@ -8410,7 +8410,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C31_A_OUT")
+			(net "/LED_Feld/K31_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -8444,7 +8444,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C31_B_OUT")
+			(net "/LED_Feld/K31_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -8698,7 +8698,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C12_A_OUT")
+			(net "/LED_Feld/K12_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -8732,7 +8732,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C12_B_OUT")
+			(net "/LED_Feld/K12_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -9182,7 +9182,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C04_A_OUT")
+			(net "/LED_Feld/K04_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -9216,7 +9216,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C04_B_OUT")
+			(net "/LED_Feld/K04_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -10125,7 +10125,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C22_B_OUT")
+			(net "/LED_Feld/K22_B_OUT")
 			(uuid "c3873ef5-dcae-42d9-a7b1-d36719c8fee1")
 		)
 		(pad "3" smd roundrect
@@ -10141,7 +10141,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C22_A_OUT")
+			(net "/LED_Feld/K22_A_OUT")
 			(uuid "b9ae6c5a-4c7f-4037-ba06-356ab36d47b5")
 		)
 		(embedded_fonts no)
@@ -10379,7 +10379,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C22_A_OUT")
+			(net "/LED_Feld/K22_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -10413,7 +10413,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C22_B_OUT")
+			(net "/LED_Feld/K22_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -10667,7 +10667,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C08_A_OUT")
+			(net "/LED_Feld/K08_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -10701,7 +10701,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C08_B_OUT")
+			(net "/LED_Feld/K08_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -11034,7 +11034,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C19_B_OUT")
+			(net "/LED_Feld/K19_B_OUT")
 			(uuid "0a6a208f-f352-4527-8b50-4deb0b566015")
 		)
 		(pad "3" smd roundrect
@@ -11050,7 +11050,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C19_A_OUT")
+			(net "/LED_Feld/K19_A_OUT")
 			(uuid "2aa97b00-353e-4e95-ba68-d54edbba9e30")
 		)
 		(embedded_fonts no)
@@ -11367,7 +11367,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C16_A_OUT")
+			(net "/LED_Feld/K16_A_OUT")
 			(uuid "6065be7c-77c8-4163-af3d-bc1948016587")
 		)
 		(pad "3" smd roundrect
@@ -11383,7 +11383,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C15_B_OUT")
+			(net "/LED_Feld/K15_B_OUT")
 			(uuid "c8e2997b-a1cc-4c9f-b0ae-7c79f13a6997")
 		)
 		(embedded_fonts no)
@@ -11896,7 +11896,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C31_A_OUT")
+			(net "/LED_Feld/K31_A_OUT")
 			(uuid "50d90a5d-7862-4398-92ea-e20c558aab22")
 		)
 		(pad "3" smd roundrect
@@ -11912,7 +11912,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C30_B_OUT")
+			(net "/LED_Feld/K30_B_OUT")
 			(uuid "55f4ba53-9964-40ee-bf66-3a01edecdae7")
 		)
 		(embedded_fonts no)
@@ -12229,7 +12229,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C06_A_OUT")
+			(net "/LED_Feld/K06_A_OUT")
 			(uuid "87c6d0b4-8fdd-4138-b10b-bfc185138bf3")
 		)
 		(pad "3" smd roundrect
@@ -12245,7 +12245,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C05_B_OUT")
+			(net "/LED_Feld/K05_B_OUT")
 			(uuid "a564a39e-62e6-49e9-8a9b-8115ce31ccfa")
 		)
 		(embedded_fonts no)
@@ -12483,7 +12483,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C21_A_OUT")
+			(net "/LED_Feld/K21_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -12517,7 +12517,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C21_B_OUT")
+			(net "/LED_Feld/K21_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -13151,7 +13151,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C25_A_OUT")
+			(net "/LED_Feld/K25_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -13185,7 +13185,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C25_B_OUT")
+			(net "/LED_Feld/K25_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -13635,7 +13635,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C15_A_OUT")
+			(net "/LED_Feld/K15_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -13669,7 +13669,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C15_B_OUT")
+			(net "/LED_Feld/K15_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -14002,7 +14002,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C02_A_OUT")
+			(net "/LED_Feld/K02_A_OUT")
 			(uuid "1d154b92-7e61-47fe-808f-279365368c4b")
 		)
 		(pad "3" smd roundrect
@@ -14018,7 +14018,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C01_B_OUT")
+			(net "/LED_Feld/K01_B_OUT")
 			(uuid "0d1baf75-d828-419b-9203-7cde8b509bf7")
 		)
 		(embedded_fonts no)
@@ -14335,7 +14335,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C17_B_OUT")
+			(net "/LED_Feld/K17_B_OUT")
 			(uuid "f1d0d35c-2484-4ce7-98c4-7631211f4137")
 		)
 		(pad "3" smd roundrect
@@ -14351,7 +14351,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C17_A_OUT")
+			(net "/LED_Feld/K17_A_OUT")
 			(uuid "d26b890c-537b-4c53-8808-c9bcdce90236")
 		)
 		(embedded_fonts no)
@@ -14668,7 +14668,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C33_B_OUT")
+			(net "/LED_Feld/K33_B_OUT")
 			(uuid "13c94618-bcd0-4063-b605-ce9bc57b6351")
 		)
 		(pad "3" smd roundrect
@@ -14684,7 +14684,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C33_A_OUT")
+			(net "/LED_Feld/K33_A_OUT")
 			(uuid "82541596-ed65-4438-8134-5ad5133db2b2")
 		)
 		(embedded_fonts no)
@@ -15317,7 +15317,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C05_B_OUT")
+			(net "/LED_Feld/K05_B_OUT")
 			(uuid "073f05ff-3f91-4061-9942-09b9ba32134e")
 		)
 		(pad "3" smd roundrect
@@ -15333,7 +15333,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C05_A_OUT")
+			(net "/LED_Feld/K05_A_OUT")
 			(uuid "d7069097-8c71-463b-960a-9e208389d5b6")
 		)
 		(embedded_fonts no)
@@ -15887,7 +15887,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C33_A_OUT")
+			(net "/LED_Feld/K33_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -15921,7 +15921,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C33_B_OUT")
+			(net "/LED_Feld/K33_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -16254,7 +16254,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C03_A_OUT")
+			(net "/LED_Feld/K03_A_OUT")
 			(uuid "0bbd86bb-8583-4271-9e02-74003e988a4c")
 		)
 		(pad "3" smd roundrect
@@ -16270,7 +16270,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C02_B_OUT")
+			(net "/LED_Feld/K02_B_OUT")
 			(uuid "7ddaadce-28e3-429c-aca9-578d6e5139bc")
 		)
 		(embedded_fonts no)
@@ -16889,7 +16889,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C34_A_OUT")
+			(net "/LED_Feld/K34_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -16923,7 +16923,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C34_B_OUT")
+			(net "/LED_Feld/K34_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -17256,7 +17256,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C26_B_OUT")
+			(net "/LED_Feld/K26_B_OUT")
 			(uuid "8c75a48e-edd5-45b4-b02a-d46590955f49")
 		)
 		(pad "3" smd roundrect
@@ -17272,7 +17272,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C26_A_OUT")
+			(net "/LED_Feld/K26_A_OUT")
 			(uuid "f5d23ae6-bd46-4070-9a29-cbcf13f985a5")
 		)
 		(embedded_fonts no)
@@ -17589,7 +17589,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C20_B_OUT")
+			(net "/LED_Feld/K20_B_OUT")
 			(uuid "ecba273c-a7f4-4b78-bac6-8324fa79dd89")
 		)
 		(pad "3" smd roundrect
@@ -17605,7 +17605,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C20_A_OUT")
+			(net "/LED_Feld/K20_A_OUT")
 			(uuid "8bc512ff-3430-4e4b-a411-324babccf8a3")
 		)
 		(embedded_fonts no)
@@ -18211,7 +18211,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C05_A_OUT")
+			(net "/LED_Feld/K05_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -18245,7 +18245,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C05_B_OUT")
+			(net "/LED_Feld/K05_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -18683,7 +18683,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C27_A_OUT")
+			(net "/LED_Feld/K27_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -18717,7 +18717,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C27_B_OUT")
+			(net "/LED_Feld/K27_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -19050,7 +19050,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C29_A_OUT")
+			(net "/LED_Feld/K29_A_OUT")
 			(uuid "11b6678b-db1b-448d-a60e-1782c55ccba9")
 		)
 		(pad "3" smd roundrect
@@ -19066,7 +19066,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C28_B_OUT")
+			(net "/LED_Feld/K28_B_OUT")
 			(uuid "ccaa64ad-f5d7-4c35-9ca7-2543a16f29e2")
 		)
 		(embedded_fonts no)
@@ -19567,7 +19567,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C34_A_OUT")
+			(net "/LED_Feld/K34_A_OUT")
 			(uuid "9a0ccd78-4259-4cd1-817c-1242f60cff01")
 		)
 		(pad "3" smd roundrect
@@ -19583,7 +19583,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C33_B_OUT")
+			(net "/LED_Feld/K33_B_OUT")
 			(uuid "af67331c-547f-4b23-b788-b00f1e71a2b1")
 		)
 		(embedded_fonts no)
@@ -19900,7 +19900,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C16_B_OUT")
+			(net "/LED_Feld/K16_B_OUT")
 			(uuid "4d1839a6-2a03-47e8-a05d-b70d87bcc488")
 		)
 		(pad "3" smd roundrect
@@ -19916,7 +19916,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C16_A_OUT")
+			(net "/LED_Feld/K16_A_OUT")
 			(uuid "364c8522-8f84-4f57-8c56-7395bd5305cd")
 		)
 		(embedded_fonts no)
@@ -20154,7 +20154,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C11_A_OUT")
+			(net "/LED_Feld/K11_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -20188,7 +20188,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C11_B_OUT")
+			(net "/LED_Feld/K11_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -20521,7 +20521,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C02_B_OUT")
+			(net "/LED_Feld/K02_B_OUT")
 			(uuid "899da7e8-0d20-4f22-b5b8-265c6f27579a")
 		)
 		(pad "3" smd roundrect
@@ -20537,7 +20537,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C02_A_OUT")
+			(net "/LED_Feld/K02_A_OUT")
 			(uuid "c1be2ca5-81fe-4c7b-bf8f-dadc11f39f26")
 		)
 		(embedded_fonts no)
@@ -20775,7 +20775,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C30_A_OUT")
+			(net "/LED_Feld/K30_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -20809,7 +20809,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C30_B_OUT")
+			(net "/LED_Feld/K30_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -21522,7 +21522,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C27_A_OUT")
+			(net "/LED_Feld/K27_A_OUT")
 			(uuid "2edb31eb-4cf7-406e-a7cb-0e12a53d9a43")
 		)
 		(pad "3" smd roundrect
@@ -21538,7 +21538,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C26_B_OUT")
+			(net "/LED_Feld/K26_B_OUT")
 			(uuid "a7f39096-a564-430f-ab6e-99964382d7d4")
 		)
 		(embedded_fonts no)
@@ -21776,7 +21776,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C01_A_OUT")
+			(net "/LED_Feld/K01_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -21810,7 +21810,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C01_B_OUT")
+			(net "/LED_Feld/K01_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -22327,7 +22327,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C32_B_OUT")
+			(net "/LED_Feld/K32_B_OUT")
 			(uuid "18eed016-5f90-45db-9809-bf7934b42df0")
 		)
 		(pad "3" smd roundrect
@@ -22343,7 +22343,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C32_A_OUT")
+			(net "/LED_Feld/K32_A_OUT")
 			(uuid "fb94b554-9ebc-4f47-b7f4-71094b73948a")
 		)
 		(embedded_fonts no)
@@ -22660,7 +22660,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C07_A_OUT")
+			(net "/LED_Feld/K07_A_OUT")
 			(uuid "abe4eca0-9cfc-494c-bb4e-918ea87ca9ab")
 		)
 		(pad "3" smd roundrect
@@ -23294,7 +23294,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C19_A_OUT")
+			(net "/LED_Feld/K19_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -23328,7 +23328,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C19_B_OUT")
+			(net "/LED_Feld/K19_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -23582,7 +23582,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C20_A_OUT")
+			(net "/LED_Feld/K20_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -23616,7 +23616,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C20_B_OUT")
+			(net "/LED_Feld/K20_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -24133,7 +24133,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C09_B_OUT")
+			(net "/LED_Feld/K09_B_OUT")
 			(uuid "bc53c6e3-7d4c-493e-83c1-0a2e18e27185")
 		)
 		(pad "3" smd roundrect
@@ -24149,7 +24149,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C09_A_OUT")
+			(net "/LED_Feld/K09_A_OUT")
 			(uuid "da016a4b-f6ba-4f58-967e-7c9882d50f8b")
 		)
 		(embedded_fonts no)
@@ -24387,7 +24387,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C13_A_OUT")
+			(net "/LED_Feld/K13_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -24421,7 +24421,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C13_B_OUT")
+			(net "/LED_Feld/K13_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -25330,7 +25330,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C08_B_OUT")
+			(net "/LED_Feld/K08_B_OUT")
 			(uuid "10b570d2-34c0-447b-92b2-977a114a4f74")
 		)
 		(pad "3" smd roundrect
@@ -25346,7 +25346,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C08_A_OUT")
+			(net "/LED_Feld/K08_A_OUT")
 			(uuid "b039101e-510d-4e87-912b-741591fb5056")
 		)
 		(embedded_fonts no)
@@ -25663,7 +25663,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C13_A_OUT")
+			(net "/LED_Feld/K13_A_OUT")
 			(uuid "1192bb11-2097-4391-a542-6c09f4d17214")
 		)
 		(pad "3" smd roundrect
@@ -25679,7 +25679,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C12_B_OUT")
+			(net "/LED_Feld/K12_B_OUT")
 			(uuid "eb884b1a-9b36-4570-be95-cd8bc840ffc8")
 		)
 		(embedded_fonts no)
@@ -25996,7 +25996,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C35_B_OUT")
+			(net "/LED_Feld/K35_B_OUT")
 			(uuid "6f23e8d1-9d7e-4091-8fb4-12f205250987")
 		)
 		(pad "3" smd roundrect
@@ -26012,7 +26012,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C35_A_OUT")
+			(net "/LED_Feld/K35_A_OUT")
 			(uuid "b05ee3f7-448b-4dc9-b90b-89118972ff21")
 		)
 		(embedded_fonts no)
@@ -26329,7 +26329,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C21_B_OUT")
+			(net "/LED_Feld/K21_B_OUT")
 			(uuid "4cfa0f15-ef29-450c-a319-4d35535967dc")
 		)
 		(pad "3" smd roundrect
@@ -26345,7 +26345,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C21_A_OUT")
+			(net "/LED_Feld/K21_A_OUT")
 			(uuid "2d3e64f9-9794-4a26-8894-2079aeeddcfe")
 		)
 		(embedded_fonts no)
@@ -26662,7 +26662,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C04_B_OUT")
+			(net "/LED_Feld/K04_B_OUT")
 			(uuid "e1a4ee96-a69e-4f27-8d5f-7b51c16326a0")
 		)
 		(pad "3" smd roundrect
@@ -26678,7 +26678,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C04_A_OUT")
+			(net "/LED_Feld/K04_A_OUT")
 			(uuid "1ae0146a-1c4d-4f80-8190-332ed2606f70")
 		)
 		(embedded_fonts no)
@@ -26995,7 +26995,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C32_A_OUT")
+			(net "/LED_Feld/K32_A_OUT")
 			(uuid "67e4389d-5626-4f82-be5a-7379086bcfb3")
 		)
 		(pad "3" smd roundrect
@@ -27011,7 +27011,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C31_B_OUT")
+			(net "/LED_Feld/K31_B_OUT")
 			(uuid "865d176a-a548-45ff-be66-cef64a510d00")
 		)
 		(embedded_fonts no)
@@ -27328,7 +27328,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C10_A_OUT")
+			(net "/LED_Feld/K10_A_OUT")
 			(uuid "2d6c1cdd-7d9d-48b9-a311-60d45a5ff679")
 		)
 		(pad "3" smd roundrect
@@ -27344,7 +27344,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C09_B_OUT")
+			(net "/LED_Feld/K09_B_OUT")
 			(uuid "f6ebf15a-47a0-4b6f-927b-4b77ef2aef61")
 		)
 		(embedded_fonts no)
@@ -27582,7 +27582,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C24_A_OUT")
+			(net "/LED_Feld/K24_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -27616,7 +27616,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C24_B_OUT")
+			(net "/LED_Feld/K24_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -28437,7 +28437,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C06_B_OUT")
+			(net "/LED_Feld/K06_B_OUT")
 			(uuid "c3bebdd5-45a5-46a7-85a3-61d21a1e3472")
 		)
 		(pad "3" smd roundrect
@@ -28453,7 +28453,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C06_A_OUT")
+			(net "/LED_Feld/K06_A_OUT")
 			(uuid "4ae77278-9fcd-47db-9376-cea70a36145e")
 		)
 		(embedded_fonts no)
@@ -29910,7 +29910,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C24_A_OUT")
+			(net "/LED_Feld/K24_A_OUT")
 			(uuid "7cf32073-100f-40d4-b78b-f8bfae6ede24")
 		)
 		(pad "3" smd roundrect
@@ -29926,7 +29926,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C23_B_OUT")
+			(net "/LED_Feld/K23_B_OUT")
 			(uuid "897c93f5-3951-4a29-94e9-5c839175cd89")
 		)
 		(embedded_fonts no)
@@ -30243,7 +30243,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C29_B_OUT")
+			(net "/LED_Feld/K29_B_OUT")
 			(uuid "f27e54b9-1ea1-4f00-b176-1d84f3694f5d")
 		)
 		(pad "3" smd roundrect
@@ -30259,7 +30259,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C29_A_OUT")
+			(net "/LED_Feld/K29_A_OUT")
 			(uuid "875e6e57-eef9-4ca6-997b-96acf4558f06")
 		)
 		(embedded_fonts no)
@@ -30772,7 +30772,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C23_A_OUT")
+			(net "/LED_Feld/K23_A_OUT")
 			(uuid "a4ecf210-0266-4224-8015-7a17da7cb42b")
 		)
 		(pad "3" smd roundrect
@@ -30788,7 +30788,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C22_B_OUT")
+			(net "/LED_Feld/K22_B_OUT")
 			(uuid "5a626144-0d1e-412d-9755-c371c1dc907b")
 		)
 		(embedded_fonts no)
@@ -31105,7 +31105,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C04_A_OUT")
+			(net "/LED_Feld/K04_A_OUT")
 			(uuid "71c607f5-babf-46f2-b1c0-c0c2f66d3141")
 		)
 		(pad "3" smd roundrect
@@ -31121,7 +31121,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C03_B_OUT")
+			(net "/LED_Feld/K03_B_OUT")
 			(uuid "1b00d7ed-8050-4e75-a657-7cc75fce41f4")
 		)
 		(embedded_fonts no)
@@ -31743,7 +31743,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C09_A_OUT")
+			(net "/LED_Feld/K09_A_OUT")
 			(uuid "c735004f-dab7-44ff-ae1a-c406619662de")
 		)
 		(pad "3" smd roundrect
@@ -31759,7 +31759,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C08_B_OUT")
+			(net "/LED_Feld/K08_B_OUT")
 			(uuid "fd3855d4-0ca7-46cf-bc2b-15a44e0745a9")
 		)
 		(embedded_fonts no)
@@ -32181,7 +32181,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C36_A_OUT")
+			(net "/LED_Feld/K36_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -32853,7 +32853,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C23_B_OUT")
+			(net "/LED_Feld/K23_B_OUT")
 			(uuid "38c6fa57-1684-4d5a-ad36-0465035b5e7d")
 		)
 		(pad "3" smd roundrect
@@ -32869,7 +32869,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C23_A_OUT")
+			(net "/LED_Feld/K23_A_OUT")
 			(uuid "82b9913c-0c57-4437-8ed7-9fb9e30de97c")
 		)
 		(embedded_fonts no)
@@ -33107,7 +33107,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C16_A_OUT")
+			(net "/LED_Feld/K16_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -33141,7 +33141,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C16_B_OUT")
+			(net "/LED_Feld/K16_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -33395,7 +33395,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C18_A_OUT")
+			(net "/LED_Feld/K18_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -33429,7 +33429,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C18_B_OUT")
+			(net "/LED_Feld/K18_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -33867,7 +33867,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C03_A_OUT")
+			(net "/LED_Feld/K03_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -33901,7 +33901,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C03_B_OUT")
+			(net "/LED_Feld/K03_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -34234,7 +34234,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C33_A_OUT")
+			(net "/LED_Feld/K33_A_OUT")
 			(uuid "3e1e49a8-76ba-4767-9a37-4f6e55f736c4")
 		)
 		(pad "3" smd roundrect
@@ -34250,7 +34250,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C32_B_OUT")
+			(net "/LED_Feld/K32_B_OUT")
 			(uuid "c3b2ad9e-f94f-4b23-9a0d-d31ec6f3f433")
 		)
 		(embedded_fonts no)
@@ -34567,7 +34567,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C21_A_OUT")
+			(net "/LED_Feld/K21_A_OUT")
 			(uuid "eb17c5b2-dc39-4332-b97a-6f56c258cab5")
 		)
 		(pad "3" smd roundrect
@@ -34583,7 +34583,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C20_B_OUT")
+			(net "/LED_Feld/K20_B_OUT")
 			(uuid "cb2ae221-8ab8-4f06-bb69-c25eb7f625bd")
 		)
 		(embedded_fonts no)
@@ -35201,7 +35201,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C17_A_OUT")
+			(net "/LED_Feld/K17_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -35235,7 +35235,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C17_B_OUT")
+			(net "/LED_Feld/K17_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -35568,7 +35568,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C30_B_OUT")
+			(net "/LED_Feld/K30_B_OUT")
 			(uuid "1ccf9bcb-a700-49ff-b3d8-c637c400fd79")
 		)
 		(pad "3" smd roundrect
@@ -35584,7 +35584,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C30_A_OUT")
+			(net "/LED_Feld/K30_A_OUT")
 			(uuid "c2e72092-cfdd-4c43-ad72-79a143b666d3")
 		)
 		(embedded_fonts no)
@@ -35901,7 +35901,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C30_A_OUT")
+			(net "/LED_Feld/K30_A_OUT")
 			(uuid "3feee356-461b-443c-9405-f23fafc05ceb")
 		)
 		(pad "3" smd roundrect
@@ -35917,7 +35917,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C29_B_OUT")
+			(net "/LED_Feld/K29_B_OUT")
 			(uuid "430f5d9e-7c5b-4941-86ae-18177eb9d1dd")
 		)
 		(embedded_fonts no)
@@ -36155,7 +36155,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C09_A_OUT")
+			(net "/LED_Feld/K09_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -36189,7 +36189,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C09_B_OUT")
+			(net "/LED_Feld/K09_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -36914,7 +36914,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C24_B_OUT")
+			(net "/LED_Feld/K24_B_OUT")
 			(uuid "6d086419-415e-49d9-823c-6cd12295c153")
 		)
 		(pad "3" smd roundrect
@@ -36930,7 +36930,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C24_A_OUT")
+			(net "/LED_Feld/K24_A_OUT")
 			(uuid "26ddce69-f0da-475d-8fc3-27304f3f07bc")
 		)
 		(embedded_fonts no)
@@ -37247,7 +37247,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C11_B_OUT")
+			(net "/LED_Feld/K11_B_OUT")
 			(uuid "9bee7224-904c-4c3f-8b7a-5f0e1f80825b")
 		)
 		(pad "3" smd roundrect
@@ -37263,7 +37263,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C11_A_OUT")
+			(net "/LED_Feld/K11_A_OUT")
 			(uuid "c04cc5fa-2b63-4865-8762-aadd90900599")
 		)
 		(embedded_fonts no)
@@ -37869,7 +37869,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C35_A_OUT")
+			(net "/LED_Feld/K35_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -37903,7 +37903,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C35_B_OUT")
+			(net "/LED_Feld/K35_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -39388,7 +39388,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C05_A_OUT")
+			(net "/LED_Feld/K05_A_OUT")
 			(uuid "be99dbf1-fbc6-405d-8b9c-c471522eceee")
 		)
 		(pad "3" smd roundrect
@@ -39404,7 +39404,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C04_B_OUT")
+			(net "/LED_Feld/K04_B_OUT")
 			(uuid "6d089426-d57b-4b6a-bbf0-86e16962ae4d")
 		)
 		(embedded_fonts no)
@@ -39642,7 +39642,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C02_A_OUT")
+			(net "/LED_Feld/K02_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -39676,7 +39676,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C02_B_OUT")
+			(net "/LED_Feld/K02_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -40051,7 +40051,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C32_A_OUT")
+			(net "/LED_Feld/K32_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -40085,7 +40085,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C32_B_OUT")
+			(net "/LED_Feld/K32_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -40418,7 +40418,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C13_B_OUT")
+			(net "/LED_Feld/K13_B_OUT")
 			(uuid "9d8951e9-4adc-4c23-8b86-cf3e284ba8a0")
 		)
 		(pad "3" smd roundrect
@@ -40434,7 +40434,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C13_A_OUT")
+			(net "/LED_Feld/K13_A_OUT")
 			(uuid "ed854e12-274d-400d-b5e1-84f434f10397")
 		)
 		(embedded_fonts no)
@@ -40868,7 +40868,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C14_A_OUT")
+			(net "/LED_Feld/K14_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -40902,7 +40902,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C14_B_OUT")
+			(net "/LED_Feld/K14_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -41423,7 +41423,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C06_B_OUT")
+			(net "/LED_Feld/K06_B_OUT")
 			(uuid "2f2fd7a9-d4ac-45e6-92aa-b129b76e9608")
 		)
 		(embedded_fonts no)
@@ -42041,7 +42041,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C10_A_OUT")
+			(net "/LED_Feld/K10_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -42075,7 +42075,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C10_B_OUT")
+			(net "/LED_Feld/K10_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -42408,7 +42408,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C20_A_OUT")
+			(net "/LED_Feld/K20_A_OUT")
 			(uuid "5f0123ab-70ab-4bc6-8b50-395a7e3f7488")
 		)
 		(pad "3" smd roundrect
@@ -42424,7 +42424,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C19_B_OUT")
+			(net "/LED_Feld/K19_B_OUT")
 			(uuid "f6d6013e-5924-4d53-afe4-19c3550d93b6")
 		)
 		(embedded_fonts no)
@@ -42741,7 +42741,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C25_B_OUT")
+			(net "/LED_Feld/K25_B_OUT")
 			(uuid "4f90ff81-b9d3-40c3-8a5f-35f2667ff565")
 		)
 		(pad "3" smd roundrect
@@ -42757,7 +42757,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C25_A_OUT")
+			(net "/LED_Feld/K25_A_OUT")
 			(uuid "66dcdb26-8947-4dde-9179-a73e79937dbb")
 		)
 		(embedded_fonts no)
@@ -43074,7 +43074,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C18_A_OUT")
+			(net "/LED_Feld/K18_A_OUT")
 			(uuid "551987d7-4c96-46c6-a382-af1c40c16968")
 		)
 		(pad "3" smd roundrect
@@ -43090,7 +43090,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C17_B_OUT")
+			(net "/LED_Feld/K17_B_OUT")
 			(uuid "d5a70bf9-ca16-41b9-88a7-1f1fbbc1dd4d")
 		)
 		(embedded_fonts no)
@@ -43591,7 +43591,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C15_A_OUT")
+			(net "/LED_Feld/K15_A_OUT")
 			(uuid "d98ff05f-5e61-4716-adb2-d56893645112")
 		)
 		(pad "3" smd roundrect
@@ -43607,7 +43607,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C14_B_OUT")
+			(net "/LED_Feld/K14_B_OUT")
 			(uuid "1e4f0914-9881-4744-8027-620cf18db521")
 		)
 		(embedded_fonts no)
@@ -44108,7 +44108,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C31_B_OUT")
+			(net "/LED_Feld/K31_B_OUT")
 			(uuid "4345cfef-395b-4835-be9c-805851aa32b9")
 		)
 		(pad "3" smd roundrect
@@ -44124,7 +44124,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C31_A_OUT")
+			(net "/LED_Feld/K31_A_OUT")
 			(uuid "c9496469-1ca8-4bb3-b5fc-7200350b2adb")
 		)
 		(embedded_fonts no)
@@ -44742,7 +44742,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C07_A_OUT")
+			(net "/LED_Feld/K07_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -44776,7 +44776,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C07_B_OUT")
+			(net "/LED_Feld/K07_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -45109,7 +45109,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C17_A_OUT")
+			(net "/LED_Feld/K17_A_OUT")
 			(uuid "ff5a7890-736b-46df-b4d6-e2c54cb0ca3d")
 		)
 		(pad "3" smd roundrect
@@ -45125,7 +45125,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C16_B_OUT")
+			(net "/LED_Feld/K16_B_OUT")
 			(uuid "07995d43-7557-437f-b3bd-003c99b53e37")
 		)
 		(embedded_fonts no)
@@ -45547,7 +45547,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C26_A_OUT")
+			(net "/LED_Feld/K26_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -45581,7 +45581,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C26_B_OUT")
+			(net "/LED_Feld/K26_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -45914,7 +45914,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C14_A_OUT")
+			(net "/LED_Feld/K14_A_OUT")
 			(uuid "13c836c2-ddf7-4c52-9742-c249211cb45a")
 		)
 		(pad "3" smd roundrect
@@ -45930,7 +45930,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C13_B_OUT")
+			(net "/LED_Feld/K13_B_OUT")
 			(uuid "3c73f911-4474-4a36-a9f4-d04c4cb6dd94")
 		)
 		(embedded_fonts no)
@@ -46940,7 +46940,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C06_A_OUT")
+			(net "/LED_Feld/K06_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -46974,7 +46974,7 @@
 			(at 0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C06_B_OUT")
+			(net "/LED_Feld/K06_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -47307,7 +47307,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C08_A_OUT")
+			(net "/LED_Feld/K08_A_OUT")
 			(uuid "f9af913f-77fe-42e9-9b8c-fda79905c9b7")
 		)
 		(pad "3" smd roundrect
@@ -47323,7 +47323,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C07_B_OUT")
+			(net "/LED_Feld/K07_B_OUT")
 			(uuid "607cef85-8b93-48a5-8df6-63879f476c75")
 		)
 		(embedded_fonts no)
@@ -47640,7 +47640,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C22_A_OUT")
+			(net "/LED_Feld/K22_A_OUT")
 			(uuid "dbcaff92-e04a-48eb-8462-10892f5cb851")
 		)
 		(pad "3" smd roundrect
@@ -47656,7 +47656,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C21_B_OUT")
+			(net "/LED_Feld/K21_B_OUT")
 			(uuid "c6a00259-379a-4caa-90a4-73251fcc8819")
 		)
 		(embedded_fonts no)
@@ -47973,7 +47973,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C01_A_OUT")
+			(net "/LED_Feld/K01_A_OUT")
 			(uuid "5b1bee14-8d27-42bd-a37e-7aa21a51da13")
 		)
 		(pad "3" smd roundrect
@@ -48546,7 +48546,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C14_B_OUT")
+			(net "/LED_Feld/K14_B_OUT")
 			(uuid "d4b7583b-0851-4478-8cf8-e69a95ccfd14")
 		)
 		(pad "3" smd roundrect
@@ -48562,7 +48562,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C14_A_OUT")
+			(net "/LED_Feld/K14_A_OUT")
 			(uuid "3a715a07-2974-4e9f-81f1-c559a4fe4773")
 		)
 		(embedded_fonts no)
@@ -49063,7 +49063,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C12_B_OUT")
+			(net "/LED_Feld/K12_B_OUT")
 			(uuid "d85795a2-85db-4855-80dc-446f1d5e5d24")
 		)
 		(pad "3" smd roundrect
@@ -49079,7 +49079,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C12_A_OUT")
+			(net "/LED_Feld/K12_A_OUT")
 			(uuid "6c85a4ef-695c-48be-9594-c10f7b5aeb0e")
 		)
 		(embedded_fonts no)
@@ -49396,7 +49396,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C10_B_OUT")
+			(net "/LED_Feld/K10_B_OUT")
 			(uuid "9877f8c3-be64-4d1d-a04a-3c151cc8f23c")
 		)
 		(pad "3" smd roundrect
@@ -49412,7 +49412,7 @@
 			(size 1.5 0.9)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.1)
-			(net "/LED_Feld/C10_A_OUT")
+			(net "/LED_Feld/K10_A_OUT")
 			(uuid "aedfdc6b-18ac-4ed0-8aaa-33a155fdb884")
 		)
 		(embedded_fonts no)
@@ -49846,7 +49846,7 @@
 			(at -0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C23_A_OUT")
+			(net "/LED_Feld/K23_A_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -49880,7 +49880,7 @@
 			(at 0.65 0 180)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/LED_Feld/C23_B_OUT")
+			(net "/LED_Feld/K23_B_OUT")
 			(zone_connect 2)
 			(thermal_bridge_angle 45)
 			(options
@@ -67556,7 +67556,7 @@
 		(end 64.28 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_A_OUT")
+		(net "/LED_Feld/K26_A_OUT")
 		(uuid "192f176a-32be-45d7-bb0b-90e91afa9e1b")
 	)
 	(segment
@@ -67564,7 +67564,7 @@
 		(end 59.23 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_A_OUT")
+		(net "/LED_Feld/K26_A_OUT")
 		(uuid "377a53cf-6a45-4561-a439-bf22deadcc45")
 	)
 	(segment
@@ -67572,7 +67572,7 @@
 		(end 59.23 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_A_OUT")
+		(net "/LED_Feld/K26_A_OUT")
 		(uuid "427ee3ca-6b8b-4443-97b6-01e07b7100a5")
 	)
 	(segment
@@ -67580,7 +67580,7 @@
 		(end 62.53 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_A_OUT")
+		(net "/LED_Feld/K26_A_OUT")
 		(uuid "4d2e2888-2f48-44b6-bf96-7fdf01e957bd")
 	)
 	(segment
@@ -67588,7 +67588,7 @@
 		(end 59.23 56.33)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_A_OUT")
+		(net "/LED_Feld/K26_A_OUT")
 		(uuid "56a73c1e-4b1f-4323-a9ac-75c478b33b6d")
 	)
 	(segment
@@ -67596,7 +67596,7 @@
 		(end 60.73 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_A_OUT")
+		(net "/LED_Feld/K26_A_OUT")
 		(uuid "c902eb9e-93b4-44bf-bd3e-6ca8a1c060b7")
 	)
 	(segment
@@ -67604,7 +67604,7 @@
 		(end 70.93 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "a85c1417-eac5-42e6-96b0-ab5e5ef24b24")
 	)
 	(segment
@@ -67612,7 +67612,7 @@
 		(end 70.93 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "ca1af14a-0965-4676-9188-4d7e963f827d")
 	)
 	(segment
@@ -67620,7 +67620,7 @@
 		(end 70.93 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "cd17b18e-8476-4d68-9995-0150822cdde2")
 	)
 	(segment
@@ -67628,7 +67628,7 @@
 		(end 47.53 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "f45f875a-d6e8-4333-8d9d-7f913f7f677d")
 	)
 	(via
@@ -67636,7 +67636,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "d2d730d8-61e9-4ab7-b327-89d905a926e5")
 	)
 	(via
@@ -67644,7 +67644,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "ef2700ff-d42d-4660-829e-64f31977c9f7")
 	)
 	(segment
@@ -67652,7 +67652,7 @@
 		(end 68.93 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "4e6bc8d2-c101-4a06-b4a8-432d1d771e2a")
 	)
 	(segment
@@ -67660,7 +67660,7 @@
 		(end 47.53 76.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "5662b3d7-9525-45bc-9529-b43f6f4c2893")
 	)
 	(segment
@@ -67668,7 +67668,7 @@
 		(end 47.53 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "a41528c9-6ca4-4574-8ab5-e12ffaa22089")
 	)
 	(segment
@@ -67676,7 +67676,7 @@
 		(end 70.93 80.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "bc890062-088f-4fe2-b4e9-8f9e73381373")
 	)
 	(segment
@@ -67684,7 +67684,7 @@
 		(end 49.53 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C25_B_OUT")
+		(net "/LED_Feld/K25_B_OUT")
 		(uuid "cc088797-9f2d-472a-b554-684b03b4d6c2")
 	)
 	(segment
@@ -67692,7 +67692,7 @@
 		(end 97.6907 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_A_OUT")
+		(net "/LED_Feld/K11_A_OUT")
 		(uuid "5c21f40b-c4b7-4dc4-ba13-a53a37ba0ad7")
 	)
 	(segment
@@ -67700,7 +67700,7 @@
 		(end 97.6907 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_A_OUT")
+		(net "/LED_Feld/K11_A_OUT")
 		(uuid "5d074d78-346a-42e4-83e2-d5e990b49497")
 	)
 	(segment
@@ -67708,7 +67708,7 @@
 		(end 92.6407 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_A_OUT")
+		(net "/LED_Feld/K11_A_OUT")
 		(uuid "6bd0b51a-17c7-4f24-836f-7143a4881183")
 	)
 	(segment
@@ -67716,7 +67716,7 @@
 		(end 97.6907 215.9728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_A_OUT")
+		(net "/LED_Feld/K11_A_OUT")
 		(uuid "7d8b986e-d10f-40f7-a036-6574d077361b")
 	)
 	(segment
@@ -67724,7 +67724,7 @@
 		(end 94.3907 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_A_OUT")
+		(net "/LED_Feld/K11_A_OUT")
 		(uuid "80eb7e8c-501f-43cc-a793-90a0c7e38665")
 	)
 	(segment
@@ -67732,7 +67732,7 @@
 		(end 96.1907 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_A_OUT")
+		(net "/LED_Feld/K11_A_OUT")
 		(uuid "c7590e1e-2ab4-4b8c-9270-d5f634eceab0")
 	)
 	(segment
@@ -67740,7 +67740,7 @@
 		(end 124.4514 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "4205a5c1-ab24-475e-a696-76608a2a23b9")
 	)
 	(segment
@@ -67748,7 +67748,7 @@
 		(end 124.4514 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "77de4f5c-b25e-43dc-b81b-d1c6dbcabe5b")
 	)
 	(segment
@@ -67756,7 +67756,7 @@
 		(end 109.3907 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "ca563155-56a7-4b5f-acef-7c840527de47")
 	)
 	(segment
@@ -67764,7 +67764,7 @@
 		(end 124.4514 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "fa753e2b-7b5d-4a93-8e63-92a5e9f5fc12")
 	)
 	(via
@@ -67772,7 +67772,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "1b2aeeb7-5e85-48e8-811f-65d1ab7b0f97")
 	)
 	(via
@@ -67780,7 +67780,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "4d0d337a-b616-445e-a7d0-962dd7ed8fba")
 	)
 	(segment
@@ -67788,7 +67788,7 @@
 		(end 116.92105 213.0728)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "7f82d38d-0dab-46cf-9785-27b3f6379346")
 	)
 	(segment
@@ -67796,7 +67796,7 @@
 		(end 118.57105 214.7228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "89414084-1604-4197-b4d0-79fc328da1f8")
 	)
 	(segment
@@ -67804,7 +67804,7 @@
 		(end 115.27105 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "c86c0441-0f34-4cfa-a4d0-4164a6c0f497")
 	)
 	(segment
@@ -67812,7 +67812,7 @@
 		(end 109.3907 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C10_B_OUT")
+		(net "/LED_Feld/K10_B_OUT")
 		(uuid "eb3ae1b2-3ecb-4a64-bd3c-ed7148774090")
 	)
 	(segment
@@ -67820,7 +67820,7 @@
 		(end 62.53 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_A_OUT")
+		(net "/LED_Feld/K25_A_OUT")
 		(uuid "0f3f93b4-0fb3-4213-8b01-61d317f384a6")
 	)
 	(segment
@@ -67828,7 +67828,7 @@
 		(end 60.73 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_A_OUT")
+		(net "/LED_Feld/K25_A_OUT")
 		(uuid "1c1da343-07be-40af-97b9-87c696d835ed")
 	)
 	(segment
@@ -67836,7 +67836,7 @@
 		(end 59.23 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_A_OUT")
+		(net "/LED_Feld/K25_A_OUT")
 		(uuid "21bf63ea-3405-44e0-a7a3-7df0d6e0e9bf")
 	)
 	(segment
@@ -67844,7 +67844,7 @@
 		(end 59.23 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_A_OUT")
+		(net "/LED_Feld/K25_A_OUT")
 		(uuid "4cf0db4e-0c08-4dbf-9006-1db2f18a2eb6")
 	)
 	(segment
@@ -67852,7 +67852,7 @@
 		(end 64.28 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_A_OUT")
+		(net "/LED_Feld/K25_A_OUT")
 		(uuid "62eff4c6-fd6f-43e0-b55f-65f8a30f3962")
 	)
 	(segment
@@ -67860,7 +67860,7 @@
 		(end 59.23 94.7907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C25_A_OUT")
+		(net "/LED_Feld/K25_A_OUT")
 		(uuid "c6d78f2c-9d04-46f0-b68d-de42fca6ac87")
 	)
 	(segment
@@ -67868,7 +67868,7 @@
 		(end 47.53 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_B_OUT")
+		(net "/LED_Feld/K24_B_OUT")
 		(uuid "0170ffc4-5cb7-48fa-a9d5-860394d4fb21")
 	)
 	(segment
@@ -67876,7 +67876,7 @@
 		(end 47.53 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_B_OUT")
+		(net "/LED_Feld/K24_B_OUT")
 		(uuid "5764ff02-ed78-4750-bd8b-76ad115ab30b")
 	)
 	(segment
@@ -67884,7 +67884,7 @@
 		(end 47.53 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_B_OUT")
+		(net "/LED_Feld/K24_B_OUT")
 		(uuid "82c4c6c8-844b-4f09-a4fc-91bb046c1f9a")
 	)
 	(segment
@@ -67892,7 +67892,7 @@
 		(end 47.53 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_B_OUT")
+		(net "/LED_Feld/K24_B_OUT")
 		(uuid "a3905dc8-2fc0-475c-a9e4-6b8731dbc30b")
 	)
 	(via
@@ -67900,7 +67900,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C24_B_OUT")
+		(net "/LED_Feld/K24_B_OUT")
 		(uuid "1bc1a6e8-bc47-4116-a70b-d28ec84ae8f8")
 	)
 	(via
@@ -67908,7 +67908,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C24_B_OUT")
+		(net "/LED_Feld/K24_B_OUT")
 		(uuid "e7136d88-d9cd-405f-b286-830d52bef006")
 	)
 	(segment
@@ -67916,7 +67916,7 @@
 		(end 47.53 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C24_B_OUT")
+		(net "/LED_Feld/K24_B_OUT")
 		(uuid "0b7d8b4e-9921-4174-a0fb-1e0d2ca2c588")
 	)
 	(segment
@@ -67924,7 +67924,7 @@
 		(end 70.93 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "2afd3156-927b-41fe-bfc7-d8ad9eca9f38")
 	)
 	(segment
@@ -67932,7 +67932,7 @@
 		(end 70.93 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "30cd7aec-6871-445b-b5f6-d3256de01ef4")
 	)
 	(segment
@@ -67940,7 +67940,7 @@
 		(end 85.9907 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "baa04547-9906-492c-a881-72cbea1c1e4b")
 	)
 	(segment
@@ -67948,7 +67948,7 @@
 		(end 70.93 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "f264fb32-eac3-4d96-aa74-43b8218af97b")
 	)
 	(via
@@ -67956,7 +67956,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "2a33843b-e74a-406f-b7a9-f61fbb4355f5")
 	)
 	(via
@@ -67964,7 +67964,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "80659d3c-5e57-432c-8d79-4f238a407900")
 	)
 	(segment
@@ -67972,7 +67972,7 @@
 		(end 84 251.5335)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "3a0e8526-381f-41e1-a6bc-96c1bc9ecc34")
 	)
 	(segment
@@ -67980,7 +67980,7 @@
 		(end 85.9907 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "6b3d2c6c-1ec5-4a2e-983d-ed49fc774eda")
 	)
 	(segment
@@ -67988,7 +67988,7 @@
 		(end 84.99535 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "73e9fdaf-9f06-475e-98c7-6a7b4de0f0f1")
 	)
 	(segment
@@ -67996,7 +67996,7 @@
 		(end 82.35 249.8835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "aa537695-a1ba-44cd-85f4-2da1d0b78b16")
 	)
 	(segment
@@ -68004,7 +68004,7 @@
 		(end 84 252.18815)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C01_B_OUT")
+		(net "/LED_Feld/K01_B_OUT")
 		(uuid "e0fbab6b-5489-4563-9ace-bcfac72f71dd")
 	)
 	(segment
@@ -68012,7 +68012,7 @@
 		(end 62.53 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_A_OUT")
+		(net "/LED_Feld/K01_A_OUT")
 		(uuid "0a4301dd-8493-41ea-9588-1e7d6550dd59")
 	)
 	(segment
@@ -68020,7 +68020,7 @@
 		(end 59.23 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_A_OUT")
+		(net "/LED_Feld/K01_A_OUT")
 		(uuid "2eccfdfb-2a62-43dc-8642-abdaf65f02fa")
 	)
 	(segment
@@ -68028,7 +68028,7 @@
 		(end 64.28 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_A_OUT")
+		(net "/LED_Feld/K01_A_OUT")
 		(uuid "69921c44-2db9-4d0d-9f5f-2aa87bf55c27")
 	)
 	(segment
@@ -68036,7 +68036,7 @@
 		(end 59.23 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_A_OUT")
+		(net "/LED_Feld/K01_A_OUT")
 		(uuid "6f8ad942-c3d9-425b-9462-a7b3cfc548e9")
 	)
 	(segment
@@ -68044,7 +68044,7 @@
 		(end 59.23 248.6335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_A_OUT")
+		(net "/LED_Feld/K01_A_OUT")
 		(uuid "900366d2-e369-4f4d-a138-94a78a12af6b")
 	)
 	(segment
@@ -68052,7 +68052,7 @@
 		(end 60.73 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C01_A_OUT")
+		(net "/LED_Feld/K01_A_OUT")
 		(uuid "d53d937a-bc54-4a31-8410-87438d5cd3b2")
 	)
 	(segment
@@ -68060,7 +68060,7 @@
 		(end 162.9121 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "110ab0bb-0ac8-4f1a-9a31-3b44c4d53841")
 	)
 	(segment
@@ -68068,7 +68068,7 @@
 		(end 147.8514 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "221ee98f-16ef-467f-89e1-c5a0e4993151")
 	)
 	(segment
@@ -68076,7 +68076,7 @@
 		(end 147.8514 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "85585710-8452-4db7-8a6a-5a89e5393516")
 	)
 	(segment
@@ -68084,7 +68084,7 @@
 		(end 147.8514 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "9fd20792-557d-48b2-990f-1d5a10e6692f")
 	)
 	(via
@@ -68092,7 +68092,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "b5458b6b-e78f-4a3b-98dd-2725aee42ac8")
 	)
 	(via
@@ -68100,7 +68100,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "f0e30d77-248c-470d-941d-84d1dc395286")
 	)
 	(segment
@@ -68108,7 +68108,7 @@
 		(end 155.38175 251.5335)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "01b7ecf0-718c-4efb-8096-74ef64d4f44e")
 	)
 	(segment
@@ -68116,7 +68116,7 @@
 		(end 162.9121 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "031ea2e7-ac3f-4d01-ac82-d0925e5d8c9f")
 	)
 	(segment
@@ -68124,7 +68124,7 @@
 		(end 153.73175 249.8835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "1fd8862b-5785-467b-9e01-9832f3ca332b")
 	)
 	(segment
@@ -68132,7 +68132,7 @@
 		(end 157.03175 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C03_B_OUT")
+		(net "/LED_Feld/K03_B_OUT")
 		(uuid "4701a7ee-dbae-4fb4-a3a6-1f02aaba3bbc")
 	)
 	(segment
@@ -68140,7 +68140,7 @@
 		(end 137.6514 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_A_OUT")
+		(net "/LED_Feld/K03_A_OUT")
 		(uuid "1ec2c06c-a9b5-4072-93b4-1b39ce530c0b")
 	)
 	(segment
@@ -68148,7 +68148,7 @@
 		(end 136.1514 248.6335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_A_OUT")
+		(net "/LED_Feld/K03_A_OUT")
 		(uuid "3d83d5c5-4f94-403b-ae3a-410234264d51")
 	)
 	(segment
@@ -68156,7 +68156,7 @@
 		(end 139.4514 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_A_OUT")
+		(net "/LED_Feld/K03_A_OUT")
 		(uuid "4e0530c6-43a9-47ea-b3e8-328499114716")
 	)
 	(segment
@@ -68164,7 +68164,7 @@
 		(end 136.1514 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_A_OUT")
+		(net "/LED_Feld/K03_A_OUT")
 		(uuid "6c3d4d65-cfd8-4d92-9750-722b5e357033")
 	)
 	(segment
@@ -68172,7 +68172,7 @@
 		(end 141.2014 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_A_OUT")
+		(net "/LED_Feld/K03_A_OUT")
 		(uuid "7790cd5c-6ae9-4d0e-8299-00d1d1c0d864")
 	)
 	(segment
@@ -68180,7 +68180,7 @@
 		(end 136.1514 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C03_A_OUT")
+		(net "/LED_Feld/K03_A_OUT")
 		(uuid "e0a55bd8-c66b-4de0-8003-16c2209d86f7")
 	)
 	(segment
@@ -68188,7 +68188,7 @@
 		(end 224.7728 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "17575145-5ab3-4500-afea-fcfb5e28679b")
 	)
 	(segment
@@ -68196,7 +68196,7 @@
 		(end 224.7728 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "64f450a2-e661-4319-b34a-7523ef6b4711")
 	)
 	(segment
@@ -68204,7 +68204,7 @@
 		(end 224.7728 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "7604b6a3-3ab8-4457-ba5e-1742e04f8f62")
 	)
 	(segment
@@ -68212,7 +68212,7 @@
 		(end 239.8335 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "88d0447b-be78-4c92-8688-9f7a30971cc0")
 	)
 	(via
@@ -68220,7 +68220,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "7cea5707-6e8d-4115-a2bb-4e6a4d0ce792")
 	)
 	(via
@@ -68228,7 +68228,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "f0f0a327-5613-4464-9a8a-24c117a92496")
 	)
 	(segment
@@ -68236,7 +68236,7 @@
 		(end 232.30315 59.23)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "2691c554-45f0-4767-8510-384250434a31")
 	)
 	(segment
@@ -68244,7 +68244,7 @@
 		(end 230.65315 57.58)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "274bea70-3d2e-4021-bd2f-bd6c49871816")
 	)
 	(segment
@@ -68252,7 +68252,7 @@
 		(end 239.8335 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "738024c3-6b7b-403d-b18c-111c59d2a4bb")
 	)
 	(segment
@@ -68260,7 +68260,7 @@
 		(end 233.95315 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C34_B_OUT")
+		(net "/LED_Feld/K34_B_OUT")
 		(uuid "a58b99ba-25e5-4ba4-be48-91370d13e87e")
 	)
 	(segment
@@ -68268,7 +68268,7 @@
 		(end 213.0728 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_A_OUT")
+		(net "/LED_Feld/K34_A_OUT")
 		(uuid "03cb3ba7-66c2-4c40-852f-1e116c7c2176")
 	)
 	(segment
@@ -68276,7 +68276,7 @@
 		(end 216.3728 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_A_OUT")
+		(net "/LED_Feld/K34_A_OUT")
 		(uuid "2fa2d5e0-0e3f-422d-a7f8-fedc4a4c7cf2")
 	)
 	(segment
@@ -68284,7 +68284,7 @@
 		(end 214.5728 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_A_OUT")
+		(net "/LED_Feld/K34_A_OUT")
 		(uuid "ae59a9c3-3f7e-4f97-b60c-6559cd4ef1b1")
 	)
 	(segment
@@ -68292,7 +68292,7 @@
 		(end 218.1228 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_A_OUT")
+		(net "/LED_Feld/K34_A_OUT")
 		(uuid "c4244c10-c76f-41a5-86e8-786805caea7d")
 	)
 	(segment
@@ -68300,7 +68300,7 @@
 		(end 213.0728 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_A_OUT")
+		(net "/LED_Feld/K34_A_OUT")
 		(uuid "c4d09831-6d89-4bfd-b6ae-cf700b1747f2")
 	)
 	(segment
@@ -68308,7 +68308,7 @@
 		(end 213.0728 56.33)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C34_A_OUT")
+		(net "/LED_Feld/K34_A_OUT")
 		(uuid "f520c399-4da4-45c9-934c-0681c8ad9529")
 	)
 	(segment
@@ -68316,7 +68316,7 @@
 		(end 136.1514 94.7907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_A_OUT")
+		(net "/LED_Feld/K29_A_OUT")
 		(uuid "3ce59c00-6968-4b7a-9471-8119f01c5702")
 	)
 	(segment
@@ -68324,7 +68324,7 @@
 		(end 136.1514 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_A_OUT")
+		(net "/LED_Feld/K29_A_OUT")
 		(uuid "54a5f490-4d73-45d2-b4e0-e27432a1b31f")
 	)
 	(segment
@@ -68332,7 +68332,7 @@
 		(end 141.2014 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_A_OUT")
+		(net "/LED_Feld/K29_A_OUT")
 		(uuid "55d89baa-baa8-4bd6-a063-a0c771b04244")
 	)
 	(segment
@@ -68340,7 +68340,7 @@
 		(end 137.6514 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_A_OUT")
+		(net "/LED_Feld/K29_A_OUT")
 		(uuid "8002f0c2-72dd-46a2-a774-1ed74fe3dcd9")
 	)
 	(segment
@@ -68348,7 +68348,7 @@
 		(end 136.1514 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_A_OUT")
+		(net "/LED_Feld/K29_A_OUT")
 		(uuid "eb10047c-9843-4b7f-bcab-801ef7972776")
 	)
 	(segment
@@ -68356,7 +68356,7 @@
 		(end 139.4514 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_A_OUT")
+		(net "/LED_Feld/K29_A_OUT")
 		(uuid "f9753464-aff6-429f-8d8a-7a9daaa987c7")
 	)
 	(segment
@@ -68364,7 +68364,7 @@
 		(end 147.8514 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "12d5a175-ec14-4161-9b70-7dfd7ab4b542")
 	)
 	(segment
@@ -68372,7 +68372,7 @@
 		(end 124.4514 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "2085b26b-5128-432b-9554-e07c693141fd")
 	)
 	(segment
@@ -68380,7 +68380,7 @@
 		(end 147.8514 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "a47bf3fc-14b1-45fa-b42c-c3f02b7e3dee")
 	)
 	(segment
@@ -68388,7 +68388,7 @@
 		(end 147.8514 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "f2de1e3f-2e5c-42ab-9538-e15736e3f1b9")
 	)
 	(via
@@ -68396,7 +68396,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "0d73d36b-4865-4cec-aabc-2060e7890411")
 	)
 	(via
@@ -68404,7 +68404,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "d97e4445-8c2f-4c79-bad3-5d0b59373dac")
 	)
 	(segment
@@ -68412,7 +68412,7 @@
 		(end 124.4514 76.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "086f11e6-88da-4feb-bbc7-04afb2e63c1a")
 	)
 	(segment
@@ -68420,7 +68420,7 @@
 		(end 145.8514 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "37be4069-2113-4d46-8b64-be9bf4889402")
 	)
 	(segment
@@ -68428,7 +68428,7 @@
 		(end 124.4514 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "4c227d34-a0b8-47f8-a3eb-d4a5fa83eb91")
 	)
 	(segment
@@ -68436,7 +68436,7 @@
 		(end 147.8514 80.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "8763071e-5438-4bbd-8ac8-40aea23bb643")
 	)
 	(segment
@@ -68444,7 +68444,7 @@
 		(end 126.4514 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C29_B_OUT")
+		(net "/LED_Feld/K29_B_OUT")
 		(uuid "ad2c598c-7ab5-4a2e-9be0-da9d0a76c91b")
 	)
 	(segment
@@ -68452,7 +68452,7 @@
 		(end 57.73 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_A_OUT")
+		(net "/LED_Feld/K12_A_OUT")
 		(uuid "3dc94558-4d5d-42d0-8af2-3b4eb4fc124e")
 	)
 	(segment
@@ -68460,7 +68460,7 @@
 		(end 59.23 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_A_OUT")
+		(net "/LED_Feld/K12_A_OUT")
 		(uuid "62771a86-871a-4fb0-8cf7-6e3f6765a08d")
 	)
 	(segment
@@ -68468,7 +68468,7 @@
 		(end 55.93 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_A_OUT")
+		(net "/LED_Feld/K12_A_OUT")
 		(uuid "6575e4f7-812e-448f-95f2-e42565e733ea")
 	)
 	(segment
@@ -68476,7 +68476,7 @@
 		(end 54.18 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_A_OUT")
+		(net "/LED_Feld/K12_A_OUT")
 		(uuid "719abcf3-9bb7-4ad2-8057-1a3214990758")
 	)
 	(segment
@@ -68484,7 +68484,7 @@
 		(end 59.23 215.9728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_A_OUT")
+		(net "/LED_Feld/K12_A_OUT")
 		(uuid "9771308f-2ca4-4436-9f8b-85d1f35774cb")
 	)
 	(segment
@@ -68492,7 +68492,7 @@
 		(end 59.23 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_A_OUT")
+		(net "/LED_Feld/K12_A_OUT")
 		(uuid "aeddd3fd-1ed6-4d37-8841-edf8e7521ec8")
 	)
 	(segment
@@ -68500,7 +68500,7 @@
 		(end 70.93 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "20caaee5-8343-4038-b6f6-d641e0d13e45")
 	)
 	(segment
@@ -68508,7 +68508,7 @@
 		(end 85.9907 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "4b276426-94a8-4f5a-a246-ebc40b5dd4d9")
 	)
 	(segment
@@ -68516,7 +68516,7 @@
 		(end 85.9907 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "4ca7db5c-7a36-4373-af59-73dea885eca3")
 	)
 	(segment
@@ -68524,7 +68524,7 @@
 		(end 85.9907 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "c883811a-114b-4bbf-82f1-97a97cfbae8f")
 	)
 	(via
@@ -68532,7 +68532,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "13edfdde-9a13-481e-986a-82fe5bd4596f")
 	)
 	(via
@@ -68540,7 +68540,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "cf1c5df9-db73-4d68-8b6a-f1bf8776494c")
 	)
 	(segment
@@ -68548,7 +68548,7 @@
 		(end 76.81035 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "2f479cba-eba0-4a1c-aae6-7e47683af348")
 	)
 	(segment
@@ -68556,7 +68556,7 @@
 		(end 70.93 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "73c6f61c-1513-4b93-952a-71d2a302b91c")
 	)
 	(segment
@@ -68564,7 +68564,7 @@
 		(end 78.46035 213.0728)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "90faae05-bb64-4317-9121-0e8407964f36")
 	)
 	(segment
@@ -68572,7 +68572,7 @@
 		(end 80.11035 214.7228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C11_B_OUT")
+		(net "/LED_Feld/K11_B_OUT")
 		(uuid "9d43a782-24e9-413e-99ed-d5e93a17d2a6")
 	)
 	(segment
@@ -68580,7 +68580,7 @@
 		(end 251.5335 94.7907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C36_A_OUT")
+		(net "/LED_Feld/K36_A_OUT")
 		(uuid "27fc1ad0-c4ac-4d70-b2eb-98adc6dd0251")
 	)
 	(segment
@@ -68588,7 +68588,7 @@
 		(end 251.5335 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C36_A_OUT")
+		(net "/LED_Feld/K36_A_OUT")
 		(uuid "28ed88f6-85c7-47e5-b36b-40d81aee1b9a")
 	)
 	(segment
@@ -68596,7 +68596,7 @@
 		(end 253.0335 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C36_A_OUT")
+		(net "/LED_Feld/K36_A_OUT")
 		(uuid "79f9dd42-df92-422c-8da7-95dd82f6d282")
 	)
 	(segment
@@ -68604,7 +68604,7 @@
 		(end 251.5335 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C36_A_OUT")
+		(net "/LED_Feld/K36_A_OUT")
 		(uuid "d2d17afa-6804-4ce0-b5aa-1583a7ade0d5")
 	)
 	(segment
@@ -68612,7 +68612,7 @@
 		(end 256.5835 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C36_A_OUT")
+		(net "/LED_Feld/K36_A_OUT")
 		(uuid "e91753fc-2bfe-4d39-a4a6-215d58ee988b")
 	)
 	(segment
@@ -68620,7 +68620,7 @@
 		(end 254.8335 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C36_A_OUT")
+		(net "/LED_Feld/K36_A_OUT")
 		(uuid "eb9489ea-9691-4338-87db-58cf35f17393")
 	)
 	(segment
@@ -68628,7 +68628,7 @@
 		(end 263.2335 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "1471af81-4430-41c7-9102-490d8bd12bfe")
 	)
 	(segment
@@ -68636,7 +68636,7 @@
 		(end 263.2335 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "19b75797-c607-49f4-b71b-54702e086313")
 	)
 	(segment
@@ -68644,7 +68644,7 @@
 		(end 239.8335 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "26eb14d7-9c3e-41d5-b5d9-09d033cfc3b0")
 	)
 	(segment
@@ -68652,7 +68652,7 @@
 		(end 263.2335 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "56f0e5fc-235a-4ae5-a8d1-549366289c38")
 	)
 	(via
@@ -68660,7 +68660,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "c7a58804-ea17-4349-a566-6ba82c39375a")
 	)
 	(via
@@ -68668,7 +68668,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "ddbbaae6-e50a-4d4c-adce-f71e2a40c598")
 	)
 	(segment
@@ -68676,7 +68676,7 @@
 		(end 263.2335 76.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "5c7ab118-d545-4b40-89cc-c05ff8e14fc2")
 	)
 	(segment
@@ -68684,7 +68684,7 @@
 		(end 241.8335 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "5f125ccd-457d-46a4-8c0d-30a67850fdba")
 	)
 	(segment
@@ -68692,7 +68692,7 @@
 		(end 261.2335 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "60c2001a-d6f8-4278-b104-032c781890e7")
 	)
 	(segment
@@ -68700,7 +68700,7 @@
 		(end 239.8335 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "7fb7f644-11ad-4fc7-80a6-8bdf10bb389e")
 	)
 	(segment
@@ -68708,7 +68708,7 @@
 		(end 239.8335 80.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C35_B_OUT")
+		(net "/LED_Feld/K35_B_OUT")
 		(uuid "c1f8fabc-0bce-4b1c-8aec-12fefccaeec2")
 	)
 	(segment
@@ -68716,7 +68716,7 @@
 		(end 109.3907 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "0e46d5e8-e3f0-4d11-8fe0-608d6d1c020f")
 	)
 	(segment
@@ -68724,7 +68724,7 @@
 		(end 109.3907 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "7af12276-b4eb-47a5-af2e-f8b2f4a3ca13")
 	)
 	(segment
@@ -68732,7 +68732,7 @@
 		(end 109.3907 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "9d851fba-f74a-4a2c-8966-32f97665af5c")
 	)
 	(segment
@@ -68740,7 +68740,7 @@
 		(end 124.4514 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "c643d681-31a5-4521-b4f7-cdf9be365ea3")
 	)
 	(via
@@ -68748,7 +68748,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "c711386a-dcb1-4d0f-9dcf-0fec9495a79c")
 	)
 	(via
@@ -68756,7 +68756,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "c839af16-c9b6-400b-89a9-474280ab8f77")
 	)
 	(segment
@@ -68764,7 +68764,7 @@
 		(end 118.57105 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "2ccbe898-bad2-4267-818b-4a69c90eeecf")
 	)
 	(segment
@@ -68772,7 +68772,7 @@
 		(end 124.4514 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "bef95ba4-187c-4014-962b-167f88e59ad5")
 	)
 	(segment
@@ -68780,7 +68780,7 @@
 		(end 116.92105 97.6907)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "bfea27af-5910-433f-a194-1ebac2a8a04a")
 	)
 	(segment
@@ -68788,7 +68788,7 @@
 		(end 115.27105 96.0407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C28_B_OUT")
+		(net "/LED_Feld/K28_B_OUT")
 		(uuid "cf17d320-553c-4e1e-82da-5a3abf4dbe49")
 	)
 	(segment
@@ -68796,7 +68796,7 @@
 		(end 97.6907 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_A_OUT")
+		(net "/LED_Feld/K28_A_OUT")
 		(uuid "219bef48-0c86-454a-adff-078287574500")
 	)
 	(segment
@@ -68804,7 +68804,7 @@
 		(end 97.6907 94.7907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_A_OUT")
+		(net "/LED_Feld/K28_A_OUT")
 		(uuid "3cfaa943-f2b7-4240-a0a7-d89dba3ccc25")
 	)
 	(segment
@@ -68812,7 +68812,7 @@
 		(end 100.9907 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_A_OUT")
+		(net "/LED_Feld/K28_A_OUT")
 		(uuid "4e795e52-74d1-4f22-99c9-92f0065ae679")
 	)
 	(segment
@@ -68820,7 +68820,7 @@
 		(end 99.1907 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_A_OUT")
+		(net "/LED_Feld/K28_A_OUT")
 		(uuid "7cf18fa0-25a1-4e77-a08d-e9f55e2f45d5")
 	)
 	(segment
@@ -68828,7 +68828,7 @@
 		(end 102.7407 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_A_OUT")
+		(net "/LED_Feld/K28_A_OUT")
 		(uuid "bb4cc2d2-9e8a-48e4-9d94-4010d7fff417")
 	)
 	(segment
@@ -68836,7 +68836,7 @@
 		(end 97.6907 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C28_A_OUT")
+		(net "/LED_Feld/K28_A_OUT")
 		(uuid "fb946a8f-8b78-4efb-ae9e-486f7d8d7a4e")
 	)
 	(segment
@@ -68844,7 +68844,7 @@
 		(end 109.3907 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "466e50f5-cc0c-4911-abda-be27543fb309")
 	)
 	(segment
@@ -68852,7 +68852,7 @@
 		(end 85.9907 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "905292ec-f68b-4454-a0f9-cf3c77b5c42f")
 	)
 	(segment
@@ -68860,7 +68860,7 @@
 		(end 109.3907 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "a44ed042-3444-4b8d-9c80-1752447b37e7")
 	)
 	(segment
@@ -68868,7 +68868,7 @@
 		(end 109.3907 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "e0f6d428-6338-44b9-958f-618f52517db1")
 	)
 	(via
@@ -68876,7 +68876,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "d4d55aa1-1dd9-4c99-820c-04f83b55248d")
 	)
 	(via
@@ -68884,7 +68884,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "dc3484a4-8250-43e8-810d-cda2ba1a9593")
 	)
 	(segment
@@ -68892,7 +68892,7 @@
 		(end 107.3907 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "32f959a8-d12c-49e4-b89e-0c7c74959431")
 	)
 	(segment
@@ -68900,7 +68900,7 @@
 		(end 87.9907 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "3ea7fbae-0270-4d60-8bef-e8ca8841f43f")
 	)
 	(segment
@@ -68908,7 +68908,7 @@
 		(end 85.9907 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "4b480dc3-c53a-45be-be7d-aadface4465d")
 	)
 	(segment
@@ -68916,7 +68916,7 @@
 		(end 85.9907 80.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "b6f8f352-5759-4cc3-b1a8-efc5195e7985")
 	)
 	(segment
@@ -68924,7 +68924,7 @@
 		(end 109.3907 76.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C27_B_OUT")
+		(net "/LED_Feld/K27_B_OUT")
 		(uuid "f4357541-6a23-4fc4-af85-2a5970339a4f")
 	)
 	(segment
@@ -68932,7 +68932,7 @@
 		(end 97.6907 56.33)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_A_OUT")
+		(net "/LED_Feld/K27_A_OUT")
 		(uuid "3f172501-ff28-4a55-9a0b-58b4d93483c5")
 	)
 	(segment
@@ -68940,7 +68940,7 @@
 		(end 97.6907 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_A_OUT")
+		(net "/LED_Feld/K27_A_OUT")
 		(uuid "48a294ab-edf3-4780-b2ba-293e058f9e89")
 	)
 	(segment
@@ -68948,7 +68948,7 @@
 		(end 97.6907 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_A_OUT")
+		(net "/LED_Feld/K27_A_OUT")
 		(uuid "7bb466db-97de-4935-82f0-215e4165b7d0")
 	)
 	(segment
@@ -68956,7 +68956,7 @@
 		(end 100.9907 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_A_OUT")
+		(net "/LED_Feld/K27_A_OUT")
 		(uuid "8902c025-fa92-4bf9-becc-0570b4252d93")
 	)
 	(segment
@@ -68964,7 +68964,7 @@
 		(end 99.1907 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_A_OUT")
+		(net "/LED_Feld/K27_A_OUT")
 		(uuid "8cb9f51c-459f-494f-8083-efa2f014a32a")
 	)
 	(segment
@@ -68972,7 +68972,7 @@
 		(end 102.7407 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C27_A_OUT")
+		(net "/LED_Feld/K27_A_OUT")
 		(uuid "b4128949-9658-411e-a28c-6ab6c1e1077e")
 	)
 	(segment
@@ -68980,7 +68980,7 @@
 		(end 224.7728 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "2e8e80dd-da6b-4e9b-b59e-92149233f7e1")
 	)
 	(segment
@@ -68988,7 +68988,7 @@
 		(end 239.8335 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "6a95e0b3-e5b1-4e43-a83e-3363a1520f7f")
 	)
 	(segment
@@ -68996,7 +68996,7 @@
 		(end 239.8335 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "cbe18f59-846e-49c4-a81f-90172528b3cb")
 	)
 	(segment
@@ -69004,7 +69004,7 @@
 		(end 239.8335 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "ec238686-8c40-4b23-9bc8-7e030f67bda7")
 	)
 	(via
@@ -69012,7 +69012,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "28d467ed-0e3f-4a64-b709-bfd0dba350a0")
 	)
 	(via
@@ -69020,7 +69020,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "9d68a5b7-8009-4884-b44f-f3e68ca7d6b5")
 	)
 	(segment
@@ -69028,7 +69028,7 @@
 		(end 230.65315 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "7711eba6-5b84-4402-b1ab-1c9ee0d5abb2")
 	)
 	(segment
@@ -69036,7 +69036,7 @@
 		(end 232.30315 213.0728)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "8278d536-8aaf-4334-ac8d-9eb75f486024")
 	)
 	(segment
@@ -69044,7 +69044,7 @@
 		(end 224.7728 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "ef3842a4-3b86-4cb4-8a7b-98328a91094e")
 	)
 	(segment
@@ -69052,7 +69052,7 @@
 		(end 233.95315 214.7228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C07_B_OUT")
+		(net "/LED_Feld/K07_B_OUT")
 		(uuid "fa0d5506-7184-4a6d-abe6-a70ef73fc7cb")
 	)
 	(segment
@@ -69060,7 +69060,7 @@
 		(end 251.5335 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_A_OUT")
+		(net "/LED_Feld/K07_A_OUT")
 		(uuid "20ca3bcc-65dd-4bf7-90fd-63f494e07260")
 	)
 	(segment
@@ -69068,7 +69068,7 @@
 		(end 251.5335 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_A_OUT")
+		(net "/LED_Feld/K07_A_OUT")
 		(uuid "3003d981-4474-43c4-b0e8-02209c784f23")
 	)
 	(segment
@@ -69076,7 +69076,7 @@
 		(end 250.0335 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_A_OUT")
+		(net "/LED_Feld/K07_A_OUT")
 		(uuid "7ae6ae19-4daf-4f72-a648-248595af3b30")
 	)
 	(segment
@@ -69084,7 +69084,7 @@
 		(end 248.2335 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_A_OUT")
+		(net "/LED_Feld/K07_A_OUT")
 		(uuid "8d3d19ab-fb91-4d7d-8c0b-96cb1391f792")
 	)
 	(segment
@@ -69092,7 +69092,7 @@
 		(end 251.5335 215.9728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_A_OUT")
+		(net "/LED_Feld/K07_A_OUT")
 		(uuid "c0a1fdf1-246b-47a9-ae91-882c1cbcce3b")
 	)
 	(segment
@@ -69100,7 +69100,7 @@
 		(end 246.4835 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C07_A_OUT")
+		(net "/LED_Feld/K07_A_OUT")
 		(uuid "ff7c523f-e648-4fba-bb1b-a3c28e29eaeb")
 	)
 	(segment
@@ -69108,7 +69108,7 @@
 		(end 251.5335 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_A_OUT")
+		(net "/LED_Feld/K19_A_OUT")
 		(uuid "0259e685-3a08-4ca1-b66e-ab60404ff35a")
 	)
 	(segment
@@ -69116,7 +69116,7 @@
 		(end 251.5335 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_A_OUT")
+		(net "/LED_Feld/K19_A_OUT")
 		(uuid "0ad1e410-df2b-4b73-9a16-9bd2521092bc")
 	)
 	(segment
@@ -69124,7 +69124,7 @@
 		(end 250.0335 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_A_OUT")
+		(net "/LED_Feld/K19_A_OUT")
 		(uuid "1a16ed1d-2308-4dd9-b5fa-a2c56d164413")
 	)
 	(segment
@@ -69132,7 +69132,7 @@
 		(end 251.5335 139.0514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_A_OUT")
+		(net "/LED_Feld/K19_A_OUT")
 		(uuid "2eb05d79-8dd9-48bb-8ba7-dd81080265c3")
 	)
 	(segment
@@ -69140,7 +69140,7 @@
 		(end 246.4835 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_A_OUT")
+		(net "/LED_Feld/K19_A_OUT")
 		(uuid "99cfb33f-b3da-4a60-b15f-16c2227cad19")
 	)
 	(segment
@@ -69148,7 +69148,7 @@
 		(end 248.2335 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_A_OUT")
+		(net "/LED_Feld/K19_A_OUT")
 		(uuid "dea0ad9d-3a49-48cf-8187-1b14ee520826")
 	)
 	(segment
@@ -69156,7 +69156,7 @@
 		(end 263.2335 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_B_OUT")
+		(net "/LED_Feld/K18_B_OUT")
 		(uuid "0b78fcb5-0395-4029-b6b0-80ac7760ed95")
 	)
 	(segment
@@ -69164,7 +69164,7 @@
 		(end 263.2335 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_B_OUT")
+		(net "/LED_Feld/K18_B_OUT")
 		(uuid "7d5b6093-3618-489c-a976-6df2357de3e0")
 	)
 	(segment
@@ -69172,7 +69172,7 @@
 		(end 263.2335 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_B_OUT")
+		(net "/LED_Feld/K18_B_OUT")
 		(uuid "d9824fcc-149b-4ca1-91e2-1b26d5def949")
 	)
 	(segment
@@ -69180,7 +69180,7 @@
 		(end 263.2335 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_B_OUT")
+		(net "/LED_Feld/K18_B_OUT")
 		(uuid "e15bf6e6-a833-4a5d-b7ec-d769eda58ca7")
 	)
 	(via
@@ -69188,7 +69188,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C18_B_OUT")
+		(net "/LED_Feld/K18_B_OUT")
 		(uuid "cfd3a91e-d059-45b3-8e29-ba7ae692dd28")
 	)
 	(via
@@ -69196,7 +69196,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C18_B_OUT")
+		(net "/LED_Feld/K18_B_OUT")
 		(uuid "e904773a-d9be-4fc4-ac5b-211e49413191")
 	)
 	(segment
@@ -69204,7 +69204,7 @@
 		(end 263.2335 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C18_B_OUT")
+		(net "/LED_Feld/K18_B_OUT")
 		(uuid "65e8b417-d687-42ac-b719-d98dd08042c4")
 	)
 	(segment
@@ -69212,7 +69212,7 @@
 		(end 253.0335 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_A_OUT")
+		(net "/LED_Feld/K18_A_OUT")
 		(uuid "19fd1426-eb85-4483-a070-4a48e8193029")
 	)
 	(segment
@@ -69220,7 +69220,7 @@
 		(end 256.5835 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_A_OUT")
+		(net "/LED_Feld/K18_A_OUT")
 		(uuid "218c4024-76f6-4146-8499-2de8f3efa9cb")
 	)
 	(segment
@@ -69228,7 +69228,7 @@
 		(end 254.8335 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_A_OUT")
+		(net "/LED_Feld/K18_A_OUT")
 		(uuid "3de8f59f-594c-477f-99c5-a5a8fa92e867")
 	)
 	(segment
@@ -69236,7 +69236,7 @@
 		(end 251.5335 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_A_OUT")
+		(net "/LED_Feld/K18_A_OUT")
 		(uuid "84c269c6-89f8-44c5-9ac4-28da2f87cf70")
 	)
 	(segment
@@ -69244,7 +69244,7 @@
 		(end 251.5335 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_A_OUT")
+		(net "/LED_Feld/K18_A_OUT")
 		(uuid "9e632361-3001-4243-8ca0-89bab075c64e")
 	)
 	(segment
@@ -69252,7 +69252,7 @@
 		(end 251.5335 171.7121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C18_A_OUT")
+		(net "/LED_Feld/K18_A_OUT")
 		(uuid "f7a9f32d-0796-446e-9f5e-fca522af06c6")
 	)
 	(segment
@@ -69260,7 +69260,7 @@
 		(end 147.8514 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "5103d7c3-50cc-46d9-8494-7af273dc0f36")
 	)
 	(segment
@@ -69268,7 +69268,7 @@
 		(end 147.8514 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "89caebdc-840d-4b4c-8cd4-e25fd96c1eb3")
 	)
 	(segment
@@ -69276,7 +69276,7 @@
 		(end 162.9121 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "b88eecde-24e8-4732-86af-923dea194d8f")
 	)
 	(segment
@@ -69284,7 +69284,7 @@
 		(end 147.8514 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "c27129ad-d716-47f8-bd18-45e4468a98bf")
 	)
 	(via
@@ -69292,7 +69292,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "9c0d7afc-e682-435f-9ea8-7c10e9dc187e")
 	)
 	(via
@@ -69300,7 +69300,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "c08f6608-3f6f-4682-83dd-c5d9b8157d72")
 	)
 	(segment
@@ -69308,7 +69308,7 @@
 		(end 162.9121 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "2a580cdb-b838-4d31-b65f-ab739f35249f")
 	)
 	(segment
@@ -69316,7 +69316,7 @@
 		(end 153.73175 172.9621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "37dc769b-85b3-4071-9bff-7dd7af70e987")
 	)
 	(segment
@@ -69324,7 +69324,7 @@
 		(end 155.38175 174.6121)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "cb153020-676b-44c5-8216-9bbdeefa01d5")
 	)
 	(segment
@@ -69332,7 +69332,7 @@
 		(end 157.03175 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C15_B_OUT")
+		(net "/LED_Feld/K15_B_OUT")
 		(uuid "efaf3bf1-3e69-4807-888e-757f5de0a2c2")
 	)
 	(segment
@@ -69340,7 +69340,7 @@
 		(end 139.4514 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_A_OUT")
+		(net "/LED_Feld/K15_A_OUT")
 		(uuid "42832e45-7181-49fe-b7e8-c20a44c27335")
 	)
 	(segment
@@ -69348,7 +69348,7 @@
 		(end 137.6514 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_A_OUT")
+		(net "/LED_Feld/K15_A_OUT")
 		(uuid "653a071d-300d-45d1-866d-f0bca1f2f3b0")
 	)
 	(segment
@@ -69356,7 +69356,7 @@
 		(end 136.1514 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_A_OUT")
+		(net "/LED_Feld/K15_A_OUT")
 		(uuid "68e0f50b-a497-4b28-b99b-95a20179cd2d")
 	)
 	(segment
@@ -69364,7 +69364,7 @@
 		(end 136.1514 171.7121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_A_OUT")
+		(net "/LED_Feld/K15_A_OUT")
 		(uuid "6b6d8c3b-c68a-4fac-b8b7-39b76d0b0c63")
 	)
 	(segment
@@ -69372,7 +69372,7 @@
 		(end 136.1514 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_A_OUT")
+		(net "/LED_Feld/K15_A_OUT")
 		(uuid "aabfd43e-fcb0-43ff-a28b-cd11c3de754d")
 	)
 	(segment
@@ -69380,7 +69380,7 @@
 		(end 141.2014 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C15_A_OUT")
+		(net "/LED_Feld/K15_A_OUT")
 		(uuid "c25d6f32-5c8f-4c3c-a6e7-2293c51abb7d")
 	)
 	(segment
@@ -70156,7 +70156,7 @@
 		(end 254.8335 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_A_OUT")
+		(net "/LED_Feld/K35_A_OUT")
 		(uuid "17f7878d-0877-442c-b176-233f1b193efa")
 	)
 	(segment
@@ -70164,7 +70164,7 @@
 		(end 253.0335 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_A_OUT")
+		(net "/LED_Feld/K35_A_OUT")
 		(uuid "59e3b837-aeca-4577-b40d-2c66f0192a05")
 	)
 	(segment
@@ -70172,7 +70172,7 @@
 		(end 251.5335 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_A_OUT")
+		(net "/LED_Feld/K35_A_OUT")
 		(uuid "6d47a56f-7bea-448a-bad0-6e440936b88b")
 	)
 	(segment
@@ -70180,7 +70180,7 @@
 		(end 256.5835 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_A_OUT")
+		(net "/LED_Feld/K35_A_OUT")
 		(uuid "bc0298f7-2f62-41f6-9fb3-3eccbfb2b6fc")
 	)
 	(segment
@@ -70188,7 +70188,7 @@
 		(end 251.5335 56.33)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_A_OUT")
+		(net "/LED_Feld/K35_A_OUT")
 		(uuid "d41ad9d2-36b1-45b5-9028-5d64ab4aa005")
 	)
 	(segment
@@ -70196,7 +70196,7 @@
 		(end 251.5335 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C35_A_OUT")
+		(net "/LED_Feld/K35_A_OUT")
 		(uuid "d472240a-0097-4073-a626-52289e8259c6")
 	)
 	(segment
@@ -70204,7 +70204,7 @@
 		(end 174.6121 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_A_OUT")
+		(net "/LED_Feld/K31_A_OUT")
 		(uuid "1a9a3c86-2b1c-4dc2-a362-ddf44793e3ac")
 	)
 	(segment
@@ -70212,7 +70212,7 @@
 		(end 174.6121 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_A_OUT")
+		(net "/LED_Feld/K31_A_OUT")
 		(uuid "59e31589-b1d3-4e96-9f2d-b5cecf673447")
 	)
 	(segment
@@ -70220,7 +70220,7 @@
 		(end 177.9121 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_A_OUT")
+		(net "/LED_Feld/K31_A_OUT")
 		(uuid "5c0c3121-1b1b-4b23-924d-13da7120eb80")
 	)
 	(segment
@@ -70228,7 +70228,7 @@
 		(end 179.6621 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_A_OUT")
+		(net "/LED_Feld/K31_A_OUT")
 		(uuid "8d7d4237-cac7-4047-a60a-eb390f1add61")
 	)
 	(segment
@@ -70236,7 +70236,7 @@
 		(end 174.6121 56.33)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_A_OUT")
+		(net "/LED_Feld/K31_A_OUT")
 		(uuid "a11bc14e-34fa-48c7-8174-97487506cb76")
 	)
 	(segment
@@ -70244,7 +70244,7 @@
 		(end 176.1121 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_A_OUT")
+		(net "/LED_Feld/K31_A_OUT")
 		(uuid "ec72e8a5-46f0-43df-a64a-2b4b30fcf44b")
 	)
 	(segment
@@ -70252,7 +70252,7 @@
 		(end 186.3121 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "05c9b5fe-4ee1-48b4-b136-1a9c55ed0785")
 	)
 	(segment
@@ -70260,7 +70260,7 @@
 		(end 162.9121 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "0ed802db-1be3-4242-a9c9-5905e2a3b91c")
 	)
 	(segment
@@ -70268,7 +70268,7 @@
 		(end 186.3121 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "6cba7721-0126-450f-af5b-c3af9e71c85a")
 	)
 	(segment
@@ -70276,7 +70276,7 @@
 		(end 186.3121 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "b6d84155-ea98-492c-9ba8-c99cf4893793")
 	)
 	(via
@@ -70284,7 +70284,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "500f4da7-4b7d-4e77-9964-5bb9b3efaa82")
 	)
 	(via
@@ -70292,7 +70292,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "7e295dac-3c98-4be1-ac62-2ffdc2a96f81")
 	)
 	(segment
@@ -70300,7 +70300,7 @@
 		(end 164.9121 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "34f6e8d6-5072-453a-91b2-5c90425c0cf0")
 	)
 	(segment
@@ -70308,7 +70308,7 @@
 		(end 184.3121 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "39449700-9216-4310-a06f-4904ff3d7de8")
 	)
 	(segment
@@ -70316,7 +70316,7 @@
 		(end 162.9121 80.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "93029263-7178-4eb9-a90e-14cfa15fe618")
 	)
 	(segment
@@ -70324,7 +70324,7 @@
 		(end 186.3121 76.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "a612c620-6cb8-45b4-9cc0-1305040f6672")
 	)
 	(segment
@@ -70332,7 +70332,7 @@
 		(end 162.9121 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C31_B_OUT")
+		(net "/LED_Feld/K31_B_OUT")
 		(uuid "e52ed360-effa-4968-b3a4-602d6edf7fe7")
 	)
 	(segment
@@ -70340,7 +70340,7 @@
 		(end 47.53 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_B_OUT")
+		(net "/LED_Feld/K12_B_OUT")
 		(uuid "2463ad80-2fea-4c1c-84c3-8a0e03f0dede")
 	)
 	(segment
@@ -70348,7 +70348,7 @@
 		(end 47.53 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_B_OUT")
+		(net "/LED_Feld/K12_B_OUT")
 		(uuid "3cc861cc-e725-4d1d-8d51-1bd4471a8f99")
 	)
 	(segment
@@ -70356,7 +70356,7 @@
 		(end 47.53 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_B_OUT")
+		(net "/LED_Feld/K12_B_OUT")
 		(uuid "7759b3ff-ff00-4e57-a0d5-49271abccb98")
 	)
 	(segment
@@ -70364,7 +70364,7 @@
 		(end 47.53 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C12_B_OUT")
+		(net "/LED_Feld/K12_B_OUT")
 		(uuid "daa42a6d-9144-47f9-b21d-a00362ffdfdf")
 	)
 	(via
@@ -70372,7 +70372,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C12_B_OUT")
+		(net "/LED_Feld/K12_B_OUT")
 		(uuid "62860629-d7a2-4857-bd34-90300a42c9f8")
 	)
 	(via
@@ -70380,7 +70380,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C12_B_OUT")
+		(net "/LED_Feld/K12_B_OUT")
 		(uuid "b298b2ee-f7dc-4153-b5e2-606b318ed75c")
 	)
 	(segment
@@ -70388,7 +70388,7 @@
 		(end 47.53 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C12_B_OUT")
+		(net "/LED_Feld/K12_B_OUT")
 		(uuid "36938d58-ed0b-47fc-9346-4f2954eef21e")
 	)
 	(segment
@@ -70396,7 +70396,7 @@
 		(end 176.1121 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_A_OUT")
+		(net "/LED_Feld/K04_A_OUT")
 		(uuid "46772f03-0031-4f89-9411-dadce94c2e7a")
 	)
 	(segment
@@ -70404,7 +70404,7 @@
 		(end 174.6121 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_A_OUT")
+		(net "/LED_Feld/K04_A_OUT")
 		(uuid "512f5c6d-0838-4ae0-b6ce-2ca3d7a81cbc")
 	)
 	(segment
@@ -70412,7 +70412,7 @@
 		(end 174.6121 248.6335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_A_OUT")
+		(net "/LED_Feld/K04_A_OUT")
 		(uuid "6b499e75-7a0c-426b-a55d-c61df757f364")
 	)
 	(segment
@@ -70420,7 +70420,7 @@
 		(end 174.6121 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_A_OUT")
+		(net "/LED_Feld/K04_A_OUT")
 		(uuid "8cbbeac8-e190-4967-a8ed-efb6e419311d")
 	)
 	(segment
@@ -70428,7 +70428,7 @@
 		(end 177.9121 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_A_OUT")
+		(net "/LED_Feld/K04_A_OUT")
 		(uuid "a23d19c4-45df-44bb-90ef-dd2db843e083")
 	)
 	(segment
@@ -70436,7 +70436,7 @@
 		(end 179.6621 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_A_OUT")
+		(net "/LED_Feld/K04_A_OUT")
 		(uuid "b609aa77-a891-4b29-8881-dc3d83179f85")
 	)
 	(segment
@@ -70444,7 +70444,7 @@
 		(end 186.3121 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "0ac6331f-5d1f-481a-9a7c-64e42b8debb8")
 	)
 	(segment
@@ -70452,7 +70452,7 @@
 		(end 201.3728 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "36ef0eff-af05-4acf-b89a-de817516ffe6")
 	)
 	(segment
@@ -70460,7 +70460,7 @@
 		(end 186.3121 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "496a2d05-86f4-4829-adb9-e5d888b19ec4")
 	)
 	(segment
@@ -70468,7 +70468,7 @@
 		(end 186.3121 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "a56eb959-d7d9-40ab-a8cc-8d078fadf81a")
 	)
 	(via
@@ -70476,7 +70476,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "5c8b7100-d8da-43d4-9f8d-afc008c574a8")
 	)
 	(via
@@ -70484,7 +70484,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "e2efe9d3-df34-4841-be7b-e61e2d7c9331")
 	)
 	(segment
@@ -70492,7 +70492,7 @@
 		(end 193.84245 251.5335)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "70aabd81-6855-4c71-a81a-5026b58f8b28")
 	)
 	(segment
@@ -70500,7 +70500,7 @@
 		(end 195.49245 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "985eb351-a3cc-4604-b3f1-693eea2a9cac")
 	)
 	(segment
@@ -70508,7 +70508,7 @@
 		(end 201.3728 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "9ff33a20-9636-4170-a152-dd1ead944de9")
 	)
 	(segment
@@ -70516,7 +70516,7 @@
 		(end 192.192449 249.8835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C04_B_OUT")
+		(net "/LED_Feld/K04_B_OUT")
 		(uuid "ec03d02d-c773-4f43-9dea-49c5bb09b226")
 	)
 	(segment
@@ -70524,7 +70524,7 @@
 		(end 124.4514 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "05d9e8ab-1809-43f9-af8f-818d44e792b1")
 	)
 	(segment
@@ -70532,7 +70532,7 @@
 		(end 124.4514 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "90ff13b9-e137-40db-8dbf-f705b5cefe9c")
 	)
 	(segment
@@ -70540,7 +70540,7 @@
 		(end 109.3907 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "e40dcd68-3d8e-4881-8b8c-35dd13cdfb07")
 	)
 	(segment
@@ -70548,7 +70548,7 @@
 		(end 124.4514 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "e64545e6-fae2-4922-8913-6b91374c0cd8")
 	)
 	(via
@@ -70556,7 +70556,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "23ce9ef8-bc3c-4d73-b76f-2af835026303")
 	)
 	(via
@@ -70564,7 +70564,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "be8620a7-980e-4be1-b7b6-3af6c4916112")
 	)
 	(segment
@@ -70572,7 +70572,7 @@
 		(end 118.57105 137.8014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "0e4a03e2-02f8-4304-9903-9e93d1e52975")
 	)
 	(segment
@@ -70580,7 +70580,7 @@
 		(end 115.27105 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "6a4dbb4c-1ec3-408f-bcbd-fe35859d3cc2")
 	)
 	(segment
@@ -70588,7 +70588,7 @@
 		(end 116.92105 136.1514)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "a28a57b1-80f4-4a5a-b60d-06c0773b49f7")
 	)
 	(segment
@@ -70596,7 +70596,7 @@
 		(end 109.3907 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C22_B_OUT")
+		(net "/LED_Feld/K22_B_OUT")
 		(uuid "f3b44bef-e6ce-45ee-acd9-35ee6a06551b")
 	)
 	(segment
@@ -70604,7 +70604,7 @@
 		(end 132.8514 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_A_OUT")
+		(net "/LED_Feld/K22_A_OUT")
 		(uuid "0eee5523-1ef5-4f4a-8071-1c5d0534d20a")
 	)
 	(segment
@@ -70612,7 +70612,7 @@
 		(end 136.1514 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_A_OUT")
+		(net "/LED_Feld/K22_A_OUT")
 		(uuid "1e596abc-4d79-4ed5-8bae-5222da841f2c")
 	)
 	(segment
@@ -70620,7 +70620,7 @@
 		(end 131.1014 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_A_OUT")
+		(net "/LED_Feld/K22_A_OUT")
 		(uuid "9d88d84d-8ff5-47f0-bbf5-69d0b98460b6")
 	)
 	(segment
@@ -70628,7 +70628,7 @@
 		(end 136.1514 139.0514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_A_OUT")
+		(net "/LED_Feld/K22_A_OUT")
 		(uuid "9f2715d5-0843-4f3e-8f70-2869aed82909")
 	)
 	(segment
@@ -70636,7 +70636,7 @@
 		(end 136.1514 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_A_OUT")
+		(net "/LED_Feld/K22_A_OUT")
 		(uuid "a9797605-cf89-49c3-ae65-290ea078773a")
 	)
 	(segment
@@ -70644,7 +70644,7 @@
 		(end 134.6514 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C22_A_OUT")
+		(net "/LED_Feld/K22_A_OUT")
 		(uuid "dacd5d3e-e464-43c4-bedb-5e9cf80ed649")
 	)
 	(segment
@@ -70652,7 +70652,7 @@
 		(end 211.5728 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_A_OUT")
+		(net "/LED_Feld/K08_A_OUT")
 		(uuid "3f0d6920-abf7-412f-bd94-a056578c739f")
 	)
 	(segment
@@ -70660,7 +70660,7 @@
 		(end 208.0228 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_A_OUT")
+		(net "/LED_Feld/K08_A_OUT")
 		(uuid "53a5740b-086b-4a78-9b61-cb6e4655ba25")
 	)
 	(segment
@@ -70668,7 +70668,7 @@
 		(end 213.0728 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_A_OUT")
+		(net "/LED_Feld/K08_A_OUT")
 		(uuid "6fe8af14-04ca-422b-8ac0-226be60f8a6c")
 	)
 	(segment
@@ -70676,7 +70676,7 @@
 		(end 209.7728 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_A_OUT")
+		(net "/LED_Feld/K08_A_OUT")
 		(uuid "7ee5da89-42b9-4f75-8d73-526a8f4bcf05")
 	)
 	(segment
@@ -70684,7 +70684,7 @@
 		(end 213.0728 215.9728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_A_OUT")
+		(net "/LED_Feld/K08_A_OUT")
 		(uuid "b492212d-a2ec-4d00-a5f7-2016671879b0")
 	)
 	(segment
@@ -70692,7 +70692,7 @@
 		(end 213.0728 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_A_OUT")
+		(net "/LED_Feld/K08_A_OUT")
 		(uuid "f95ee9a2-217e-40ed-b221-e72373070615")
 	)
 	(segment
@@ -70700,7 +70700,7 @@
 		(end 201.3728 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "3b2ac28e-55b2-485d-b1d1-0147e64df991")
 	)
 	(segment
@@ -70708,7 +70708,7 @@
 		(end 201.3728 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "3fc68542-71ed-403b-bc33-c3f65e20d4f0")
 	)
 	(segment
@@ -70716,7 +70716,7 @@
 		(end 186.3121 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "67e04602-3592-4548-99fe-bb04f256fc96")
 	)
 	(segment
@@ -70724,7 +70724,7 @@
 		(end 201.3728 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "93aca3f6-d721-40c9-b842-a2e6efe83a78")
 	)
 	(via
@@ -70732,7 +70732,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "9150dd03-9852-4f4a-9343-2607a8c01d8c")
 	)
 	(via
@@ -70740,7 +70740,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "c78889e4-356f-4469-8c86-84f15c1bcc14")
 	)
 	(segment
@@ -70748,7 +70748,7 @@
 		(end 195.49245 214.7228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "2fda9899-92d3-4edf-a77c-863cb7ea3ce5")
 	)
 	(segment
@@ -70756,7 +70756,7 @@
 		(end 186.3121 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "9411dfb7-f86b-4c5f-9ad8-cb8941605575")
 	)
 	(segment
@@ -70764,7 +70764,7 @@
 		(end 192.192449 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "a4b376f5-8654-4643-b975-339929c10d8d")
 	)
 	(segment
@@ -70772,7 +70772,7 @@
 		(end 193.84245 213.0728)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C08_B_OUT")
+		(net "/LED_Feld/K08_B_OUT")
 		(uuid "bf90cf37-048a-49b4-bde3-57231d62d131")
 	)
 	(segment
@@ -70780,7 +70780,7 @@
 		(end 224.7728 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "2d902a14-bea1-439b-b8d0-4a2c7f4fa62a")
 	)
 	(segment
@@ -70788,7 +70788,7 @@
 		(end 239.8335 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "97856b0d-f3f2-4502-87c7-54d3e82ed4a0")
 	)
 	(segment
@@ -70796,7 +70796,7 @@
 		(end 239.8335 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "a35f069f-c5b8-49ac-b2ec-0605a9263b4c")
 	)
 	(segment
@@ -70804,7 +70804,7 @@
 		(end 239.8335 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "f224ad45-0ec8-4cfb-84f6-1f52cdb33578")
 	)
 	(via
@@ -70812,7 +70812,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "0cfd3c71-d28f-47f3-acf8-9210c58cfaed")
 	)
 	(via
@@ -70820,7 +70820,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "494962c9-5459-4ffc-9a78-33ef46015309")
 	)
 	(segment
@@ -70828,7 +70828,7 @@
 		(end 224.7728 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "01010ec5-2bb3-424e-b495-5cf6139d879d")
 	)
 	(segment
@@ -70836,7 +70836,7 @@
 		(end 232.30315 136.1514)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "15e72657-c84c-4333-b89d-d9abe303056c")
 	)
 	(segment
@@ -70844,7 +70844,7 @@
 		(end 230.65315 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "51ce2dcf-7d1f-443b-ae1f-aad151b78384")
 	)
 	(segment
@@ -70852,7 +70852,7 @@
 		(end 233.95315 137.8014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C19_B_OUT")
+		(net "/LED_Feld/K19_B_OUT")
 		(uuid "fa602d4d-e619-419b-b6c5-f6982e6c1267")
 	)
 	(segment
@@ -70860,7 +70860,7 @@
 		(end 174.6121 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_A_OUT")
+		(net "/LED_Feld/K16_A_OUT")
 		(uuid "01534d8c-7b52-431d-b0b9-46b995c54b61")
 	)
 	(segment
@@ -70868,7 +70868,7 @@
 		(end 176.1121 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_A_OUT")
+		(net "/LED_Feld/K16_A_OUT")
 		(uuid "49d8571a-f951-4d06-8f4b-dc4a8823f107")
 	)
 	(segment
@@ -70876,7 +70876,7 @@
 		(end 179.6621 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_A_OUT")
+		(net "/LED_Feld/K16_A_OUT")
 		(uuid "5c163aec-7356-475b-8481-428ad250a670")
 	)
 	(segment
@@ -70884,7 +70884,7 @@
 		(end 177.9121 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_A_OUT")
+		(net "/LED_Feld/K16_A_OUT")
 		(uuid "6f75c7bd-f76b-4796-9dd9-497fc3c4dee1")
 	)
 	(segment
@@ -70892,7 +70892,7 @@
 		(end 174.6121 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_A_OUT")
+		(net "/LED_Feld/K16_A_OUT")
 		(uuid "ad6c993f-80d8-44cd-a2f8-ae08f7fcf13d")
 	)
 	(segment
@@ -70900,7 +70900,7 @@
 		(end 174.6121 171.7121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_A_OUT")
+		(net "/LED_Feld/K16_A_OUT")
 		(uuid "b7610607-0827-4795-b0d6-892330e0f1fe")
 	)
 	(segment
@@ -70908,7 +70908,7 @@
 		(end 147.8514 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "076ea3de-2350-4f39-a609-b5ac773985ec")
 	)
 	(segment
@@ -70916,7 +70916,7 @@
 		(end 162.9121 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "564c53ff-7d2b-4efe-865e-d5034c8f9e2f")
 	)
 	(segment
@@ -70924,7 +70924,7 @@
 		(end 147.8514 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "6cef16e1-7626-45a9-b54c-11496d6e5472")
 	)
 	(segment
@@ -70932,7 +70932,7 @@
 		(end 147.8514 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "7bd1845a-307c-4682-b9ed-3af3652712da")
 	)
 	(via
@@ -70940,7 +70940,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "8599396a-ee52-4ca9-87f8-56727af7b304")
 	)
 	(via
@@ -70948,7 +70948,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "880f720b-6ce2-4756-af11-cb92e2250a94")
 	)
 	(segment
@@ -70956,7 +70956,7 @@
 		(end 155.38175 59.23)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "0a2da2a7-d289-4392-b770-d39ba5637495")
 	)
 	(segment
@@ -70964,7 +70964,7 @@
 		(end 162.9121 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "0d14cb06-b1a1-4099-b7d1-9152baf5d9af")
 	)
 	(segment
@@ -70972,7 +70972,7 @@
 		(end 157.03175 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "2f468e72-a891-485c-85d3-091e2c812e80")
 	)
 	(segment
@@ -70980,7 +70980,7 @@
 		(end 153.73175 57.58)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C30_B_OUT")
+		(net "/LED_Feld/K30_B_OUT")
 		(uuid "f9b69278-3468-4e2a-a80a-c09a5eecf02f")
 	)
 	(segment
@@ -70988,7 +70988,7 @@
 		(end 251.5335 248.6335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_A_OUT")
+		(net "/LED_Feld/K06_A_OUT")
 		(uuid "0385e724-f5cf-4aa2-9e1e-9983c8de3080")
 	)
 	(segment
@@ -70996,7 +70996,7 @@
 		(end 253.0335 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_A_OUT")
+		(net "/LED_Feld/K06_A_OUT")
 		(uuid "13efb7f4-c740-495d-8ebe-58906ba718a9")
 	)
 	(segment
@@ -71004,7 +71004,7 @@
 		(end 254.8335 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_A_OUT")
+		(net "/LED_Feld/K06_A_OUT")
 		(uuid "14634a8e-f5bd-4520-a427-bf45b77ef385")
 	)
 	(segment
@@ -71012,7 +71012,7 @@
 		(end 251.5335 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_A_OUT")
+		(net "/LED_Feld/K06_A_OUT")
 		(uuid "3a9eef3a-e6ec-47f4-b302-deaea0ba9037")
 	)
 	(segment
@@ -71020,7 +71020,7 @@
 		(end 251.5335 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_A_OUT")
+		(net "/LED_Feld/K06_A_OUT")
 		(uuid "5e008cad-4a9f-4546-82cc-f0984e572c9e")
 	)
 	(segment
@@ -71028,7 +71028,7 @@
 		(end 256.5835 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_A_OUT")
+		(net "/LED_Feld/K06_A_OUT")
 		(uuid "da7b3123-3e88-4bad-bda2-26992091823a")
 	)
 	(segment
@@ -71036,7 +71036,7 @@
 		(end 224.7728 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "092b1a60-52cb-49b0-aff0-eac44f84c5a9")
 	)
 	(segment
@@ -71044,7 +71044,7 @@
 		(end 224.7728 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "acdab377-934a-423d-83b8-0eb51c9835ab")
 	)
 	(segment
@@ -71052,7 +71052,7 @@
 		(end 239.8335 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "d8b9d365-f6be-48fe-8430-f2efc7d0d3a3")
 	)
 	(segment
@@ -71060,7 +71060,7 @@
 		(end 224.7728 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "eb83f306-5c4a-453f-986e-2b3b89258505")
 	)
 	(via
@@ -71068,7 +71068,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "0fa019d7-cc49-4988-a35c-07219c9ca235")
 	)
 	(via
@@ -71076,7 +71076,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "c203d3e6-1135-419e-a1a9-cfd9c2b2b1d5")
 	)
 	(segment
@@ -71084,7 +71084,7 @@
 		(end 230.65315 249.8835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "4721d6ba-fb41-4e2f-a770-41f385da1835")
 	)
 	(segment
@@ -71092,7 +71092,7 @@
 		(end 232.30315 251.5335)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "9eebcff3-1449-4391-b732-2139e9ef2948")
 	)
 	(segment
@@ -71100,7 +71100,7 @@
 		(end 233.95315 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "ea6a8cba-80cb-4bcc-9843-4855a7e81815")
 	)
 	(segment
@@ -71108,7 +71108,7 @@
 		(end 239.8335 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C05_B_OUT")
+		(net "/LED_Feld/K05_B_OUT")
 		(uuid "eaa5b3d5-b0cd-48ac-b33a-bbc6ad4d8914")
 	)
 	(segment
@@ -71116,7 +71116,7 @@
 		(end 169.5621 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_A_OUT")
+		(net "/LED_Feld/K21_A_OUT")
 		(uuid "13693778-4bac-4a3f-bca2-bdc76a7498a1")
 	)
 	(segment
@@ -71124,7 +71124,7 @@
 		(end 174.6121 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_A_OUT")
+		(net "/LED_Feld/K21_A_OUT")
 		(uuid "6d73bcaa-dcb7-4333-b1c6-1819c8c13afe")
 	)
 	(segment
@@ -71132,7 +71132,7 @@
 		(end 173.1121 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_A_OUT")
+		(net "/LED_Feld/K21_A_OUT")
 		(uuid "836a2756-6ab1-4aa5-b49e-74cc0fa1340e")
 	)
 	(segment
@@ -71140,7 +71140,7 @@
 		(end 174.6121 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_A_OUT")
+		(net "/LED_Feld/K21_A_OUT")
 		(uuid "8ae80629-ed7b-42e7-8027-94931333416f")
 	)
 	(segment
@@ -71148,7 +71148,7 @@
 		(end 174.6121 139.0514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_A_OUT")
+		(net "/LED_Feld/K21_A_OUT")
 		(uuid "b4b4a775-6a98-4d5f-bd0f-f5dfdcc69a57")
 	)
 	(segment
@@ -71156,7 +71156,7 @@
 		(end 171.3121 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_A_OUT")
+		(net "/LED_Feld/K21_A_OUT")
 		(uuid "b69df43d-c2ee-4681-bac9-4c838c418122")
 	)
 	(segment
@@ -71164,7 +71164,7 @@
 		(end 162.9121 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "07d789ff-6d13-4b1a-9acb-04a72523a9da")
 	)
 	(segment
@@ -71172,7 +71172,7 @@
 		(end 162.9121 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "be6b5d24-e483-4425-951a-172a9bf4437e")
 	)
 	(segment
@@ -71180,7 +71180,7 @@
 		(end 147.8514 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "e16e2c58-6c72-4071-a9cd-04474cb49e63")
 	)
 	(segment
@@ -71188,7 +71188,7 @@
 		(end 162.9121 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "f1317446-cb29-4f48-9aa2-e0067878a3d6")
 	)
 	(via
@@ -71196,7 +71196,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "8d6e82cf-392c-4c43-be13-8598286a3887")
 	)
 	(via
@@ -71204,7 +71204,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "9bb2fbd5-1c11-4d71-bc88-bfed115f8099")
 	)
 	(segment
@@ -71212,7 +71212,7 @@
 		(end 155.38175 136.1514)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "1277413f-cdc3-4964-8fbf-5afe213802de")
 	)
 	(segment
@@ -71220,7 +71220,7 @@
 		(end 157.03175 137.8014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "1a94012b-7b10-4bee-9771-498a153a0d21")
 	)
 	(segment
@@ -71228,7 +71228,7 @@
 		(end 153.73175 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "23dc7870-a158-4501-b9ae-effa82159459")
 	)
 	(segment
@@ -71236,7 +71236,7 @@
 		(end 147.8514 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C21_B_OUT")
+		(net "/LED_Feld/K21_B_OUT")
 		(uuid "40b5cbcd-fafe-4f5b-bed8-dfc911fc0352")
 	)
 	(segment
@@ -71244,7 +71244,7 @@
 		(end 99.1907 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_A_OUT")
+		(net "/LED_Feld/K02_A_OUT")
 		(uuid "134a9021-2157-4002-9d19-d07854c3a21f")
 	)
 	(segment
@@ -71252,7 +71252,7 @@
 		(end 102.7407 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_A_OUT")
+		(net "/LED_Feld/K02_A_OUT")
 		(uuid "139b381c-06ac-4455-a089-945184b57487")
 	)
 	(segment
@@ -71260,7 +71260,7 @@
 		(end 100.9907 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_A_OUT")
+		(net "/LED_Feld/K02_A_OUT")
 		(uuid "159e107b-eda5-4922-9336-d5beb1bd1baa")
 	)
 	(segment
@@ -71268,7 +71268,7 @@
 		(end 97.6907 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_A_OUT")
+		(net "/LED_Feld/K02_A_OUT")
 		(uuid "7c43d845-44b0-4135-be65-33390048bbc6")
 	)
 	(segment
@@ -71276,7 +71276,7 @@
 		(end 97.6907 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_A_OUT")
+		(net "/LED_Feld/K02_A_OUT")
 		(uuid "827b8257-52be-414a-a2fd-6790b913a3c4")
 	)
 	(segment
@@ -71284,7 +71284,7 @@
 		(end 97.6907 248.6335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_A_OUT")
+		(net "/LED_Feld/K02_A_OUT")
 		(uuid "fa0295b9-24bc-44b0-92f4-d4bd3769e7fc")
 	)
 	(segment
@@ -71292,7 +71292,7 @@
 		(end 224.7728 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "30b4d89a-0c7d-4e6b-983b-bb901c87960d")
 	)
 	(segment
@@ -71300,7 +71300,7 @@
 		(end 224.7728 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "3b495de4-8b70-4cea-8f7d-f59eec4ea4be")
 	)
 	(segment
@@ -71308,7 +71308,7 @@
 		(end 239.8335 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "4b7d3df1-6ef5-4daf-ba22-500b83f61468")
 	)
 	(segment
@@ -71316,7 +71316,7 @@
 		(end 224.7728 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "89cb8678-4dcf-46b0-85f2-008602803ba4")
 	)
 	(via
@@ -71324,7 +71324,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "c3b7fb23-63d2-4a96-a206-d20330992478")
 	)
 	(via
@@ -71332,7 +71332,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "d30ed882-de66-4212-827d-35ea36e7274a")
 	)
 	(segment
@@ -71340,7 +71340,7 @@
 		(end 232.30315 174.6121)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "1da5df85-8755-4254-ba93-9ea75bdb8837")
 	)
 	(segment
@@ -71348,7 +71348,7 @@
 		(end 230.65315 172.9621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "31cfdb6e-c35b-4558-97e3-124ea3981c07")
 	)
 	(segment
@@ -71356,7 +71356,7 @@
 		(end 233.95315 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "ae9747a2-bd6a-462e-9c67-017079f440c4")
 	)
 	(segment
@@ -71364,7 +71364,7 @@
 		(end 239.8335 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C17_B_OUT")
+		(net "/LED_Feld/K17_B_OUT")
 		(uuid "e459b488-0312-4826-874e-daa61ec9a64a")
 	)
 	(segment
@@ -71372,7 +71372,7 @@
 		(end 214.5728 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_A_OUT")
+		(net "/LED_Feld/K17_A_OUT")
 		(uuid "28677500-4c66-4cd6-8ec5-351ada44a7cb")
 	)
 	(segment
@@ -71380,7 +71380,7 @@
 		(end 216.3728 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_A_OUT")
+		(net "/LED_Feld/K17_A_OUT")
 		(uuid "4f94ac82-eea2-4131-9b6f-68794bb806dd")
 	)
 	(segment
@@ -71388,7 +71388,7 @@
 		(end 213.0728 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_A_OUT")
+		(net "/LED_Feld/K17_A_OUT")
 		(uuid "50113089-4089-4076-8fa7-38a4e2e0578a")
 	)
 	(segment
@@ -71396,7 +71396,7 @@
 		(end 218.1228 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_A_OUT")
+		(net "/LED_Feld/K17_A_OUT")
 		(uuid "5c4fcb77-0e30-47e9-aea5-c6dee8834431")
 	)
 	(segment
@@ -71404,7 +71404,7 @@
 		(end 213.0728 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_A_OUT")
+		(net "/LED_Feld/K17_A_OUT")
 		(uuid "5f745db6-82f2-4672-84ec-246f1239f21a")
 	)
 	(segment
@@ -71412,7 +71412,7 @@
 		(end 213.0728 171.7121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C17_A_OUT")
+		(net "/LED_Feld/K17_A_OUT")
 		(uuid "f700f729-f789-4fd2-bcfb-b9e6c625cc7b")
 	)
 	(segment
@@ -71420,7 +71420,7 @@
 		(end 201.3728 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "0af62b88-5812-44c8-9097-34bb5fc21264")
 	)
 	(segment
@@ -71428,7 +71428,7 @@
 		(end 224.7728 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "7b31b3bb-9cc2-4f6b-b875-2f624f179752")
 	)
 	(segment
@@ -71436,7 +71436,7 @@
 		(end 224.7728 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "c543bb82-fdee-4ec3-b832-8a5403d56407")
 	)
 	(segment
@@ -71444,7 +71444,7 @@
 		(end 224.7728 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "d9e5a86b-8d8c-4303-a372-5d587418f076")
 	)
 	(via
@@ -71452,7 +71452,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "59aa1a2f-927c-4af2-b9ff-5ff152ddb55d")
 	)
 	(via
@@ -71460,7 +71460,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "f8e78363-f892-44e4-ac1f-fe6f36b9187e")
 	)
 	(segment
@@ -71468,7 +71468,7 @@
 		(end 201.3728 76.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "40e54713-5c3d-4f90-bc15-39b258e93dc4")
 	)
 	(segment
@@ -71476,7 +71476,7 @@
 		(end 201.3728 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "49444493-4ab3-4d6a-87f7-2795e7831004")
 	)
 	(segment
@@ -71484,7 +71484,7 @@
 		(end 224.7728 80.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "50315d5f-df48-42ca-86cd-2f5260f80ca1")
 	)
 	(segment
@@ -71492,7 +71492,7 @@
 		(end 222.7728 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "5d47e2b8-c702-40cb-970e-fe4d4247b8eb")
 	)
 	(segment
@@ -71500,7 +71500,7 @@
 		(end 203.3728 78.46035)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C33_B_OUT")
+		(net "/LED_Feld/K33_B_OUT")
 		(uuid "e7b49200-041d-479d-aba2-95546165dd96")
 	)
 	(segment
@@ -71508,7 +71508,7 @@
 		(end 213.0728 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_A_OUT")
+		(net "/LED_Feld/K33_A_OUT")
 		(uuid "7666c32c-29ca-4d1d-a5aa-d811a133fbcc")
 	)
 	(segment
@@ -71516,7 +71516,7 @@
 		(end 216.3728 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_A_OUT")
+		(net "/LED_Feld/K33_A_OUT")
 		(uuid "7f2f0200-9eb9-4e20-b085-319fa3101829")
 	)
 	(segment
@@ -71524,7 +71524,7 @@
 		(end 214.5728 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_A_OUT")
+		(net "/LED_Feld/K33_A_OUT")
 		(uuid "b83ab9df-4dbc-4343-9c6a-7e5c17a0f4e6")
 	)
 	(segment
@@ -71532,7 +71532,7 @@
 		(end 218.1228 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_A_OUT")
+		(net "/LED_Feld/K33_A_OUT")
 		(uuid "b8ecf0c1-6f1c-463b-b48e-a23e24227f28")
 	)
 	(segment
@@ -71540,7 +71540,7 @@
 		(end 213.0728 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_A_OUT")
+		(net "/LED_Feld/K33_A_OUT")
 		(uuid "c991a6a5-0f11-4ba6-8ee2-ad4f8c91322c")
 	)
 	(segment
@@ -71548,7 +71548,7 @@
 		(end 213.0728 94.7907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C33_A_OUT")
+		(net "/LED_Feld/K33_A_OUT")
 		(uuid "ee2a99fa-863f-43de-8b9d-f5bf07d29dde")
 	)
 	(segment
@@ -71556,7 +71556,7 @@
 		(end 213.0728 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_A_OUT")
+		(net "/LED_Feld/K05_A_OUT")
 		(uuid "1d17c824-ee5e-4d0d-9844-952e88c9bb00")
 	)
 	(segment
@@ -71564,7 +71564,7 @@
 		(end 214.5728 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_A_OUT")
+		(net "/LED_Feld/K05_A_OUT")
 		(uuid "350562d6-877f-4be0-b70b-c9558aeb933a")
 	)
 	(segment
@@ -71572,7 +71572,7 @@
 		(end 213.0728 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_A_OUT")
+		(net "/LED_Feld/K05_A_OUT")
 		(uuid "554dfc39-434f-45c8-870a-624bef779e3a")
 	)
 	(segment
@@ -71580,7 +71580,7 @@
 		(end 218.1228 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_A_OUT")
+		(net "/LED_Feld/K05_A_OUT")
 		(uuid "b5d38faf-ee43-4f74-844b-b6da65e9a041")
 	)
 	(segment
@@ -71588,7 +71588,7 @@
 		(end 216.3728 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_A_OUT")
+		(net "/LED_Feld/K05_A_OUT")
 		(uuid "e39b7f97-5f3a-4df1-b471-f0032d6cf52a")
 	)
 	(segment
@@ -71596,7 +71596,7 @@
 		(end 213.0728 248.6335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C05_A_OUT")
+		(net "/LED_Feld/K05_A_OUT")
 		(uuid "ec8492d5-77b5-4613-a667-c7ef08233a2d")
 	)
 	(segment
@@ -71604,7 +71604,7 @@
 		(end 109.3907 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "50c21f69-016d-4ddc-a91a-3fefdc4cee8d")
 	)
 	(segment
@@ -71612,7 +71612,7 @@
 		(end 109.3907 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "9a990187-e206-4fab-9ce2-a28681bf1b79")
 	)
 	(segment
@@ -71620,7 +71620,7 @@
 		(end 124.4514 253.1835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "f9d9d3a2-35a6-4620-ba38-09a539c0d884")
 	)
 	(segment
@@ -71628,7 +71628,7 @@
 		(end 109.3907 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "fd3c6974-2104-4181-bfb9-250fe4de2894")
 	)
 	(via
@@ -71636,7 +71636,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "60346c22-8d8b-4ad3-849a-794d4c500d21")
 	)
 	(via
@@ -71644,7 +71644,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "a5ad4561-c0ce-4d8f-bcd1-a3a25033b9bc")
 	)
 	(segment
@@ -71652,7 +71652,7 @@
 		(end 118.57105 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "12ff4d29-7ac4-4043-88d1-2a6417c0eb39")
 	)
 	(segment
@@ -71660,7 +71660,7 @@
 		(end 124.4514 253.1835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "8b7a11be-95cf-47ce-9c4d-43ff9e1ca4ce")
 	)
 	(segment
@@ -71668,7 +71668,7 @@
 		(end 115.27105 249.8835)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "9c797934-fc1f-4b50-a7cd-c1cf5f6c9c1b")
 	)
 	(segment
@@ -71676,7 +71676,7 @@
 		(end 116.92105 251.5335)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C02_B_OUT")
+		(net "/LED_Feld/K02_B_OUT")
 		(uuid "c329dc23-0bee-4fc0-9bb6-680bdfc456f1")
 	)
 	(segment
@@ -71684,7 +71684,7 @@
 		(end 70.93 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "61050e79-d870-4f00-b0e9-f4e04a60296d")
 	)
 	(segment
@@ -71692,7 +71692,7 @@
 		(end 70.93 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "803f6f4a-94e8-4779-9f11-0a18ad92177a")
 	)
 	(segment
@@ -71700,7 +71700,7 @@
 		(end 70.93 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "9dcb0a78-6d0b-421f-8146-2855a56307b7")
 	)
 	(segment
@@ -71708,7 +71708,7 @@
 		(end 85.9907 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "f115f0e4-4fd4-4237-a556-e24bc260e97b")
 	)
 	(via
@@ -71716,7 +71716,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "31f9761c-8304-4558-8e13-2f2f05440cf0")
 	)
 	(via
@@ -71724,7 +71724,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "5e9b6c08-c6cf-4cf3-a5e2-d6178d41ce45")
 	)
 	(segment
@@ -71732,7 +71732,7 @@
 		(end 85.9907 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "409bb0bb-165d-4772-965c-cfb34b04645a")
 	)
 	(segment
@@ -71740,7 +71740,7 @@
 		(end 80.11035 60.879999)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "6594ba59-577a-4be5-97b7-51c265df58ed")
 	)
 	(segment
@@ -71748,7 +71748,7 @@
 		(end 78.46035 59.23)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "8255ea46-2bd0-487b-9c4f-09cb2898f977")
 	)
 	(segment
@@ -71756,7 +71756,7 @@
 		(end 76.81035 57.58)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C26_B_OUT")
+		(net "/LED_Feld/K26_B_OUT")
 		(uuid "98680c20-6aa2-494c-9662-79f818079a2f")
 	)
 	(segment
@@ -71764,7 +71764,7 @@
 		(end 201.3728 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "0fc48923-7071-47c7-8fe3-8a5a80f5fdf3")
 	)
 	(segment
@@ -71772,7 +71772,7 @@
 		(end 201.3728 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "674dc05d-cd8b-4bf9-aa88-33d187610398")
 	)
 	(segment
@@ -71780,7 +71780,7 @@
 		(end 186.3121 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "daa89fb1-37db-4b80-a9f6-8adea1476a3c")
 	)
 	(segment
@@ -71788,7 +71788,7 @@
 		(end 201.3728 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "e42e6fb1-3cac-41e7-b3f7-375c7d60686c")
 	)
 	(via
@@ -71796,7 +71796,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "3f098a28-f497-462c-b0a4-c3a52d19b6c2")
 	)
 	(via
@@ -71804,7 +71804,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "fc2c4e36-de9b-4722-adb3-637116d87727")
 	)
 	(segment
@@ -71812,7 +71812,7 @@
 		(end 195.49245 137.8014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "3bbebe9e-a2b6-4f3f-be3d-0ef97f8f8c1b")
 	)
 	(segment
@@ -71820,7 +71820,7 @@
 		(end 193.84245 136.1514)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "c448ad8d-9b3c-4636-a67b-7e38174f68a7")
 	)
 	(segment
@@ -71828,7 +71828,7 @@
 		(end 192.192449 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "e2251311-0fc8-4063-9803-4a5937336d4b")
 	)
 	(segment
@@ -71836,7 +71836,7 @@
 		(end 186.3121 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C20_B_OUT")
+		(net "/LED_Feld/K20_B_OUT")
 		(uuid "e7af764b-a42b-489d-9050-f8bfe72db9ff")
 	)
 	(segment
@@ -71844,7 +71844,7 @@
 		(end 213.0728 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_A_OUT")
+		(net "/LED_Feld/K20_A_OUT")
 		(uuid "0745b585-a59a-4a1d-ab0f-e1907c2c3858")
 	)
 	(segment
@@ -71852,7 +71852,7 @@
 		(end 213.0728 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_A_OUT")
+		(net "/LED_Feld/K20_A_OUT")
 		(uuid "17649965-b233-41ea-8004-13c647b8b1e2")
 	)
 	(segment
@@ -71860,7 +71860,7 @@
 		(end 213.0728 139.0514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_A_OUT")
+		(net "/LED_Feld/K20_A_OUT")
 		(uuid "7f94cbdc-734b-479b-beca-41c72e30ba95")
 	)
 	(segment
@@ -71868,7 +71868,7 @@
 		(end 211.5728 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_A_OUT")
+		(net "/LED_Feld/K20_A_OUT")
 		(uuid "a3875360-5dd0-4b0c-a963-7320f59d9d02")
 	)
 	(segment
@@ -71876,7 +71876,7 @@
 		(end 209.7728 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_A_OUT")
+		(net "/LED_Feld/K20_A_OUT")
 		(uuid "b4ff9da7-16c3-495b-b16d-850a9a614a9e")
 	)
 	(segment
@@ -71884,7 +71884,7 @@
 		(end 208.0228 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C20_A_OUT")
+		(net "/LED_Feld/K20_A_OUT")
 		(uuid "b6ef1770-b1a8-455d-a4d5-5342cbc37c33")
 	)
 	(segment
@@ -71892,7 +71892,7 @@
 		(end 186.3121 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "6427edd2-0111-4d59-97c2-71b993cab3b2")
 	)
 	(segment
@@ -71900,7 +71900,7 @@
 		(end 186.3121 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "78273799-891e-4149-b741-64497ab5d697")
 	)
 	(segment
@@ -71908,7 +71908,7 @@
 		(end 201.3728 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "9dc44d1a-b8bc-48bb-9a9e-4afb0426acb2")
 	)
 	(segment
@@ -71916,7 +71916,7 @@
 		(end 186.3121 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "e7cf01ce-23ab-4e45-94ef-602214d021d6")
 	)
 	(via
@@ -71924,7 +71924,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "2771d53f-dd35-4f5d-bced-1f0e3296509d")
 	)
 	(via
@@ -71932,7 +71932,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "7f7dde37-4fc9-4e05-b72e-5719cb960a3b")
 	)
 	(segment
@@ -71940,7 +71940,7 @@
 		(end 192.192449 172.9621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "3d3364ad-f84c-4947-934f-6ccd9e62c811")
 	)
 	(segment
@@ -71948,7 +71948,7 @@
 		(end 193.84245 174.6121)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "544572fa-cdaa-4004-89d4-f83f7db934a3")
 	)
 	(segment
@@ -71956,7 +71956,7 @@
 		(end 201.3728 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "6441ceea-55db-4921-abd7-bdf44f2e6cb4")
 	)
 	(segment
@@ -71964,7 +71964,7 @@
 		(end 195.49245 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C16_B_OUT")
+		(net "/LED_Feld/K16_B_OUT")
 		(uuid "fa201812-cbcf-4513-96f7-650cddf437b9")
 	)
 	(segment
@@ -71972,7 +71972,7 @@
 		(end 136.1514 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_A_OUT")
+		(net "/LED_Feld/K30_A_OUT")
 		(uuid "00b85e5b-eebf-42e9-807c-950ae2ba917d")
 	)
 	(segment
@@ -71980,7 +71980,7 @@
 		(end 136.1514 56.33)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_A_OUT")
+		(net "/LED_Feld/K30_A_OUT")
 		(uuid "906edd06-35f0-4ac3-964f-c3c2cb301564")
 	)
 	(segment
@@ -71988,7 +71988,7 @@
 		(end 136.1514 57.58)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_A_OUT")
+		(net "/LED_Feld/K30_A_OUT")
 		(uuid "9c0e7737-3d25-4c63-84f8-feb75a3cf0ac")
 	)
 	(segment
@@ -71996,7 +71996,7 @@
 		(end 141.2014 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_A_OUT")
+		(net "/LED_Feld/K30_A_OUT")
 		(uuid "a1e02a79-bf6b-4061-9441-ed230a627438")
 	)
 	(segment
@@ -72004,7 +72004,7 @@
 		(end 137.6514 54.83)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_A_OUT")
+		(net "/LED_Feld/K30_A_OUT")
 		(uuid "b1e655b7-dc83-400a-be2c-7d1819c88ddd")
 	)
 	(segment
@@ -72012,7 +72012,7 @@
 		(end 139.4514 60.879999)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C30_A_OUT")
+		(net "/LED_Feld/K30_A_OUT")
 		(uuid "fb19f546-33fe-4d29-b3d4-0d11754c06bb")
 	)
 	(segment
@@ -72020,7 +72020,7 @@
 		(end 201.3728 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "016e5f62-4924-41aa-90d2-a854df75caef")
 	)
 	(segment
@@ -72028,7 +72028,7 @@
 		(end 186.3121 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "2962edac-53cf-401a-808c-d8b72c2e2809")
 	)
 	(segment
@@ -72036,7 +72036,7 @@
 		(end 186.3121 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "a0fd1ac2-7b70-4e1a-a6f5-3bd9e3a75f1d")
 	)
 	(segment
@@ -72044,7 +72044,7 @@
 		(end 186.3121 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "d672766b-8a8d-4a9b-b88c-df1c6f48f561")
 	)
 	(via
@@ -72052,7 +72052,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "d15c2587-6224-4e5e-b70d-022d1674c82f")
 	)
 	(via
@@ -72060,7 +72060,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "d7a2031b-47a3-49db-a44f-2bf8268bbd87")
 	)
 	(segment
@@ -72068,7 +72068,7 @@
 		(end 193.84245 97.6907)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "1b725565-d06c-4c15-82b3-f0cc59041fe1")
 	)
 	(segment
@@ -72076,7 +72076,7 @@
 		(end 195.49245 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "35d3da34-a20e-4409-930a-cfb82029c38f")
 	)
 	(segment
@@ -72084,7 +72084,7 @@
 		(end 192.192449 96.0407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "3b8f4b73-396f-4ac4-81f6-721d18cb5969")
 	)
 	(segment
@@ -72092,7 +72092,7 @@
 		(end 201.3728 99.3407)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C32_B_OUT")
+		(net "/LED_Feld/K32_B_OUT")
 		(uuid "e49966a2-a9af-4fe7-8327-94ec65539160")
 	)
 	(segment
@@ -72100,7 +72100,7 @@
 		(end 179.6621 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_A_OUT")
+		(net "/LED_Feld/K32_A_OUT")
 		(uuid "2ffba307-7c6f-42f7-98d7-83ffeb8b069d")
 	)
 	(segment
@@ -72108,7 +72108,7 @@
 		(end 174.6121 94.7907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_A_OUT")
+		(net "/LED_Feld/K32_A_OUT")
 		(uuid "502f693f-7885-44cc-99c9-a89b5f03dffe")
 	)
 	(segment
@@ -72116,7 +72116,7 @@
 		(end 174.6121 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_A_OUT")
+		(net "/LED_Feld/K32_A_OUT")
 		(uuid "51f98bb0-f012-4652-be33-778862dbbcf5")
 	)
 	(segment
@@ -72124,7 +72124,7 @@
 		(end 174.6121 96.0407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_A_OUT")
+		(net "/LED_Feld/K32_A_OUT")
 		(uuid "685d8cbe-ca37-4932-ba8e-9873e6e13044")
 	)
 	(segment
@@ -72132,7 +72132,7 @@
 		(end 176.1121 93.2907)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_A_OUT")
+		(net "/LED_Feld/K32_A_OUT")
 		(uuid "c0ac8dce-1dd1-4a07-82a8-09c1cae7dd96")
 	)
 	(segment
@@ -72140,7 +72140,7 @@
 		(end 177.9121 99.3407)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C32_A_OUT")
+		(net "/LED_Feld/K32_A_OUT")
 		(uuid "de32db80-12d7-4ec7-9e30-c3b2f7dbaf69")
 	)
 	(segment
@@ -72204,7 +72204,7 @@
 		(end 162.9121 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "1be86760-f625-4cff-a4b0-e0206867ab4e")
 	)
 	(segment
@@ -72212,7 +72212,7 @@
 		(end 162.9121 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "7bdb8ce7-5567-4249-8cb5-72188fe5ea95")
 	)
 	(segment
@@ -72220,7 +72220,7 @@
 		(end 162.9121 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "b6e72b37-3a5a-4500-9b9e-c2ea73705adc")
 	)
 	(segment
@@ -72228,7 +72228,7 @@
 		(end 147.8514 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "f00a12f6-d240-4da1-be94-0592c4e2ea4d")
 	)
 	(via
@@ -72236,7 +72236,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "65290fe0-b205-4b2a-b919-6be9dc3cdc0b")
 	)
 	(via
@@ -72244,7 +72244,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "c00a4b3e-e74c-4d5e-944c-26c8399ef8a5")
 	)
 	(segment
@@ -72252,7 +72252,7 @@
 		(end 147.8514 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "10994a65-e14c-45e2-8bdf-b9936a13298d")
 	)
 	(segment
@@ -72260,7 +72260,7 @@
 		(end 155.38175 213.0728)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "28e15ce4-0cc3-404a-b599-86d2b0b8925b")
 	)
 	(segment
@@ -72268,7 +72268,7 @@
 		(end 157.03175 214.7228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "54e44295-5219-4d76-8cd5-a740b706a490")
 	)
 	(segment
@@ -72276,7 +72276,7 @@
 		(end 153.73175 211.4228)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C09_B_OUT")
+		(net "/LED_Feld/K09_B_OUT")
 		(uuid "6256d883-7883-42ae-aced-d328bc6c1032")
 	)
 	(segment
@@ -72284,7 +72284,7 @@
 		(end 171.3121 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_A_OUT")
+		(net "/LED_Feld/K09_A_OUT")
 		(uuid "2905a892-50eb-42f7-8e63-28d791c7024e")
 	)
 	(segment
@@ -72292,7 +72292,7 @@
 		(end 174.6121 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_A_OUT")
+		(net "/LED_Feld/K09_A_OUT")
 		(uuid "33b8a2b9-6562-444a-890a-c73902f7e7e9")
 	)
 	(segment
@@ -72300,7 +72300,7 @@
 		(end 173.1121 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_A_OUT")
+		(net "/LED_Feld/K09_A_OUT")
 		(uuid "63e39b21-3a38-4e98-8cc6-9e80cfaf3359")
 	)
 	(segment
@@ -72308,7 +72308,7 @@
 		(end 174.6121 215.9728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_A_OUT")
+		(net "/LED_Feld/K09_A_OUT")
 		(uuid "763cc960-1f17-43a9-9fbc-f3e8c1763123")
 	)
 	(segment
@@ -72316,7 +72316,7 @@
 		(end 174.6121 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_A_OUT")
+		(net "/LED_Feld/K09_A_OUT")
 		(uuid "b004f02c-8eda-4b57-835c-4e00fb9fd58c")
 	)
 	(segment
@@ -72324,7 +72324,7 @@
 		(end 169.5621 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C09_A_OUT")
+		(net "/LED_Feld/K09_A_OUT")
 		(uuid "feae9851-4729-4c4f-af7f-137e0b6c2cd5")
 	)
 	(segment
@@ -72332,7 +72332,7 @@
 		(end 60.73 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_A_OUT")
+		(net "/LED_Feld/K13_A_OUT")
 		(uuid "2fd98485-8901-42bd-a3fd-086360b19537")
 	)
 	(segment
@@ -72340,7 +72340,7 @@
 		(end 62.53 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_A_OUT")
+		(net "/LED_Feld/K13_A_OUT")
 		(uuid "5df09e7f-a010-4dce-a2b7-7cd1c631f7d0")
 	)
 	(segment
@@ -72348,7 +72348,7 @@
 		(end 59.23 171.7121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_A_OUT")
+		(net "/LED_Feld/K13_A_OUT")
 		(uuid "6dc785ab-3505-4fc8-85d4-3b8ec993f806")
 	)
 	(segment
@@ -72356,7 +72356,7 @@
 		(end 59.23 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_A_OUT")
+		(net "/LED_Feld/K13_A_OUT")
 		(uuid "95ce33f1-3c80-41b4-9091-069d18d884ac")
 	)
 	(segment
@@ -72364,7 +72364,7 @@
 		(end 59.23 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_A_OUT")
+		(net "/LED_Feld/K13_A_OUT")
 		(uuid "c5963ece-1e9d-4111-b145-f081fbe60bd2")
 	)
 	(segment
@@ -72372,7 +72372,7 @@
 		(end 64.28 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_A_OUT")
+		(net "/LED_Feld/K13_A_OUT")
 		(uuid "f1d3bc5e-2b3a-4eba-8a4c-af74b40b4be7")
 	)
 	(segment
@@ -72380,7 +72380,7 @@
 		(end 85.9907 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "20ee7150-07f6-4058-9d3a-1a95da816790")
 	)
 	(segment
@@ -72388,7 +72388,7 @@
 		(end 70.93 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "66f60815-3c6f-441f-89bc-f91bbcfb129f")
 	)
 	(segment
@@ -72396,7 +72396,7 @@
 		(end 70.93 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "a6c64d74-510a-478c-b43b-5bfe2c46950c")
 	)
 	(segment
@@ -72404,7 +72404,7 @@
 		(end 70.93 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "a7dbf8f6-fce5-4326-afbb-864bb4733a9e")
 	)
 	(via
@@ -72412,7 +72412,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "59ed9b7a-fd50-469f-acb6-838b53c2f225")
 	)
 	(via
@@ -72420,7 +72420,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "f1c54a40-6b34-47e9-9c34-287bbb2ae7c6")
 	)
 	(segment
@@ -72428,7 +72428,7 @@
 		(end 80.11035 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "43eb2c9a-9a4f-4e16-a40b-7654fc6ab1df")
 	)
 	(segment
@@ -72436,7 +72436,7 @@
 		(end 85.9907 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "6df5e3fa-aec5-4298-b19f-1dcd85f91718")
 	)
 	(segment
@@ -72444,7 +72444,7 @@
 		(end 76.81035 172.9621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "9cb7f320-7203-454c-9831-2ef0b8bd265e")
 	)
 	(segment
@@ -72452,7 +72452,7 @@
 		(end 78.46035 174.6121)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C13_B_OUT")
+		(net "/LED_Feld/K13_B_OUT")
 		(uuid "bb206d76-6a3b-4925-a8f9-2014379c365e")
 	)
 	(segment
@@ -72460,7 +72460,7 @@
 		(end 136.1514 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_A_OUT")
+		(net "/LED_Feld/K10_A_OUT")
 		(uuid "19b98168-1ae9-4033-b2d4-5f57bcff9e40")
 	)
 	(segment
@@ -72468,7 +72468,7 @@
 		(end 136.1514 215.9728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_A_OUT")
+		(net "/LED_Feld/K10_A_OUT")
 		(uuid "712e14a6-99de-4ab8-8e6b-60c39df22ea5")
 	)
 	(segment
@@ -72476,7 +72476,7 @@
 		(end 132.8514 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_A_OUT")
+		(net "/LED_Feld/K10_A_OUT")
 		(uuid "7acc29f5-ab21-411f-9a61-b26b0696c5b0")
 	)
 	(segment
@@ -72484,7 +72484,7 @@
 		(end 131.1014 211.4228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_A_OUT")
+		(net "/LED_Feld/K10_A_OUT")
 		(uuid "9208a2be-7539-4141-8872-86c5bea81ac2")
 	)
 	(segment
@@ -72492,7 +72492,7 @@
 		(end 134.6514 217.4728)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_A_OUT")
+		(net "/LED_Feld/K10_A_OUT")
 		(uuid "ef5836a9-d65b-42db-af60-a3b168f065b4")
 	)
 	(segment
@@ -72500,7 +72500,7 @@
 		(end 136.1514 214.7228)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C10_A_OUT")
+		(net "/LED_Feld/K10_A_OUT")
 		(uuid "f6b44d56-6ee9-44e6-9d10-625506170fc8")
 	)
 	(segment
@@ -72508,7 +72508,7 @@
 		(end 55.93 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_A_OUT")
+		(net "/LED_Feld/K24_A_OUT")
 		(uuid "4afffc1f-cce9-48b6-9791-42d6f57f349e")
 	)
 	(segment
@@ -72516,7 +72516,7 @@
 		(end 59.23 139.0514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_A_OUT")
+		(net "/LED_Feld/K24_A_OUT")
 		(uuid "79ead38b-f09a-43ef-ad2f-0ac93ccf21b3")
 	)
 	(segment
@@ -72524,7 +72524,7 @@
 		(end 59.23 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_A_OUT")
+		(net "/LED_Feld/K24_A_OUT")
 		(uuid "8d2bd15a-e02d-432f-825b-4f0209f28fa0")
 	)
 	(segment
@@ -72532,7 +72532,7 @@
 		(end 54.18 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_A_OUT")
+		(net "/LED_Feld/K24_A_OUT")
 		(uuid "9e3b96e2-b160-40b3-a3bb-d94883a51263")
 	)
 	(segment
@@ -72540,7 +72540,7 @@
 		(end 59.23 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_A_OUT")
+		(net "/LED_Feld/K24_A_OUT")
 		(uuid "e2cbf4cd-3d33-4006-b739-175d4162dbb7")
 	)
 	(segment
@@ -72548,7 +72548,7 @@
 		(end 57.73 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C24_A_OUT")
+		(net "/LED_Feld/K24_A_OUT")
 		(uuid "e57e1ce8-fbe7-4720-a934-29c6fe66f748")
 	)
 	(segment
@@ -72556,7 +72556,7 @@
 		(end 263.2335 247.1335)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_B_OUT")
+		(net "/LED_Feld/K06_B_OUT")
 		(uuid "0fcf20df-ebfe-4588-bcbb-f89ec4f2433d")
 	)
 	(segment
@@ -72564,7 +72564,7 @@
 		(end 263.2335 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_B_OUT")
+		(net "/LED_Feld/K06_B_OUT")
 		(uuid "9b13823c-f95e-4d2c-898a-dea12f139d25")
 	)
 	(segment
@@ -72572,7 +72572,7 @@
 		(end 263.2335 249.8835)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_B_OUT")
+		(net "/LED_Feld/K06_B_OUT")
 		(uuid "bb59432a-ba01-4f0d-9b85-c6cbc7df8f52")
 	)
 	(segment
@@ -72580,7 +72580,7 @@
 		(end 267.55 271.65)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C06_B_OUT")
+		(net "/LED_Feld/K06_B_OUT")
 		(uuid "ebb06c09-aa0b-4d68-8198-1db0f181a538")
 	)
 	(via
@@ -72588,7 +72588,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C06_B_OUT")
+		(net "/LED_Feld/K06_B_OUT")
 		(uuid "6767e583-6999-417b-b2ca-ac935179e014")
 	)
 	(via
@@ -72596,7 +72596,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C06_B_OUT")
+		(net "/LED_Feld/K06_B_OUT")
 		(uuid "cc6c2590-d2c0-41b3-941f-b4c4c53b637f")
 	)
 	(segment
@@ -72604,7 +72604,7 @@
 		(end 263.2335 271.65)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C06_B_OUT")
+		(net "/LED_Feld/K06_B_OUT")
 		(uuid "dd8f2d6f-a496-4ab5-bf53-18d035dba0aa")
 	)
 	(segment
@@ -72612,7 +72612,7 @@
 		(end 85.9907 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "52795018-bbdf-46e1-a6f5-52568375e5f3")
 	)
 	(segment
@@ -72620,7 +72620,7 @@
 		(end 85.9907 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "68f87bd5-a752-4ed0-98b9-b55b5b1735e7")
 	)
 	(segment
@@ -72628,7 +72628,7 @@
 		(end 70.93 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "bd3a235c-ce22-41a2-b420-2b55b4b5d96c")
 	)
 	(segment
@@ -72636,7 +72636,7 @@
 		(end 85.9907 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "f399b869-6160-498c-b799-999608209732")
 	)
 	(via
@@ -72644,7 +72644,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "a4f414c7-70a7-4b57-a468-b70be836ac78")
 	)
 	(via
@@ -72652,7 +72652,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "beb66757-003f-4141-96bb-906e4244d214")
 	)
 	(segment
@@ -72660,7 +72660,7 @@
 		(end 78.46035 136.1514)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "33a865e9-1c21-4f86-bcbd-76e177051e71")
 	)
 	(segment
@@ -72668,7 +72668,7 @@
 		(end 80.11035 137.8014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "55aaa110-6a43-494d-8e83-96810d69fbac")
 	)
 	(segment
@@ -72676,7 +72676,7 @@
 		(end 70.93 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "c1c08c23-4e21-4d74-abd4-f2d785246fc3")
 	)
 	(segment
@@ -72684,7 +72684,7 @@
 		(end 76.81035 134.5014)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C23_B_OUT")
+		(net "/LED_Feld/K23_B_OUT")
 		(uuid "c6635fc3-5cc5-454e-aeca-61156bdc826b")
 	)
 	(segment
@@ -72692,7 +72692,7 @@
 		(end 92.6407 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_A_OUT")
+		(net "/LED_Feld/K23_A_OUT")
 		(uuid "93b5839b-d63e-4f82-842a-54fd492960e9")
 	)
 	(segment
@@ -72700,7 +72700,7 @@
 		(end 97.6907 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_A_OUT")
+		(net "/LED_Feld/K23_A_OUT")
 		(uuid "a9150870-d111-4fb6-807c-85c324020cd0")
 	)
 	(segment
@@ -72708,7 +72708,7 @@
 		(end 97.6907 139.0514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_A_OUT")
+		(net "/LED_Feld/K23_A_OUT")
 		(uuid "c686550b-daf2-4d5b-b1c9-031f29c67ed8")
 	)
 	(segment
@@ -72716,7 +72716,7 @@
 		(end 94.3907 134.5014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_A_OUT")
+		(net "/LED_Feld/K23_A_OUT")
 		(uuid "c970330e-2b72-4668-a072-5d4f0edbef88")
 	)
 	(segment
@@ -72724,7 +72724,7 @@
 		(end 97.6907 137.8014)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_A_OUT")
+		(net "/LED_Feld/K23_A_OUT")
 		(uuid "cfcc8dc3-016a-4283-bf2c-ce7603460ca2")
 	)
 	(segment
@@ -72732,7 +72732,7 @@
 		(end 96.1907 140.5514)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C23_A_OUT")
+		(net "/LED_Feld/K23_A_OUT")
 		(uuid "fddedbfa-6f1b-4b4c-b84c-c0419bc32d30")
 	)
 	(segment
@@ -72740,7 +72740,7 @@
 		(end 100.9907 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_A_OUT")
+		(net "/LED_Feld/K14_A_OUT")
 		(uuid "07fbf0e9-13de-4247-887d-8f9a761132e5")
 	)
 	(segment
@@ -72748,7 +72748,7 @@
 		(end 102.7407 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_A_OUT")
+		(net "/LED_Feld/K14_A_OUT")
 		(uuid "1a161725-787a-445d-98af-14721f5bccc9")
 	)
 	(segment
@@ -72756,7 +72756,7 @@
 		(end 99.1907 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_A_OUT")
+		(net "/LED_Feld/K14_A_OUT")
 		(uuid "1a304525-ec85-4238-9459-34540e7d10eb")
 	)
 	(segment
@@ -72764,7 +72764,7 @@
 		(end 97.6907 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_A_OUT")
+		(net "/LED_Feld/K14_A_OUT")
 		(uuid "1a4ccb86-5776-4445-b9dd-61a2f470f6f3")
 	)
 	(segment
@@ -72772,7 +72772,7 @@
 		(end 97.6907 171.7121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_A_OUT")
+		(net "/LED_Feld/K14_A_OUT")
 		(uuid "278d7855-74e0-4993-b6d9-e11c295cb614")
 	)
 	(segment
@@ -72780,7 +72780,7 @@
 		(end 97.6907 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_A_OUT")
+		(net "/LED_Feld/K14_A_OUT")
 		(uuid "50bd42f5-9845-4334-ad3f-aadc77e99925")
 	)
 	(segment
@@ -72788,7 +72788,7 @@
 		(end 109.3907 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "990b60cf-9bdb-4dbd-8de1-a01369fa189b")
 	)
 	(segment
@@ -72796,7 +72796,7 @@
 		(end 109.3907 170.2121)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "9e62f433-936a-45f7-81af-f88f8a087ae3")
 	)
 	(segment
@@ -72804,7 +72804,7 @@
 		(end 124.4514 176.2621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "a5aac0ba-5608-497d-94b6-b13831d1b0d6")
 	)
 	(segment
@@ -72812,7 +72812,7 @@
 		(end 109.3907 172.9621)
 		(width 0.3)
 		(layer "F.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "febfbc93-da40-43e7-bea4-671ecdf34a46")
 	)
 	(via
@@ -72820,7 +72820,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "0da842bd-5e74-4014-bedc-3f9ab6ffc4fc")
 	)
 	(via
@@ -72828,7 +72828,7 @@
 		(size 0.7)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "e11d1137-8066-4e26-89f6-7c02a10ed922")
 	)
 	(segment
@@ -72836,7 +72836,7 @@
 		(end 124.4514 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "1c45c80b-73e4-4399-9e57-8f295a378c9e")
 	)
 	(segment
@@ -72844,7 +72844,7 @@
 		(end 116.92105 174.6121)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "2ce2c839-245e-42bd-ad36-252fb54a7b32")
 	)
 	(segment
@@ -72852,7 +72852,7 @@
 		(end 118.57105 176.2621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "5ab63046-41c7-4367-a1aa-e8a7f99f0861")
 	)
 	(segment
@@ -72860,7 +72860,7 @@
 		(end 115.27105 172.9621)
 		(width 0.3)
 		(layer "B.Cu")
-		(net "/LED_Feld/C14_B_OUT")
+		(net "/LED_Feld/K14_B_OUT")
 		(uuid "a75ca2e4-c1b3-4a99-b11f-3e5de99fc651")
 	)
 	(segment

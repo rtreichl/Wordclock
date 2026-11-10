@@ -378,7 +378,7 @@ _ns["classes"] = [dict(_cl, track_width=0.2, clearance=0.2, via_diameter=0.7, vi
     _nc("PWR_15V", 0.8, vd=0.8, vh=0.4), _nc("PWR_VBUS", 0.6, vd=0.8, vh=0.4), _nc("PWR_3V3", 0.5, vd=0.8, vh=0.4),
     _nc("PWR_5V", 0.6, vd=0.8, vh=0.4), _nc("GND", 0.4), _nc("USB", 0.2, clr=0.15), _nc("LED_DATA", 0.3)]
 _ns["netclass_patterns"] = [{"netclass": c, "pattern": p_} for c, p_ in (("PWR_15V", "+15V"), ("PWR_VBUS", "VBUS"), ("PWR_3V3", "+3V3"), ("PWR_5V", "+5V"), ("GND", "GND"),
-                            ("USB", "USB_D*"), ("USB", "*/USB_D*"), ("LED_DATA", "*/C??_*_OUT"), ("LED_DATA", "DIN"), ("LED_DATA", "*/DOUT"), ("LED_DATA", "*/MIN_OUT"), ("LED_DATA", "*/LED_5V"))]
+                            ("USB", "USB_D*"), ("USB", "*/USB_D*"), ("LED_DATA", "*/K??_*_OUT"), ("LED_DATA", "DIN"), ("LED_DATA", "*/DOUT"), ("LED_DATA", "*/MIN_OUT"), ("LED_DATA", "*/LED_5V"))]
 _r["min_copper_edge_clearance"] = 0.3
 _r["min_track_width"] = 0.1
 json.dump(_d, open(_pro, "w", encoding="utf-8"), indent=2)

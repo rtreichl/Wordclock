@@ -11,7 +11,6 @@ Wortuhr mit 12 × 12 Buchstaben, 500 × 500 mm. Frontplatte aus 1 mm Cortenstahl
 | `01_Mechanic/Rueckrahmen/` | 8 Rückrahmen-Leisten (STEP) und 2 Druckplatten (3MF, je ≤ 254 × 254 mm) |
 | `01_Mechanic/Diffusor/` | Diffusor 30 × 30 × 2 mm (DXF/STEP), 144 Stück |
 | `02_Electronics/KiCad/` | KiCad-Projekt, Generator-Skripte (`tools/`), Projektbibliotheken und Platzhalter-3D-Modelle |
-| `02_Electronics/3D-Export/` | 3D-Modelle der Platine, Master- und Slave-Variante |
 | `02_Electronics/BESTUECKUNG.md` | Bestückung, Kantenbrücken, Montage, WLED-Einstellungen |
 | `02_Electronics/KiCad/ROUTING_GUIDE.md` | Regeln mit ID für Schaltplan, Layout, Routing und Review |
 | `03_Software/ESPHome/` | Firmware für den ESP32-S3 (Uhrzeit per NTP, Home Assistant, Weboberfläche), siehe `README.md` dort |
@@ -19,7 +18,7 @@ Wortuhr mit 12 × 12 Buchstaben, 500 × 500 mm. Frontplatte aus 1 mm Cortenstahl
 | `04_Rendering/` | Blender-Skript, Szene, Netze und Renderbilder |
 | `05_Production/` | Geprüfte Fertigungsdaten je Bauteil mit Bericht `QUALIFIKATION.md`; Prüfskripte in `tools/` |
 | `06_Datenblätter/` | Datenblätter, nur lokal (nicht eingecheckt) |
-| `99_Archive/` | Ältere Modelle und Zwischenstände |
+| `99_Archive/` | Ältere Modelle, Zwischenstände und erledigte Einmal-Skripte |
 
 Ein Bild mit neuen Einstellungen rendern:
 

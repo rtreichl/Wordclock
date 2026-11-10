@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Platinen im FreeCAD-Modell aus den aktuellen STEP-Exporten neu aufbauen (freecadcmd update_pcb_model.py).
 
-Quelle: 02_Electronics/3D-Export/LED-Board_master.step (Q4) und _slave.step (Q2, Q1, Q3).
+Quelle: LED-Board_master.step (Q4) und LED-Board_slave.step (Q2, Q1, Q3) aus den freigegebenen Produktionsdaten
+(05_Production/05_Platine_JLCPCB). Fuer eine noch nicht freigegebene Platine WORTUHR_STEP_DIR=<stage>/PCB setzen.
 Die Lage ergibt sich aus der Leiterplatte selbst: Sie wird auf die bisherige Lage der jeweiligen Platine gelegt,
 gedreht um 0/90/180/270 Grad. Fuer L1 gibt es kein 3D-Modell, deshalb ein Platzhalter 13,5 x 12,5 x 6,5 mm (Bourns SRP1265A, Maximalhoehe).
 Prueft danach Kollisionen mit beiden Gitter-Varianten und dem Rueckrahmen.
@@ -12,8 +13,7 @@ from FreeCAD import Vector as V
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 doc = App.openDocument(os.path.join(ROOT, "01_Mechanic", "FrontPlatte-Bestellung.FCStd"))
-# Quelle der STEP-Dateien: Vorgabe 02_Electronics/3D-Export; mit WORTUHR_STEP_DIR direkt aus dem Staging von qualify_pcb.py (<stage>/PCB)
-EXP = os.environ.get("WORTUHR_STEP_DIR") or os.path.join(ROOT, "02_Electronics", "3D-Export")
+EXP = os.environ.get("WORTUHR_STEP_DIR") or os.path.join(ROOT, "05_Production", "05_Platine_JLCPCB")
 import sys
 sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
 import design as D  # noqa: E402  Rastermasse: eine Quelle
