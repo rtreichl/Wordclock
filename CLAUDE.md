@@ -4,7 +4,7 @@ Wortuhr 500 × 500 mm: Frontplatte, Lichtgitter, Rückrahmen, vier gleiche LED-P
 
 ## Grundsätze
 
-- **Eine Quelle je Wert.** Bauteile, Netze, Platzierung, ESP32-Pins, Abblock-Zuordnung, Mindestbreiten, Revision und Datum stehen in `02_Electronics/KiCad/tools/design.py`. Schaltplan, Platine, Prüfungen und Firmware-Abgleich lesen von dort. Keine zweite Kopie anlegen.
+- **Eine Quelle je Wert.** Bauteile, Netze, Platzierung, ESP32-Pins, Abblock-Zuordnung, Mindestbreiten, Bezugsdaten (MPN, DigiKey, LCSC), Rastermaße, Revision und Datum stehen in `02_Electronics/KiCad/tools/design.py`. Schaltplan, Platine, Prüfungen und Firmware-Abgleich lesen von dort. Keine zweite Kopie anlegen.
 - **Erzeugte Dateien nicht von Hand ändern:** `*.kicad_sch`, `WortUhr.kicad_sym` (aus `gen_sch.py`), `03_Software/ESPHome/wortuhr_layout.h` (aus `gen_layout.py`), `03_Software/WLED/ledmap_*.json` (aus `gen_ledmap.py`), alles unter `05_Production/` (aus `make_reports.py`).
 - **Regeln mit ID** stehen in `02_Electronics/KiCad/ROUTING_GUIDE.md` (DEC, LAY, PWR, MFG, RF, DES, SCH). Befunde nennen die Rule ID. Neue Regeln erst nach Rückfrage aufnehmen, IDs nie wiederverwenden.
 - **Datenblatt zuerst (DES-001):** Vor Änderungen an Schaltplan oder Layout das Datenblatt des betroffenen Bauteils nach Layoutvorgaben und Referenzschaltung durchsuchen. Die Datenblätter liegen lokal in `06_Datenblätter/` (nicht eingecheckt). Was nicht belegt ist, als nicht belegt benennen.
@@ -46,6 +46,7 @@ Eine Prüfung, die rot wird, ist ein Befund. Nicht die Grenze anpassen, sondern 
 ## Bekannte Altlasten
 
 - `01_Mechanic/tools/fix_*.py` und `add_*.py` sind einmalige Eingriffe in die binäre Datei `FrontPlatte-Bestellung.FCStd`. Sie dokumentieren, was geändert wurde, lassen sich aber nicht wiederholen.
-- Rastermaße der Mechanik stehen mehrfach in diesen Skripten; `design.py` rechnet mit dem Mittelwert 38,4607 mm.
-- Erzeugte Dateien liegen teils doppelt (Quellordner und `05_Production`).
+- Die Einmal-Skripte enthalten die Rastermaße noch als Zahlen. Alle anderen Skripte lesen `GRID_PX`, `GRID_PY`, `CLOCK_CENTER` und `PITCH` aus `design.py`.
+- `05_Production` ist der Freigabe-Ordner: Kopien der geprüften Quelldateien plus Bericht. Dort nie direkt ändern; `05_Production/tools/check_production.py` vergleicht Kopien, Prüfsummen und Quellen.
+- `02_Electronics/3D-Export` wird von keinem Skript geschrieben. Für das FreeCAD-Modell `WORTUHR_STEP_DIR=<stage>/PCB` setzen, dann liest `update_pcb_model.py` die frischen STEP-Dateien aus `qualify_pcb.py`.
 - SCH-009 (Netznamen `Cnn_A_OUT`) ist offen und braucht eine Layout-Änderung.

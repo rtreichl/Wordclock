@@ -12,7 +12,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 OUT = os.environ.get("WORTUHR_MESH_OUT", os.path.join(HERE, "meshes")); os.makedirs(OUT, exist_ok=True)
 doc = App.openDocument(os.path.join(ROOT, "01_Mechanic", "FrontPlatte-Bestellung.FCStd"))
-PX, PY, XC, YC = 38.5177, 38.4037, 250.6275, -250.0
+import sys
+sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
+import design as D  # noqa: E402  Rastermasse: eine Quelle
+PX, PY, (XC, YC) = D.GRID_PX, D.GRID_PY, D.CLOCK_CENTER
 xs = [XC + (i - 5.5) * PX for i in range(12)]; ys = [YC + (5.5 - j) * PY for j in range(12)]
 LIT = ((4, 1, 3), (6, 6, 12), (7, 1, 3), (12, 5, 9))      # IST, ZWANZIG, VOR, ZWOELF
 lit = {(r, c) for r, c0, c1 in LIT for c in range(c0, c1 + 1)}

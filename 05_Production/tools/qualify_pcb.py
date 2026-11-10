@@ -205,8 +205,7 @@ NO_ASSY = lambda ref: ref.startswith(("H", "JP", "J3", "J4", "FID"))
 fps = {fp.GetReference(): fp for fp in b.GetFootprints()}
 
 
-# Nur Nummern, die gegen LCSC/JLCPCB-Eintraege geprueft sind; Passive ordnet das JLCPCB-BOM-Tool nach Wert und Bauform zu
-LCSC = {"SRP1265A-3R3M": "C1329348", "SCT2360FPBR": "C2693821", "CH224K": "C970725", "USBLC6-2SC6": "C7519", "AP2112K-3.3": "C51118", "USB-C": "C165948"}
+LCSC = D.LCSC        # eine Quelle: design.py
 
 
 def variant(name, refs):

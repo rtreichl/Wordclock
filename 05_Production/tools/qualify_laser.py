@@ -154,7 +154,10 @@ md = [e for e in holes if abs(2 * e["r"] - 4.0) < 0.01]
 okd = len(md) == 4 and all(any(abs(e["c"][0] - x) < 0.05 and abs(e["c"][1] - y) < 0.05 for e in md) for x, y in MIN_DOTS)
 check(P, "Konstruktion", "Minutenpunkte", "4 x Ø 4,0 mm, je 18 mm von beiden Kanten", f"{len(md)} x Ø 4,0 mm", okd)
 # Buchstabenraster gegen Kammern (Kammermitten der Gitterteile)
-PX, PY, XC, YC = 38.5177, 38.4037, 250.6275, 250.0
+import sys
+sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
+import design as D  # noqa: E402  Rastermasse: eine Quelle
+PX, PY, XC, YC = D.GRID_PX, D.GRID_PY, D.CLOCK_CENTER[0], -D.CLOCK_CENTER[1]      # DXF: y nach oben
 xs = [XC + (i - 5.5) * PX for i in range(12)]; ys = [YC - (5.5 - j) * PY for j in range(12)]
 offc = 0
 for f, e in zip(faces, inner):

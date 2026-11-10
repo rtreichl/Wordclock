@@ -18,7 +18,11 @@ REV_DATE = "2026-11-10"   # Datum im Schriftfeld des Schaltplans
 ROOT_UUID = "71044415-29e6-47b3-b7ec-feffb4cadb55"
 
 # ---- Raster -----------------------------------------------------------------
-PITCH = 38.4607          # Mittel aus 38.5177 (x) und 38.4037 (y) -> 90°-symmetrisch
+# Raster der Uhr laut Frontplatte und FreeCAD-Modell: Kammerabstand in x und y, Uhrmittelpunkt in Modellkoordinaten.
+# Einzige Quelle fuer alle Skripte (Platine, Mechanik-Pruefung, Rendering).
+GRID_PX, GRID_PY = 38.5177, 38.4037
+CLOCK_CENTER = (250.6275, -250.0)
+PITCH = round((GRID_PX + GRID_PY) / 2, 4)   # 38.4607: Mittelwert, damit die Platine in 90-Grad-Schritten passt
 C0 = 19.23               # Abstand erste Kammermitte zur Schnittkante
 BOARD_MIN, BOARD_MAX = 0.5, 234.5
 LED_OFF = 7.5            # LED A/B jeweils +-7.5 mm neben Kammermitte
@@ -151,6 +155,12 @@ BEZUG = {
     ("CH224K", "SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm"): ("CH224K", ""),
     ("SCT2360FPBR", "QFN-12_SCT2360"): ("SCT2360FPBR", ""),
 }
+
+
+# LCSC-Nummern fuer die JLCPCB-Bestueckung, Schluessel = Wert. Nur Nummern, die gegen LCSC/JLCPCB-Eintraege
+# geprueft sind; Passive ordnet das JLCPCB-BOM-Tool nach Wert und Bauform zu.
+LCSC = {"SRP1265A-3R3M": "C1329348", "SCT2360FPBR": "C2693821", "CH224K": "C970725", "USBLC6-2SC6": "C7519",
+        "AP2112K-3.3": "C51118", "USB-C": "C165948"}
 
 
 def bezug(p):

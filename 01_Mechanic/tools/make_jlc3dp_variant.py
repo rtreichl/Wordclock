@@ -19,7 +19,10 @@ from FreeCAD import Vector as V
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 doc = App.openDocument(os.path.join(ROOT, "01_Mechanic", "FrontPlatte-Bestellung.FCStd"))
-PX, PY, XC, YC = 38.5177, 38.4037, 250.6275, -250.0
+import sys
+sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
+import design as D  # noqa: E402  Rastermasse: eine Quelle
+PX, PY, (XC, YC) = D.GRID_PX, D.GRID_PY, D.CLOCK_CENTER
 xs = [XC + (i - 5.5) * PX for i in range(12)]; ys = [YC + (5.5 - j) * PY for j in range(12)]
 XS, YS = (xs[5] + xs[6]) / 2, (ys[5] + ys[6]) / 2
 rw = [(ys[j] + ys[j + 1]) / 2 for j in range(11)]; cw = [(xs[i] + xs[i + 1]) / 2 for i in range(11)]

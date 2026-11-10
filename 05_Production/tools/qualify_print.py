@@ -83,7 +83,10 @@ def mesh_checks(part, shape, flip):
 names = {"Q1_obenlinks": "Gitter Q1", "Q2_obenrechts": "Gitter Q2", "Q3_untenlinks": "Gitter Q3", "Q4_untenrechts": "Gitter Q4"}
 PCBOF = {"Q1_obenlinks": "PCB_Q1", "Q2_obenrechts": "PCB_Q2", "Q3_untenlinks": "PCB_Q3", "Q4_untenrechts": "PCB_Q4_Master"}
 PAIRS = [("Q1_obenlinks", "Q2_obenrechts"), ("Q3_untenlinks", "Q4_untenrechts"), ("Q1_obenlinks", "Q3_untenlinks"), ("Q2_obenrechts", "Q4_untenrechts")]
-PP = 38.4607                       # Lochraster der Platine
+import sys
+sys.path.insert(0, os.path.join(ROOT, "02_Electronics", "KiCad", "tools"))
+import design as D  # noqa: E402  Rastermasse: eine Quelle
+PP = D.PITCH                       # Lochraster der Platine
 HOLE_PLAY = (4.3 - 3.0) / 2        # Platinenbohrung 4,3 mm, Schraube M3
 grids = {n: doc.getObject(n).Shape for n in names}
 VARIANTS = [("", "p1s"), ("_JLC3DP", "jlc")]
