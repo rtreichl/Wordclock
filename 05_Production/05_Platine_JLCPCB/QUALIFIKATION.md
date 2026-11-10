@@ -5,7 +5,7 @@
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
 | Datum | 2026-11-10 |
-| Stand | Git `1fda351` |
+| Stand | Git `a8529da` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
@@ -75,10 +75,10 @@
 | `BOM_Slave.csv` | `824dc6c89fba55fb…` |
 | `CPL_Master.csv` | `407bc20657526c69…` |
 | `CPL_Slave.csv` | `732dff21bc40172b…` |
-| `LED-Board_master.step` | `6854bd7afa4553c0…` |
-| `LED-Board_slave.step` | `aeecdf1a5b8c00f5…` |
-| `WortUhr_LED-Board_Gerber.zip` | `105ea25e45662c43…` |
-| `WortUhr_Schaltplan.pdf` | `220b9abbd40cadd7…` |
+| `LED-Board_master.step` | `31829997a1269e06…` |
+| `LED-Board_slave.step` | `acc8e049925cd6bd…` |
+| `WortUhr_LED-Board_Gerber.zip` | `b46be10b605b2426…` |
+| `WortUhr_Schaltplan.pdf` | `7b70f90a1132c6c2…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 

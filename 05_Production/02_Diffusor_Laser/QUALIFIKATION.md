@@ -5,7 +5,7 @@
 | Bauteil | Diffusor Opal-Acrylglas 2 mm (144 x 30 x 30, 4 x Ø 5,6) |
 | Fertiger | Eigenzuschnitt, Cutworks |
 | Datum | 2026-11-10 |
-| Stand | Git `1fda351` |
+| Stand | Git `a8529da` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **Eigenzuschnitt: FREIGEGEBEN** · **Cutworks: FREIGEGEBEN** |
 
