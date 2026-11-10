@@ -165,8 +165,13 @@ def pin_names(lib_id):
     return out
 
 
+BODY = {"Connector:TestPoint": (-0.8, 2.5, 0.8, 4.1)}      # Kreis ueber dem Pin; aus den Pins nicht ableitbar
+
+
 def symbol_body(lib_id):
     """Umriss des Symbolkoerpers (x1, y1, x2, y2) in Bibliothekskoordinaten: groesstes Rechteck, sonst Pin-Huelle."""
+    if lib_id in BODY:
+        return BODY[lib_id]
     if lib_id not in _body:
         b = flat_symbol(lib_id)
         best = None
@@ -261,7 +266,7 @@ class Sch:
         else:
             dr, dv = (body[0] - X, body[1] - Y - 1.6, "left"), (body[0] - X, body[3] - Y + 1.6, "left")
         dr, dv = ref_at or dr, val_at or dv
-        no_bom = ref.startswith(("#", "H", "FID", "JP")) or ref in ("J3", "J4")
+        no_bom = ref.startswith(("#", "H", "FID", "JP", "TP")) or ref in ("J3", "J4")
         s = ['(symbol (lib_id %s) (at %s %s %d) (unit 1) (exclude_from_sim no) (in_bom %s) (on_board %s) (dnp no) (uuid "%s")'
              % (q(lib_id), fmt(X), fmt(Y), rot, "no" if no_bom else "yes", "no" if ref.startswith("#") else "yes", uuid_)]
         s.append(self._field("Reference", ref, X + dr[0], Y + dr[1], dr[2], rot, not show_ref, ref))
@@ -438,6 +443,19 @@ FLAGS = {}
 MASTER_NOTE = "Alle Bauteile dieses Blatts werden nur auf der Master-Platine bestückt"
 
 
+def testpoints(S, x, y, refs):
+    """Rahmen mit Testpunkten untereinander: Pad links, Netz rechts als Versorgungssymbol oder Label."""
+    S.box(x, y, x + 26, y + 4 + 2 * len(refs), "Testpunkte (Pads Unterseite)")
+    for i, ref in enumerate(refs):
+        net, yy = S.parts[ref].pins["1"], y + 4 + 2 * i
+        S.part(ref, x + 6, yy, 90, ref_at=(-6.6, 0, "center"), show_val=False)
+        S.w((x + 6, yy), (x + 9, yy))
+        if net in POWER:
+            S.pwr(net, x + 9, yy, "right")
+        else:
+            S.lab(net, x + 9, yy)
+
+
 # ---------------------------------------------------------------- Blatt Versorgung
 def sheet_versorgung(S):
     S.note("Versorgung: USB-C Power Delivery 15 V, Abwärtswandler 5 V / 6 A, LDO 3,3 V", 8, 18.6, 2.5, bold=True)
@@ -448,7 +466,8 @@ def sheet_versorgung(S):
     S.part("J1", 20, 34, ref_at=(-10.16, -19.6, "left"), val_at=(-6.3, -19.6, "left"))
     S.h("F1", 32.5, 28)
     S.w((26, 28), (32.5, 28)); S.pwr("VBUS", 28, 28); S.flag("VBUS", 30, 28)
-    S.w((35.5, 28), (41, 28)); S.pwr("+15V", 38, 28); S.flag("+15V", 41, 28)
+    S.w((35.5, 28), (44.5, 28)); S.pwr("+15V", 38, 28); S.flag("+15V", 44.5, 28)
+    S.part("D80", 41, 29.5, 270, ref_at=(3.0, -1.25, "left"), val_at=(3.0, 1.25, "left")); S.pwr("GND", 41, 31)   # Kathode oben
     S.w((26, 30), (29, 30)); S.lab("CC1", 29, 30, 180)
     S.w((26, 31), (29, 31)); S.lab("CC2", 29, 31, 180)
     S.part("U3", 35, 36, ref_at=(4.2, 5.2, "left"), val_at=(4.2, 7.4, "left"))
@@ -456,11 +475,11 @@ def sheet_versorgung(S):
     S.w((26, 36), (29, 36), (29, 37), (33, 37)); S.w((26, 35), (27, 35), (27, 36)); S.lab("USB_D+", 27, 35)
     S.w((37, 36), (39, 36)); S.lab("USB_D-", 39, 36)
     S.w((37, 37), (39, 37)); S.lab("USB_D+", 39, 37)
-    S.w((35, 34), (35, 32), (46, 32)); S.pwr("+5V", 35, 32)
-    S.v("C28", 46, 32); S.pwr("GND", 46, 35)
+    S.w((35, 34), (35, 33), (46, 33)); S.pwr("+5V", 35, 33)
+    S.v("C28", 46, 33); S.pwr("GND", 46, 36)
     S.pwr("GND", 35, 39)
     S.w((17, 43), (17, 44), (20, 44)); S.w((20, 43), (20, 44)); S.pwr("GND", 20, 44); S.flag("GND", 17, 44, "down")
-    S.note("F1: PTC-Sicherung im VBUS-Eingang\nU3 Pin 5 an +5V, da VBUS bis 15 V führt\nC28: C_BUS nach ST USBLC6-2 Figure 17", 24, 42.6, top=True)
+    S.note("F1: PTC-Sicherung im VBUS-Eingang · D80: TVS-Diode 16 V hinter F1\nU3 Pin 5 an +5V, da VBUS bis 15 V führt\nC28: C_BUS nach ST USBLC6-2 Figure 17", 24, 42.6, top=True)
 
     # --- USB-PD
     S.box(55, 22, 92, 48, "USB-PD Sink: fordert 15 V an")
@@ -490,8 +509,9 @@ def sheet_versorgung(S):
     # --- Abwaertswandler
     S.box(16, 60, 120, 88, "Abwärtswandler 15 V → 5 V / 6 A")
     S.part("U7", 50, 72, val_at=(-5.4, -16.84, "left"))
-    S.pwr("+15V", 20, 67); S.w((20, 67), (45, 67))
-    S.v("C21", 26, 67); S.pwr("GND", 26, 70)
+    S.pwr("+15V", 18, 67); S.w((18, 67), (45, 67))
+    S.v("C29", 22, 67); S.pwr("GND", 22, 70)
+    S.v("C21", 28, 67); S.pwr("GND", 28, 70)
     S.v("C22", 34, 67); S.pwr("GND", 34, 70)
     S.w((45, 71), (43, 71)); S.pwr("GND", 43, 71, "left")                                        # FSEL = GND
     S.w((45, 74), (36, 74)); S.v("C27", 36, 74); S.pwr("GND", 36, 77); S.lab("BUCK_VCC", 40.5, 74)
@@ -509,7 +529,8 @@ def sheet_versorgung(S):
     S.pwr("+5V", 113, 70); S.flag("+5V", 115.5, 70)
     S.note("FSEL = GND: 400 kHz · MODE offen: USM · EN offen: Start automatisch\n"
            "R22/R23: Vout = Vref × (1 + 75k / 10,2k); mit Vref = 0,6 V ergibt das 5,01 V\n"
-           "C21/C22 direkt an VIN und PGND (Hot-Loop, SCT2360 Figure 22) · C1: Pufferelko, auf jeder Platine", 17, 83.2, top=True)
+           "C21/C29/C22 direkt an VIN und PGND (Hot-Loop, SCT2360 Figure 22; zwei 22 µF laut Datenblatt) · C1: Pufferelko, auf jeder Platine", 17, 83.2, top=True)
+    testpoints(S, 124, 60, ["TP1", "TP2", "TP3", "TP4", "TP5"])
 
     S.note("Energiekette: USB-C PD 15 V  →  F1  →  U7 (5 V, bis 6 A)  →  LED-Feld und U2 (3,3 V).\n"
            "Die Firmware begrenzt den LED-Strom auf geschätzte 5 A und schaltet die LEDs nur bei PD_GOOD ein.", 16, 92, 1.5, top=True)
@@ -569,6 +590,7 @@ def sheet_esp32(S):
     S.v("R7", 128, 60); S.w((128, 63), (128, 65), (124, 65)); S.lab("SDA", 124.5, 65)
     S.v("R8", 132, 60); S.w((132, 63), (132, 67), (124, 67)); S.lab("SCL", 124.5, 67)
     S.note("ADDR = GND: Adresse 0x23 · DVI: Reset über R6/C7 beim Einschalten\nR7/R8: I2C-Pull-ups · Sensor sitzt unter dem Lichtleiter", 99, 74.6, top=True)
+    testpoints(S, 98, 82, ["TP6", "TP7", "TP8"])
 
 
 # ---------------------------------------------------------------- Blatt LED-Feld

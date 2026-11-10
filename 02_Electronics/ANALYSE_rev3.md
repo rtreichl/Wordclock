@@ -2,6 +2,16 @@
 
 Stand 2026-11-10, Platine nach Commit „C20 moved to U6 pin 1“. Review nach Teil 2 des Leitfadens (`KiCad/ROUTING_GUIDE.md`): Jeder Befund hat die zwölf Pflichtfelder. Gerechnet wurde mit Werten aus den Datenblättern in `06_Datenblätter/` und mit Maßen aus der Platine. Wo ein Wert fehlt, steht das dabei; er wurde nicht ersetzt. Gemessen wurde nichts, die Platine ist noch nicht gebaut.
 
+## Umsetzung in rev4
+
+| Befund | Stand in rev4 |
+|---|---|
+| A2 | umgesetzt: C29 (22 µF / 25 V) neben C21 |
+| A4 | umgesetzt: C23 bis C25 sind 22 µF / 25 V in 1206 (gleiches Bauteil wie C21). Die DC-Bias-Kurve fehlt weiterhin |
+| A8 | umgesetzt: D80 (SMBJ16A) an +15V hinter F1. Die Kennwerte der Diode sind noch nicht gegen ein Datenblatt geprüft |
+| A9 | umgesetzt: TP1 bis TP8. Für TXD0/RXD0 gibt es keinen Testpunkt |
+| A1, A3, A5, A6 | offen: brauchen Messung, Bauteilwahl oder Datenblatt |
+
 ## Ergebnis
 
 | Nr. | Befund | Schwere | Handlung |

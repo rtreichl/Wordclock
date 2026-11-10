@@ -13,7 +13,7 @@ unten rechts) im Bereich x,y = 0.5 ... 234.5.
 import uuid
 
 PROJECT = "WortUhr"
-REV = "3"                 # Platinen-Revision: einzige Quelle fuer Schriftfeld und Bestueckungsdruck (SCH-010)
+REV = "4"                 # Platinen-Revision: einzige Quelle fuer Schriftfeld und Bestueckungsdruck (SCH-010)
 REV_DATE = "2026-11-10"   # Datum im Schriftfeld des Schaltplans
 ROOT_UUID = "71044415-29e6-47b3-b7ec-feffb4cadb55"
 
@@ -83,8 +83,9 @@ class Part:
 
 
 SHEETS = {"Versorgung": "Versorgung.kicad_sch", "ESP32": "ESP32.kicad_sch", "LED_Feld": "LED_Feld.kicad_sch"}
-VERSORGUNG = {"J1", "F1", "U3", "C28", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1"}
-ESP32 = {"U1", "R24", "R25", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8"}
+VERSORGUNG = {"J1", "F1", "U3", "C28", "U6", "R20", "R21", "C20", "U7", "L1", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "R22", "R23", "U2", "C2", "C3", "C1",
+              "C29", "D80", "TP1", "TP2", "TP3", "TP4", "TP5"}
+ESP32 = {"U1", "R24", "R25", "R3", "R4", "C4", "C5", "C9", "SW1", "SW2", "U4", "C6", "R5", "U5", "R6", "C7", "C8", "R7", "R8", "TP6", "TP7", "TP8"}
 
 
 def sheet_of(ref):
@@ -104,7 +105,7 @@ ESP_MODULE_PIN = {0: "4", 1: "5", 2: "6", 8: "12", 38: "34"}
 
 # Abblock-Kondensatoren: C -> (IC, Versorgungspin). Regel DEC-009 prueft den Pad-Abstand.
 DECOUPLING = {"C2": ("U2", "1"), "C3": ("U2", "5"), "C4": ("U1", "3"), "C9": ("U1", "3"), "C6": ("U4", "5"), "C8": ("U5", "1"),
-              "C20": ("U6", "1"), "C21": ("U7", "1"), "C22": ("U7", "1"), "C26": ("U7", "8"), "C27": ("U7", "9"), "C28": ("U3", "5"),
+              "C20": ("U6", "1"), "C21": ("U7", "1"), "C29": ("U7", "1"), "C22": ("U7", "1"), "C26": ("U7", "8"), "C27": ("U7", "9"), "C28": ("U3", "5"),
               "C175": ("D75", "1")}
 DECOUPLING.update({"C%d" % (100 + n): ("D%d" % n, "1") for n in range(1, 73)})
 # Kondensatoren mit anderer Aufgabe. Jeder Kondensator steht in genau einer der beiden Listen.
@@ -115,6 +116,10 @@ OTHER_CAPS = {"C1": "Pufferelko +5V je Platine", "C23": "Ausgang Wandler", "C24"
 PWR_MIN_WIDTH = {"+15V": 0.8, "VBUS": 0.6, "+3V3": 0.5}
 # Dokumentierte Ausnahme (ROUTING_GUIDE.md): Netz -> (Bauteil, Pad, kleinste Breite, groesste Laenge, Umkreis um das Pad), alles in mm
 PWR_WIDTH_EXCEPTION = {"+3V3": ("U5", "1", 0.25, 2.5, 4.0)}
+
+
+# Testpunkte TP1..TPn in dieser Reihenfolge; der Wert des Symbols ist der Netzname.
+TESTPOINTS = ["+15V", "+5V", "+3V3", "GND", "GND", "DIN", "PD_GOOD", "EN"]
 
 
 def sheet_uuid(name):
@@ -152,6 +157,7 @@ BEZUG = {
     ("BH1750FVI", "WSOF6I_BH1750"): ("BH1750FVI-TR", "BH1750FVICT-ND"),
     # Bei DigiKey nicht gefuehrt: separat beschaffen
     ("USB-C", "USB_C_Receptacle_HRO_TYPE-C-31-M-12"): ("TYPE-C-31-M-12", ""),
+    ("SMBJ16A", "D_SMB"): ("SMBJ16A", ""),       # DigiKey-Nummer noch nicht ueber die API bestaetigt
     ("CH224K", "SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm"): ("CH224K", ""),
     ("SCT2360FPBR", "QFN-12_SCT2360"): ("SCT2360FPBR", ""),
 }
@@ -270,14 +276,21 @@ def build_parts():
                   extra={"Hinweis": "FSEL=GND: 400 kHz; MODE offen: USM; EN offen: Start automatisch"}))
     P.append(Part("L1", "Device:L", "SRP1265A-3R3M", FP_L, {"1": "BUCK_SW", "2": "+5V"}, M))
     P.append(Part("C21", "Device:C", "22u/25V", FP_C1206, {"1": "+15V", "2": "GND"}, M))
+    P.append(Part("C29", "Device:C", "22u/25V", FP_C1206, {"1": "+15V", "2": "GND"}, M,
+                  extra={"Hinweis": "SCT2360: zwei 22 uF am Eingang empfohlen (rev4, Befund A2)"}))
+    P.append(Part("D80", "Device:D_Zener", "SMBJ16A", "Diode_SMD:D_SMB", {"1": "+15V", "2": "GND"}, M,
+                  extra={"Hinweis": "TVS-Diode hinter F1, Kathode an +15V (rev4, Befund A8)"}))
     P.append(Part("C22", "Device:C", "100n/25V", FP_C0603, {"1": "+15V", "2": "GND"}, M))
     for i, ref in enumerate(("C23", "C24", "C25")):
-        P.append(Part(ref, "Device:C", "22u/10V", FP_C0805, {"1": "+5V", "2": "GND"}, M))
+        P.append(Part(ref, "Device:C", "22u/25V", FP_C1206, {"1": "+5V", "2": "GND"}, M))   # 25 V wegen DC-Bias (rev4, Befund A4)
     P.append(Part("C26", "Device:C", "100n/25V", FP_C0603, {"1": "BUCK_BST", "2": "BUCK_SW"}, M))
     P.append(Part("C27", "Device:C", "1u/10V", FP_C0603, {"1": "BUCK_VCC", "2": "GND"}, M))
     P.append(Part("R22", "Device:R", "75k", FP_R0603, {"1": "+5V", "2": "BUCK_FB"}, M))
     P.append(Part("R23", "Device:R", "10.2k", FP_R0603, {"1": "BUCK_FB", "2": "GND"}, M))
     P.append(Part("C9", "Device:C", "22u/10V", FP_C0805, {"1": "+3V3", "2": "GND"}, M))
+    # Testpunkte (rev4, Befund A9): reine Pads auf der Unterseite, nicht bestueckt
+    for i, n in enumerate(TESTPOINTS):
+        P.append(Part("TP%d" % (i + 1), "Connector:TestPoint", n, "TestPoint:TestPoint_Pad_D1.5mm", {"1": n}))
     for p in P:
         bezug(p)
     return P
@@ -307,6 +320,8 @@ MASTER_PLACE = {
     "C20": (70.2, 226.2, 0, "B"),      # VDD-Abblockung direkt unter U6 Pin 1 (DEC-009), Pad 1 zum Pin
     "R21": (79.0, 224.0, 90, "B"),
     "C21": (85.7, 224.0, 90, "B"),     # Figure 22: Eingangs-C ueber VIN (Pin 1) und PGND (Pin 2)
+    "C29": (83.3, 224.0, 90, "B"),     # zweiter Eingangs-C direkt neben C21
+    "D80": (80.2, 230.3, 0, "B"),      # TVS zwischen F1 und dem Wandler, Kathode zur +15V-Leitung
     "C22": (87.75, 224.0, 90, "B"),    # Figure 22: 100n direkt an Pin 1/2 (Hot-Loop)
     "U7": (90.5, 224.0, 0, "B"),      # Abwaertswandler, SW zur Spule
     "C26": (93.0, 226.7, 0, "B"),      # BST direkt zwischen Pin 8 und SW
@@ -314,9 +329,9 @@ MASTER_PLACE = {
     "R22": (85.9, 227.7, 0, "B"),      # Rueckfuehrung an der Pinreihe 9-12
     "R23": (88.9, 227.7, 0, "B"),
     "L1": (102.0, 224.0, 0, "B"),     # so nah wie moeglich an SW
-    "C23": (111.3, 221.5, 0, "B"),     # Ausgangs-Cs direkt am Spulenanschluss
-    "C24": (111.3, 224.0, 0, "B"),
-    "C25": (111.3, 226.5, 0, "B"),
+    "C23": (112.3, 221.5, 0, "B"),     # Ausgangs-Cs direkt am Spulenanschluss (1206, neben den +5V-Vias)
+    "C24": (112.3, 224.0, 0, "B"),
+    "C25": (112.3, 226.5, 0, "B"),
     "U4": (19.0, 218.5, 180, "B"),    # Pegelwandler: A zum ESP32, Y zu R5
     "C6": (19.0, 215.0, 0, "B"),
     "R5": (14.5, 219.0, 90, "B"),
@@ -326,4 +341,13 @@ MASTER_PLACE = {
     "C7": (3.0, 224.5, 90, "B"),
     "R7": (11.5, 225.5, 90, "B"),
     "R8": (13.5, 225.5, 90, "B"),
+    # Testpunkte (Pads, Unterseite), jeweils an vorhandenem Kupfer ihres Netzes
+    "TP1": (80.58, 226.558, 0, "B"),   # +15V an der Leitung von F1 zum Wandler
+    "TP2": (99.914, 215.6, 0, "B"),    # +5V an der VOUT-Leitung des Wandlers
+    "TP3": (55.0, 227.2, 0, "B"),      # +3V3 unter C3
+    "TP4": (98.0, 232.0, 0, "B"),      # GND am Wandler
+    "TP5": (47.0, 212.0, 0, "B"),      # GND am ESP32
+    "TP6": (14.5, 212.139, 0, "B"),    # DIN hinter R5
+    "TP7": (74.138, 226.5, 0, "B"),    # PD_GOOD unter U6 Pin 10
+    "TP8": (87.65, 218.9, 0, "B"),     # EN neben SW1
 }

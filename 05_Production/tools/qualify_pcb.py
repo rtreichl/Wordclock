@@ -201,7 +201,7 @@ check("Fertigungsdaten", "Gerber-Archiv", "ZIP lesbar, alle Dateien enthalten",
 
 # Stueckliste + Bestueckung (JLCPCB-Format) fuer beide Varianten
 MASTER = set(D.MASTER_PLACE)
-NO_ASSY = lambda ref: ref.startswith(("H", "JP", "J3", "J4", "FID"))
+NO_ASSY = lambda ref: ref.startswith(("H", "JP", "J3", "J4", "FID", "TP"))
 fps = {fp.GetReference(): fp for fp in b.GetFootprints()}
 
 
