@@ -4,8 +4,8 @@
 |---|---|
 | Bauteil | WortUhr LED-Board rev2, 234 x 234 mm, 2 Lagen |
 | Fertiger | JLCPCB |
-| Datum | 2026-11-09 |
-| Stand | Git `63f04dd` (mit nicht eingecheckten Aenderungen) |
+| Datum | 2026-11-10 |
+| Stand | Git `1fda351` |
 | Pruefung | automatisch, `05_Production/tools/` |
 | Ergebnis | **JLCPCB: FREIGEGEBEN** |
 
@@ -13,15 +13,18 @@
 
 | Kategorie | Pruefung | Kriterium | Messwert | JLCPCB |
 |---|---|---|---|---|
-| Elektrisch | ERC (Schaltplan) | 0 Fehler | 0 Fehler | ✅ bestanden |
+| Elektrisch | ERC (Schaltplan) | 0 Fehler, 0 Warnungen | 0 Fehler, 0 Warnungen | ✅ bestanden |
+| Schaltplan | Generator-Stand (SCH-010) | Dateien im Projekt = Ausgabe von gen_sch.py | 0 abweichend | ✅ bestanden |
+| Schaltplan | Netze der Zeichnung | jeder Pin am Netz aus design.py, jedes Netz benannt, kein Kurzschluss | 0 Befunde | ✅ bestanden |
+| Schaltplan | Lesbarkeit (SCH-004) | keine ueberlappenden Texte, keine Leitung durch Text oder fremdes Symbol | 0 Befunde | ✅ bestanden |
 | Elektrisch | DRC Fehler | 0 | 0 | ✅ bestanden |
-| Elektrisch | DRC Warnungen | nur kosmetisch (Bestueckungsdruck, Waermefalle) | {"silk_edge_clearance": 4, "silk_over_copper": 96, "silk_overlap": 16} | ✅ bestanden |
+| Elektrisch | DRC Warnungen | nur kosmetisch (Bestueckungsdruck, Waermefalle) | {"silk_edge_clearance": 4, "silk_over_copper": 98, "silk_overlap": 17} | ✅ bestanden |
 | Elektrisch | Offene Verbindungen | 0 | 0 | ✅ bestanden |
 | Elektrisch | Schaltplan-/Layout-Abgleich | 0 Abweichungen | 0 | ✅ bestanden |
 | Fertigung | Platinengroesse | <= 670 x 600 mm (Fertigung), <= 460 x 500 mm (Standard-Bestueckung), Soll 234 x 234 mm | 234.00 x 234.00 mm | ✅ bestanden |
 | Fertigung | Lagenzahl | 2 | 2 | ✅ bestanden |
 | Fertigung | Min. Leiterbahnbreite | >= 0.1 mm | 0.150 mm | ✅ bestanden |
-| Fertigung | Via-Bohrung | >= 0.15 mm | 0.30 mm (292 Vias) | ✅ bestanden |
+| Fertigung | Via-Bohrung | >= 0.15 mm | 0.30 mm (294 Vias) | ✅ bestanden |
 | Fertigung | Via-Durchmesser | >= 0.25 mm | 0.70 mm | ✅ bestanden |
 | Fertigung | Restring Via (absolutes Minimum 2 Lagen 1 oz) | >= 0.18 mm | 0.200 mm | ✅ bestanden |
 | Fertigung | Min. Bohrung durchkontaktiert (Pads) | >= 0.15 mm | 0.60 mm | ✅ bestanden |
@@ -30,7 +33,11 @@
 | Fertigung | Isolationsabstand (Netzklasse Default, vom DRC geprueft) | >= 0.1 mm | 0.20 mm | ✅ bestanden |
 | Bestueckung | Passermarken (Standard-PCBA) | >= 3 je bestueckter Seite | oben 3, unten 3 | ✅ bestanden |
 | Fertigung | Bestueckungsdruck Text | Hoehe >= 1.0 mm, Strich >= 0.15 mm | Hoehe 1.00 mm, Strich 0.15 mm | ✅ bestanden |
-| Layout | Abblock-C am Versorgungspin | Pad-Abstand <= 8 mm (C175: Unterseite, ueber Via) | max. 6.4 mm (C175), IC-C: C2 2.9, C3 2.9, C4 3.0, C6 2.6, C8 2.2 | ✅ bestanden |
+| Layout | Kondensatoren zugeordnet (DEC-010) | jeder Kondensator ist Abblock-C eines Pins oder hat eine benannte andere Aufgabe | 86 Abblock-C, 6 andere, nicht zugeordnet: - | ✅ bestanden |
+| Layout | Abblock-C am Versorgungspin (DEC-009) | Pad-Abstand <= 8 mm (C175: Unterseite, ueber Via) | max. 6.7 mm (C29), IC-C: C2 2.9, C3 2.9, C4 3.0, C6 2.6, C8 2.2, C9 5.6, C20 2.3, C21 4.3, C22 2.2, C26 2.2, C27 2.8, C28 1.1, C29 6.7 | ✅ bestanden |
+| Layout | Leiterbahnbreite Versorgung (PWR-001) | +15V >= 0.8 mm, VBUS >= 0.6 mm, +3V3 >= 0.5 mm; Ausnahme +3V3 an U5 Pin 1 | eingehalten, Ausnahme +3V3 2.0 mm | ✅ bestanden |
+| Layout | Antennenbereich frei (RF-001) | Sperrflaeche an U1 auf beiden Lagen fuer Flaechen, Leiterbahnen, Vias und Bauteile; DRC ohne Fehler | 1 Sperrflaeche(n), DRC-Fehler 0 | ✅ bestanden |
+| Schaltplan | ESP32-Pins | Modulpin in design.py traegt im Symbol den Namen des GPIO | BOOT=GPIO0, SDA=GPIO1, SCL=GPIO2, LED_3V3=GPIO8, PD_GOOD=GPIO38 | ✅ bestanden |
 | Layout | Kritische Teile gesperrt | Steckverbinder, Kantenbruecken, ESP32, Montageloecher, Passermarken | 16/16 | ✅ bestanden |
 | Mechanik | Montageloecher M3 | 6 x Bohrung 4,3 mm (M3 mit +-0,65 mm Spiel) an den Stegkreuzungen | 6 Stk. | ✅ bestanden |
 | Layout | Leiterbahnwinkel | nur horizontal, vertikal oder 45 Grad | 0 abweichend | ✅ bestanden |
@@ -38,8 +45,8 @@
 | Fertigungsdaten | Bohrdateien | PTH + NPTH Excellon (mm) | WortUhr-NPTH.drl, WortUhr-PTH.drl | ✅ bestanden |
 | Fertigungsdaten | Umriss im Gerber | 234 x 234 mm (+-0,1) | 234.00 x 234.00 mm | ✅ bestanden |
 | Fertigungsdaten | Gerber-Archiv | ZIP lesbar, alle Dateien enthalten | 14 Dateien | ✅ bestanden |
-| Stueckliste | BOM DigiKey (1 Master + 3 Slaves) | Jede Position hat eine DigiKey-Nummer oder steht in der separaten Beschaffungsliste | 26 bei DigiKey, separat: USB-C, CH224K, SCT2360FPBR | ✅ bestanden |
-| Stueckliste | BOM/CPL Master | jede Position mit Wert, Footprint und Koordinate | 188 Bauteile, 30 Positionen | ✅ bestanden |
+| Stueckliste | BOM DigiKey (1 Master + 3 Slaves) | Jede Position hat eine DigiKey-Nummer oder steht in der separaten Beschaffungsliste | 26 bei DigiKey, separat: SMBJ16A, USB-C, CH224K, SCT2360FPBR | ✅ bestanden |
+| Stueckliste | BOM/CPL Master | jede Position mit Wert, Footprint und Koordinate | 190 Bauteile, 31 Positionen | ✅ bestanden |
 | Stueckliste | BOM/CPL Slave | jede Position mit Wert, Footprint und Koordinate | 147 Bauteile, 3 Positionen | ✅ bestanden |
 | Stueckliste | LED-Anzahl | 73 je Platine (2 je Kammer + 1 Minutenpunkt) | 73 | ✅ bestanden |
 | Fertigungsdaten | 3D-Modell master | STEP-Export erfolgreich | ok | ✅ bestanden |
@@ -62,16 +69,16 @@
 
 | Datei | SHA256 |
 |---|---|
-| `BOM_DigiKey.csv` | `0edee504983aa3d0…` |
-| `BOM_Master.csv` | `8504100dd4857e26…` |
-| `BOM_Separat_Beschaffung.csv` | `ca51992415df923e…` |
+| `BOM_DigiKey.csv` | `5ebf0bfc81d8e95c…` |
+| `BOM_Master.csv` | `9da5644d183aec43…` |
+| `BOM_Separat_Beschaffung.csv` | `a1ebdcee51e5f1ae…` |
 | `BOM_Slave.csv` | `824dc6c89fba55fb…` |
-| `CPL_Master.csv` | `ee140c2b0895768a…` |
+| `CPL_Master.csv` | `407bc20657526c69…` |
 | `CPL_Slave.csv` | `732dff21bc40172b…` |
-| `LED-Board_master.step` | `d9c786b4eccfd3b5…` |
-| `LED-Board_slave.step` | `3c4c52d1a39ab157…` |
-| `WortUhr_LED-Board_Gerber.zip` | `8f2aa445172ca4d6…` |
-| `WortUhr_Schaltplan.pdf` | `9edebea1dd3d3650…` |
+| `LED-Board_master.step` | `6854bd7afa4553c0…` |
+| `LED-Board_slave.step` | `aeecdf1a5b8c00f5…` |
+| `WortUhr_LED-Board_Gerber.zip` | `105ea25e45662c43…` |
+| `WortUhr_Schaltplan.pdf` | `220b9abbd40cadd7…` |
 
 ## Grundlage (Fertigerangaben, abgerufen 2026-11-07)
 
