@@ -27,6 +27,7 @@ fp-info-cache
 *.blend1
 stage/
 __pycache__/
+02_Electronics/Vergleich/
 
 # Datenblaetter: nur lokal
 06_Datenbl*/

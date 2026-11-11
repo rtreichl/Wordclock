@@ -458,7 +458,7 @@
       },
       {
         "netclass": "LED_DATA",
-        "pattern": "*/C??_*_OUT"
+        "pattern": "*/K??_*_OUT"
       },
       {
         "netclass": "LED_DATA",

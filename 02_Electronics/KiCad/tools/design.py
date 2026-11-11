@@ -183,8 +183,8 @@ def build_parts():
     # --- LED-Feld -------------------------------------------------------------
     prev = "DIN"
     for c, ((k, j), d) in enumerate(PATH):
-        a_out = f"C{c+1:02d}_A_OUT"
-        b_out = "DOUT" if c == 35 else f"C{c+1:02d}_B_OUT"
+        a_out = f"K{c+1:02d}_A_OUT"          # K = Kammer; nicht mit Kondensator-Referenzen verwechselbar (SCH-009)
+        b_out = "DOUT" if c == 35 else f"K{c+1:02d}_B_OUT"
         nA, nB = 2 * c + 1, 2 * c + 2
         P.append(Part(f"D{nA}", "LED:WS2812B", "SK6812RGBW", FP_LED,
                       {"1": "+5V", "2": a_out, "3": "GND", "4": prev},
